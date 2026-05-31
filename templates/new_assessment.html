@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}New Assessment — SMA System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-7">
+  <div class="card p-4">
+    <h5 class="fw-bold mb-4">
+      {% if user.role == 'gc_assessor' %}Start Self-Assessment{% else %}Start New Assessment{% endif %}
+    </h5>
+    <form method="post">
+
+      {% if user.role != 'gc_assessor' %}
+      <!-- Kind selector (SBU/Admin only) -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Assessment Kind</label>
+        <div class="d-flex gap-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="kind" id="kind_self" value="self" onchange="toggleKind()">
+            <label class="form-check-label" for="kind_self">Self-Assessment (GC)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="kind" id="kind_val" value="validation" checked onchange="toggleKind()">
+            <label class="form-check-label" for="kind_val">Validation (SBU)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Link to submitted self-assessment (validation only) -->
+      <div class="mb-3" id="linked-group">
+        <label class="form-label fw-semibold">Link to Self-Assessment <span class="text-muted fw-normal">(optional)</span></label>
+        <select name="linked_to" class="form-select">
+          <option value="">— None —</option>
+          {% for sa in submitted_self %}
+            <option value="{{ sa.id }}">{{ sa.gc_name or sa.site_name }} — {{ sa.assessment_date or 'no date' }}</option>
+          {% endfor %}
+        </select>
+        <div class="form-text">Select the GC's submitted self-assessment to compare against.</div>
+      </div>
+      {% else %}
+      <input type="hidden" name="kind" value="self">
+      {% endif %}
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Site Name</label>
+        <input type="text" name="site_name" class="form-control"
+               placeholder="e.g. BSANZ WH, BSANZ Retail Store 1"
+               value="{% if prefill_gc %}{{ prefill_gc.name }}{% endif %}" required>
+      </div>
+
+      {% if user.role != 'gc_assessor' %}
+      <!-- GC selector (SBU/Admin only) -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">GC Company</label>
+        <select name="gc_id" class="form-select">
+          <option value="">— Unassigned —</option>
+          {% for gc in gcs %}
+            <option value="{{ gc.id }}">{{ gc.name }} ({{ gc.type|upper }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Assessment Type</label>
+        <div class="d-flex gap-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" id="type_wh" value="warehouse"
+                   {% if prefill_gc and prefill_gc.type == 'warehouse' %}checked{% elif not prefill_gc %}checked{% endif %}
+                   onchange="toggleScope()">
+            <label class="form-check-label" for="type_wh">Warehouse (WH)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" id="type_rt" value="retail"
+                   {% if prefill_gc and prefill_gc.type == 'retail' %}checked{% endif %}
+                   onchange="toggleScope()">
+            <label class="form-check-label" for="type_rt">Retail</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3" id="scope_group" style="{% if not prefill_gc or prefill_gc.type != 'retail' %}display:none{% endif %}">
+        <label class="form-label fw-semibold">Retail Scope</label>
+        <div class="d-flex gap-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="scope" id="scope_store" value="store"
+                   {% if not prefill_gc or prefill_gc.scope == 'store' %}checked{% endif %}>
+            <label class="form-check-label" for="scope_store">Store Assessment</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="scope" id="scope_lc" value="local_company"
+                   {% if prefill_gc and prefill_gc.scope == 'local_company' %}checked{% endif %}>
+            <label class="form-check-label" for="scope_lc">Local Company Assessment</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Assessment Date</label>
+        <input type="date" name="assessment_date" class="form-control" value="{{ today }}">
+      </div>
+
+      {% if user.role != 'gc_assessor' %}
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Master Assessor A</label>
+          <input type="text" name="assessor_a" class="form-control" placeholder="Name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Master Assessor B</label>
+          <input type="text" name="assessor_b" class="form-control" placeholder="Name">
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="d-flex gap-2 mt-2">
+        <button type="submit" class="btn btn-warning fw-bold px-4">Start Assessment →</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleScope() {
+  const isRetail = document.getElementById('type_rt').checked;
+  document.getElementById('scope_group').style.display = isRetail ? 'block' : 'none';
+}
+function toggleKind() {
+  const isVal = document.getElementById('kind_val')?.checked;
+  const lg = document.getElementById('linked-group');
+  if (lg) lg.style.display = isVal ? '' : 'none';
+}
+</script>
+{% endblock %}

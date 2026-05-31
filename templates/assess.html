@@ -1,0 +1,756 @@
+{% extends "base.html" %}
+{% block title %}Assess — {{ assessment.site_name }}{% endblock %}
+
+{% block content %}
+<div class="row g-3">
+
+  <!-- ── Left: Question panel ───────────────────────────────────────── -->
+  <div class="col-lg-8">
+
+    <!-- Header -->
+    <div class="card mb-3 p-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div>
+          <span class="fw-bold fs-5">{{ assessment.site_name }}</span>
+          <span class="badge bg-secondary ms-2">{{ assessment.type|upper }}</span>
+          {% if assessment.kind == 'validation' %}
+            <span class="badge bg-dark ms-1">Validation</span>
+          {% else %}
+            <span class="badge bg-info text-dark ms-1">Self-Assessment</span>
+          {% endif %}
+          {% if assessment.scope and assessment.type == 'retail' %}
+            <span class="badge bg-light text-dark">{{ assessment.scope }}</span>
+          {% endif %}
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          {% if read_only %}
+            <span class="badge bg-secondary">Read Only</span>
+            <a href="{{ url_for('result', assessment_id=assessment.id) }}" class="btn btn-outline-success btn-sm">View Results</a>
+          {% else %}
+            <span id="remaining-badge" class="badge bg-warning text-dark fs-6">
+              <span id="remaining-count">{{ total_q - answered_q }}</span> remaining
+            </span>
+            <button class="btn btn-success btn-sm fw-bold" id="btn-finish" onclick="finishAssessment()">
+              ✓ Finish & View Results
+            </button>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Progress bar -->
+      <div class="progress mt-2" style="height:8px" title="{{ answered_q }}/{{ total_q }} answered">
+        <div class="progress-bar bg-success" id="progress-bar"
+             style="width:{{ (answered_q/total_q*100)|int if total_q else 0 }}%"></div>
+      </div>
+      <div class="small text-muted mt-1">
+        <span id="answered-count">{{ answered_q }}</span> / {{ total_q }} questions answered
+      </div>
+    </div>
+
+    {% if self_assessment %}
+    <div class="alert alert-info py-2 mb-2 small">
+      📊 <strong>Validation mode</strong> — GC self-assessment answers and comments appear inside each question row for reference.
+    </div>
+    {% endif %}
+
+    <!-- ── Filters ──────────────────────────────────────────────────── -->
+    <div class="card mb-3 p-3 sticky-filter">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="fw-semibold small">Filter:</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
+        <span id="active-filter-tags" class="d-flex flex-wrap gap-1"></span>
+      </div>
+      <div class="row g-2">
+
+        <!-- Pillar -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-pillar">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-pillar')">
+              <span class="ms-label">All Pillars</span>
+            </button>
+            <div class="ms-menu shadow">
+              {% for p in pillars %}
+              <label class="ms-item">
+                <input type="checkbox" value="{{ p.id }}" onchange="applyFilters()"> {{ p.name }}
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Level -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-level">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-level')">
+              <span class="ms-label">All Levels</span>
+            </button>
+            <div class="ms-menu shadow">
+              {% for lv in all_levels %}
+              <label class="ms-item">
+                <input type="checkbox" value="{{ lv }}" onchange="applyFilters()"> L{{ lv }}: {{ level_names[lv] }}
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Method -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-method">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-method')">
+              <span class="ms-label">All Methods</span>
+            </button>
+            <div class="ms-menu shadow">
+              {% for m in all_methods %}
+              <label class="ms-item">
+                <input type="checkbox" value="{{ m }}" onchange="applyFilters()"> {{ method_labels[m] }}
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Answered By -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-answered-by">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-answered-by')">
+              <span class="ms-label">All Respondents</span>
+            </button>
+            <div class="ms-menu shadow">
+              {% for ab in all_answered_by %}
+              <label class="ms-item">
+                <input type="checkbox" value="{{ ab }}" onchange="applyFilters()"> {{ ab[:30] }}
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        {% if all_standards %}
+        <!-- Standard -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-standard">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-standard')">
+              <span class="ms-label">All Standards</span>
+            </button>
+            <div class="ms-menu shadow">
+              {% for std in all_standards %}
+              <label class="ms-item">
+                <input type="checkbox" value="{{ std }}" onchange="applyFilters()"> {{ std[:30] }}
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Status -->
+        <div class="col-6 col-md-2">
+          <div class="ms-dropdown" id="dd-status">
+            <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-status')">
+              <span class="ms-label">All Status</span>
+            </button>
+            <div class="ms-menu shadow">
+              <label class="ms-item"><input type="checkbox" value="unanswered" onchange="applyFilters()"> Unanswered</label>
+              <label class="ms-item"><input type="checkbox" value="yes" onchange="applyFilters()"> Answered Yes</label>
+              <label class="ms-item"><input type="checkbox" value="no" onchange="applyFilters()"> Answered No</label>
+              <label class="ms-item"><input type="checkbox" value="na" onchange="applyFilters()"> N/A</label>
+              <label class="ms-item"><input type="checkbox" value="not_rolled_out" onchange="applyFilters()"> Not rolled out</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="mt-2 small text-muted">
+        Showing <span id="visible-count">{{ total_q }}</span> of {{ total_q }} questions
+      </div>
+    </div>
+
+    <!-- ── Questions ────────────────────────────────────────────────── -->
+    {% for pillar in pillars %}
+    <div class="pillar-section" data-pillar="{{ pillar.id }}">
+      <div class="d-flex align-items-center gap-2 mb-2 mt-3">
+        <h5 class="mb-0 fw-bold">{{ pillar.name }}</h5>
+        <span class="badge bg-dark" id="pillar-score-{{ pillar.id }}">
+          {% if scores.pillars.get(pillar.id, {}).get('score') is not none %}
+            {{ scores.pillars[pillar.id].score }}
+          {% else %}—{% endif %}
+        </span>
+      </div>
+
+      {% for element in pillar.elements %}
+      <div class="card mb-2 element-card" data-pillar="{{ pillar.id }}" data-element="{{ element.id }}">
+        <div class="card-header py-2 d-flex justify-content-between align-items-center"
+             style="cursor:pointer" onclick="toggleElement(this)">
+          <span class="fw-semibold">{{ element.name }}</span>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge level-badge-{{ scores.pillars.get(pillar.id, {}).get('elements', {}).get(element.id, 0) or 0 }} element-score-badge"
+                  id="el-score-{{ element.id }}">
+              {% set es = scores.pillars.get(pillar.id, {}).get('elements', {}).get(element.id) %}
+              {% if es is not none %}{{ es }} — {{ level_names[es] }}{% else %}—{% endif %}
+            </span>
+            <span class="text-muted small element-toggle-icon">▼</span>
+          </div>
+        </div>
+        <div class="card-body p-0 element-body">
+          {% set ns = namespace(cur_level=0) %}
+          {% for q in element.questions %}
+            {% if q.level != ns.cur_level %}
+              {% set ns.cur_level = q.level %}
+              <div class="px-3 pt-2 level-separator"
+                   data-level="{{ q.level }}"
+                   data-methods="{{ q.audit_methods | join(',') }}"
+                   data-answered-by="{{ q.answered_by }}"
+                   data-standard="{{ q.standard or '' }}">
+                <span class="badge level-badge-{{ q.level }}">Level {{ q.level }}: {{ level_names[q.level] }}</span>
+              </div>
+            {% endif %}
+
+            {% set ans = resp.get(q.id, {}).get('answer', '') %}
+            {% set cmt = resp.get(q.id, {}).get('comment', '') %}
+            <div class="question-row px-3 py-2"
+                 id="qrow-{{ q.id }}"
+                 data-qid="{{ q.id }}"
+                 data-pillar="{{ pillar.id }}"
+                 data-element="{{ element.id }}"
+                 data-level="{{ q.level }}"
+                 data-methods="{{ q.audit_methods | join(',') }}"
+                 data-answered-by="{{ q.answered_by }}"
+                 data-standard="{{ q.standard or '' }}"
+                 data-answer="{{ ans }}">
+
+              <div class="d-flex align-items-start gap-2">
+                <span class="text-muted small mt-1" style="min-width:2rem">{{ q.no }}.</span>
+                <div class="flex-grow-1">
+
+                  <!-- Question text -->
+                  <div class="mb-2 fw-semibold">{{ q.text }}</div>
+
+                  <!-- Metadata badges -->
+                  <div class="d-flex flex-wrap gap-1 mb-2">
+                    {% for m in q.audit_methods %}
+                      <span class="badge bg-{% if m=='interview' %}primary{% elif m=='onsite' %}success{% else %}info text-dark{% endif %} small">
+                        {{ method_labels[m] }}
+                      </span>
+                    {% endfor %}
+                    {% if q.answered_by %}
+                      <span class="badge bg-light text-dark border small">👤 {{ q.answered_by }}</span>
+                    {% endif %}
+                    {% if q.standard %}
+                      <span class="badge bg-secondary small">📋 {{ q.standard[:30] }}</span>
+                    {% endif %}
+                  </div>
+
+                  <!-- GC self-assessment reference block -->
+                  {% if self_assessment %}
+                    {% set sa_ans = self_resp.get(q.id, '') %}
+                    {% set sa_cmt = self_resp_full.get(q.id, {}).get('comment', '') %}
+                    <div class="self-ref-block mb-2 px-2 py-1 rounded d-flex align-items-start gap-2 self-ref-{{ sa_ans or 'none' }}">
+                      <span class="small text-muted" style="white-space:nowrap;min-width:70px">GC answered:</span>
+                      <div>
+                        <span class="badge self-{{ sa_ans or 'none' }}">
+                          {% if sa_ans == 'yes' %}✓ Yes{% elif sa_ans == 'no' %}✗ No{% elif sa_ans == 'na' %}N/A{% elif sa_ans == 'not_rolled_out' %}Not rolled out{% else %}— Not answered{% endif %}
+                        </span>
+                        {% if sa_cmt %}
+                          <span class="small text-muted ms-2">💬 {{ sa_cmt }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  <!-- Answer buttons -->
+                  <div class="answer-radio d-flex flex-wrap gap-1 mb-2">
+                    <input type="radio" name="{{ q.id }}" id="{{ q.id }}_yes" value="yes" {% if ans == 'yes' %}checked{% endif %}>
+                    <label for="{{ q.id }}_yes" class="yes-lbl">✓ Yes</label>
+
+                    <input type="radio" name="{{ q.id }}" id="{{ q.id }}_no" value="no" {% if ans == 'no' %}checked{% endif %}>
+                    <label for="{{ q.id }}_no" class="no-lbl">✗ No</label>
+
+                    <input type="radio" name="{{ q.id }}" id="{{ q.id }}_na" value="na" {% if ans == 'na' %}checked{% endif %}>
+                    <label for="{{ q.id }}_na" class="na-lbl">N/A</label>
+
+                    <input type="radio" name="{{ q.id }}" id="{{ q.id }}_nr" value="not_rolled_out" {% if ans == 'not_rolled_out' %}checked{% endif %}>
+                    <label for="{{ q.id }}_nr" class="nr-lbl">Not rolled out</label>
+                  </div>
+
+                  <!-- Comment -->
+                  <div class="mb-2">
+                    <textarea class="form-control form-control-sm comment-field"
+                              id="cmt-{{ q.id }}"
+                              rows="1"
+                              placeholder="Comment / evidence note..."
+                              data-qid="{{ q.id }}">{{ cmt }}</textarea>
+                  </div>
+
+                  <!-- File attachments -->
+                  <div class="attachment-area" id="att-{{ q.id }}">
+                    {% if attachments.get(q.id) %}
+                      {% for att in attachments[q.id] %}
+                        {% set is_img = att.mime_type and att.mime_type.startswith('image/') %}
+                        <div class="att-item d-inline-flex align-items-center gap-1 me-2 mb-1 p-1 border rounded small"
+                             id="att-item-{{ att.id }}">
+                          {% if is_img %}
+                            <a href="{{ url_for('serve_attachment', att_id=att.id) }}" target="_blank">
+                              <img src="{{ url_for('serve_attachment', att_id=att.id) }}"
+                                   style="max-height:40px;max-width:60px;object-fit:cover;border-radius:4px">
+                            </a>
+                          {% else %}
+                            <a href="{{ url_for('serve_attachment', att_id=att.id) }}" target="_blank" class="text-decoration-none">
+                              📄 {{ att.original_name[:20] }}
+                            </a>
+                          {% endif %}
+                          <button class="btn btn-sm btn-link text-danger p-0 ms-1"
+                                  onclick="deleteAttachment({{ att.id }}, '{{ q.id }}')" title="Remove">✕</button>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                    <label class="btn btn-outline-secondary btn-sm mb-1" style="cursor:pointer">
+                      📎 Attach
+                      <input type="file" class="d-none" multiple
+                             accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx"
+                             onchange="uploadFiles(this, '{{ q.id }}', {{ assessment.id }})">
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- end question-row -->
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div><!-- pillar-section -->
+    {% endfor %}
+
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-success btn-lg fw-bold px-5" onclick="finishAssessment()">
+        ✓ Finish &amp; View Results
+      </button>
+    </div>
+
+  </div><!-- end col-lg-8 -->
+
+  <!-- ── Right: Live score panel ───────────────────────────────────── -->
+  <div class="col-lg-4">
+    <div class="sticky-top" style="top:16px; max-height:calc(100vh - 32px); overflow-y:auto;">
+
+      <!-- Overall score -->
+      <div class="card mb-2">
+        <div class="card-header fw-bold bg-dark text-white py-2 d-flex justify-content-between align-items-center">
+          <span>Live Score</span>
+          <div class="d-flex align-items-center gap-2">
+            <div class="progress mb-0" style="height:8px;width:80px" title="{{ answered_q }}/{{ total_q }} answered">
+              <div class="progress-bar bg-success" id="side-progress-bar"
+                   style="width:{{ (answered_q/total_q*100)|int if total_q else 0 }}%"></div>
+            </div>
+            <span class="small text-white-50"><span id="side-answered">{{ answered_q }}</span>/{{ total_q }}</span>
+          </div>
+        </div>
+        <div class="card-body py-2 text-center">
+          {% if self_assessment %}
+          <!-- Validation mode: show GC vs Validation overall -->
+          <div class="d-flex justify-content-around align-items-center">
+            <div class="text-center">
+              <div class="small text-muted mb-1">GC Self</div>
+              <div class="score-circle mx-auto level-badge-{{ (self_scores.overall|round|int) if self_scores and self_scores.overall else 0 }}"
+                   style="width:60px;height:60px;font-size:1.2rem">
+                {{ "%.1f"|format(self_scores.overall) if self_scores and self_scores.overall else "—" }}
+              </div>
+              <div class="small mt-1">{{ level_names.get((self_scores.overall|round|int) if self_scores and self_scores.overall else 0, '—') }}</div>
+            </div>
+            <div class="text-muted fs-4">→</div>
+            <div class="text-center">
+              <div class="small text-muted mb-1">Validation</div>
+              <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+                   style="width:60px;height:60px;font-size:1.2rem">
+                {{ "%.1f"|format(scores.overall) if scores.overall else "—" }}
+              </div>
+              <div class="small mt-1 fw-bold" id="overall-level-name">{{ scores.level_name }}</div>
+            </div>
+          </div>
+          {% else %}
+          <!-- Normal mode -->
+          <div class="mb-1 small text-muted">Overall Safety Maturity</div>
+          <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+               style="width:70px;height:70px;font-size:1.5rem">
+            {{ "%.2f"|format(scores.overall) if scores.overall else "—" }}
+          </div>
+          <div class="fw-bold mt-1" id="overall-level-name">{{ scores.level_name }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Score comparison table -->
+      <div class="card mb-2">
+        <div class="card-header fw-bold py-2 small">
+          {% if self_assessment %}📊 GC Self vs Validation{% else %}Pillar & Element Scores{% endif %}
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0" style="font-size:.78rem">
+            <thead class="table-light">
+              <tr>
+                <th style="width:45%">Pillar / Element</th>
+                {% if self_assessment %}
+                <th class="text-center" style="width:22%">GC</th>
+                <th class="text-center" style="width:22%">Val</th>
+                <th class="text-center" style="width:11%">Δ</th>
+                {% else %}
+                <th class="text-center">Score</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+            {% for pillar in pillars %}
+              {% set ps = scores.pillars.get(pillar.id, {}).get('score') %}
+              {% set self_ps = self_scores.pillars.get(pillar.id, {}).get('score') if self_scores else none %}
+              <!-- Pillar row -->
+              <tr class="table-secondary">
+                <td class="fw-semibold" style="font-size:.75rem">{{ pillar.name }}</td>
+                {% if self_assessment %}
+                <td class="text-center">
+                  <span class="badge level-badge-{{ self_ps or 0 }}" style="font-size:.7rem">{{ self_ps if self_ps is not none else '—' }}</span>
+                </td>
+                <td class="text-center">
+                  <span class="badge level-badge-{{ ps or 0 }}" id="pillar-badge-{{ pillar.id }}" style="font-size:.7rem">{{ ps if ps is not none else '—' }}</span>
+                </td>
+                <td class="text-center">
+                  {% if self_ps is not none and ps is not none %}
+                    {% set d = ps - self_ps %}
+                    <span class="fw-bold {% if d > 0 %}text-success{% elif d < 0 %}text-danger{% else %}text-muted{% endif %}" style="font-size:.75rem">
+                      {% if d > 0 %}▲{{ d }}{% elif d < 0 %}▼{{ d|abs }}{% else %}={% endif %}
+                    </span>
+                  {% else %}—{% endif %}
+                </td>
+                {% else %}
+                <td class="text-center">
+                  <span class="badge level-badge-{{ ps or 0 }}" id="pillar-badge-{{ pillar.id }}">{{ ps if ps is not none else '—' }}</span>
+                </td>
+                {% endif %}
+              </tr>
+              <!-- Element rows -->
+              {% for element in pillar.elements %}
+                {% set es = scores.pillars.get(pillar.id, {}).get('elements', {}).get(element.id) %}
+                {% set self_es = self_scores.pillars.get(pillar.id, {}).get('elements', {}).get(element.id) if self_scores else none %}
+                <tr>
+                  <td class="text-muted ps-3" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:0" title="{{ element.name }}">{{ element.name }}</td>
+                  {% if self_assessment %}
+                  <td class="text-center">
+                    <span class="badge level-badge-{{ self_es or 0 }}" style="font-size:.65rem;padding:2px 5px">{{ self_es if self_es is not none else '—' }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge level-badge-{{ es or 0 }}" id="el-badge-{{ element.id }}" style="font-size:.65rem;padding:2px 5px">{{ es if es is not none else '—' }}</span>
+                  </td>
+                  <td class="text-center">
+                    {% if self_es is not none and es is not none %}
+                      {% set d = es - self_es %}
+                      <span class="{% if d > 0 %}text-success{% elif d < 0 %}text-danger{% else %}text-muted{% endif %}" style="font-size:.72rem">
+                        {% if d > 0 %}▲{{ d }}{% elif d < 0 %}▼{{ d|abs }}{% else %}={% endif %}
+                      </span>
+                    {% else %}—{% endif %}
+                  </td>
+                  {% else %}
+                  <td class="text-center">
+                    <span class="badge level-badge-{{ es or 0 }}" id="el-badge-{{ element.id }}">{{ es if es is not none else '—' }}</span>
+                  </td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            {% endfor %}
+            <!-- SA / SI summary -->
+            <tr class="table-light">
+              <td class="fw-semibold" style="font-size:.75rem">Safety Awareness</td>
+              {% if self_assessment %}
+              <td class="text-center"><span class="small fw-bold">{{ "%.2f"|format(self_scores.safety_awareness) if self_scores and self_scores.safety_awareness else '—' }}</span></td>
+              <td class="text-center"><span class="small fw-bold" id="sa-score">{{ "%.2f"|format(scores.safety_awareness) if scores.safety_awareness else '—' }}</span></td>
+              <td></td>
+              {% else %}
+              <td class="text-center"><span class="small fw-bold" id="sa-score">{{ "%.2f"|format(scores.safety_awareness) if scores.safety_awareness else '—' }}</span></td>
+              {% endif %}
+            </tr>
+            <tr class="table-light">
+              <td class="fw-semibold" style="font-size:.75rem">System Impl.</td>
+              {% if self_assessment %}
+              <td class="text-center"><span class="small fw-bold">{{ "%.2f"|format(self_scores.system_implementation) if self_scores and self_scores.system_implementation else '—' }}</span></td>
+              <td class="text-center"><span class="small fw-bold" id="si-score">{{ "%.2f"|format(scores.system_implementation) if scores.system_implementation else '—' }}</span></td>
+              <td></td>
+              {% else %}
+              <td class="text-center"><span class="small fw-bold" id="si-score">{{ "%.2f"|format(scores.system_implementation) if scores.system_implementation else '—' }}</span></td>
+              {% endif %}
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- View results button -->
+      <div class="d-grid mb-2">
+        <a href="{{ url_for('result', assessment_id=assessment.id) }}"
+           class="btn btn-outline-success btn-sm">View Current Results</a>
+      </div>
+
+    </div>
+  </div><!-- end col-lg-4 -->
+
+</div><!-- row -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ASSESSMENT_ID = {{ assessment.id }};
+let saveTimers = {};
+let commentTimers = {};
+
+// ── Auto-save answer via AJAX ─────────────────────────────────────────────────
+document.querySelectorAll('.answer-radio input[type=radio]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    const qid = this.name;
+    const answer = this.value;
+    const comment = document.getElementById('cmt-' + qid)?.value || '';
+    const row = document.getElementById('qrow-' + qid);
+    row.setAttribute('data-answer', answer);
+    saveAnswer(qid, answer, comment);
+    updateRowColor(row, answer);
+  });
+});
+
+// ── Auto-save comment (debounced 800ms) ───────────────────────────────────────
+document.querySelectorAll('.comment-field').forEach(ta => {
+  // Auto-expand textarea
+  ta.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+  });
+  ta.addEventListener('blur', function() {
+    const qid = this.getAttribute('data-qid');
+    const answer = document.querySelector(`input[name="${qid}"]:checked`)?.value || '';
+    saveAnswer(qid, answer, this.value);
+  });
+});
+
+function saveAnswer(qid, answer, comment) {
+  clearTimeout(saveTimers[qid]);
+  saveTimers[qid] = setTimeout(() => {
+    fetch('/api/answer', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ assessment_id: ASSESSMENT_ID, question_id: qid, answer, comment })
+    })
+    .then(r => r.json())
+    .then(data => updateScorePanel(data));
+  }, 200);
+}
+
+function updateRowColor(row, answer) {
+  row.classList.remove('q-yes','q-no','q-na','q-not_rolled_out');
+  if (answer) row.classList.add('q-' + answer);
+}
+
+// ── Update score panel ────────────────────────────────────────────────────────
+function updateScorePanel(data) {
+  const { scores, answered, total, level_names } = data;
+  if (!scores) return;
+
+  // Overall
+  const ov = scores.overall;
+  const lv = ov ? Math.round(ov) : 0;
+  const circle = document.getElementById('overall-score-circle');
+  circle.textContent = ov ? ov.toFixed(2) : '—';
+  circle.className = 'score-circle mx-auto level-badge-' + lv;
+  document.getElementById('overall-level-name').textContent = scores.level_name || '—';
+
+  // SA / SI
+  const sa = document.getElementById('sa-score');
+  const si = document.getElementById('si-score');
+  if (sa) sa.textContent = scores.safety_awareness ? scores.safety_awareness.toFixed(2) : '—';
+  if (si) si.textContent = scores.system_implementation ? scores.system_implementation.toFixed(2) : '—';
+
+  // Update pillar badges + element badges in comparison table
+  for (const [pid, pdata] of Object.entries(scores.pillars || {})) {
+    const ps = pdata.score;
+    const badge = document.getElementById('pillar-badge-' + pid);
+    const hdBadge = document.getElementById('pillar-score-' + pid);
+    if (badge) {
+      badge.textContent = ps !== null && ps !== undefined ? ps : '—';
+      badge.className = 'badge level-badge-' + (ps || 0);
+      badge.style.fontSize = '.7rem';
+    }
+    if (hdBadge) hdBadge.textContent = ps !== null && ps !== undefined ? ps : '—';
+
+    for (const [eid, es] of Object.entries(pdata.elements || {})) {
+      const elBadge = document.getElementById('el-badge-' + eid);
+      const elScoreBadge = document.getElementById('el-score-' + eid);
+      const lname = es !== null ? (level_names[es] || '—') : '—';
+      if (elBadge) {
+        elBadge.textContent = es !== null && es !== undefined ? es : '—';
+        elBadge.className = 'badge level-badge-' + (es || 0);
+        elBadge.style.cssText = 'font-size:.65rem;padding:2px 5px';
+      }
+      if (elScoreBadge) {
+        elScoreBadge.textContent = es !== null && es !== undefined ? es + ' — ' + lname : '—';
+        elScoreBadge.className = 'badge level-badge-' + (es || 0) + ' element-score-badge';
+      }
+    }
+  }
+
+  // Progress
+  const pct = total ? Math.round(answered / total * 100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  const spb = document.getElementById('side-progress-bar');
+  if (spb) spb.style.width = pct + '%';
+  document.getElementById('answered-count').textContent = answered;
+  const sa2 = document.getElementById('side-answered');
+  if (sa2) sa2.textContent = answered;
+  const rem = total - answered;
+  document.getElementById('remaining-count').textContent = rem;
+  document.getElementById('remaining-badge').className = rem === 0
+    ? 'badge bg-success fs-6' : 'badge bg-warning text-dark fs-6';
+  applyFilters(); // refresh visible count
+}
+
+// ── Multi-select dropdown helpers ────────────────────────────────────────────
+function toggleDd(id) {
+  document.querySelectorAll('.ms-dropdown.open').forEach(d => {
+    if (d.id !== id) d.classList.remove('open');
+  });
+  document.getElementById(id).classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ms-dropdown')) {
+    document.querySelectorAll('.ms-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+function getChecked(ddId) {
+  return Array.from(document.querySelectorAll(`#${ddId} .ms-menu input:checked`)).map(i => i.value);
+}
+function updateDdLabel(ddId, defaultLabel) {
+  const vals = getChecked(ddId);
+  const btn = document.querySelector(`#${ddId} .ms-label`);
+  if (!btn) return;
+  btn.textContent = vals.length === 0 ? defaultLabel : vals.length + ' selected';
+  document.querySelector(`#${ddId} .ms-btn`).classList.toggle('active-filter', vals.length > 0);
+}
+
+// ── Filters ───────────────────────────────────────────────────────────────────
+function applyFilters() {
+  updateDdLabel('dd-pillar', 'All Pillars');
+  updateDdLabel('dd-level', 'All Levels');
+  updateDdLabel('dd-method', 'All Methods');
+  updateDdLabel('dd-answered-by', 'All Respondents');
+  updateDdLabel('dd-standard', 'All Standards');
+  updateDdLabel('dd-status', 'All Status');
+
+  const fPillars = getChecked('dd-pillar');
+  const fLevels = getChecked('dd-level');
+  const fMethods = getChecked('dd-method');
+  const fAnsweredBys = getChecked('dd-answered-by');
+  const fStandards = getChecked('dd-standard');
+  const fStatuses = getChecked('dd-status');
+
+  let visible = 0;
+  document.querySelectorAll('.question-row').forEach(row => {
+    const pillar = row.getAttribute('data-pillar');
+    const level = row.getAttribute('data-level');
+    const methods = (row.getAttribute('data-methods') || '').split(',');
+    const answeredBy = row.getAttribute('data-answered-by') || '';
+    const standard = row.getAttribute('data-standard') || '';
+    const answer = row.getAttribute('data-answer') || '';
+
+    const matchStatus = fStatuses.length === 0 || fStatuses.some(s =>
+      s === 'unanswered' ? answer === '' : answer === s
+    );
+
+    const show =
+      (fPillars.length === 0 || fPillars.includes(pillar)) &&
+      (fLevels.length === 0 || fLevels.includes(level)) &&
+      (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
+      (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy)) &&
+      (fStandards.length === 0 || fStandards.includes(standard)) &&
+      matchStatus;
+
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  document.getElementById('visible-count').textContent = visible;
+
+  document.querySelectorAll('.element-card').forEach(card => {
+    const anyVisible = Array.from(card.querySelectorAll('.question-row'))
+      .some(r => r.style.display !== 'none');
+    card.style.display = anyVisible ? '' : 'none';
+  });
+  document.querySelectorAll('.pillar-section').forEach(sec => {
+    const anyVisible = Array.from(sec.querySelectorAll('.question-row'))
+      .some(r => r.style.display !== 'none');
+    sec.style.display = anyVisible ? '' : 'none';
+  });
+}
+
+function clearFilters() {
+  ['dd-pillar','dd-level','dd-method','dd-answered-by','dd-standard','dd-status'].forEach(id => {
+    document.querySelectorAll(`#${id} input[type=checkbox]`).forEach(cb => cb.checked = false);
+  });
+  applyFilters();
+}
+
+// ── Collapsible elements ──────────────────────────────────────────────────────
+function toggleElement(header) {
+  const body = header.nextElementSibling;
+  const icon = header.querySelector('.element-toggle-icon');
+  const collapsed = body.style.display === 'none';
+  body.style.display = collapsed ? '' : 'none';
+  if (icon) icon.textContent = collapsed ? '▼' : '▶';
+}
+
+// ── File upload ───────────────────────────────────────────────────────────────
+function uploadFiles(input, qid, assessmentId) {
+  Array.from(input.files).forEach(file => {
+    const fd = new FormData();
+    fd.append('file', file);
+    fetch(`/api/upload/${assessmentId}/${qid}`, { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) { alert(data.error); return; }
+        const area = document.getElementById('att-' + qid);
+        const label = area.querySelector('label');
+        const div = document.createElement('div');
+        div.className = 'att-item d-inline-flex align-items-center gap-1 me-2 mb-1 p-1 border rounded small';
+        div.id = 'att-item-' + data.id;
+        if (data.is_image) {
+          div.innerHTML = `<a href="${data.url}" target="_blank"><img src="${data.url}" style="max-height:40px;max-width:60px;object-fit:cover;border-radius:4px"></a>`;
+        } else {
+          div.innerHTML = `<a href="${data.url}" target="_blank" class="text-decoration-none">📄 ${data.original_name.substring(0,20)}</a>`;
+        }
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-sm btn-link text-danger p-0 ms-1';
+        btn.textContent = '✕';
+        btn.onclick = () => deleteAttachment(data.id, qid);
+        div.appendChild(btn);
+        area.insertBefore(div, label);
+      })
+      .catch(() => alert('Upload failed'));
+  });
+  input.value = '';
+}
+
+function deleteAttachment(attId, qid) {
+  if (!confirm('Remove this attachment?')) return;
+  fetch(`/api/attachment/${attId}`, { method: 'DELETE' })
+    .then(r => r.json())
+    .then(() => {
+      document.getElementById('att-item-' + attId)?.remove();
+    });
+}
+
+// ── Finish assessment ────────────────────────────────────────────────────────
+function finishAssessment() {
+  fetch(`/api/complete/${ASSESSMENT_ID}`, { method: 'POST' })
+    .then(r => r.json())
+    .then(data => { window.location.href = data.redirect; });
+}
+
+// ── Init: colour rows that already have answers ───────────────────────────────
+document.querySelectorAll('.question-row').forEach(row => {
+  const ans = row.getAttribute('data-answer');
+  if (ans) updateRowColor(row, ans);
+});
+</script>
+{% endblock %}

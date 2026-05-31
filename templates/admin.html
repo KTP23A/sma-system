@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Admin — SMA System{% endblock %}
+
+{% block content %}
+<h4 class="fw-bold mb-4">⚙ Admin Panel</h4>
+
+<div class="row g-4">
+
+  <!-- Users -->
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-header fw-bold bg-dark text-white d-flex justify-content-between align-items-center">
+        <span>👤 Users</span>
+        <button class="btn btn-warning btn-sm" data-bs-toggle="collapse" data-bs-target="#new-user-form">+ Add User</button>
+      </div>
+
+      <!-- New user form -->
+      <div class="collapse" id="new-user-form">
+        <div class="card-body border-bottom bg-light">
+          <form method="post" action="{{ url_for('admin_new_user') }}">
+            <div class="row g-2">
+              <div class="col-md-3">
+                <input type="text" name="username" class="form-control form-control-sm" placeholder="Username" required>
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="full_name" class="form-control form-control-sm" placeholder="Full Name" required>
+              </div>
+              <div class="col-md-2">
+                <input type="password" name="password" class="form-control form-control-sm" placeholder="Password" required>
+              </div>
+              <div class="col-md-2">
+                <select name="role" class="form-select form-select-sm" onchange="toggleGcField(this)">
+                  {% for val, label in roles.items() %}
+                    <option value="{{ val }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-2" id="gc-field">
+                <select name="gc_id" class="form-select form-select-sm">
+                  <option value="">— No GC —</option>
+                  {% for gc in gcs %}
+                    <option value="{{ gc.id }}">{{ gc.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm mt-2">Create User</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Users table -->
+      <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0 align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Username</th>
+              <th>Full Name</th>
+              <th>Role</th>
+              <th>GC</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for u in users %}
+          <tr>
+            <td class="fw-semibold">{{ u.username }}</td>
+            <td>{{ u.full_name }}</td>
+            <td>
+              <span class="badge
+                {% if u.role == 'admin' %}bg-danger
+                {% elif u.role == 'sbu_pic' %}bg-primary
+                {% else %}bg-secondary{% endif %}">
+                {{ roles.get(u.role, u.role) }}
+              </span>
+            </td>
+            <td class="small text-muted">{{ u.gc_name or '—' }}</td>
+            <td>
+              <div class="d-flex gap-1">
+                <!-- Reset password -->
+                <button class="btn btn-sm btn-outline-warning"
+                        data-bs-toggle="collapse" data-bs-target="#reset-{{ u.id }}">
+                  🔑
+                </button>
+                <!-- Delete -->
+                <form method="post" action="{{ url_for('admin_delete_user', user_id=u.id) }}"
+                      onsubmit="return confirm('Delete user {{ u.username }}?')">
+                  <button class="btn btn-sm btn-outline-danger">✕</button>
+                </form>
+              </div>
+              <div class="collapse mt-1" id="reset-{{ u.id }}">
+                <form method="post" action="{{ url_for('admin_reset_password', user_id=u.id) }}" class="d-flex gap-1">
+                  <input type="password" name="new_password" class="form-control form-control-sm" placeholder="New password" required style="width:130px">
+                  <button type="submit" class="btn btn-sm btn-warning">Reset</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- GCs -->
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-header fw-bold bg-dark text-white d-flex justify-content-between align-items-center">
+        <span>🏢 GC Companies</span>
+        <button class="btn btn-warning btn-sm" data-bs-toggle="collapse" data-bs-target="#new-gc-form">+ Add GC</button>
+      </div>
+
+      <!-- New GC form -->
+      <div class="collapse" id="new-gc-form">
+        <div class="card-body border-bottom bg-light">
+          <form method="post" action="{{ url_for('admin_new_gc') }}">
+            <div class="row g-2">
+              <div class="col-12">
+                <input type="text" name="name" class="form-control form-control-sm" placeholder="GC Company Name" required>
+              </div>
+              <div class="col-6">
+                <select name="type" class="form-select form-select-sm" onchange="toggleScopeField(this)">
+                  <option value="warehouse">Warehouse</option>
+                  <option value="retail">Retail</option>
+                </select>
+              </div>
+              <div class="col-6" id="scope-field" style="display:none">
+                <select name="scope" class="form-select form-select-sm">
+                  <option value="store">Store</option>
+                  <option value="local_company">Local Company</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm mt-2">Create GC</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- GC table -->
+      <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0 align-middle">
+          <thead class="table-light">
+            <tr><th>Name</th><th>Type</th><th>Scope</th><th></th></tr>
+          </thead>
+          <tbody>
+          {% for gc in gcs %}
+          <tr>
+            <td class="fw-semibold">{{ gc.name }}</td>
+            <td><span class="badge bg-secondary">{{ gc.type|upper }}</span></td>
+            <td class="small text-muted">{{ gc.scope or '—' }}</td>
+            <td>
+              <form method="post" action="{{ url_for('admin_delete_gc', gc_id=gc.id) }}"
+                    onsubmit="return confirm('Delete GC {{ gc.name }}?')">
+                <button class="btn btn-sm btn-outline-danger">✕</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Default login reminder -->
+    <div class="alert alert-warning mt-3 small">
+      <strong>Default admin:</strong> username <code>admin</code> / password <code>admin123</code><br>
+      Change the admin password immediately after first login.
+    </div>
+    <a href="{{ url_for('admin_backup') }}" class="btn btn-outline-secondary btn-sm w-100 mt-2">
+      ⬇ Download DB Backup
+    </a>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleGcField(sel) {
+  document.getElementById('gc-field').style.display = sel.value === 'gc_assessor' ? '' : 'none';
+}
+function toggleScopeField(sel) {
+  document.getElementById('scope-field').style.display = sel.value === 'retail' ? '' : 'none';
+}
+</script>
+{% endblock %}

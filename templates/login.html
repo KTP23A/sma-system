@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login — SMA System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="d-flex align-items-center justify-content-center" style="min-height:100vh;background:#f5f7fa">
+<div class="card p-4" style="width:100%;max-width:400px">
+  <div class="text-center mb-4">
+    <div style="font-size:2.5rem">&#9724;</div>
+    <h4 class="fw-bold mb-0">SMA System</h4>
+    <div class="text-muted small">Safety Maturity Assessment</div>
+  </div>
+  {% if error %}
+  <div class="alert alert-danger py-2 small">{{ error }}</div>
+  {% endif %}
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Username</label>
+      <input type="text" name="username" class="form-control" autofocus required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-dark w-100 fw-bold">Sign In</button>
+  </form>
+</div>
+</body>
+</html>

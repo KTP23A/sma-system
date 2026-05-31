@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — SMA System{% endblock %}
+
+{% block content %}
+<div class="row mb-3 align-items-center">
+  <div class="col">
+    <h4 class="mb-0 fw-bold">Assessment Dashboard</h4>
+    <small class="text-muted">
+      {% if user.role == 'gc_assessor' %}Your GC assessments{% else %}All sites — Safety Maturity Assessments{% endif %}
+      {% if assessments | selectattr('a.status', 'in', ['gc_draft','validation_in_progress']) | list %}
+        <span class="badge bg-warning text-dark ms-2 live-pulse">● LIVE</span>
+      {% endif %}
+    </small>
+  </div>
+  <div class="col-auto d-flex gap-2">
+    {% if user.role == 'gc_assessor' %}
+      <a href="{{ url_for('new_assessment') }}" class="btn btn-warning">+ New Self-Assessment</a>
+    {% else %}
+      <a href="{{ url_for('new_assessment') }}" class="btn btn-warning">+ New Assessment</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if not assessments %}
+<div class="card p-5 text-center text-muted">
+  <div style="font-size:3rem">📋</div>
+  <h5 class="mt-2">No assessments yet</h5>
+  <p>Start by clicking <strong>+ New {% if user.role == 'gc_assessor' %}Self-{% endif %}Assessment</strong></p>
+</div>
+{% else %}
+
+<!-- Summary cards -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="card p-3 text-center">
+      <div class="fs-1 fw-bold text-primary">{{ assessments|length }}</div>
+      <div class="text-muted small">Total Assessments</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card p-3 text-center">
+      <div class="fs-1 fw-bold text-info">{{ assessments | selectattr('a.status', 'eq', 'gc_submitted') | list | length }}</div>
+      <div class="text-muted small">Awaiting Validation</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card p-3 text-center">
+      <div class="fs-1 fw-bold text-success">{{ assessments | selectattr('a.status', 'eq', 'report_shared') | list | length }}</div>
+      <div class="text-muted small">Report Shared</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card p-3 text-center">
+      {% set done = assessments | selectattr('scores') | selectattr('scores.overall') | list %}
+      {% if done %}
+        {% set avg = (done | map(attribute='scores.overall') | list | sum) / done|length %}
+        <div class="fs-1 fw-bold text-info">{{ "%.2f"|format(avg) }}</div>
+      {% else %}
+        <div class="fs-1 fw-bold text-secondary">—</div>
+      {% endif %}
+      <div class="text-muted small">Avg Overall Score</div>
+    </div>
+  </div>
+</div>
+
+<!-- Radar chart (SBU/Admin only, completed validations) -->
+{% if user.role != 'gc_assessor' %}
+{% set completed_validations = assessments | selectattr('a.kind', 'eq', 'validation') | selectattr('scores') | list %}
+{% if completed_validations %}
+<div class="card mb-4 p-3">
+  <h6 class="fw-bold mb-3">Pillar Comparison — Validation Results</h6>
+  <div style="max-height:350px">
+    <canvas id="radarChart"></canvas>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+<!-- Assessments table -->
+<div class="card">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>GC / Site</th>
+            <th>Type</th>
+            <th>Kind</th>
+            <th>Date</th>
+            {% if user.role != 'gc_assessor' %}<th>Assessors</th>{% endif %}
+            <th class="text-center">Overall</th>
+            <th class="text-center">Progress</th>
+            <th class="text-center">Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in assessments %}
+          {% set a = item.a %}
+          {% set s = item.scores %}
+          {% set st_label = status_labels.get(a.status, ('Unknown','secondary')) %}
+          <tr id="row-{{ a.id }}">
+            <td class="fw-semibold">
+              {% if item.gc %}<div>{{ item.gc.name }}</div><div class="small text-muted">{{ a.site_name }}</div>
+              {% else %}{{ a.site_name }}{% endif %}
+            </td>
+            <td>
+              <span class="badge bg-secondary">{{ a.type|upper }}</span>
+              {% if a.scope and a.type == 'retail' %}<span class="badge bg-light text-dark">{{ a.scope }}</span>{% endif %}
+            </td>
+            <td>
+              {% if a.kind == 'self' %}
+                <span class="badge bg-info text-dark">Self</span>
+              {% else %}
+                <span class="badge bg-dark">Validation</span>
+              {% endif %}
+            </td>
+            <td>{{ a.assessment_date or '—' }}</td>
+            {% if user.role != 'gc_assessor' %}
+            <td class="small text-muted">
+              {{ a.assessor_a or '—' }}{% if a.assessor_b %} / {{ a.assessor_b }}{% endif %}
+            </td>
+            {% endif %}
+            <td class="text-center">
+              {% if s and s.overall %}
+                {% set lv = s.overall|round|int %}
+                <span class="badge level-badge-{{ lv }} fs-6" id="overall-{{ a.id }}">{{ "%.2f"|format(s.overall) }}</span>
+                <div class="small text-muted" id="level-name-{{ a.id }}">{{ level_names.get(lv,'') }}</div>
+              {% else %}
+                <span id="overall-{{ a.id }}">—</span>
+              {% endif %}
+            </td>
+            <td style="min-width:100px">
+              <div class="progress mb-1" style="height:8px">
+                <div class="progress-bar bg-success" id="prog-{{ a.id }}"
+                     style="width:{{ (item.answered_q / item.total_q * 100)|int if item.total_q else 0 }}%"></div>
+              </div>
+              <div class="small text-center text-muted" id="prog-text-{{ a.id }}">
+                {{ item.answered_q }}/{{ item.total_q }}
+              </div>
+            </td>
+            <td class="text-center">
+              <span class="badge bg-{{ st_label[1] }}">{{ st_label[0] }}</span>
+            </td>
+            <td>
+              <div class="d-flex gap-1 flex-wrap justify-content-end">
+                {% if a.status == 'gc_draft' %}
+                  <a href="{{ url_for('assess', assessment_id=a.id) }}" class="btn btn-sm btn-outline-primary">Continue</a>
+                {% elif a.status == 'gc_submitted' %}
+                  <a href="{{ url_for('result', assessment_id=a.id) }}" class="btn btn-sm btn-outline-info">View</a>
+                  {% if user.role in ('sbu_pic','admin') %}
+                    <button class="btn btn-sm btn-primary" onclick="startValidation({{ a.id }})">▶ Validate</button>
+                  {% endif %}
+                {% elif a.status == 'validation_in_progress' %}
+                  {% if user.role in ('sbu_pic','admin') %}
+                    <a href="{{ url_for('assess', assessment_id=a.id) }}" class="btn btn-sm btn-outline-primary">Continue</a>
+                  {% endif %}
+                  <a href="{{ url_for('result', assessment_id=a.id) }}" class="btn btn-sm btn-outline-secondary">Preview</a>
+                {% else %}
+                  <a href="{{ url_for('result', assessment_id=a.id) }}" class="btn btn-sm btn-outline-success">Result</a>
+                  {% if a.kind == 'validation' %}
+                    <a href="{{ url_for('findings', assessment_id=a.id) }}" class="btn btn-sm btn-outline-warning">Findings</a>
+                  {% endif %}
+                  <a href="{{ url_for('export_pdf', assessment_id=a.id) }}" class="btn btn-sm btn-outline-danger">PDF</a>
+                {% endif %}
+                {% if user.role in ('admin','sbu_pic') %}
+                <form method="post" action="{{ url_for('delete_assessment', assessment_id=a.id) }}"
+                      onsubmit="return confirm('Delete this assessment?')">
+                  <button class="btn btn-sm btn-outline-danger">✕</button>
+                </form>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% if user.role != 'gc_assessor' %}
+{% set completed_validations = assessments | selectattr('a.kind', 'eq', 'validation') | selectattr('scores') | list %}
+{% if completed_validations %}
+const radarData = {{ completed_validations | tojson }};
+const colors = ['#0d6efd','#6f42c1','#fd7e14','#198754','#dc3545','#0dcaf0','#ffc107','#20c997'];
+const datasets = radarData.map((item, i) => ({
+  label: item.gc ? item.gc.name : item.a.site_name,
+  data: [
+    item.scores.pillars.leadership?.score ?? 0,
+    item.scores.pillars.tm_engagement?.score ?? 0,
+    item.scores.pillars.organization?.score ?? 0,
+    item.scores.pillars.system?.score ?? 0,
+  ],
+  borderColor: colors[i % colors.length],
+  backgroundColor: colors[i % colors.length] + '33',
+  pointBackgroundColor: colors[i % colors.length],
+}));
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: { labels: ['Leadership','TM Engagement','Organization','System'], datasets },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    scales: { r: { min: 0, max: 5, ticks: { stepSize: 1 } } },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+{% endif %}
+{% endif %}
+
+// Start validation (SBU)
+function startValidation(selfId) {
+  if (!confirm('Start validation assessment for this submission?')) return;
+  fetch(`/api/start-validation/${selfId}`, { method: 'POST' })
+    .then(r => r.json())
+    .then(d => { if (d.redirect) window.location.href = d.redirect; });
+}
+
+// Live polling
+const inProgress = [
+  {% for item in assessments %}{% if item.a.status in ('gc_draft','validation_in_progress') %}{{ item.a.id }},{% endif %}{% endfor %}
+];
+function pollScores() {
+  inProgress.forEach(id => {
+    fetch(`/api/scores/${id}`).then(r => r.json()).then(data => {
+      const { scores, answered, total } = data;
+      if (!scores) return;
+      const ov = scores.overall;
+      const lv = ov ? Math.round(ov) : 0;
+      const ovEl = document.getElementById('overall-' + id);
+      if (ovEl) { ovEl.textContent = ov ? ov.toFixed(2) : '—'; ovEl.className = ov ? `badge level-badge-${lv} fs-6` : ''; }
+      const pct = total ? Math.round(answered / total * 100) : 0;
+      const prog = document.getElementById('prog-' + id);
+      const progText = document.getElementById('prog-text-' + id);
+      if (prog) prog.style.width = pct + '%';
+      if (progText) progText.textContent = `${answered}/${total}`;
+    });
+  });
+}
+if (inProgress.length > 0) setInterval(pollScores, 10000);
+</script>
+{% endblock %}

@@ -1,0 +1,1939 @@
+{
+  "type": "warehouse",
+  "pillars": [
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "elements": [
+        {
+          "id": "prioritization",
+          "name": "Prioritization",
+          "questions": [
+            {
+              "id": "WH-LD-001",
+              "no": 1,
+              "text": "Have safety procedures been evaluated to ensure they are compliant with OH&S regulations?",
+              "level": 1,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-005",
+              "no": 5,
+              "text": "Does site manager review lagging OH&S KPIs (e.g. number of incidents, frequency, severity) at least monthly?",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-006",
+              "no": 6,
+              "text": "Are the root causes of incidents categorized and then tracked?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-012",
+              "no": 12,
+              "text": "Are there repercussions/consequences for teammates that do not follow the Safety Rules and Procedures?",
+              "level": 3,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-013",
+              "no": 13,
+              "text": "Does site manager follow and review \"Leading indicators\" in their safety result tracking?",
+              "level": 4,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-015",
+              "no": 15,
+              "text": "When creating the annual (or more) safety implementation plan, do you consider the KPI result/progress in previous year?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-021",
+              "no": 21,
+              "text": "Do you motivate teammates to find and implement new best practices relevant to safety in other BS sites?",
+              "level": 5,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-022",
+              "no": 22,
+              "text": "Does the site management team benchmark Safety and DP trends in logistics industry / other external companies and consider incorporation into site targets/activities?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "decisions",
+          "name": "Decisions",
+          "questions": [
+            {
+              "id": "WH-LD-002",
+              "no": 2,
+              "text": "Have you monitored the H&S and DP regulations* which may be applicable for your site and checked that these regulations have been taken place in your sites? (e.g. trainings, mobile equipment, chemicals, flammable materials)",
+              "level": 1,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-007",
+              "no": 7,
+              "text": "Are safety initiatives being implemented to improve safety? Is there any document to show that?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-010",
+              "no": 10,
+              "text": "Do you know how important teammates' involvement in safety is?　Besides, do you explain the importance to teammates and involve them in safety activities?",
+              "level": 3,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-011",
+              "no": 11,
+              "text": "Is there a H&S meeting with representation from teammates, leadership and site H&S (if available)? Does leadership give directions to solve issues?",
+              "level": 3,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-014",
+              "no": 14,
+              "text": "Can you show examples of implemented safety measures based on teammate feedback?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-018",
+              "no": 18,
+              "text": "Have you gathered best practices on safety activity from GBS/SBU, and implement them in the site?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "support",
+          "name": "Support",
+          "questions": [
+            {
+              "id": "WH-LD-003",
+              "no": 3,
+              "text": "Does your site manager consider safety a priority and address safety at the morning assembly, roll-call, etc.?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-004",
+              "no": 4,
+              "text": "What does site leadership (e.g. site manager and supervisor) do when a serious incident  (lost-time-injury, fire accident, etc.) occurs?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-008",
+              "no": 8,
+              "text": "Does Site leaders actively provide feedback to teammates and promote safety whilst on tours?",
+              "level": 3,
+              "answered_by": "Site manager and Supervisor",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-009",
+              "no": 9,
+              "text": "What is your responsibility for safety?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-016",
+              "no": 16,
+              "text": "Do you recognize good safety behaviors of teammates and give them rewards?",
+              "level": 4,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-017",
+              "no": 17,
+              "text": "Does management have a mid-term plan including Safety and DP items and their necessary resources to improve safety on site?",
+              "level": 4,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-019",
+              "no": 19,
+              "text": "Is there an external/cross site safety meeting? If so, does safety manager share H&S issues or best practices?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-LD-020",
+              "no": 20,
+              "text": "Do you feel comfortable stopping work if you feel there is a risk of injury?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm_engagement",
+      "name": "Teammate Engagement",
+      "elements": [
+        {
+          "id": "capability",
+          "name": "Capability",
+          "questions": [
+            {
+              "id": "WH-TM-001",
+              "no": 1,
+              "text": "What are H&S risks relevant to your work? What makes you recognize them?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-003",
+              "no": 3,
+              "text": "Are you aware of your personal impact on safety? How do you contribute to improve safety?",
+              "level": 1,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-005",
+              "no": 5,
+              "text": "Do teammates know how to report incidents?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-008",
+              "no": 8,
+              "text": "What are the most important safety rules in your site/job and why?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-011",
+              "no": 11,
+              "text": "Do you understand the greatest potential risks in your work, and how they are controlled?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-015",
+              "no": 15,
+              "text": "How do you encourage communication between sites to share best-practices and lessons-learned?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "action",
+          "name": "Action",
+          "questions": [
+            {
+              "id": "WH-TM-002",
+              "no": 2,
+              "text": "What would be considered a priority: complete the operation plan or follow safety procedures?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-006",
+              "no": 6,
+              "text": "What actions do you take during your operations to prevent reoccurrence of an incident which occurred in your site?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-010",
+              "no": 10,
+              "text": "Are the site/job safety rules being followed?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-013",
+              "no": 13,
+              "text": "Have teammates proposed improvements of H&S risks and risk mitigation measures at the creations or revisions of work standards, training materials, etc?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-016",
+              "no": 16,
+              "text": "What response would you expect from your colleague when you act unsafe?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "knowledge",
+          "name": "Knowledge",
+          "questions": [
+            {
+              "id": "WH-TM-004",
+              "no": 4,
+              "text": "What requirement, based on safety regulations do you explain to teammate?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-007",
+              "no": 7,
+              "text": "What incidents and the countermeasures at your site did you receive from managements recently?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-009",
+              "no": 9,
+              "text": "Are you regularly trained about your site/job safety rules?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-012",
+              "no": 12,
+              "text": "Have you taken training on residual risks in your work? How are you trained?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-TM-014",
+              "no": 14,
+              "text": "Are there opportunities to share H&S risks and countermeasures of other sites at the safety meeting in your site?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organization",
+      "name": "Organization",
+      "elements": [
+        {
+          "id": "information",
+          "name": "Information",
+          "questions": [
+            {
+              "id": "WH-OR-001",
+              "no": 1,
+              "text": "Is the legally required H&S training given to all teammates?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-005",
+              "no": 5,
+              "text": "Are incident investigations carried out by qualified people?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-009",
+              "no": 9,
+              "text": "Are safety rule's effectiveness being evaluated by the H&S (if available), teammates and their site leaders?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-014",
+              "no": 14,
+              "text": "Do work/job specific trainings highlight safety risks and processes associated with that work/job?",
+              "level": 4,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-019",
+              "no": 19,
+              "text": "Is risk assessment taken when planning new projects/work sessions?",
+              "level": 5,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "communication",
+          "name": "Communication",
+          "questions": [
+            {
+              "id": "WH-OR-002",
+              "no": 2,
+              "text": "Do teammates communicate injuries/near-misses/defects to managers, and does management follow up them until close?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-003",
+              "no": 3,
+              "text": "Are H&S/DP rules communicated to teammates when updated/changed/newly created.",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-006",
+              "no": 6,
+              "text": "Do you know what safety initiatives are on going on site and how they are performing?",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-010",
+              "no": 10,
+              "text": "When a safety issue would occur, who would you report to?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-011",
+              "no": 11,
+              "text": "What is a content of system and a scope for \"management of change\"?",
+              "level": 3,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-013",
+              "no": 13,
+              "text": "Do you communicate with OH&S expert about upcoming changes on site when there are any concerns on Safety?",
+              "level": 4,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-016",
+              "no": 16,
+              "text": "What was the feedback from management on your hazard report?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-020",
+              "no": 20,
+              "text": "Do you receive feedback from third party on effectiveness of safety management system to imorove it?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "participation",
+          "name": "Participation",
+          "questions": [
+            {
+              "id": "WH-OR-004",
+              "no": 4,
+              "text": "Does management have defined roles and responsibilities for safety activities?",
+              "level": 1,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-007",
+              "no": 7,
+              "text": "Is there collaboration between Logistics safety dept. and site management to address recurring incidents?",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-008",
+              "no": 8,
+              "text": "Do safety training sessions for newcomers reference relevant frequent incidents and severe risks?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-012",
+              "no": 12,
+              "text": "Are safety processes updated and improved frequently using findings from the review?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-015",
+              "no": 15,
+              "text": "Have you involved TMs in periodical review on safety action plans?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-017",
+              "no": 17,
+              "text": "Do teammates comply with safety rules and improve risks actively being conscious of safety for not only their selves, but also teammates. ?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview",
+                "onsite"
+              ],
+              "standard": null
+            },
+            {
+              "id": "WH-OR-018",
+              "no": 18,
+              "text": "Do you engage with *external parties to obtain and exchange　knowledge on safety?",
+              "level": 5,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "name": "System",
+      "elements": [
+        {
+          "id": "training_and_education",
+          "name": "Training and Education",
+          "questions": [
+            {
+              "id": "WH-SY-001",
+              "no": 1,
+              "text": "Have teammates been trained on the safety mission statement and high risk activity?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-002",
+              "no": 2,
+              "text": "Are you aware of the regulations concerning safety training?",
+              "level": 1,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-021",
+              "no": 21,
+              "text": "Have role specific trainings been identified and are given to the necessary people?",
+              "level": 2,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-022",
+              "no": 22,
+              "text": "Are the needs and the content of trainings reviewed and improved after an accident occurs?",
+              "level": 2,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-042",
+              "no": 42,
+              "text": "Are trainings reviewed and adjusted when safety rules and controls that involve that specific subject matter change?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-064",
+              "no": 64,
+              "text": "When new hazards are identified, are training material revised and communicated to teammates?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-086",
+              "no": 86,
+              "text": "Are trainings updated with industry best practices?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Training and Education"
+            },
+            {
+              "id": "WH-SY-087",
+              "no": 87,
+              "text": "Is the effectiveness of a training reviewed based on pre and post training assessments? Is the training improved based on the assessment result?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Training and Education"
+            }
+          ]
+        },
+        {
+          "id": "emergency_planning",
+          "name": "Emergency Planning",
+          "questions": [
+            {
+              "id": "WH-SY-003",
+              "no": 3,
+              "text": "Are the roles & responsibilities of emergency organization defined in the emergency response policy/procedure that complies with legal & local regulations?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Emergency Planning"
+            },
+            {
+              "id": "WH-SY-023",
+              "no": 23,
+              "text": "Do emergency drills periodically take place?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Emergency Planning"
+            },
+            {
+              "id": "WH-SY-024",
+              "no": 24,
+              "text": "Are the emergency procedures reviewed and updated based on the results of drills or actual emergencies?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Emergency Planning"
+            },
+            {
+              "id": "WH-SY-043",
+              "no": 43,
+              "text": "Do emergency response plans which have clear rules and guidelines address each potential scenarios?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Emergency Planning"
+            },
+            {
+              "id": "WH-SY-065",
+              "no": 65,
+              "text": "Have the drills been conducted by every shifts and cover each identified potential scenarios?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Emergency Planning"
+            },
+            {
+              "id": "WH-SY-088",
+              "no": 88,
+              "text": "Are best practices in other sites incorporated into the procedure for emergency?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Emergency Planning"
+            }
+          ]
+        },
+        {
+          "id": "communication",
+          "name": "Communication",
+          "questions": [
+            {
+              "id": "WH-SY-004",
+              "no": 4,
+              "text": "When implementation of regular OH&S communication and OH&S training, does the site manager use the language where the teammates are familiar?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Communication"
+            },
+            {
+              "id": "WH-SY-025",
+              "no": 25,
+              "text": "Are the causes of accidents/incidents communicated to teammates?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Communication"
+            },
+            {
+              "id": "WH-SY-044",
+              "no": 44,
+              "text": "Are site safety rules communicated to workers in a clear and structured manner?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Communication"
+            },
+            {
+              "id": "WH-SY-066",
+              "no": 66,
+              "text": "Does management inform workers of newly found hazards and risks in a timely manner?",
+              "level": 4,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Communication"
+            },
+            {
+              "id": "WH-SY-067",
+              "no": 67,
+              "text": "Do teammates communicate hazards and risks to their supervisors as soon as they identify them?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Communication"
+            },
+            {
+              "id": "WH-SY-089",
+              "no": 89,
+              "text": "Do you communicate improvements with your TMs to evaluate the effectiveness against unsafe conditions or near misses that TMs have reported?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Communication"
+            }
+          ]
+        },
+        {
+          "id": "loto_standard",
+          "name": "LOTO Standard",
+          "questions": [
+            {
+              "id": "WH-SY-005",
+              "no": 5,
+              "text": "Do you conduct the LOTO training to the teammates who perform servicing or maintenance tasks, and distribute the Lock-out & Tag-out devices?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": "LOTO Standard"
+            },
+            {
+              "id": "WH-SY-026",
+              "no": 26,
+              "text": "Is the LOTO standard reviewed after incidents, audits or opportunity areas have been identified?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "LOTO Standard"
+            },
+            {
+              "id": "WH-SY-045",
+              "no": 45,
+              "text": "Is the LOTO system being used and applied by teammates performing maintenance tasks?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "LOTO Standard"
+            },
+            {
+              "id": "WH-SY-046",
+              "no": 46,
+              "text": "Is priodical monitoring on LOTO activity performed to verify that LOTO are properly implemented when required?",
+              "level": 3,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "LOTO Standard"
+            },
+            {
+              "id": "WH-SY-068",
+              "no": 68,
+              "text": "Are ECPs (Energy Control Procedures) prepared for all applicable machinery? Do they include all applicable energy sources (electrical, mechanical, pneumatic, etc.)?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "LOTO Standard"
+            },
+            {
+              "id": "WH-SY-090",
+              "no": 90,
+              "text": "Have you gathered best practices on LOTO from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard"
+            }
+          ]
+        },
+        {
+          "id": "safety_rules",
+          "name": "Safety Rules",
+          "questions": [
+            {
+              "id": "WH-SY-006",
+              "no": 6,
+              "text": "Do tyou know the safety rules that are required to be followed? 　(8 common safety rules, mobile equipment rules, crane & hoist rules and tire inflation rules applying to his/her job position)",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-027",
+              "no": 27,
+              "text": "Is the effectiveness of the Site Safety Rules reviewed after incidents, audits or opportunity areas have been identified?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-047",
+              "no": 47,
+              "text": "Are the applicable BS common safety rules followed by the teammates?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-069",
+              "no": 69,
+              "text": "Have you ever engaged to manage and evaluate the risks involved in their work?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-070",
+              "no": 70,
+              "text": "Are safety rules developed/adjusted after these evaluations take place?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-071",
+              "no": 71,
+              "text": "Is feedback from teammates considered to improve safety rules?",
+              "level": 4,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            },
+            {
+              "id": "WH-SY-091",
+              "no": 91,
+              "text": "Have you gathered best practices on safety rules(e.g. work standards) from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules"
+            }
+          ]
+        },
+        {
+          "id": "work_at_height",
+          "name": "Work at Height",
+          "questions": [
+            {
+              "id": "WH-SY-007",
+              "no": 7,
+              "text": "Have you communicated Work at height requirements to teammates performing Work at height?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Work at Height"
+            },
+            {
+              "id": "WH-SY-028",
+              "no": 28,
+              "text": "What are the countermeasures against a incident involving work at height which occurred in your site in last 1 year?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height"
+            },
+            {
+              "id": "WH-SY-048",
+              "no": 48,
+              "text": "Are Work at height controls being used and applied by teammates performing tasks that require Work at height?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Work at Height"
+            },
+            {
+              "id": "WH-SY-072",
+              "no": 72,
+              "text": "Are Work at height controls reviewed and improved after new risks are identified?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height"
+            },
+            {
+              "id": "WH-SY-092",
+              "no": 92,
+              "text": "Have you gathered best practices on safety rules(e.g. work standards) from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height"
+            }
+          ]
+        },
+        {
+          "id": "mobile_equipment",
+          "name": "Mobile Equipment",
+          "questions": [
+            {
+              "id": "WH-SY-008",
+              "no": 8,
+              "text": "Have you communicated requirements on mobile equipment to the drivers?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Mobile Equipment"
+            },
+            {
+              "id": "WH-SY-029",
+              "no": 29,
+              "text": "What are the countermeasures against a incident involving mobile equipment which occurred in your site in last 1 year?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment"
+            },
+            {
+              "id": "WH-SY-049",
+              "no": 49,
+              "text": "Do all drivers follow the rules and procedures for mobile equipment?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Mobile Equipment"
+            },
+            {
+              "id": "WH-SY-073",
+              "no": 73,
+              "text": "Are Mobile Equipment controls reviewed and iproved after new risks are identified?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment"
+            },
+            {
+              "id": "WH-SY-074",
+              "no": 74,
+              "text": "Is feedback from drivers considered when adapting the mobile equipment standard?",
+              "level": 4,
+              "answered_by": "Supervisors",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment"
+            },
+            {
+              "id": "WH-SY-093",
+              "no": 93,
+              "text": "Have you gathered best practices on mobile equipment from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment"
+            }
+          ]
+        },
+        {
+          "id": "3s",
+          "name": "3S",
+          "questions": [
+            {
+              "id": "WH-SY-009",
+              "no": 9,
+              "text": "Has the need for 3S(Select & remove, Sort, Keep clean) in the work area been communicated?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-010",
+              "no": 10,
+              "text": "Are 3S visual standards displayed in work area?",
+              "level": 1,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-030",
+              "no": 30,
+              "text": "Have 3S leaders been assigned from shop floor workers and have 3S self check by 3S leaders been periodically performed?",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-050",
+              "no": 50,
+              "text": "Are all unnecessary objects being removed or planned to be removed from the work area ?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-051",
+              "no": 51,
+              "text": "Are necessary equipment/tools being put in clearly marked and fixed positions?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-075",
+              "no": 75,
+              "text": "Do teammates proceed with 3S activity for the improvement of 3S level?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": "3S"
+            },
+            {
+              "id": "WH-SY-094",
+              "no": 94,
+              "text": "Have you gathered best practices on 3S from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S"
+            }
+          ]
+        },
+        {
+          "id": "crane_and_hoist",
+          "name": "Crane and Hoist",
+          "questions": [
+            {
+              "id": "WH-SY-011",
+              "no": 11,
+              "text": "How do you identify and ensure compliance to crane and hoist relevant safety legislation ?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-012",
+              "no": 12,
+              "text": "Is there an established crane and hoist safety standard that complies with legal requirements?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-031",
+              "no": 31,
+              "text": "Is there a list of licensed crane operators?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-032",
+              "no": 32,
+              "text": "What are the countermeasures against a hoist & crane incident which occurred in your site in last 1 year?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-052",
+              "no": 52,
+              "text": "Do crane operators follow the rules and standards concerning cranes and hoist operations?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-076",
+              "no": 76,
+              "text": "Do crane operators provide feedback (safety perspective) to their peers inside and outside of their site?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist"
+            },
+            {
+              "id": "WH-SY-095",
+              "no": 95,
+              "text": "Have you gathered best practices on　crane and hoist from other sites/external companies, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist"
+            }
+          ]
+        },
+        {
+          "id": "ky",
+          "name": "KY",
+          "questions": [
+            {
+              "id": "WH-SY-013",
+              "no": 13,
+              "text": "Have the the process and the importance of KY been communicated to the teammates?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-033",
+              "no": 33,
+              "text": "Have a KY leader and KY representatives been appointed?",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-053",
+              "no": 53,
+              "text": "Does everyone on site participate in KYT?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-054",
+              "no": 54,
+              "text": "Are the results from KY used to develop new safety rules or adjust old rules or improvement of safety measures for hazards((risk mitigation/administrative measures)?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-077",
+              "no": 77,
+              "text": "Is KYT conducted periodically in accordance with SBU or/and site standard by everyone on site?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-078",
+              "no": 78,
+              "text": "Is the KYT activity evaluated and opportunity for improvement discussed with the site manager annually?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY"
+            },
+            {
+              "id": "WH-SY-096",
+              "no": 96,
+              "text": "Have you gathered best practices and/or risks found in other sites during KY, and considered to incorporate them into site procedure?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY"
+            }
+          ]
+        },
+        {
+          "id": "tire_inflation_operation",
+          "name": "Tire Inflation Operation",
+          "questions": [
+            {
+              "id": "WH-SY-014",
+              "no": 14,
+              "text": "Has the tire inflation standard been communicated to the teammates?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Tire Inflation Operation"
+            },
+            {
+              "id": "WH-SY-034",
+              "no": 34,
+              "text": "Is there a clearly marked area specifically for tire inflation?",
+              "level": 2,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Tire Inflation Operation"
+            },
+            {
+              "id": "WH-SY-035",
+              "no": 35,
+              "text": "Is basic safety equipment available in the inflation area?",
+              "level": 2,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Tire Inflation Operation"
+            },
+            {
+              "id": "WH-SY-055",
+              "no": 55,
+              "text": "Do workers in the tire inflation area follow the safety rules concerning tire inflation?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Tire Inflation Operation"
+            },
+            {
+              "id": "WH-SY-079",
+              "no": 79,
+              "text": "Do the workers know how to effectively mitigate the risks in the tire inflation process?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Tire Inflation Operation"
+            },
+            {
+              "id": "WH-SY-097",
+              "no": 97,
+              "text": "Have you gathered best practices on tire inflation from other sites/industry, and considered to incorporate them into the site procedure?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Tire Inflation Operation"
+            }
+          ]
+        },
+        {
+          "id": "contractor_management",
+          "name": "Contractor management",
+          "questions": [
+            {
+              "id": "WH-SY-015",
+              "no": 15,
+              "text": "Do you certify if contractor employees who perform unload/load the tires have required skills? (e.g. mobile equipment)",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management"
+            },
+            {
+              "id": "WH-SY-036",
+              "no": 36,
+              "text": "Are pre-work meetings conducted prior to the start of work, are risks identified and risk mitigation measures/administrative controls defined.",
+              "level": 2,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management"
+            },
+            {
+              "id": "WH-SY-056",
+              "no": 56,
+              "text": "Do all contractor employees receive contractor H&S orientation/training prior to the start of the work?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management"
+            },
+            {
+              "id": "WH-SY-057",
+              "no": 57,
+              "text": "Does the material of contractor H&S orientation/training includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management"
+            },
+            {
+              "id": "WH-SY-080",
+              "no": 80,
+              "text": "Does BS perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management"
+            },
+            {
+              "id": "WH-SY-098",
+              "no": 98,
+              "text": "Have you gathered best practices on contractor management from other sites/external companies, and considered to incorporate them into the site procedure? (E.g. Daily JSA, using the external consultant for selecting contractors, etc.)",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management"
+            }
+          ]
+        },
+        {
+          "id": "large_tire_manual_handling_operation",
+          "name": "Large Tire Manual Handling Operation",
+          "questions": [
+            {
+              "id": "WH-SY-016",
+              "no": 16,
+              "text": "Are large tire manual handling operations identified and justified? Is there a procedure for each of these operations?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-017",
+              "no": 17,
+              "text": "Has the Large Tire Manual Handling Operation procedure been communicated to the relevant people?",
+              "level": 1,
+              "answered_by": "Supervisor",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-037",
+              "no": 37,
+              "text": "Is the large tire manual handling operation procedure reviewed in response to incidents?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-058",
+              "no": 58,
+              "text": "Is the procedure followed accordingly by teammates when manually handling large tires?",
+              "level": 3,
+              "answered_by": "Tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-081",
+              "no": 81,
+              "text": "Is the procedure reviewed when new activities are introduced on the site or when teammates offer relevant feedback?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-082",
+              "no": 82,
+              "text": "Are teammates re-trained in the large tire manual handling operations procedure when required (e.g. returning from absence, changes in procedure)",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            },
+            {
+              "id": "WH-SY-099",
+              "no": 99,
+              "text": "Are best industry practices and new advances in large tire manual handling equipment considered to modify or improve procedures on site?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation"
+            }
+          ]
+        },
+        {
+          "id": "integrated_risk_assessment",
+          "name": "Integrated risk assessment",
+          "questions": [
+            {
+              "id": "WH-SY-018",
+              "no": 18,
+              "text": "Have the OH&S and Fire risks in the site evaluated?",
+              "level": 1,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-038",
+              "no": 38,
+              "text": "Does the risk evaluation address the foreseeable hazards related to machine?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-039",
+              "no": 39,
+              "text": "Do you have implementation plan for risk control measures against risk category III and IV?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-059",
+              "no": 59,
+              "text": "Does the risk evaluation address the foreseeable hazards related to chemical and ergonomics?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-060",
+              "no": 60,
+              "text": "Are all risks of category III and IV in the risk register covered by administrative or technical controls?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-083",
+              "no": 83,
+              "text": "Have risk assessment periodically reviewed to verify that hazards are definitely identified and risks are properly evaluated?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated risk assessment"
+            },
+            {
+              "id": "WH-SY-100",
+              "no": 100,
+              "text": "Are best industry practices or new technology considered to mitigate the OH&S and fire risks on site?",
+              "level": 5,
+              "answered_by": "Logistics Safety dept.",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Integrated risk assessment"
+            }
+          ]
+        },
+        {
+          "id": "integrated_incidents_management",
+          "name": "Integrated incidents management",
+          "questions": [
+            {
+              "id": "WH-SY-019",
+              "no": 19,
+              "text": "To whom do you report when incidents are identified?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-020",
+              "no": 20,
+              "text": "Are the incidents that occurred at other sites (BS group or external) communicated?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-040",
+              "no": 40,
+              "text": "Are countermeasures determined when incidents* occurred?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-041",
+              "no": 41,
+              "text": "Are investigation conducted when you receive SBU recurrence prevention request ?",
+              "level": 2,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-061",
+              "no": 61,
+              "text": "Is root cause analysis implemented when incidents* occurred?",
+              "level": 3,
+              "answered_by": "Site manager",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-062",
+              "no": 62,
+              "text": "Have countermeasures been implemented for incidents*?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-063",
+              "no": 63,
+              "text": "Do you have implementation plan to take countermeasures for identified risks after investigation based on recurrence prevention request?",
+              "level": 3,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-084",
+              "no": 84,
+              "text": "Are risk control measurements being executed to similar tasks, machines or processes following a reported incident*?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-085",
+              "no": 85,
+              "text": "Have countermeasures been implemented based on implementation plan for recurrence prevention?",
+              "level": 4,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": "Integrated incidents management"
+            },
+            {
+              "id": "WH-SY-101",
+              "no": 101,
+              "text": "Are industry best practices being considered when determining the countermeasures against incidents*?",
+              "level": 5,
+              "answered_by": "Site manager or",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Integrated incidents management"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

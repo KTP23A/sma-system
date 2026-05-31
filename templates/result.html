@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block title %}Results — {{ assessment.site_name }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <div>
+    <h4 class="fw-bold mb-0">
+      {% if gc %}{{ gc.name }} — {% endif %}{{ assessment.site_name }}
+    </h4>
+    <small class="text-muted">
+      {{ assessment.type|upper }}{% if assessment.scope %} · {{ assessment.scope }}{% endif %}
+      · {{ assessment.assessment_date or '—' }}
+      · <span class="badge bg-{{ status_labels.get(assessment.status, ('','secondary'))[1] }}">
+          {{ status_labels.get(assessment.status, ('Unknown','secondary'))[0] }}
+        </span>
+      {% if assessment.kind == 'self' %}<span class="badge bg-info text-dark ms-1">Self-Assessment</span>
+      {% else %}<span class="badge bg-dark ms-1">Validation</span>{% endif %}
+    </small>
+  </div>
+  <div class="d-flex gap-2 flex-wrap">
+    <!-- Workflow buttons -->
+    {% if assessment.kind == 'self' and assessment.status == 'gc_draft' and user.role == 'gc_assessor' %}
+      <a href="{{ url_for('assess', assessment_id=assessment.id) }}" class="btn btn-primary btn-sm">✏ Back to Assessment</a>
+      <button class="btn btn-success btn-sm fw-bold" onclick="submitSelf()">✔ Submit to SBU</button>
+    {% elif assessment.kind == 'validation' and user.role in ('sbu_pic','admin') %}
+      <a href="{{ url_for('assess', assessment_id=assessment.id) }}" class="btn btn-primary btn-sm">✏ Revise Answers</a>
+      {% if assessment.status == 'validation_in_progress' %}
+        <button class="btn btn-success btn-sm fw-bold" onclick="shareReport()">📤 Share Report to GC</button>
+      {% else %}
+        <button class="btn btn-outline-success btn-sm" onclick="shareReport()">📤 Re-share Report</button>
+        <a href="{{ url_for('findings', assessment_id=assessment.id) }}" class="btn btn-warning btn-sm fw-bold">📋 View Findings</a>
+      {% endif %}
+    {% elif assessment.status == 'report_shared' or assessment.status == 'completed' %}
+      <a href="{{ url_for('findings', assessment_id=assessment.id) }}" class="btn btn-warning btn-sm fw-bold">📋 View Findings</a>
+    {% else %}
+      <a href="{{ url_for('assess', assessment_id=assessment.id) }}" class="btn btn-primary btn-sm">✏ Back to Assessment</a>
+    {% endif %}
+    <a href="{{ url_for('export_pdf', assessment_id=assessment.id) }}" class="btn btn-outline-danger btn-sm">⬇ PDF</a>
+    <a href="{{ url_for('export_excel', assessment_id=assessment.id) }}" class="btn btn-outline-success btn-sm">⬇ Excel</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-sm">← Dashboard</a>
+  </div>
+</div>
+
+<!-- Self-assessment comparison banner (for validation) -->
+{% if self_assessment %}
+<div class="alert alert-info py-2 mb-3 small">
+  📊 This validation is linked to a <a href="{{ url_for('result', assessment_id=self_assessment.id) }}">GC self-assessment</a>
+  submitted on {{ self_assessment.submitted_at[:10] if self_assessment.submitted_at else '—' }}.
+</div>
+{% endif %}
+
+<!-- 1-point alerts -->
+{% for pillar in pillars %}
+  {% for element in pillar.elements %}
+    {% set es = scores.pillars.get(pillar.id, {}).get('elements', {}).get(element.id) %}
+    {% if es == 1 %}
+    <div class="alert alert-danger alert-1pt py-2 mb-2">
+      <strong>⚠ IMMEDIATE ACTION REQUIRED:</strong> {{ pillar.name }} → {{ element.name }} scored <strong>1 (Ad-hoc)</strong>
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+<!-- Overall score -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card p-4 text-center h-100">
+      <div class="text-muted small mb-1">Overall Safety Maturity</div>
+      {% if scores.overall %}
+        {% set lv = scores.overall|round|int %}
+        <div class="score-circle mx-auto level-badge-{{ lv }}" style="width:100px;height:100px;font-size:2.2rem">{{ "%.2f"|format(scores.overall) }}</div>
+        <div class="mt-2 fw-bold fs-5">{{ scores.level_name }}</div>
+      {% else %}
+        <div class="text-muted mt-4">—</div>
+      {% endif %}
+      {% if assessment.assessor_a or assessment.assessor_b %}
+      <div class="mt-3 small text-muted">
+        {% if assessment.assessor_a %}<div>Assessor A: {{ assessment.assessor_a }}</div>{% endif %}
+        {% if assessment.assessor_b %}<div>Assessor B: {{ assessment.assessor_b }}</div>{% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-4 text-center h-100">
+      <div class="text-muted small mb-1">Safety Awareness</div>
+      <div class="text-muted small">(Leadership + TM Engagement)</div>
+      {% if scores.safety_awareness %}
+        {% set lv = scores.safety_awareness|round|int %}
+        <div class="score-circle mx-auto level-badge-{{ lv }} mt-2">{{ "%.2f"|format(scores.safety_awareness) }}</div>
+        <div class="mt-2 fw-semibold">{{ level_names.get(lv,'') }}</div>
+      {% else %}<div class="text-muted mt-4">—</div>{% endif %}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-4 text-center h-100">
+      <div class="text-muted small mb-1">System Implementation</div>
+      <div class="text-muted small">(Organization + System)</div>
+      {% if scores.system_implementation %}
+        {% set lv = scores.system_implementation|round|int %}
+        <div class="score-circle mx-auto level-badge-{{ lv }} mt-2">{{ "%.2f"|format(scores.system_implementation) }}</div>
+        <div class="mt-2 fw-semibold">{{ level_names.get(lv,'') }}</div>
+      {% else %}<div class="text-muted mt-4">—</div>{% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Radar + Pillar Scores -->
+<div class="card mb-4 p-3">
+  <div class="row">
+    <div class="col-md-5">
+      <canvas id="radarChart" style="max-height:280px"></canvas>
+    </div>
+    <div class="col-md-7">
+      <h6 class="fw-bold mb-3">Pillar Scores</h6>
+      {% for pillar in pillars %}
+        {% set ps = scores.pillars.get(pillar.id, {}).get('score') %}
+        <div class="d-flex align-items-center mb-2 gap-2">
+          <span style="width:160px" class="small fw-semibold">{{ pillar.name }}</span>
+          <div class="progress flex-grow-1" style="height:22px">
+            {% if ps %}
+              <div class="progress-bar level-badge-{{ ps }}" style="width:{{ (ps/5*100)|int }}%">{{ ps }}</div>
+            {% else %}
+              <div class="progress-bar bg-secondary" style="width:100%">—</div>
+            {% endif %}
+          </div>
+          {% if ps %}<span class="badge level-badge-{{ ps }} ms-1">{{ level_names.get(ps,'') }}</span>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Pillar detail -->
+{% for pillar in pillars %}
+{% set ps = scores.pillars.get(pillar.id, {}) %}
+<div class="card mb-3 pillar-card pillar-{{ pillar.id }}">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span class="fw-bold">{{ pillar.name }}</span>
+    {% if ps.score is not none %}
+      <span class="badge level-badge-{{ ps.score }} fs-6">{{ ps.score }} — {{ level_names.get(ps.score,'') }}</span>
+    {% endif %}
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-sm mb-0">
+      <thead class="table-light">
+        <tr><th style="width:200px">Element</th><th class="text-center" style="width:80px">Score</th><th>Questions</th></tr>
+      </thead>
+      <tbody>
+      {% for element in pillar.elements %}
+        {% set es = ps.get('elements', {}).get(element.id) %}
+        <tr>
+          <td class="fw-semibold small align-top pt-2">{{ element.name }}</td>
+          <td class="text-center align-top pt-2">
+            {% if es is not none %}
+              <span class="badge level-badge-{{ es }}">{{ es }}</span>
+            {% else %}
+              <span class="badge bg-secondary">N/A</span>
+            {% endif %}
+          </td>
+          <td>
+            {% for q in element.questions %}
+              {% set ans = responses.get(q.id, '') %}
+              {% set cmt = comments.get(q.id, '') %}
+              <div class="py-1 px-2 mb-1 rounded
+                {% if ans == 'yes' %}q-yes{% elif ans == 'no' %}q-no{% elif ans == 'na' %}q-na{% elif ans == 'not_rolled_out' %}q-not_rolled_out{% endif %}">
+                <div class="d-flex align-items-start gap-2">
+                  <span class="small text-muted" style="min-width:1.5rem">{{ q.no }}.</span>
+                  <span class="small flex-grow-1">{{ q.text }}</span>
+                  <span class="badge ms-1
+                    {% if ans == 'yes' %}bg-success{% elif ans == 'no' %}bg-danger{% elif ans == 'na' %}bg-secondary{% elif ans == 'not_rolled_out' %}bg-warning text-dark{% else %}bg-light text-muted border{% endif %}"
+                    style="min-width:70px;text-align:center">
+                    {% if ans == 'yes' %}✓ Yes{% elif ans == 'no' %}✗ No{% elif ans == 'na' %}N/A{% elif ans == 'not_rolled_out' %}Not rolled out{% else %}—{% endif %}
+                  </span>
+                </div>
+                {% if cmt %}
+                  <div class="small text-muted mt-1 ms-4">💬 {{ cmt }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const pillarLabels = {{ pillars | map(attribute='name') | list | tojson }};
+const pillarScores = [
+  {% for pillar in pillars %}{{ scores.pillars.get(pillar.id, {}).get('score') or 0 }}{% if not loop.last %},{% endif %}{% endfor %}
+];
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: pillarLabels,
+    datasets: [{
+      label: {{ assessment.site_name | tojson }},
+      data: pillarScores,
+      borderColor: '#0d6efd',
+      backgroundColor: 'rgba(13,110,253,.15)',
+      pointBackgroundColor: '#0d6efd',
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { r: { min: 0, max: 5, ticks: { stepSize: 1 } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+function submitSelf() {
+  if (!confirm('Submit this self-assessment to SBU for validation? You will not be able to edit it after submitting.')) return;
+  fetch('/api/submit/{{ assessment.id }}', { method: 'POST' })
+    .then(r => r.json())
+    .then(d => { if (d.redirect) window.location.href = d.redirect; });
+}
+
+function shareReport() {
+  if (!confirm('Share this validation report to the GC assessor? Findings will be auto-generated from all "No" answers.')) return;
+  fetch('/api/share-report/{{ assessment.id }}', { method: 'POST' })
+    .then(r => r.json())
+    .then(d => { if (d.redirect) window.location.href = d.redirect; });
+}
+</script>
+{% endblock %}

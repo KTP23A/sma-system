@@ -1,0 +1,1493 @@
+{
+  "type": "retail",
+  "scopes": {
+    "store": {
+      "scope": "Store",
+      "pillars": [
+        {
+          "id": "leadership",
+          "name": "Leadership",
+          "elements": [
+            {
+              "id": "prioritization",
+              "name": "Prioritization",
+              "questions": [
+                {
+                  "id": "RT-ST-LD-001",
+                  "no": 1,
+                  "text": "Does Store manager address safety at the morning assembly or monthly meeting etc?",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-003",
+                  "no": 3,
+                  "text": "Do you implement BS Safety fundamental Activities (3S, KY, RA and Safety rules) regularly?",
+                  "level": 2,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-007",
+                  "no": 7,
+                  "text": "Do you review site H&S performances results and take any actions against identified opportunities for improvements?",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-009",
+                  "no": 9,
+                  "text": "Does the Store Management regularly involve all teammates with safety discussions and incorporate their idea into safety action?",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "name": "Support",
+              "questions": [
+                {
+                  "id": "RT-ST-LD-002",
+                  "no": 2,
+                  "text": "Are all teammates provided with PPEs needed for their tasks?",
+                  "level": 1,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-005",
+                  "no": 5,
+                  "text": "Are all teammates are involved with 3S activities?",
+                  "level": 3,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-010",
+                  "no": 10,
+                  "text": "Do you comfortable reporting safety issues to your store manager?",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "decision",
+              "name": "Decision",
+              "questions": [
+                {
+                  "id": "RT-ST-LD-004",
+                  "no": 4,
+                  "text": "Do you know how to report incidents?",
+                  "level": 2,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-006",
+                  "no": 6,
+                  "text": "Are you aware of residual or high risks and inform teammates?",
+                  "level": 3,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-LD-008",
+                  "no": 8,
+                  "text": "Are teammates corrected when not following Safety Rules? And are you leading by example?",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tm_engagement",
+          "name": "Teammate Engagement",
+          "elements": [
+            {
+              "id": "knowledge",
+              "name": "Knowledge",
+              "questions": [
+                {
+                  "id": "RT-ST-TM-001",
+                  "no": 1,
+                  "text": "Are you aware of required PPE to use?",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-002",
+                  "no": 2,
+                  "text": "Do you know how to report incidents?",
+                  "level": 2,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-003",
+                  "no": 3,
+                  "text": "Are teammates aware of recent safety incidents, if any.",
+                  "level": 2,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "action",
+              "name": "Action",
+              "questions": [
+                {
+                  "id": "RT-ST-TM-004",
+                  "no": 4,
+                  "text": "Are you actively participating in safety discussions.",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-006",
+                  "no": 6,
+                  "text": "Have you reported unsafe conditions when identified?",
+                  "level": 4,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-009",
+                  "no": 9,
+                  "text": "Have you intervened to warn your teammate or reported when unsafe behavior is identified?",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "capability",
+              "name": "Capability",
+              "questions": [
+                {
+                  "id": "RT-ST-TM-005",
+                  "no": 5,
+                  "text": "Teammates ensure step stools or ladders are in good condition before using.",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-007",
+                  "no": 7,
+                  "text": "Are machine, power tools and hand tools inspected before using to ensure they are in good condition.",
+                  "level": 4,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-TM-008",
+                  "no": 8,
+                  "text": "Have teammates proposed safety improvements to prevent injuries or near misses.",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "organization",
+          "name": "Organization",
+          "elements": [
+            {
+              "id": "participation",
+              "name": "Participation",
+              "questions": [
+                {
+                  "id": "RT-ST-OR-001",
+                  "no": 1,
+                  "text": "Do you work safely even when busy?",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-002",
+                  "no": 2,
+                  "text": "Do all teammates participate in safety activities?",
+                  "level": 1,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-006",
+                  "no": 6,
+                  "text": "You allocate time for teammates to perform 3S activities.",
+                  "level": 3,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "information",
+              "name": "Information",
+              "questions": [
+                {
+                  "id": "RT-ST-OR-003",
+                  "no": 3,
+                  "text": "Do you know how to access safety procedures and standards?",
+                  "level": 2,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-005",
+                  "no": 5,
+                  "text": "Do you know the Rules of Safety that are required to be followed?",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-008",
+                  "no": 8,
+                  "text": "You recognize Teammate when they practice safe behaviors.",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "communication",
+              "name": "Communication",
+              "questions": [
+                {
+                  "id": "RT-ST-OR-004",
+                  "no": 4,
+                  "text": "What do you do for your safety when you encounter an abnormal situation?",
+                  "level": 2,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-007",
+                  "no": 7,
+                  "text": "Do you communicate safety messages to teammates to improve their safety awareness?",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-ST-OR-009",
+                  "no": 9,
+                  "text": "Do you feel comfortable stopping work if you feel there is a risk of injury.",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "system",
+          "name": "System",
+          "elements": [
+            {
+              "id": "supported_vehicles",
+              "name": "Supported Vehicles",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-001",
+                  "no": 1,
+                  "text": "Do you maintain the skill qualification list/table including vehicle elevation/lowering operation?",
+                  "level": 1,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Supported Vehicles"
+                },
+                {
+                  "id": "RT-ST-SY-006",
+                  "no": 6,
+                  "text": "Routine Lift inspections are completed by outside vendor?",
+                  "level": 2,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Supported Vehicles"
+                },
+                {
+                  "id": "RT-ST-SY-011",
+                  "no": 11,
+                  "text": "Are proper lifting equipment used (under load capacity) and are lifting arms set at appropriate position of vehicle?",
+                  "level": 3,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Supported Vehicles"
+                },
+                {
+                  "id": "RT-ST-SY-016",
+                  "no": 16,
+                  "text": "What do you check to ensure the lift is adapted for the vehicle you need to service?",
+                  "level": 4,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Supported Vehicles"
+                },
+                {
+                  "id": "RT-ST-SY-021",
+                  "no": 21,
+                  "text": "Do you observe teammates to ensure they follow lifting procedure?",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Supported Vehicles"
+                }
+              ]
+            },
+            {
+              "id": "tire_inflation",
+              "name": "Tire Inflation",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-002",
+                  "no": 2,
+                  "text": "Do you maintain the list of teammates who have legal licenses and/or legal training certifications required to perform the services including tire inflation, driving vehicle/forklift.",
+                  "level": 1,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Tire Inflation"
+                },
+                {
+                  "id": "RT-ST-SY-007",
+                  "no": 7,
+                  "text": "Are prevention measures taken to ensure no person, objects, or body parts are in the danger zone when inflating tires? (ex. Use safety gauge/safety net, Keep enough distance etc.)",
+                  "level": 2,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Tire Inflation"
+                },
+                {
+                  "id": "RT-ST-SY-012",
+                  "no": 12,
+                  "text": "How do you determine the inflation pressure needed for the tyres you are inflating?",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Tire Inflation"
+                },
+                {
+                  "id": "RT-ST-SY-017",
+                  "no": 17,
+                  "text": "Do you always inspect the tire and the rim for signs of deterioration before inflating?",
+                  "level": 4,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Tire Inflation"
+                },
+                {
+                  "id": "RT-ST-SY-022",
+                  "no": 22,
+                  "text": "Do you check frequently the tire during inflation and for what signs?",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Tire Inflation"
+                }
+              ]
+            },
+            {
+              "id": "material_handling",
+              "name": "Material Handling",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-003",
+                  "no": 3,
+                  "text": "Are you aware of the proper lifting techniques?",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Material Handling"
+                },
+                {
+                  "id": "RT-ST-SY-008",
+                  "no": 8,
+                  "text": "Are paths kept clear to allow for material movement in the shop area?",
+                  "level": 2,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Material Handling"
+                },
+                {
+                  "id": "RT-ST-SY-013",
+                  "no": 13,
+                  "text": "What are the rules for storing tyres to avoid risk of fall or ergonomic risks?",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Material Handling"
+                },
+                {
+                  "id": "RT-ST-SY-018",
+                  "no": 18,
+                  "text": "Do teammates use mechanical aids when handling heavy objects (e.g. rim, oil drums) or tyre/wheel assembly or alternatively ask for assistance?",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Material Handling"
+                },
+                {
+                  "id": "RT-ST-SY-023",
+                  "no": 23,
+                  "text": "Are heavier items or frequently used items stored at mid-body height to make them easier to reach?",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Material Handling"
+                }
+              ]
+            },
+            {
+              "id": "motor_vehicle_maintenance_vehicle_guide",
+              "name": "Motor Vehicle, Maintenance & Vehicle Guide",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-004",
+                  "no": 4,
+                  "text": "What is the rule to prevent the injury caused by overturning forklift? (question to teammate who may drive forklift)",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                },
+                {
+                  "id": "RT-ST-SY-009",
+                  "no": 9,
+                  "text": "Are vehicles parked at a location where the task can be conducted in a safe condition? (e.g. flat surface, wheel chocks, cones used, away from traffic).",
+                  "level": 2,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                },
+                {
+                  "id": "RT-ST-SY-014",
+                  "no": 14,
+                  "text": "What are the rules when driving a car for test drive and/or road service?",
+                  "level": 3,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                },
+                {
+                  "id": "RT-ST-SY-019",
+                  "no": 19,
+                  "text": "What are the rules applicable when guiding a vehicle in the store premises?",
+                  "level": 4,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                },
+                {
+                  "id": "RT-ST-SY-024",
+                  "no": 24,
+                  "text": "Do teammates complete an inspection to confirm safe operation of the vehicle before driving?",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                }
+              ]
+            },
+            {
+              "id": "mechanical_hazard",
+              "name": "Mechanical Hazard",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-005",
+                  "no": 5,
+                  "text": "When you perform vehicle maintenance services, what do you do to prevent injury caused by rotating/moving part of vehicle?",
+                  "level": 1,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Mechanical Hazard"
+                },
+                {
+                  "id": "RT-ST-SY-010",
+                  "no": 10,
+                  "text": "Do Rotating equipment or objects under mechanical compression or tension have guarding/barriers? (e.g. tire balance MC, springs, shock absorber machine, brake lathes, bearing press, grinders, etc.).",
+                  "level": 2,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Mechanical Hazard"
+                },
+                {
+                  "id": "RT-ST-SY-015",
+                  "no": 15,
+                  "text": "Are the right tools used for specific tasks and in good condition?",
+                  "level": 3,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Mechanical Hazard"
+                },
+                {
+                  "id": "RT-ST-SY-020",
+                  "no": 20,
+                  "text": "Equipment that is unsafe and requires maintenance or repair is immediately taken out of service.",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Mechanical Hazard"
+                },
+                {
+                  "id": "RT-ST-SY-025",
+                  "no": 25,
+                  "text": "What do you do for your safety when you have any doubt during maintenance service on EV?",
+                  "level": 5,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Mechanical Hazard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "local_company": {
+      "scope": "Local company",
+      "pillars": [
+        {
+          "id": "leadership",
+          "name": "Leadership",
+          "elements": [
+            {
+              "id": "prioritization",
+              "name": "Prioritization",
+              "questions": [
+                {
+                  "id": "RT-LC-LD-001",
+                  "no": 1,
+                  "text": "Does Leader to GENBA operation discuss Safety at regularly scheduled meetings?",
+                  "level": 1,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-006",
+                  "no": 6,
+                  "text": "Have Leader to GENBA operation communicated measurable expectations for safety performance?",
+                  "level": 3,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-010",
+                  "no": 10,
+                  "text": "Do you make effort in order that safety is aligned with other business values such as revenue, margin and cost reduction?",
+                  "level": 5,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "name": "Support",
+              "questions": [
+                {
+                  "id": "RT-LC-LD-002",
+                  "no": 2,
+                  "text": "Do you make effort to allocate support and resources for implementing safety programs and activities?",
+                  "level": 1,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-003",
+                  "no": 3,
+                  "text": "Are supervisors and Leaders to GENBA operation trained to use \"On the spot coaching\" when a safety risk is identified?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-007",
+                  "no": 7,
+                  "text": "Are Best Practices collected and used to improve the Safety Program?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "decision",
+              "name": "Decision",
+              "questions": [
+                {
+                  "id": "RT-LC-LD-004",
+                  "no": 4,
+                  "text": "Is the effectiveness of the Site Safety Rules reviewed after incidents and audits?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-005",
+                  "no": 5,
+                  "text": "Does Leader to GENBA operation use leading & lagging metrics to guide continuous improvement efforts and decision-making?",
+                  "level": 3,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-008",
+                  "no": 8,
+                  "text": "Are safety goals reviewed/revised regularly and used in business planning?",
+                  "level": 4,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-LD-009",
+                  "no": 9,
+                  "text": "Are responsibilities for Safety on each positions (Leaders to Genba operation, Supervisors and Teammates) defined?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tm_engagement",
+          "name": "Teammate Engagement",
+          "elements": [
+            {
+              "id": "knowledge",
+              "name": "Knowledge",
+              "questions": [
+                {
+                  "id": "RT-LC-TM-001",
+                  "no": 1,
+                  "text": "Is Safety Orientation/Induction Training required for new Teammates? Can you describe the process?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-003",
+                  "no": 3,
+                  "text": "Do Teammates receive training in a language and at a literacy level that all of them can understand?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-005",
+                  "no": 5,
+                  "text": "Is there a formal safety training program for Teammates, including  supervisors and  Leaders to GENBA operation?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-008",
+                  "no": 8,
+                  "text": "Are safety trends or analytics shared with Teammates?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "capability",
+              "name": "Capability",
+              "questions": [
+                {
+                  "id": "RT-LC-TM-002",
+                  "no": 2,
+                  "text": "Are Teammates informed of their personal responsibility for a safe workplace?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-004",
+                  "no": 4,
+                  "text": "Are Teammates trained on how to report an injury, illness, hazard, or concern, including near misses?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-010",
+                  "no": 10,
+                  "text": "Does Leader to GENBA operation seek Teammate input on hazard reduction and safety improvement?",
+                  "level": 5,
+                  "answered_by": "Leader to GENBA operation",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "action",
+              "name": "Action",
+              "questions": [
+                {
+                  "id": "RT-LC-TM-006",
+                  "no": 6,
+                  "text": "Has the Bridgestone Safety Mission Statement been communicated to all Teammates?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-007",
+                  "no": 7,
+                  "text": "Are cross-functional teams used to address specific safety and health concerns?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-TM-009",
+                  "no": 9,
+                  "text": "Is there a recognition program for teammates that demonstrate safe behaviors?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "organization",
+          "name": "Organization",
+          "elements": [
+            {
+              "id": "communication",
+              "name": "Communication",
+              "questions": [
+                {
+                  "id": "RT-LC-OR-001",
+                  "no": 1,
+                  "text": "Are relevant Safety Procedures available to all Teammates?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-008",
+                  "no": 8,
+                  "text": "Is Safety Training delivered by qualified trainers?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-010",
+                  "no": 10,
+                  "text": "Are Near Miss and Lesson Learned Reports reviewed and used to improve the Safety Program?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "participation",
+              "name": "Participation",
+              "questions": [
+                {
+                  "id": "RT-LC-OR-002",
+                  "no": 2,
+                  "text": "Are teammates provided adequate safety equipment? Do they know how to use them?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-003",
+                  "no": 3,
+                  "text": "Is there a an assessment program with scheduled compliance and systems audits?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-006",
+                  "no": 6,
+                  "text": "Is the safety training curriculum tailored to the specific roles and responsibilities at each level of the organization?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-007",
+                  "no": 7,
+                  "text": "Is a Risk Assessment conducted for new projects, materials and work methods?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            },
+            {
+              "id": "information",
+              "name": "Information",
+              "questions": [
+                {
+                  "id": "RT-LC-OR-004",
+                  "no": 4,
+                  "text": "Are certifications and training required by government regulations tracked to ensure completion?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-005",
+                  "no": 5,
+                  "text": "Have important documents and records that need to be kept been identified? All documents that are legally required are kept.",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                },
+                {
+                  "id": "RT-LC-OR-009",
+                  "no": 9,
+                  "text": "Are regulatory and corporate compliance systematically checked to ensure they are up-to-date?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "system",
+          "name": "System",
+          "elements": [
+            {
+              "id": "emergency_planning",
+              "name": "Emergency Planning",
+              "questions": [
+                {
+                  "id": "RT-LC-SY-001",
+                  "no": 1,
+                  "text": "Is there an established emergency policy/procedure that complies with regulations?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Emergency Planning"
+                },
+                {
+                  "id": "RT-LC-SY-006",
+                  "no": 6,
+                  "text": "Are hazards associated with emergencies and non-routine operations identified in the emergency action plan and operating procedures, respectively?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Emergency Planning"
+                },
+                {
+                  "id": "RT-LC-SY-024",
+                  "no": 24,
+                  "text": "Are Emergency Plans written, communicated, revised, and facility drills conducted? Does the program update based on the result of the drill?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Emergency Planning"
+                }
+              ]
+            },
+            {
+              "id": "training_and_education_contractor_management",
+              "name": "Training and Education, Contractor management",
+              "questions": [
+                {
+                  "id": "RT-LC-SY-002",
+                  "no": 2,
+                  "text": "Is all regulatory required safety training included in the safety training matrix/plan?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-003",
+                  "no": 3,
+                  "text": "Do job descriptions have safety specific responsibilities identified?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-009",
+                  "no": 9,
+                  "text": "Is safety awareness communicated via activities such as newsletters, alerts, and toolbox talks, etc.?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-016",
+                  "no": 16,
+                  "text": "Are applicable site safety rules and/or management processes provided to contractor?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-017",
+                  "no": 17,
+                  "text": "Is there a written Contractor Safety Program?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-018",
+                  "no": 18,
+                  "text": "Are safety control measures determined for the contractor's services reviewed with BS in advance?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                },
+                {
+                  "id": "RT-LC-SY-019",
+                  "no": 19,
+                  "text": "Is on site check performed before starting the contractor's services to ensure that the determined control measures are in place?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Training and Education, Contractor management"
+                }
+              ]
+            },
+            {
+              "id": "hazard_prevention_and_control",
+              "name": "Hazard Prevention and Control",
+              "questions": [
+                {
+                  "id": "RT-LC-SY-004",
+                  "no": 4,
+                  "text": "Are there established policies/procedures describing safety expectations, roles, and responsibilities?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-005",
+                  "no": 5,
+                  "text": "Are risk assessments completed and communicated with teammates to identify job hazards?",
+                  "level": 1,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-008",
+                  "no": 8,
+                  "text": "Are corrective actions, with accountability, tracked to closure?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-010",
+                  "no": 10,
+                  "text": "Are controls selected according to the “hierarchy of controls,” emphasizing, in order of priority; elimination, substitution, engineering controls, administrative controls, and PPE?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-011",
+                  "no": 11,
+                  "text": "Has a standard practice for Vehicle Elevating and Lowering Operation that includes all elements of the SBU Standard been developed and Implemented?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-012",
+                  "no": 12,
+                  "text": "Has a standard practice for Tire Inflation that includes all elements of the SBU Standard been developed and Implemented?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-013",
+                  "no": 13,
+                  "text": "Has a standard practice for Tire/Large Tire Manual Handling Operation that includes all elements of the SBU Standard been developed and Implemented?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-014",
+                  "no": 14,
+                  "text": "Has a standard practice for Motor Vehicle Safety that includes all elements of the SBU Standard been developed and Implemented?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-015",
+                  "no": 15,
+                  "text": "Have controls been developed and implemented to prevent Mechanical Hazard risks?",
+                  "level": 3,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-022",
+                  "no": 22,
+                  "text": "Is there a documented process for investigation and corrective action following a safety incident?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                },
+                {
+                  "id": "RT-LC-SY-026",
+                  "no": 26,
+                  "text": "Once safety controls installed, are they monitored to ensure that teammates understand their use and application and to verify that they are effective?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Hazard Prevention and Control"
+                }
+              ]
+            },
+            {
+              "id": "management_of_change",
+              "name": "Management of Change",
+              "questions": [
+                {
+                  "id": "RT-LC-SY-007",
+                  "no": 7,
+                  "text": "Are interim controls adopted while permanent controls are being determined?",
+                  "level": 2,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Management of Change"
+                },
+                {
+                  "id": "RT-LC-SY-023",
+                  "no": 23,
+                  "text": "Before making changes to operations, workflow/work methodology, physical plant/facility, equipment, or materials, is there a safety review to identify any safety or health issues?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Management of Change"
+                },
+                {
+                  "id": "RT-LC-SY-025",
+                  "no": 25,
+                  "text": "Do teammates receive supplemental training when a change in the workplace could introduce new or increased hazards?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Management of Change"
+                }
+              ]
+            },
+            {
+              "id": "continual_improvement",
+              "name": "Continual Improvement",
+              "questions": [
+                {
+                  "id": "RT-LC-SY-020",
+                  "no": 20,
+                  "text": "Are leading indicators used to review and analyze safety policies, procedures and trends for continual improvement?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Continual Improvement"
+                },
+                {
+                  "id": "RT-LC-SY-021",
+                  "no": 21,
+                  "text": "Are performance indicators used to track progress toward safety program goals?",
+                  "level": 4,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Continual Improvement"
+                },
+                {
+                  "id": "RT-LC-SY-027",
+                  "no": 27,
+                  "text": "Are targeted safety campaigns/initiatives used to improve performance?",
+                  "level": 5,
+                  "answered_by": "Safety manager",
+                  "audit_methods": [
+                    "interview",
+                    "document"
+                  ],
+                  "standard": "Continual Improvement"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

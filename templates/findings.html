@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Findings — {{ assessment.site_name }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <div>
+    <h4 class="fw-bold mb-0">
+      {% if gc %}{{ gc.name }} — {% endif %}Findings & Action Plans
+    </h4>
+    <small class="text-muted">
+      {{ assessment.type|upper }} · {{ assessment.assessment_date or '—' }}
+      · <span class="badge bg-{{ status_labels.get(assessment.status,('','secondary'))[1] }}">
+          {{ status_labels.get(assessment.status,('Unknown','secondary'))[0] }}
+        </span>
+    </small>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{{ url_for('result', assessment_id=assessment.id) }}" class="btn btn-outline-primary btn-sm">← Full Result</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-sm">Dashboard</a>
+  </div>
+</div>
+
+<!-- Summary -->
+{% set open_count = findings | selectattr('status','eq','open') | list | length %}
+{% set wip_count = findings | selectattr('status','eq','in_progress') | list | length %}
+{% set closed_count = findings | selectattr('status','eq','closed') | list | length %}
+<div class="row g-3 mb-4">
+  <div class="col-4">
+    <div class="card p-3 text-center border-danger">
+      <div class="fs-2 fw-bold text-danger">{{ open_count }}</div>
+      <div class="small text-muted">Open</div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card p-3 text-center border-warning">
+      <div class="fs-2 fw-bold text-warning">{{ wip_count }}</div>
+      <div class="small text-muted">In Progress</div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card p-3 text-center border-success">
+      <div class="fs-2 fw-bold text-success">{{ closed_count }}</div>
+      <div class="small text-muted">Closed</div>
+    </div>
+  </div>
+</div>
+
+{% if not findings %}
+<div class="card p-5 text-center text-muted">
+  <div style="font-size:3rem">✅</div>
+  <h5 class="mt-2">No findings</h5>
+  <p>All questions were answered Yes, N/A, or Not rolled out.</p>
+</div>
+{% else %}
+
+{% set ns = namespace(current_pillar='') %}
+{% for f in findings %}
+  {% set q = q_lookup.get(f.question_id) %}
+  {% if q %}
+    {% if f.pillar_id != ns.current_pillar %}
+      {% set ns.current_pillar = f.pillar_id %}
+      <h5 class="fw-bold mt-4 mb-2">{{ p_lookup.get(f.pillar_id, f.pillar_id) }}</h5>
+    {% endif %}
+
+    <div class="card mb-3 finding-card" id="fc-{{ f.id }}"
+         style="border-left:4px solid {% if f.status=='closed' %}#198754{% elif f.status=='in_progress' %}#ffc107{% else %}#dc3545{% endif %}">
+      <div class="card-body py-3">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+          <div>
+            <span class="badge bg-light text-dark border me-1">{{ e_lookup.get(f.element_id, f.element_id) }}</span>
+            <span class="badge bg-secondary me-1">L{{ q.level }}</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <select class="form-select form-select-sm status-select" style="width:auto"
+                    onchange="updateFinding({{ f.id }})"
+                    {% if user.role == 'gc_assessor' or assessment.status in ('report_shared',) %}{% else %}disabled{% endif %}>
+              <option value="open" {% if f.status=='open' %}selected{% endif %}>🔴 Open</option>
+              <option value="in_progress" {% if f.status=='in_progress' %}selected{% endif %}>🟡 In Progress</option>
+              <option value="closed" {% if f.status=='closed' %}selected{% endif %}>🟢 Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Question text -->
+        <div class="fw-semibold mb-3">{{ q.no }}. {{ q.text }}</div>
+
+        <!-- Action plan fields -->
+        <div class="row g-2">
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold mb-1">Action Plan</label>
+            <textarea class="form-control form-control-sm action-field"
+                      id="ap-{{ f.id }}" rows="2"
+                      placeholder="Describe corrective action..."
+                      {% if user.role not in ('gc_assessor','sbu_pic','admin') %}readonly{% endif %}
+                      onblur="updateFinding({{ f.id }})">{{ f.action_plan or '' }}</textarea>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label small fw-semibold mb-1">Responsible</label>
+            <input type="text" class="form-control form-control-sm"
+                   id="resp-{{ f.id }}" value="{{ f.responsible or '' }}"
+                   placeholder="Person responsible"
+                   {% if user.role not in ('gc_assessor','sbu_pic','admin') %}readonly{% endif %}
+                   onblur="updateFinding({{ f.id }})">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label small fw-semibold mb-1">Due Date</label>
+            <input type="date" class="form-control form-control-sm"
+                   id="due-{{ f.id }}" value="{{ f.due_date or '' }}"
+                   {% if user.role not in ('gc_assessor','sbu_pic','admin') %}readonly{% endif %}
+                   onchange="updateFinding({{ f.id }})">
+          </div>
+        </div>
+
+        {% if f.updated_at %}
+        <div class="small text-muted mt-2">Last updated: {{ f.updated_at[:16] }}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+function updateFinding(id) {
+  const data = {
+    action_plan: document.getElementById('ap-' + id)?.value || '',
+    responsible: document.getElementById('resp-' + id)?.value || '',
+    due_date: document.getElementById('due-' + id)?.value || '',
+    status: document.querySelector(`#fc-${id} .status-select`)?.value || 'open',
+  };
+  fetch(`/api/finding/${id}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(r => r.json()).then(() => {
+    // Update border color
+    const card = document.getElementById('fc-' + id);
+    const colors = { open: '#dc3545', in_progress: '#ffc107', closed: '#198754' };
+    if (card) card.style.borderLeftColor = colors[data.status] || '#dc3545';
+  });
+}
+</script>
+{% endblock %}
