@@ -230,6 +230,7 @@
   <!-- All-sites view -->
   <div class="site-panel" id="panel-all">
     <div class="section-title mb-3">Cross-site comparison by pillar</div>
+
     {% set pillar_info = [
       ('leadership','Leadership','#0d6efd'),
       ('tm_engagement','TM Engagement','#6f42c1'),
@@ -258,6 +259,82 @@
       </div>
     </div>
     {% endfor %}
+    </div>
+
+    <!-- ── System Standards Heatmap ── -->
+    <div class="section-title mt-4 mb-2" style="border-top:1px solid #eee;padding-top:16px">
+      🏭 System Pillar — Standard-by-Standard Analysis
+    </div>
+    <p class="text-muted small mb-3">Score per standard across all sites. Click a row to highlight.</p>
+
+    <!-- Radar chart -->
+    <div class="row g-3 mb-4">
+      <div class="col-lg-5">
+        <canvas id="sysRadar" height="300"></canvas>
+      </div>
+      <div class="col-lg-7">
+        <!-- Heatmap table -->
+        <div class="table-responsive">
+          <table class="cmp-table" id="sysTable">
+            <thead>
+              <tr>
+                <th style="text-align:left;min-width:180px">Standard</th>
+                {% for s in sites %}<th style="white-space:nowrap;font-size:.78rem">{{ s.name }}</th>{% endfor %}
+                <th onclick="sortSysTable()" style="cursor:pointer">Avg <span id="sysSort">▼</span></th>
+              </tr>
+            </thead>
+            <tbody id="sysBody">
+            {% set sys_elements = ['training_and_education','emergency_planning','communication',
+               'loto_standard','safety_rules','work_at_height','mobile_equipment','3s',
+               'crane_and_hoist','ky','tire_inflation_operation','contractor_management',
+               'large_tire_manual_handling_operation','integrated_risk_assessment',
+               'integrated_incidents_management'] %}
+            {% set sys_names = {
+               'training_and_education':'Training & Education',
+               'emergency_planning':'Emergency Planning',
+               'communication':'Communication',
+               'loto_standard':'LOTO Standard',
+               'safety_rules':'Safety Rules',
+               'work_at_height':'Work at Height',
+               'mobile_equipment':'Mobile Equipment',
+               '3s':'3S',
+               'crane_and_hoist':'Crane & Hoist',
+               'ky':'KY',
+               'tire_inflation_operation':'Tire Inflation',
+               'contractor_management':'Contractor Mgmt',
+               'large_tire_manual_handling_operation':'Large Tire Handling',
+               'integrated_risk_assessment':'Risk Assessment',
+               'integrated_incidents_management':'Incident Management'} %}
+            {% for eid in sys_elements %}
+              {% set scores_list = [] %}
+              {% for s in sites %}
+                {% set sc = s.pillars.get('system',{}).get('elements',{}).get(eid,{}).get('score') %}
+                {% if sc is not none %}{% set _ = scores_list.append(sc) %}{% endif %}
+              {% endfor %}
+              {% set avg_sc = (scores_list|sum / scores_list|length) if scores_list else none %}
+            <tr data-avg="{{ avg_sc if avg_sc is not none else -1 }}" onclick="highlightSysRow(this)" style="cursor:pointer">
+              <td style="text-align:left;font-size:.82rem">{{ sys_names.get(eid, eid) }}</td>
+              {% for s in sites %}
+                {% set sc = s.pillars.get('system',{}).get('elements',{}).get(eid,{}).get('score') %}
+                <td>
+                  {% if sc is not none %}
+                  <span class="score-pill level-badge-{{ sc|round|int }}" style="font-size:.75rem;padding:1px 6px;min-width:28px">{{ sc }}</span>
+                  {% else %}<span class="text-muted">—</span>{% endif %}
+                </td>
+              {% endfor %}
+              <td>
+                {% if avg_sc is not none %}
+                <span class="score-pill level-badge-{{ avg_sc|round|int }}" style="font-size:.78rem;padding:1px 7px;font-weight:700">
+                  {{ "%.1f"|format(avg_sc) }}
+                </span>
+                {% else %}—{% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -525,5 +602,84 @@ function sortTable(col) {
 
 // Initial sort: overall desc
 sortTable(1); sortAsc = false; sortTable(1);
+
+// ── System Standards Radar Chart ──────────────────────────────────────────────
+const SYS_LABELS = [
+  'Training & Education','Emergency Planning','Communication','LOTO Standard',
+  'Safety Rules','Work at Height','Mobile Equipment','3S','Crane & Hoist','KY',
+  'Tire Inflation','Contractor Mgmt','Large Tire Handling','Risk Assessment','Incident Management'
+];
+const SYS_KEYS = [
+  'training_and_education','emergency_planning','communication','loto_standard',
+  'safety_rules','work_at_height','mobile_equipment','3s','crane_and_hoist','ky',
+  'tire_inflation_operation','contractor_management','large_tire_manual_handling_operation',
+  'integrated_risk_assessment','integrated_incidents_management'
+];
+const RADAR_COLORS = [
+  ['rgba(13,110,253,.2)','rgba(13,110,253,.9)'],
+  ['rgba(111,66,193,.2)','rgba(111,66,193,.9)'],
+  ['rgba(253,126,20,.2)','rgba(253,126,20,.9)'],
+  ['rgba(25,135,84,.2)','rgba(25,135,84,.9)'],
+  ['rgba(220,53,69,.2)','rgba(220,53,69,.9)'],
+  ['rgba(108,117,125,.2)','rgba(108,117,125,.9)'],
+];
+
+const radarDatasets = SITES.map((s, i) => {
+  const col = RADAR_COLORS[i % RADAR_COLORS.length];
+  return {
+    label: s.name,
+    data: SYS_KEYS.map(k => {
+      const el = s.pillars.system && s.pillars.system.elements && s.pillars.system.elements[k];
+      return el && el.score != null ? el.score : 0;
+    }),
+    backgroundColor: col[0],
+    borderColor: col[1],
+    borderWidth: 2,
+    pointRadius: 3,
+  };
+});
+
+const radarEl = document.getElementById('sysRadar');
+if (radarEl) {
+  new Chart(radarEl.getContext('2d'), {
+    type: 'radar',
+    data: { labels: SYS_LABELS, datasets: radarDatasets },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          min: 0, max: 5,
+          ticks: { stepSize: 1, font: { size: 9 } },
+          pointLabels: { font: { size: 9 } }
+        }
+      },
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12 } }
+      }
+    }
+  });
+}
+
+// ── System table sort & highlight ─────────────────────────────────────────────
+let sysAsc = true;
+function sortSysTable() {
+  const tbody = document.getElementById('sysBody');
+  const rows  = Array.from(tbody.querySelectorAll('tr'));
+  sysAsc = !sysAsc;
+  rows.sort((a, b) => {
+    const va = parseFloat(a.dataset.avg), vb = parseFloat(b.dataset.avg);
+    return sysAsc ? va - vb : vb - va;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+  document.getElementById('sysSort').textContent = sysAsc ? '▲' : '▼';
+}
+// Default: worst first
+sortSysTable(); // ascending first call
+sortSysTable(); // then flip to descending
+
+function highlightSysRow(row) {
+  document.querySelectorAll('#sysBody tr').forEach(r => r.style.background = '');
+  row.style.background = '#fff9e6';
+}
 </script>
 {% endblock %}
