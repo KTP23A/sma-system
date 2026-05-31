@@ -130,29 +130,22 @@ def current_user():
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+        # Auto-login as the first user — no password required
         if not session.get("user_id"):
-            return redirect(url_for("login", next=request.path))
+            user = get_db().execute("SELECT id FROM users ORDER BY id LIMIT 1").fetchone()
+            if user:
+                session["user_id"] = user["id"]
         return f(*args, **kwargs)
     return decorated
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-    if session.get("user_id"): return redirect(url_for("dashboard"))
-    error = None
-    if request.method == "POST":
-        username = request.form["username"].strip()
-        password = request.form["password"]
-        user = get_db().execute("SELECT * FROM users WHERE username=?",(username,)).fetchone()
-        if user and check_password_hash(user["password_hash"], password):
-            session["user_id"] = user["id"]
-            return redirect(request.args.get("next") or url_for("dashboard"))
-        error = "Invalid username or password."
-    return render_template("login.html", error=error)
+    return redirect(url_for("dashboard"))
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("dashboard"))
 
 
 # ─── Score calculation ────────────────────────────────────────────────────────
@@ -173,7 +166,7 @@ def calculate_scores(pillars, responses):
             score = 5
             for lv in sorted(by_level.keys()):
                 if "no" in by_level[lv]:
-                    score = lv - 1; break
+                    score = max(1, lv - 1); break
             element_scores[element["id"]] = score
         valid = [s for s in element_scores.values() if s is not None]
         pillar_scores[pillar["id"]] = {"score": min(valid) if valid else None, "elements": element_scores}
