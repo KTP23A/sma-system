@@ -19,13 +19,13 @@ body { background: #f5f7fa; font-family: 'Segoe UI', sans-serif; }
 .q-na            { background: #e9ecef !important; }
 .q-not_rolled_out { background: #fff3cd !important; }
 
-/* Level badges */
+/* Level badges — colours match maturity matrix */
 .level-badge-0 { background:#6c757d; color:#fff; }
-.level-badge-1 { background:#dc3545; color:#fff; }
-.level-badge-2 { background:#fd7e14; color:#fff; }
-.level-badge-3 { background:#0dcaf0; color:#000; }
-.level-badge-4 { background:#0d6efd; color:#fff; }
-.level-badge-5 { background:#198754; color:#fff; }
+.level-badge-1 { background:#c0392b; color:#fff; }   /* Red       — Ad-hoc       */
+.level-badge-2 { background:#e8a0a0; color:#5a0000; } /* Pink      — Reactive     */
+.level-badge-3 { background:#f0d080; color:#5a4000; } /* Yellow    — Standardized */
+.level-badge-4 { background:#a8d5a2; color:#1a4a18; } /* Lt green  — Proactive    */
+.level-badge-5 { background:#2e7d32; color:#fff; }   /* Dk green  — Excellence   */
 
 .alert-1pt { border-left: 6px solid #dc3545; }
 
