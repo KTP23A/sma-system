@@ -13,9 +13,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "sma-bsapic-2026-secret")
 
-DATA_DIR = Path(os.environ.get("DATA_DIR", "."))
+BASE_DIR = Path(__file__).parent
+DATA_DIR = Path(os.environ.get("DATA_DIR", BASE_DIR))
 DB_PATH  = DATA_DIR / "sma.db"
-Q_DIR    = Path("questions")
+Q_DIR    = BASE_DIR / "questions"
 
 ALLOWED_EXTENSIONS = {".jpg",".jpeg",".png",".gif",".pdf",".doc",".docx",".xls",".xlsx"}
 MAX_FILE_MB = 20
