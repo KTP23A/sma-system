@@ -75,10 +75,11 @@
       <div class="text-muted small mb-2">Safety Awareness vs System Implementation</div>
       <div id="matrixWrap"><canvas id="matrixChart"></canvas></div>
       <div class="d-flex flex-wrap gap-2 mt-3 justify-content-center" style="font-size:.75rem">
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(192,57,43,.55);display:inline-block;border-radius:2px"></span>Low (&lt;1.5)</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(244,178,178,.7);display:inline-block;border-radius:2px"></span>Developing (1.5–2.5)</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(249,168,37,.6);display:inline-block;border-radius:2px"></span>Progressing (2.5–3.5)</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(200,230,201,.8);display:inline-block;border-radius:2px"></span>Advanced (&gt;3.5)</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:14px;background:#c0392b;display:inline-block;border-radius:2px"></span>1 — Ad-hoc</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:14px;background:#e8a0a0;display:inline-block;border-radius:2px"></span>2 — Reactive</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:14px;background:#f0d080;display:inline-block;border-radius:2px"></span>3 — Standardized</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:14px;background:#a8d5a2;display:inline-block;border-radius:2px"></span>4 — Proactive</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:14px;background:#2e7d32;display:inline-block;border-radius:2px"></span>5 — Excellence</span>
       </div>
     </div>
   </div>
@@ -268,11 +269,11 @@ const SITES = {{ sites | tojson }};
 
 // ── Matrix Chart ──────────────────────────────────────────────────────────────
 function avgColor(avg) {
-  if (avg < 1)   return 'rgba(192,57,43,.55)';
-  if (avg < 1.5) return 'rgba(231,76,60,.45)';
-  if (avg < 2.5) return 'rgba(244,178,178,.65)';
-  if (avg < 3.5) return 'rgba(249,168,37,.55)';
-  return 'rgba(200,230,201,.75)';
+  if (avg < 1.5) return 'rgba(192,57,43,.55)';   // 1 Ad-hoc
+  if (avg < 2.5) return 'rgba(232,160,160,.65)';  // 2 Reactive
+  if (avg < 3.5) return 'rgba(240,208,128,.65)';  // 3 Standardized
+  if (avg < 4.5) return 'rgba(168,213,162,.70)';  // 4 Proactive
+  return 'rgba(46,125,50,.55)';                   // 5 Excellence
 }
 
 const bgPlugin = {
@@ -280,6 +281,8 @@ const bgPlugin = {
   beforeDraw(chart) {
     const {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = chart;
     ctx.save();
+
+    // Colour zones
     for (let xi = 0; xi < 5; xi++) {
       for (let yi = 0; yi < 5; yi++) {
         const avg = ((xi + 0.5) + (yi + 0.5)) / 2;
@@ -289,8 +292,9 @@ const bgPlugin = {
         ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
       }
     }
-    // grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,.7)';
+
+    // Fine grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,.6)';
     ctx.lineWidth = 1;
     for (let i = 1; i < 5; i++) {
       const px = x.getPixelForValue(i);
@@ -298,6 +302,48 @@ const bgPlugin = {
       const py = y.getPixelForValue(i);
       ctx.beginPath(); ctx.moveTo(left, py); ctx.lineTo(right, py); ctx.stroke();
     }
+
+    // ── Diagonal iso-score lines: Overall = avg(SI,SA) = score
+    //    i.e. SI + SA = 2 * score  →  line from (score*2, 0) to (0, score*2) clipped to [0,5]
+    const diagonalColors = ['#6c757d','#c0392b','#c0784a','#b8860b','#2e7632','#145214'];
+    for (let score = 1; score <= 5; score++) {
+      const sum = score * 2;  // SI + SA = sum
+      // Clip line to chart area [0,5]×[0,5]
+      let pts = [];
+      // SI=0 → SA=sum; clip SA to [0,5]
+      if (sum <= 5) pts.push([0, sum]);
+      else pts.push([sum - 5, 5]);
+      // SA=0 → SI=sum; clip SI to [0,5]
+      if (sum <= 5) pts.push([sum, 0]);
+      else pts.push([5, sum - 5]);
+
+      if (pts.length < 2) continue;
+
+      const px0 = x.getPixelForValue(pts[0][0]), py0 = y.getPixelForValue(pts[0][1]);
+      const px1 = x.getPixelForValue(pts[1][0]), py1 = y.getPixelForValue(pts[1][1]);
+
+      ctx.save();
+      ctx.strokeStyle = 'rgba(50,50,50,.55)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath(); ctx.moveTo(px0, py0); ctx.lineTo(px1, py1); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Label at midpoint of the visible diagonal segment
+      const mx = (px0 + px1) / 2, my = (py0 + py1) / 2;
+      ctx.font = 'bold 11px Segoe UI, sans-serif';
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      // White halo
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'rgba(255,255,255,.8)';
+      ctx.strokeText('SMA ' + score, mx, my);
+      ctx.fillStyle = '#222';
+      ctx.fillText('SMA ' + score, mx, my);
+      ctx.restore();
+    }
+
     ctx.restore();
   }
 };
@@ -307,15 +353,21 @@ const labelPlugin = {
   afterDatasetsDraw(chart) {
     const {ctx, data} = chart;
     ctx.save();
-    ctx.font = 'bold 11px Segoe UI, sans-serif';
-    ctx.textAlign = 'center';
     data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
       if (!meta.visible) return;
       meta.data.forEach((pt, j) => {
-        const label = ds.data[j].label;
-        ctx.fillStyle = '#222';
-        ctx.fillText(label, pt.x, pt.y - 14);
+        const d = ds.data[j];
+        const score = d.overall !== null ? d.overall.toFixed(2) : '';
+        // Site name
+        ctx.font = 'bold 11px Segoe UI, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#111';
+        ctx.fillText(d.label, pt.x, pt.y - 17);
+        // Overall score below name
+        ctx.font = '10px Segoe UI, sans-serif';
+        ctx.fillStyle = '#444';
+        ctx.fillText('(' + score + ')', pt.x, pt.y - 6);
       });
     });
     ctx.restore();
@@ -329,7 +381,7 @@ const matrixChart = new Chart(matrixCtx, {
   data: {
     datasets: [{
       label: 'Sites',
-      data: SITES.map(s => ({ x: s.si || 0, y: s.sa || 0, label: s.name })),
+      data: SITES.map(s => ({ x: s.si || 0, y: s.sa || 0, label: s.name, overall: s.overall })),
       pointStyle: 'triangle',
       pointRadius: 10,
       pointHoverRadius: 13,
