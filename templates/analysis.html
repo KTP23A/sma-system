@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+{% block title %}SMA Analysis{% endblock %}
+
+{% block content %}
+<style>
+/* ── Layout ── */
+.analysis-section { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:24px; margin-bottom:24px; }
+.section-title { font-size:1.1rem; font-weight:700; color:#333; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+
+/* ── Matrix ── */
+#matrixWrap { position:relative; width:100%; max-width:680px; margin:0 auto; }
+
+/* ── Comparison table ── */
+.cmp-table { width:100%; border-collapse:collapse; font-size:.88rem; }
+.cmp-table th { background:#f8f9fa; cursor:pointer; user-select:none; white-space:nowrap; padding:8px 10px; border-bottom:2px solid #dee2e6; text-align:center; }
+.cmp-table th:first-child { text-align:left; }
+.cmp-table th:hover { background:#e9ecef; }
+.cmp-table th .sort-arrow { opacity:.4; font-size:.7rem; }
+.cmp-table th.sorted-asc .sort-arrow::after { content:'▲'; opacity:1; }
+.cmp-table th.sorted-desc .sort-arrow::after { content:'▼'; opacity:1; }
+.cmp-table td { padding:7px 10px; border-bottom:1px solid #f0f0f0; text-align:center; }
+.cmp-table td:first-child { text-align:left; font-weight:600; }
+.cmp-table tr:hover td { background:#f8f9fa; }
+.score-pill { display:inline-block; min-width:42px; padding:2px 8px; border-radius:20px; font-weight:700; font-size:.85rem; }
+
+/* ── Site detail panel ── */
+.site-panel { display:none; }
+.site-panel.active { display:block; }
+.pillar-block { border-left:4px solid; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:12px; }
+.pillar-leadership    { border-color:#0d6efd; }
+.pillar-tm_engagement { border-color:#6f42c1; }
+.pillar-organization  { border-color:#fd7e14; }
+.pillar-system        { border-color:#198754; }
+
+.elem-row { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:.85rem; }
+.elem-bar-wrap { flex:1; background:#e9ecef; border-radius:4px; height:10px; overflow:hidden; }
+.elem-bar { height:100%; border-radius:4px; transition:width .4s; }
+.elem-score-lbl { min-width:28px; font-weight:700; font-size:.85rem; }
+.elem-name { min-width:180px; color:#555; }
+
+/* Improve/strong badges */
+.tag-strong  { background:#d1fae5; color:#065f46; border-radius:4px; padding:1px 6px; font-size:.75rem; }
+.tag-improve { background:#fee2e2; color:#991b1b; border-radius:4px; padding:1px 6px; font-size:.75rem; }
+
+/* Site tabs */
+.site-tab { cursor:pointer; padding:6px 16px; border-radius:20px; font-size:.85rem; font-weight:600; border:2px solid #dee2e6; background:#fff; white-space:nowrap; transition:all .15s; }
+.site-tab:hover { border-color:#0d6efd; color:#0d6efd; }
+.site-tab.active { background:#0d6efd; color:#fff; border-color:#0d6efd; }
+
+/* Answer distribution mini-bar */
+.dist-bar { display:flex; height:6px; border-radius:3px; overflow:hidden; width:80px; }
+.dist-yes { background:#2e7d32; }
+.dist-no  { background:#c0392b; }
+.dist-na  { background:#9e9e9e; }
+.dist-nr  { background:#f0d080; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="mb-0">📊 SMA Analysis</h4>
+  <div class="d-flex gap-2 flex-wrap">
+    {% for s in sites %}
+    <button class="site-tab {% if loop.first %}active{% endif %}" onclick="selectSite({{ loop.index0 }}, this)">
+      {{ s.name }}
+    </button>
+    {% endfor %}
+    <button class="site-tab" onclick="selectSite(-1, this)" style="border-color:#6c757d;color:#6c757d">All</button>
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- ── LEFT: Matrix ── -->
+  <div class="col-lg-5">
+    <div class="analysis-section" style="min-height:500px">
+      <div class="section-title">🎯 SMA Score Matrix</div>
+      <div class="text-muted small mb-2">Safety Awareness vs System Implementation</div>
+      <div id="matrixWrap"><canvas id="matrixChart"></canvas></div>
+      <div class="d-flex flex-wrap gap-2 mt-3 justify-content-center" style="font-size:.75rem">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(192,57,43,.55);display:inline-block;border-radius:2px"></span>Low (&lt;1.5)</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(244,178,178,.7);display:inline-block;border-radius:2px"></span>Developing (1.5–2.5)</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(249,168,37,.6);display:inline-block;border-radius:2px"></span>Progressing (2.5–3.5)</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(200,230,201,.8);display:inline-block;border-radius:2px"></span>Advanced (&gt;3.5)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT: Comparison table ── -->
+  <div class="col-lg-7">
+    <div class="analysis-section">
+      <div class="section-title">📋 Site Comparison <span class="text-muted fw-normal small ms-2">click header to sort</span></div>
+      <div class="table-responsive">
+        <table class="cmp-table" id="cmpTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)" data-col="0">Site <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(1)" data-col="1">Overall <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(2)" data-col="2">Safety Aware <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(3)" data-col="3">Sys Impl <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(4)" data-col="4">Leadership <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(5)" data-col="5">TM Engmt <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(6)" data-col="6">Org <span class="sort-arrow"></span></th>
+              <th onclick="sortTable(7)" data-col="7">System <span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody id="cmpBody">
+          {% for s in sites %}
+          <tr data-idx="{{ loop.index0 }}" style="cursor:pointer" onclick="selectSite({{ loop.index0 }}, null)">
+            <td>{{ s.name }}<br><small class="text-muted">{{ s.date }}</small></td>
+            <td><span class="score-pill level-badge-{{ (s.overall|round|int) if s.overall else 0 }}">{{ "%.2f"|format(s.overall) }}</span></td>
+            <td><span class="score-pill level-badge-{{ (s.sa|round|int) if s.sa else 0 }}">{{ "%.2f"|format(s.sa) if s.sa else '—' }}</span></td>
+            <td><span class="score-pill level-badge-{{ (s.si|round|int) if s.si else 0 }}">{{ "%.2f"|format(s.si) if s.si else '—' }}</span></td>
+            {% for pid in ['leadership','tm_engagement','organization','system'] %}
+            {% set ps = s.pillars.get(pid, {}) %}
+            {% set sc = ps.get('score') %}
+            <td><span class="score-pill level-badge-{{ (sc|round|int) if sc is not none else 0 }}">{{ "%.1f"|format(sc) if sc is not none else '—' }}</span></td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Deep-dive panel ── -->
+<div class="analysis-section" id="detailSection">
+  <div class="section-title" id="detailTitle">🔍 Site Detail</div>
+  <p class="text-muted" id="detailHint">Click a site tab or table row to see element-level breakdown.</p>
+
+  {% for s in sites %}
+  <div class="site-panel" id="panel-{{ loop.index0 }}">
+    <div class="row g-3 mb-3">
+      <div class="col-auto">
+        <div class="text-muted small">Overall</div>
+        <div class="fw-bold fs-4 level-badge-{{ (s.overall|round|int) if s.overall else 0 }} score-pill" style="font-size:1.4rem!important;padding:6px 18px">
+          {{ "%.2f"|format(s.overall) }}
+        </div>
+        <div class="small mt-1">{{ s.level_name }}</div>
+      </div>
+      <div class="col-auto">
+        <div class="text-muted small">Safety Awareness</div>
+        <div class="fw-bold fs-5">{{ "%.2f"|format(s.sa) if s.sa else '—' }}</div>
+        <div class="text-muted small">(Leadership + TM)</div>
+      </div>
+      <div class="col-auto">
+        <div class="text-muted small">System Implementation</div>
+        <div class="fw-bold fs-5">{{ "%.2f"|format(s.si) if s.si else '—' }}</div>
+        <div class="text-muted small">(Organization + System)</div>
+      </div>
+      <div class="col-auto">
+        <div class="text-muted small">Date</div>
+        <div class="fw-bold">{{ s.date }}</div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+    {% for pid, pd in s.pillars.items() %}
+    <div class="col-md-6">
+      <div class="pillar-block pillar-{{ pid }}">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <strong>{{ pd.name }}</strong>
+          <span class="score-pill level-badge-{{ (pd.score|round|int) if pd.score is not none else 0 }}">
+            {{ "%.1f"|format(pd.score) if pd.score is not none else '—' }}
+          </span>
+        </div>
+        {% for eid, ed in pd.elements.items() %}
+        {% set sc = ed.score %}
+        {% set pct = ((sc / 5) * 100)|int if sc is not none else 0 %}
+        {% set bar_color = '#c0392b' if (sc is not none and sc <= 1) else '#e8a0a0' if (sc is not none and sc <= 2) else '#f0d080' if (sc is not none and sc <= 3) else '#a8d5a2' if (sc is not none and sc <= 4) else '#2e7d32' %}
+        <div class="elem-row">
+          <div class="elem-name text-truncate" title="{{ ed.name }}">{{ ed.name }}</div>
+          <div class="elem-bar-wrap">
+            <div class="elem-bar" style="width:{{ pct }}%;background:{{ bar_color }}"></div>
+          </div>
+          <div class="elem-score-lbl level-badge-{{ (sc|round|int) if sc is not none else 0 }} score-pill" style="font-size:.75rem;padding:1px 6px">
+            {{ sc if sc is not none else '—' }}
+          </div>
+          {% if sc is not none %}
+            {% if sc >= 4 %}<span class="tag-strong">Strong</span>
+            {% elif sc <= 2 %}<span class="tag-improve">Improve</span>{% endif %}
+          {% endif %}
+          <!-- answer distribution mini-bar -->
+          {% set c = ed.counts %}
+          <div class="dist-bar ms-1" title="Yes:{{ c.yes }} No:{{ c.no }} NA:{{ c.na }} NR:{{ c.not_rolled_out }}">
+            <div class="dist-yes" style="width:{{ ((c.yes/c.total)*100)|int if c.total else 0 }}%"></div>
+            <div class="dist-no"  style="width:{{ ((c.no/c.total)*100)|int if c.total else 0 }}%"></div>
+            <div class="dist-na"  style="width:{{ ((c.na/c.total)*100)|int if c.total else 0 }}%"></div>
+            <div class="dist-nr"  style="width:{{ ((c.not_rolled_out/c.total)*100)|int if c.total else 0 }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    <!-- Strong vs Needs Improvement summary -->
+    {% set strong_elems  = [] %}
+    {% set weak_elems    = [] %}
+    {% for pid, pd in s.pillars.items() %}
+      {% for eid, ed in pd.elements.items() %}
+        {% if ed.score is not none and ed.score >= 4 %}{% set _ = strong_elems.append(pd.name + ' → ' + ed.name) %}{% endif %}
+        {% if ed.score is not none and ed.score <= 2 %}{% set _ = weak_elems.append(pd.name + ' → ' + ed.name) %}{% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% if strong_elems or weak_elems %}
+    <div class="row g-3 mt-1">
+      {% if strong_elems %}
+      <div class="col-md-6">
+        <div class="p-3 rounded" style="background:#f0fdf4;border:1px solid #bbf7d0">
+          <div class="fw-bold text-success mb-2">✅ Strong Areas (score ≥ 4)</div>
+          {% for e in strong_elems %}<div class="small">• {{ e }}</div>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% if weak_elems %}
+      <div class="col-md-6">
+        <div class="p-3 rounded" style="background:#fef2f2;border:1px solid #fecaca">
+          <div class="fw-bold text-danger mb-2">⚠️ Needs Improvement (score ≤ 2)</div>
+          {% for e in weak_elems %}<div class="small">• {{ e }}</div>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+
+  <!-- All-sites view -->
+  <div class="site-panel" id="panel-all">
+    <div class="section-title mb-3">Cross-site comparison by pillar</div>
+    {% set pillar_info = [
+      ('leadership','Leadership','#0d6efd'),
+      ('tm_engagement','TM Engagement','#6f42c1'),
+      ('organization','Organization','#fd7e14'),
+      ('system','System','#198754')
+    ] %}
+    <div class="row g-3">
+    {% for pid, pname, pcolor in pillar_info %}
+    <div class="col-md-6">
+      <div style="border-left:4px solid {{ pcolor }};padding:12px 16px;background:#fff;border-radius:0 8px 8px 0;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+        <div class="fw-bold mb-2">{{ pname }}</div>
+        {% for s in sites|sort(attribute='name') %}
+        {% set ps = s.pillars.get(pid, {}) %}
+        {% set sc = ps.get('score') %}
+        {% set pct = ((sc/5)*100)|int if sc is not none else 0 %}
+        <div class="d-flex align-items-center gap-2 mb-1" style="font-size:.85rem">
+          <div style="min-width:110px;color:#555">{{ s.name }}</div>
+          <div style="flex:1;background:#e9ecef;border-radius:4px;height:10px;overflow:hidden">
+            <div style="height:100%;width:{{ pct }}%;background:{{ pcolor }};border-radius:4px;transition:width .4s"></div>
+          </div>
+          <div class="score-pill level-badge-{{ (sc|round|int) if sc is not none else 0 }}" style="font-size:.75rem;padding:1px 6px;min-width:32px">
+            {{ "%.1f"|format(sc) if sc is not none else '—' }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const SITES = {{ sites | tojson }};
+
+// ── Matrix Chart ──────────────────────────────────────────────────────────────
+function avgColor(avg) {
+  if (avg < 1)   return 'rgba(192,57,43,.55)';
+  if (avg < 1.5) return 'rgba(231,76,60,.45)';
+  if (avg < 2.5) return 'rgba(244,178,178,.65)';
+  if (avg < 3.5) return 'rgba(249,168,37,.55)';
+  return 'rgba(200,230,201,.75)';
+}
+
+const bgPlugin = {
+  id: 'bgZones',
+  beforeDraw(chart) {
+    const {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = chart;
+    ctx.save();
+    for (let xi = 0; xi < 5; xi++) {
+      for (let yi = 0; yi < 5; yi++) {
+        const avg = ((xi + 0.5) + (yi + 0.5)) / 2;
+        ctx.fillStyle = avgColor(avg);
+        const x0 = x.getPixelForValue(xi),     y0 = y.getPixelForValue(yi + 1);
+        const x1 = x.getPixelForValue(xi + 1), y1 = y.getPixelForValue(yi);
+        ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+      }
+    }
+    // grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,.7)';
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 5; i++) {
+      const px = x.getPixelForValue(i);
+      ctx.beginPath(); ctx.moveTo(px, top); ctx.lineTo(px, bottom); ctx.stroke();
+      const py = y.getPixelForValue(i);
+      ctx.beginPath(); ctx.moveTo(left, py); ctx.lineTo(right, py); ctx.stroke();
+    }
+    ctx.restore();
+  }
+};
+
+const labelPlugin = {
+  id: 'siteLabels',
+  afterDatasetsDraw(chart) {
+    const {ctx, data} = chart;
+    ctx.save();
+    ctx.font = 'bold 11px Segoe UI, sans-serif';
+    ctx.textAlign = 'center';
+    data.datasets.forEach((ds, i) => {
+      const meta = chart.getDatasetMeta(i);
+      if (!meta.visible) return;
+      meta.data.forEach((pt, j) => {
+        const label = ds.data[j].label;
+        ctx.fillStyle = '#222';
+        ctx.fillText(label, pt.x, pt.y - 14);
+      });
+    });
+    ctx.restore();
+  }
+};
+
+const matrixCtx = document.getElementById('matrixChart').getContext('2d');
+const matrixChart = new Chart(matrixCtx, {
+  type: 'scatter',
+  plugins: [bgPlugin, labelPlugin],
+  data: {
+    datasets: [{
+      label: 'Sites',
+      data: SITES.map(s => ({ x: s.si || 0, y: s.sa || 0, label: s.name })),
+      pointStyle: 'triangle',
+      pointRadius: 10,
+      pointHoverRadius: 13,
+      backgroundColor: SITES.map(s => {
+        const lv = Math.round(s.overall || 0);
+        return ['#6c757d','#c0392b','#e8a0a0','#f0d080','#a8d5a2','#2e7d32'][lv] || '#999';
+      }),
+      borderColor: '#333',
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    responsive: true,
+    animation: { duration: 600 },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label(ctx) {
+            const s = SITES[ctx.dataIndex];
+            return [
+              s.name,
+              `Overall: ${s.overall ? s.overall.toFixed(2) : '—'}`,
+              `Safety Awareness: ${s.sa ? s.sa.toFixed(2) : '—'}`,
+              `System Impl: ${s.si ? s.si.toFixed(2) : '—'}`,
+            ];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { min:0, max:5, title:{ display:true, text:'System Implementation', font:{weight:'bold'} },
+           ticks:{ stepSize:1 }, grid:{ display:false } },
+      y: { min:0, max:5, title:{ display:true, text:'Safety Awareness', font:{weight:'bold'} },
+           ticks:{ stepSize:1 }, grid:{ display:false } }
+    },
+    onClick(evt, els) {
+      if (els.length) {
+        const idx = els[0].dataIndex;
+        selectSite(idx, null);
+      }
+    }
+  }
+});
+
+// ── Site selection ─────────────────────────────────────────────────────────────
+let activeSite = 0;
+function selectSite(idx, tabEl) {
+  activeSite = idx;
+  // Update tabs
+  document.querySelectorAll('.site-tab').forEach(t => t.classList.remove('active'));
+  if (tabEl) { tabEl.classList.add('active'); }
+  else {
+    const tabs = document.querySelectorAll('.site-tab');
+    if (idx === -1) tabs[tabs.length-1].classList.add('active');
+    else if (tabs[idx]) tabs[idx].classList.add('active');
+  }
+  // Show/hide panels
+  document.querySelectorAll('.site-panel').forEach(p => p.classList.remove('active'));
+  const panelId = idx === -1 ? 'panel-all' : 'panel-' + idx;
+  const panel = document.getElementById(panelId);
+  if (panel) panel.classList.add('active');
+  // Update detail title
+  const title = idx === -1 ? 'All Sites Comparison' : (SITES[idx] ? SITES[idx].name + ' — Element Detail' : '');
+  document.getElementById('detailTitle').textContent = '🔍 ' + title;
+  document.getElementById('detailHint').style.display = 'none';
+  // Highlight table row
+  document.querySelectorAll('#cmpBody tr').forEach((tr, i) => {
+    tr.style.background = (i === idx) ? '#e8f0fe' : '';
+  });
+  // Scroll to detail
+  document.getElementById('detailSection').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// Auto-show first site
+selectSite(0, document.querySelector('.site-tab'));
+
+// ── Sortable table ─────────────────────────────────────────────────────────────
+let sortCol = -1, sortAsc = true;
+function sortTable(col) {
+  const tbody = document.getElementById('cmpBody');
+  const rows  = Array.from(tbody.querySelectorAll('tr'));
+  sortAsc = (sortCol === col) ? !sortAsc : true;
+  sortCol = col;
+
+  rows.sort((a, b) => {
+    const getVal = r => {
+      const cells = r.querySelectorAll('td');
+      const cell  = cells[col];
+      if (!cell) return '';
+      const pill = cell.querySelector('.score-pill');
+      if (pill) { const v = parseFloat(pill.textContent); return isNaN(v) ? -1 : v; }
+      return cell.textContent.trim().toLowerCase();
+    };
+    const va = getVal(a), vb = getVal(b);
+    if (typeof va === 'number' && typeof vb === 'number') return sortAsc ? va - vb : vb - va;
+    return sortAsc ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+  });
+
+  rows.forEach(r => tbody.appendChild(r));
+
+  document.querySelectorAll('.cmp-table th').forEach((th, i) => {
+    th.classList.remove('sorted-asc','sorted-desc');
+    if (i === col) th.classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
+  });
+}
+
+// Initial sort: overall desc
+sortTable(1); sortAsc = false; sortTable(1);
+</script>
+{% endblock %}

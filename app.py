@@ -218,6 +218,51 @@ def dashboard():
                            status_labels={"in_progress":("In Progress","warning"),"done":("Done","success")})
 
 
+# ─── Analysis ────────────────────────────────────────────────────────────────
+
+@app.route("/analysis")
+@login_required
+def analysis():
+    db   = get_db()
+    user = current_user()
+    assessments = db.execute("SELECT * FROM assessments ORDER BY assessment_date DESC, site_name").fetchall()
+    sites = []
+    for a in assessments:
+        pillars = load_questions(a["type"], a["scope"])
+        resp    = get_responses_dict(db, a["id"])
+        ans     = answers_only(resp)
+        scores  = calculate_scores(pillars, ans) if ans else None
+        if not scores or scores["overall"] is None:
+            continue
+        # Build per-element detail
+        pillar_detail = {}
+        for p in pillars:
+            ps = scores["pillars"].get(p["id"], {})
+            elems = {}
+            for e in p["elements"]:
+                es = ps.get("elements", {}).get(e["id"])
+                # count yes/no/na per element
+                eqs = e["questions"]
+                cts = {"yes":0,"no":0,"na":0,"not_rolled_out":0,"total":len(eqs)}
+                for q in eqs:
+                    a_ = ans.get(q["id"])
+                    if a_ in cts: cts[a_] += 1
+                elems[e["id"]] = {"name": e["name"], "score": es, "counts": cts}
+            pillar_detail[p["id"]] = {"name": p["name"], "score": ps.get("score"), "elements": elems}
+        sites.append({
+            "id":         a["id"],
+            "name":       a["site_name"],
+            "date":       a["assessment_date"] or "",
+            "overall":    scores["overall"],
+            "sa":         scores["safety_awareness"],
+            "si":         scores["system_implementation"],
+            "level_name": scores["level_name"],
+            "pillars":    pillar_detail,
+        })
+    return render_template("analysis.html", sites=sites, user=dict(user),
+                           level_names=LEVEL_NAMES, unread=0)
+
+
 # ─── New assessment ───────────────────────────────────────────────────────────
 
 @app.route("/new", methods=["GET","POST"])
