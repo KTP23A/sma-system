@@ -267,6 +267,18 @@
     </div>
     <p class="text-muted small mb-3">Score per standard across all sites. Click a row to highlight.</p>
 
+    <!-- Standard filter toggles -->
+    <div class="mb-3" style="background:#f8f9fa;border-radius:10px;padding:12px 16px">
+      <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+        <span class="fw-600" style="font-size:.85rem;font-weight:600">Show standards:</span>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="setSysAll(true)" style="font-size:.78rem">Select All</button>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="setSysAll(false)" style="font-size:.78rem">Clear All</button>
+      </div>
+      <div class="d-flex flex-wrap gap-2" id="sysToggles">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
     <!-- Radar chart -->
     <div class="row g-3 mb-4">
       <div class="col-lg-5">
@@ -312,7 +324,7 @@
                 {% if sc is not none %}{% set _ = scores_list.append(sc) %}{% endif %}
               {% endfor %}
               {% set avg_sc = (scores_list|sum / scores_list|length) if scores_list else none %}
-            <tr data-avg="{{ avg_sc if avg_sc is not none else -1 }}" onclick="highlightSysRow(this)" style="cursor:pointer">
+            <tr data-avg="{{ avg_sc if avg_sc is not none else -1 }}" data-syskey="{{ eid }}" onclick="highlightSysRow(this)" style="cursor:pointer">
               <td style="text-align:left;font-size:.82rem">{{ sys_names.get(eid, eid) }}</td>
               {% for s in sites %}
                 {% set sc = s.pillars.get('system',{}).get('elements',{}).get(eid,{}).get('score') %}
@@ -624,26 +636,60 @@ const RADAR_COLORS = [
   ['rgba(108,117,125,.2)','rgba(108,117,125,.9)'],
 ];
 
-const radarDatasets = SITES.map((s, i) => {
-  const col = RADAR_COLORS[i % RADAR_COLORS.length];
-  return {
-    label: s.name,
-    data: SYS_KEYS.map(k => {
-      const el = s.pillars.system && s.pillars.system.elements && s.pillars.system.elements[k];
-      return el && el.score != null ? el.score : 0;
-    }),
-    backgroundColor: col[0],
-    borderColor: col[1],
-    borderWidth: 2,
-    pointRadius: 3,
-  };
-});
+// Track which standards are visible (all on by default)
+const sysVisible = Object.fromEntries(SYS_KEYS.map(k => [k, true]));
 
-const radarEl = document.getElementById('sysRadar');
-if (radarEl) {
-  new Chart(radarEl.getContext('2d'), {
+// Build toggle checkboxes
+(function buildToggles() {
+  const container = document.getElementById('sysToggles');
+  SYS_KEYS.forEach((key, i) => {
+    const label = document.createElement('label');
+    label.style.cssText = 'display:flex;align-items:center;gap:4px;background:#fff;border:1px solid #dee2e6;border-radius:20px;padding:3px 10px;font-size:.78rem;cursor:pointer;user-select:none;';
+    label.innerHTML = `<input type="checkbox" checked data-key="${key}" style="cursor:pointer"> ${SYS_LABELS[i]}`;
+    label.querySelector('input').addEventListener('change', function() {
+      sysVisible[key] = this.checked;
+      applySysFilter();
+    });
+    container.appendChild(label);
+  });
+})();
+
+function setSysAll(state) {
+  document.querySelectorAll('#sysToggles input[type=checkbox]').forEach(cb => {
+    const key = cb.dataset.key;
+    cb.checked = state;
+    sysVisible[key] = state;
+  });
+  applySysFilter();
+}
+
+let sysRadarChart = null;
+
+function buildRadar() {
+  const activeKeys   = SYS_KEYS.filter(k => sysVisible[k]);
+  const activeLabels = activeKeys.map(k => SYS_LABELS[SYS_KEYS.indexOf(k)]);
+
+  const datasets = SITES.map((s, i) => {
+    const col = RADAR_COLORS[i % RADAR_COLORS.length];
+    return {
+      label: s.name,
+      data: activeKeys.map(k => {
+        const el = s.pillars.system && s.pillars.system.elements && s.pillars.system.elements[k];
+        return el && el.score != null ? el.score : 0;
+      }),
+      backgroundColor: col[0],
+      borderColor: col[1],
+      borderWidth: 2,
+      pointRadius: 3,
+    };
+  });
+
+  const radarEl = document.getElementById('sysRadar');
+  if (!radarEl) return;
+  if (sysRadarChart) { sysRadarChart.destroy(); }
+  sysRadarChart = new Chart(radarEl.getContext('2d'), {
     type: 'radar',
-    data: { labels: SYS_LABELS, datasets: radarDatasets },
+    data: { labels: activeLabels, datasets },
     options: {
       responsive: true,
       scales: {
@@ -658,6 +704,17 @@ if (radarEl) {
       }
     }
   });
+}
+buildRadar();
+
+function applySysFilter() {
+  // Show/hide table rows
+  document.querySelectorAll('#sysBody tr').forEach(row => {
+    const key = row.dataset.syskey;
+    row.style.display = (!key || sysVisible[key]) ? '' : 'none';
+  });
+  // Rebuild radar with active standards only
+  buildRadar();
 }
 
 // ── System table sort & highlight ─────────────────────────────────────────────
@@ -674,8 +731,7 @@ function sortSysTable() {
   document.getElementById('sysSort').textContent = sysAsc ? '▲' : '▼';
 }
 // Default: worst first
-sortSysTable(); // ascending first call
-sortSysTable(); // then flip to descending
+sortSysTable(); sortSysTable();
 
 function highlightSysRow(row) {
   document.querySelectorAll('#sysBody tr').forEach(r => r.style.background = '');
