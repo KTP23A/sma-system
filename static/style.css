@@ -1,6 +1,32 @@
-body { background: #f5f7fa; font-family: 'Segoe UI', sans-serif; }
+/* ── Theme palette ── */
+:root {
+  --primary:   #5458e8;   /* blue-purple */
+  --primary-dk:#3a3dcc;   /* darker shade for hover */
+  --accent:    #f5c14e;   /* orange-yellow */
+  --accent2:   #f96374;   /* coral-pink */
+  --bg:        #f0f0ff;   /* very light lavender page bg */
+  --card-bg:   #ffffff;
+  --text:      #1a1a3e;   /* deep navy text */
+}
+
+body { background: var(--bg); font-family: 'Segoe UI', sans-serif; color: var(--text); }
 .navbar-brand { font-weight: 700; letter-spacing: 1px; }
-.card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.card { border: none; border-radius: 14px; box-shadow: 0 2px 12px rgba(84,88,232,.10); background: var(--card-bg); }
+
+/* Override Bootstrap primary buttons with our purple */
+.btn-primary   { background: var(--primary)!important; border-color: var(--primary)!important; }
+.btn-primary:hover { background: var(--primary-dk)!important; border-color: var(--primary-dk)!important; }
+.btn-warning   { background: var(--accent)!important; border-color: var(--accent)!important; color:#1a1a3e!important; }
+.btn-danger    { background: var(--accent2)!important; border-color: var(--accent2)!important; }
+.btn-outline-light:hover { background: rgba(255,255,255,.15)!important; }
+.btn-outline-primary { border-color: var(--primary)!important; color: var(--primary)!important; }
+.btn-outline-primary:hover { background: var(--primary)!important; color:#fff!important; }
+
+/* Progress bars */
+.progress-bar { background: var(--primary)!important; }
+
+/* Nav active/focus */
+.nav-link.active, .nav-pills .nav-link.active { background: var(--primary)!important; }
 
 .score-circle {
   width: 90px; height: 90px; border-radius: 50%;
