@@ -351,16 +351,16 @@
           <div class="d-flex justify-content-around align-items-center">
             <div class="text-center">
               <div class="small text-muted mb-1">GC Self</div>
-              <div class="score-circle mx-auto level-badge-{{ (self_scores.overall|round|int) if self_scores and self_scores.overall else 0 }}"
+              <div class="score-circle mx-auto level-badge-{{ (self_scores.overall|int) if self_scores and self_scores.overall else 0 }}"
                    style="width:60px;height:60px;font-size:1.2rem">
                 {{ "%.1f"|format(self_scores.overall) if self_scores and self_scores.overall else "—" }}
               </div>
-              <div class="small mt-1">{{ level_names.get((self_scores.overall|round|int) if self_scores and self_scores.overall else 0, '—') }}</div>
+              <div class="small mt-1">{{ level_names.get((self_scores.overall|int) if self_scores and self_scores.overall else 0, '—') }}</div>
             </div>
             <div class="text-muted fs-4">→</div>
             <div class="text-center">
               <div class="small text-muted mb-1">Validation</div>
-              <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+              <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|int if scores.overall else 0 }}"
                    style="width:60px;height:60px;font-size:1.2rem">
                 {{ "%.1f"|format(scores.overall) if scores.overall else "—" }}
               </div>
@@ -370,7 +370,7 @@
           {% else %}
           <!-- Normal mode -->
           <div class="mb-1 small text-muted">Overall Safety Maturity</div>
-          <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+          <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|int if scores.overall else 0 }}"
                style="width:70px;height:70px;font-size:1.5rem">
             {{ "%.2f"|format(scores.overall) if scores.overall else "—" }}
           </div>

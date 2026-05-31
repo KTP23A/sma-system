@@ -123,7 +123,7 @@
             {% endif %}
             <td class="text-center">
               {% if s and s.overall %}
-                {% set lv = s.overall|round|int %}
+                {% set lv = s.overall|int %}
                 <span class="badge level-badge-{{ lv }} fs-6" id="overall-{{ a.id }}">{{ "%.2f"|format(s.overall) }}</span>
                 <div class="small text-muted" id="level-name-{{ a.id }}">{{ level_names.get(lv,'') }}</div>
               {% else %}

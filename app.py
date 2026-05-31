@@ -183,7 +183,7 @@ def calculate_scores(pillars, responses):
 
     return {"overall":overall,"safety_awareness":sa,"system_implementation":si,
             "pillars":pillar_scores,
-            "level_name":LEVEL_NAMES.get(round(overall) if overall else 0,"—")}
+            "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
 def get_responses_dict(db, assessment_id):
     rows = db.execute("SELECT question_id, answer, comment FROM responses WHERE assessment_id=?",(assessment_id,)).fetchall()

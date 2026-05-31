@@ -106,13 +106,13 @@
           {% for s in sites %}
           <tr data-idx="{{ loop.index0 }}" style="cursor:pointer" onclick="selectSite({{ loop.index0 }}, null)">
             <td>{{ s.name }}<br><small class="text-muted">{{ s.date }}</small></td>
-            <td><span class="score-pill level-badge-{{ (s.overall|round|int) if s.overall else 0 }}">{{ "%.2f"|format(s.overall) }}</span></td>
-            <td><span class="score-pill level-badge-{{ (s.sa|round|int) if s.sa else 0 }}">{{ "%.2f"|format(s.sa) if s.sa else '—' }}</span></td>
-            <td><span class="score-pill level-badge-{{ (s.si|round|int) if s.si else 0 }}">{{ "%.2f"|format(s.si) if s.si else '—' }}</span></td>
+            <td><span class="score-pill level-badge-{{ (s.overall|int) if s.overall else 0 }}">{{ "%.2f"|format(s.overall) }}</span></td>
+            <td><span class="score-pill level-badge-{{ (s.sa|int) if s.sa else 0 }}">{{ "%.2f"|format(s.sa) if s.sa else '—' }}</span></td>
+            <td><span class="score-pill level-badge-{{ (s.si|int) if s.si else 0 }}">{{ "%.2f"|format(s.si) if s.si else '—' }}</span></td>
             {% for pid in ['leadership','tm_engagement','organization','system'] %}
             {% set ps = s.pillars.get(pid, {}) %}
             {% set sc = ps.get('score') %}
-            <td><span class="score-pill level-badge-{{ (sc|round|int) if sc is not none else 0 }}">{{ "%.1f"|format(sc) if sc is not none else '—' }}</span></td>
+            <td><span class="score-pill level-badge-{{ (sc|int) if sc is not none else 0 }}">{{ "%.1f"|format(sc) if sc is not none else '—' }}</span></td>
             {% endfor %}
           </tr>
           {% endfor %}
@@ -133,7 +133,7 @@
     <div class="row g-3 mb-3">
       <div class="col-auto">
         <div class="text-muted small">Overall</div>
-        <div class="fw-bold fs-4 level-badge-{{ (s.overall|round|int) if s.overall else 0 }} score-pill" style="font-size:1.4rem!important;padding:6px 18px">
+        <div class="fw-bold fs-4 level-badge-{{ (s.overall|int) if s.overall else 0 }} score-pill" style="font-size:1.4rem!important;padding:6px 18px">
           {{ "%.2f"|format(s.overall) }}
         </div>
         <div class="small mt-1">{{ s.level_name }}</div>
@@ -160,7 +160,7 @@
       <div class="pillar-block pillar-{{ pid }}">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <strong>{{ pd.name }}</strong>
-          <span class="score-pill level-badge-{{ (pd.score|round|int) if pd.score is not none else 0 }}">
+          <span class="score-pill level-badge-{{ (pd.score|int) if pd.score is not none else 0 }}">
             {{ "%.1f"|format(pd.score) if pd.score is not none else '—' }}
           </span>
         </div>
@@ -173,7 +173,7 @@
           <div class="elem-bar-wrap">
             <div class="elem-bar" style="width:{{ pct }}%;background:{{ bar_color }}"></div>
           </div>
-          <div class="elem-score-lbl level-badge-{{ (sc|round|int) if sc is not none else 0 }} score-pill" style="font-size:.75rem;padding:1px 6px">
+          <div class="elem-score-lbl level-badge-{{ (sc|int) if sc is not none else 0 }} score-pill" style="font-size:.75rem;padding:1px 6px">
             {{ sc if sc is not none else '—' }}
           </div>
           {% if sc is not none %}
@@ -251,7 +251,7 @@
           <div style="flex:1;background:#e9ecef;border-radius:4px;height:10px;overflow:hidden">
             <div style="height:100%;width:{{ pct }}%;background:{{ pcolor }};border-radius:4px;transition:width .4s"></div>
           </div>
-          <div class="score-pill level-badge-{{ (sc|round|int) if sc is not none else 0 }}" style="font-size:.75rem;padding:1px 6px;min-width:32px">
+          <div class="score-pill level-badge-{{ (sc|int) if sc is not none else 0 }}" style="font-size:.75rem;padding:1px 6px;min-width:32px">
             {{ "%.1f"|format(sc) if sc is not none else '—' }}
           </div>
         </div>
@@ -347,16 +347,16 @@
                 {% set sc = s.pillars.get('system',{}).get('elements',{}).get(eid,{}).get('score') %}
                 <td style="white-space:nowrap">
                   {% if sc is not none %}
-                  <span class="score-pill level-badge-{{ sc|round|int }}" style="font-size:.72rem;padding:2px 7px;min-width:28px">
-                    {{ sc }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(sc|round|int, '') }}</span>
+                  <span class="score-pill level-badge-{{ sc|int }}" style="font-size:.72rem;padding:2px 7px;min-width:28px">
+                    {{ sc }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(sc|int, '') }}</span>
                   </span>
                   {% else %}<span class="text-muted">—</span>{% endif %}
                 </td>
               {% endfor %}
               <td style="white-space:nowrap">
                 {% if avg_sc is not none %}
-                <span class="score-pill level-badge-{{ avg_sc|round|int }}" style="font-size:.72rem;padding:2px 7px;font-weight:700">
-                  {{ "%.1f"|format(avg_sc) }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(avg_sc|round|int, '') }}</span>
+                <span class="score-pill level-badge-{{ avg_sc|int }}" style="font-size:.72rem;padding:2px 7px;font-weight:700">
+                  {{ "%.1f"|format(avg_sc) }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(avg_sc|int, '') }}</span>
                 </span>
                 {% else %}—{% endif %}
               </td>
