@@ -163,12 +163,10 @@
                   {% endif %}
                   <a href="{{ url_for('export_pdf', assessment_id=a.id) }}" class="btn btn-sm btn-outline-danger">PDF</a>
                 {% endif %}
-                {% if user.role in ('admin','sbu_pic') %}
                 <form method="post" action="{{ url_for('delete_assessment', assessment_id=a.id) }}"
-                      onsubmit="return confirm('Delete this assessment?')">
-                  <button class="btn btn-sm btn-outline-danger">✕</button>
+                      onsubmit="return confirm('Delete assessment for {{ a.site_name }}? This cannot be undone.')">
+                  <button class="btn btn-sm btn-danger" title="Delete assessment">🗑 Delete</button>
                 </form>
-                {% endif %}
               </div>
             </td>
           </tr>
