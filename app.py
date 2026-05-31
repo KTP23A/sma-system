@@ -1058,8 +1058,10 @@ def forbidden(e):
     return render_template("403.html"), 403
 
 
+# Always initialize DB on startup (works for both gunicorn and direct run)
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     print("SMA System running at http://localhost:5001")
     print("Default login: admin / admin123")
     app.run(debug=True, port=5001)
