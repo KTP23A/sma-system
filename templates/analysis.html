@@ -268,12 +268,13 @@
 const SITES = {{ sites | tojson }};
 
 // ── Matrix Chart ──────────────────────────────────────────────────────────────
+// Zone boundaries at integers — so SMA N diagonal = exact zone boundary
 function avgColor(avg) {
-  if (avg < 1.5) return 'rgba(192,57,43,.55)';   // 1 Ad-hoc
-  if (avg < 2.5) return 'rgba(232,160,160,.65)';  // 2 Reactive
-  if (avg < 3.5) return 'rgba(240,208,128,.65)';  // 3 Standardized
-  if (avg < 4.5) return 'rgba(168,213,162,.70)';  // 4 Proactive
-  return 'rgba(46,125,50,.55)';                   // 5 Excellence
+  if (avg < 1) return 'rgba(192,57,43,.55)';    // 1 Ad-hoc
+  if (avg < 2) return 'rgba(232,160,160,.65)';  // 2 Reactive
+  if (avg < 3) return 'rgba(240,208,128,.65)';  // 3 Standardized
+  if (avg < 4) return 'rgba(168,213,162,.70)';  // 4 Proactive
+  return 'rgba(46,125,50,.55)';                 // 5 Excellence
 }
 
 const bgPlugin = {
@@ -356,18 +357,51 @@ const labelPlugin = {
     data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
       if (!meta.visible) return;
+
+      // Group points by pixel position to detect overlaps
+      const posMap = {};
+      meta.data.forEach((pt, j) => {
+        const key = Math.round(pt.x) + ',' + Math.round(pt.y);
+        if (!posMap[key]) posMap[key] = [];
+        posMap[key].push(j);
+      });
+
       meta.data.forEach((pt, j) => {
         const d = ds.data[j];
-        const score = d.overall !== null ? d.overall.toFixed(2) : '';
+        const score = d.overall != null ? d.overall.toFixed(2) : '';
+        const key = Math.round(pt.x) + ',' + Math.round(pt.y);
+        const group = posMap[key];
+        const rank  = group.indexOf(j); // 0 = first, 1 = second, …
+
+        // Offset overlapping labels: first goes above-left, second above-right
+        const offX = group.length > 1 ? (rank === 0 ? -30 : 30) : 0;
+        const offY = group.length > 1 ? (rank === 0 ?  -4 :  4) : 0;
+
+        // Leader line if offset
+        if (offX !== 0) {
+          ctx.strokeStyle = 'rgba(80,80,80,.5)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(pt.x, pt.y - 10);
+          ctx.lineTo(pt.x + offX, pt.y - 24 + offY);
+          ctx.stroke();
+        }
+
         // Site name
         ctx.font = 'bold 11px Segoe UI, sans-serif';
         ctx.textAlign = 'center';
+        // White halo for readability
+        ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,.85)';
+        ctx.strokeText(d.label, pt.x + offX, pt.y - 26 + offY);
         ctx.fillStyle = '#111';
-        ctx.fillText(d.label, pt.x, pt.y - 17);
-        // Overall score below name
+        ctx.fillText(d.label, pt.x + offX, pt.y - 26 + offY);
+
+        // Score in parentheses
         ctx.font = '10px Segoe UI, sans-serif';
-        ctx.fillStyle = '#444';
-        ctx.fillText('(' + score + ')', pt.x, pt.y - 6);
+        ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(255,255,255,.85)';
+        ctx.strokeText('(' + score + ')', pt.x + offX, pt.y - 14 + offY);
+        ctx.fillStyle = '#333';
+        ctx.fillText('(' + score + ')', pt.x + offX, pt.y - 14 + offY);
       });
     });
     ctx.restore();
