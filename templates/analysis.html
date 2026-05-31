@@ -279,12 +279,29 @@
       </div>
     </div>
 
-    <!-- Radar chart -->
+    <!-- Radar + Table -->
     <div class="row g-3 mb-4">
       <div class="col-lg-5">
+        <div class="text-center mb-1" style="font-size:.8rem;font-weight:600;color:#555">% Compliance per Standard</div>
         <canvas id="sysRadar" height="300"></canvas>
+        <!-- % compliance legend -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px;font-size:.72rem">
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:12px;height:12px;border-radius:2px;background:#c0392b;display:inline-block"></span>0–20%</span>
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:12px;height:12px;border-radius:2px;background:#e8a0a0;display:inline-block"></span>20–40%</span>
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:12px;height:12px;border-radius:2px;background:#f0d080;display:inline-block"></span>40–60%</span>
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:12px;height:12px;border-radius:2px;background:#a8d5a2;display:inline-block"></span>60–80%</span>
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:12px;height:12px;border-radius:2px;background:#2e7d32;display:inline-block"></span>80–100%</span>
+        </div>
       </div>
       <div class="col-lg-7">
+        <!-- Level legend -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+          <span class="score-pill level-badge-1" style="font-size:.72rem;padding:2px 8px">1 — Ad-hoc</span>
+          <span class="score-pill level-badge-2" style="font-size:.72rem;padding:2px 8px">2 — Reactive</span>
+          <span class="score-pill level-badge-3" style="font-size:.72rem;padding:2px 8px">3 — Standardized</span>
+          <span class="score-pill level-badge-4" style="font-size:.72rem;padding:2px 8px">4 — Proactive</span>
+          <span class="score-pill level-badge-5" style="font-size:.72rem;padding:2px 8px">5 — Excellence</span>
+        </div>
         <!-- Heatmap table -->
         <div class="table-responsive">
           <table class="cmp-table" id="sysTable">
@@ -328,16 +345,18 @@
               <td style="text-align:left;font-size:.82rem">{{ sys_names.get(eid, eid) }}</td>
               {% for s in sites %}
                 {% set sc = s.pillars.get('system',{}).get('elements',{}).get(eid,{}).get('score') %}
-                <td>
+                <td style="white-space:nowrap">
                   {% if sc is not none %}
-                  <span class="score-pill level-badge-{{ sc|round|int }}" style="font-size:.75rem;padding:1px 6px;min-width:28px">{{ sc }}</span>
+                  <span class="score-pill level-badge-{{ sc|round|int }}" style="font-size:.72rem;padding:2px 7px;min-width:28px">
+                    {{ sc }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(sc|round|int, '') }}</span>
+                  </span>
                   {% else %}<span class="text-muted">—</span>{% endif %}
                 </td>
               {% endfor %}
-              <td>
+              <td style="white-space:nowrap">
                 {% if avg_sc is not none %}
-                <span class="score-pill level-badge-{{ avg_sc|round|int }}" style="font-size:.78rem;padding:1px 7px;font-weight:700">
-                  {{ "%.1f"|format(avg_sc) }}
+                <span class="score-pill level-badge-{{ avg_sc|round|int }}" style="font-size:.72rem;padding:2px 7px;font-weight:700">
+                  {{ "%.1f"|format(avg_sc) }} <span style="font-weight:400;font-size:.68rem">{{ level_names.get(avg_sc|round|int, '') }}</span>
                 </span>
                 {% else %}—{% endif %}
               </td>
@@ -665,6 +684,17 @@ function setSysAll(state) {
 
 let sysRadarChart = null;
 
+// Compute % compliance for a site element:
+// yes / (total - na - not_rolled_out) × 100
+function elemCompliance(site, key) {
+  const el = site.pillars.system && site.pillars.system.elements && site.pillars.system.elements[key];
+  if (!el || !el.counts) return 0;
+  const c = el.counts;
+  const applicable = c.total - (c.na || 0) - (c.not_rolled_out || 0);
+  if (applicable <= 0) return 0;
+  return Math.round((c.yes || 0) / applicable * 100);
+}
+
 function buildRadar() {
   const activeKeys   = SYS_KEYS.filter(k => sysVisible[k]);
   const activeLabels = activeKeys.map(k => SYS_LABELS[SYS_KEYS.indexOf(k)]);
@@ -673,10 +703,7 @@ function buildRadar() {
     const col = RADAR_COLORS[i % RADAR_COLORS.length];
     return {
       label: s.name,
-      data: activeKeys.map(k => {
-        const el = s.pillars.system && s.pillars.system.elements && s.pillars.system.elements[k];
-        return el && el.score != null ? el.score : 0;
-      }),
+      data: activeKeys.map(k => elemCompliance(s, k)),
       backgroundColor: col[0],
       borderColor: col[1],
       borderWidth: 2,
@@ -694,13 +721,22 @@ function buildRadar() {
       responsive: true,
       scales: {
         r: {
-          min: 0, max: 5,
-          ticks: { stepSize: 1, font: { size: 9 } },
+          min: 0, max: 100,
+          ticks: {
+            stepSize: 20,
+            font: { size: 9 },
+            callback: v => v + '%'
+          },
           pointLabels: { font: { size: 9 } }
         }
       },
       plugins: {
-        legend: { position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12 } }
+        legend: { position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12 } },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${ctx.raw}%`
+          }
+        }
       }
     }
   });
