@@ -733,6 +733,18 @@ function setGroupMode(mode) {
         bucketBodies[s.key] = g.querySelector('.iv-body');
       });
       pillarParent.appendChild(wrap);
+      // Read pillar / element / level names from the existing headers before hiding them
+      const pillarName = {}, elemName = {}, levelName = {};
+      document.querySelectorAll('.pillar-section').forEach(s => {
+        pillarName[s.getAttribute('data-pillar')] = (s.querySelector('h5')?.textContent || '').trim();
+      });
+      document.querySelectorAll('.element-card').forEach(c => {
+        elemName[c.getAttribute('data-element')] = (c.querySelector('.card-header .fw-semibold')?.textContent || '').trim();
+      });
+      document.querySelectorAll('#dd-level .ms-item').forEach(l => {
+        const m = (l.textContent || '').trim().match(/L(\d+):\s*(.*)/);
+        if (m) levelName[m[1]] = m[2];
+      });
       // Move every question row into its session bucket, leaving a home anchor behind
       document.querySelectorAll('.question-row').forEach(row => {
         const home = document.createElement('span');
@@ -740,6 +752,13 @@ function setGroupMode(mode) {
         home.dataset.for = row.getAttribute('data-qid');
         home.style.display = 'none';
         row.parentNode.insertBefore(home, row);
+        // Inject a "from" context tag (Pillar › Element · Level) at the top of the row
+        const p = row.getAttribute('data-pillar'), e = row.getAttribute('data-element'), lv = row.getAttribute('data-level');
+        const tag = document.createElement('div');
+        tag.className = 'iv-context small text-muted px-3 pt-2';
+        tag.innerHTML = `<i>From:</i> <span class="fw-semibold">${pillarName[p] || p}</span> › ${elemName[e] || e}`
+          + ` · <span class="badge level-badge-${lv}">Level ${lv}: ${levelName[lv] || ''}</span>`;
+        row.insertBefore(tag, row.firstChild);
         bucketBodies[ivBucket(row)].appendChild(row);
       });
     }
@@ -749,6 +768,7 @@ function setGroupMode(mode) {
     // Restore rows to their exact original positions
     const wrap = document.getElementById('interview-groups');
     if (wrap) {
+      document.querySelectorAll('.iv-context').forEach(t => t.remove());
       document.querySelectorAll('.qhome').forEach(home => {
         const row = document.getElementById('qrow-' + home.dataset.for);
         if (row) home.parentNode.insertBefore(row, home);
