@@ -519,14 +519,17 @@ let commentTimers = {};
 
 // ── Auto-save answer via AJAX ─────────────────────────────────────────────────
 document.querySelectorAll('.answer-radio input[type=radio]').forEach(radio => {
-  // Remember whether this option was already selected, before the click toggles it
-  radio.addEventListener('pointerdown', function() {
-    this._wasChecked = this.checked;
-  });
+  // The radio is hidden; the user clicks its <label>. Record the checked state
+  // on the label's pointerdown, BEFORE the click toggles it.
+  const lbl = document.querySelector('label[for="' + radio.id + '"]');
+  if (lbl) {
+    lbl.addEventListener('pointerdown', function() { radio._wasChecked = radio.checked; });
+  }
   // Click the already-selected answer again → undo (back to unanswered)
   radio.addEventListener('click', function() {
     if (this._wasChecked) {
       this.checked = false;
+      this._wasChecked = false;
       const qid = this.name;
       const comment = document.getElementById('cmt-' + qid)?.value || '';
       const row = document.getElementById('qrow-' + qid);
