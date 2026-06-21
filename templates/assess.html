@@ -64,6 +64,16 @@
             <option value="pillar">Pillar (default)</option>
             <option value="interview">Interview sequence</option>
           </select>
+          <span id="iv-part-wrap" style="display:none">
+            <span class="fw-semibold small ms-2">Show part:</span>
+            <select id="iv-part" class="form-select form-select-sm" style="width:auto" onchange="showIvPart(this.value)">
+              <option value="all">All parts</option>
+              <option value="mgr">1 · Manager</option>
+              <option value="sv">2 · Supervisor</option>
+              <option value="genba">3 · Genba</option>
+              <option value="doc">4 · Documents</option>
+            </select>
+          </span>
         </span>
       </div>
       <div class="row g-2">
@@ -689,12 +699,18 @@ function applyFilters() {
       .some(r => r.style.display !== 'none');
     sec.style.display = anyVisible ? '' : 'none';
   });
-  // Collapse empty interview-sequence groups (only present in interview mode)
+  // Collapse empty interview-sequence groups + honour the "Show part" selector
   document.querySelectorAll('.iv-group').forEach(g => {
     const anyVisible = Array.from(g.querySelectorAll('.question-row'))
       .some(r => r.style.display !== 'none');
-    g.style.display = anyVisible ? '' : 'none';
+    const inPart = (window.ivPart === undefined || window.ivPart === 'all' || g.dataset.bucket === window.ivPart);
+    g.style.display = (anyVisible && inPart) ? '' : 'none';
   });
+}
+
+function showIvPart(val) {
+  window.ivPart = val;
+  applyFilters();
 }
 
 // ── Group by: Pillar (default) ⟷ Interview sequence ───────────────────────────
@@ -764,7 +780,11 @@ function setGroupMode(mode) {
     }
     document.querySelectorAll('.pillar-section').forEach(s => s.style.display = 'none');
     document.getElementById('interview-groups').style.display = '';
+    document.getElementById('iv-part-wrap').style.display = '';
   } else {
+    window.ivPart = 'all';
+    const ivp = document.getElementById('iv-part'); if (ivp) ivp.value = 'all';
+    document.getElementById('iv-part-wrap').style.display = 'none';
     // Restore rows to their exact original positions
     const wrap = document.getElementById('interview-groups');
     if (wrap) {
