@@ -54,10 +54,17 @@
 
     <!-- ── Filters ──────────────────────────────────────────────────── -->
     <div class="card mb-3 p-3 sticky-filter">
-      <div class="d-flex align-items-center gap-2 mb-2">
+      <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
         <span class="fw-semibold small">Filter:</span>
         <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
         <span id="active-filter-tags" class="d-flex flex-wrap gap-1"></span>
+        <span class="ms-auto d-flex align-items-center gap-2">
+          <span class="fw-semibold small">Group by:</span>
+          <select id="group-mode" class="form-select form-select-sm" style="width:auto" onchange="setGroupMode(this.value)">
+            <option value="pillar">Pillar (default)</option>
+            <option value="interview">Interview sequence</option>
+          </select>
+        </span>
       </div>
       <div class="row g-2">
 
@@ -682,6 +689,76 @@ function applyFilters() {
       .some(r => r.style.display !== 'none');
     sec.style.display = anyVisible ? '' : 'none';
   });
+  // Collapse empty interview-sequence groups (only present in interview mode)
+  document.querySelectorAll('.iv-group').forEach(g => {
+    const anyVisible = Array.from(g.querySelectorAll('.question-row'))
+      .some(r => r.style.display !== 'none');
+    g.style.display = anyVisible ? '' : 'none';
+  });
+}
+
+// ── Group by: Pillar (default) ⟷ Interview sequence ───────────────────────────
+// Non-destructive: moves the live .question-row nodes (answer buttons, autosave,
+// comments all intact) into session buckets, and restores them exactly on switch back.
+const IV_SESSIONS = [
+  { key:'mgr',  label:'1 · Manager interview',     bg:'#EEEDFE', fg:'#26215C' },
+  { key:'sv',   label:'2 · Supervisor interview',  bg:'#E1F5EE', fg:'#04342C' },
+  { key:'genba',label:'3 · Genba / floor walk',    bg:'#FAEEDA', fg:'#412402' },
+  { key:'doc',  label:'4 · Document review',       bg:'#FAECE7', fg:'#4A1B0C' },
+];
+function ivBucket(row) {
+  const methods = (row.getAttribute('data-methods') || '').split(',');
+  const who = row.getAttribute('data-answered-by') || '';
+  if (methods.includes('onsite')) return 'genba';
+  if (/Teammate|Tour/.test(who)) return 'genba';
+  if (methods.includes('interview')) return /Supervisor/.test(who) ? 'sv' : 'mgr';
+  return 'doc';
+}
+function setGroupMode(mode) {
+  const pillarParent = document.querySelector('.pillar-section')?.parentNode;
+  if (!pillarParent) return;
+  if (mode === 'interview') {
+    if (!document.getElementById('interview-groups')) {
+      const wrap = document.createElement('div');
+      wrap.id = 'interview-groups';
+      const bucketBodies = {};
+      IV_SESSIONS.forEach(s => {
+        const g = document.createElement('div');
+        g.className = 'iv-group mb-3';
+        g.dataset.bucket = s.key;
+        g.innerHTML =
+          `<div class="px-3 py-2 mb-2 rounded fw-bold" style="background:${s.bg};color:${s.fg}">${s.label}</div>`
+          + `<div class="iv-body"></div>`;
+        wrap.appendChild(g);
+        bucketBodies[s.key] = g.querySelector('.iv-body');
+      });
+      pillarParent.appendChild(wrap);
+      // Move every question row into its session bucket, leaving a home anchor behind
+      document.querySelectorAll('.question-row').forEach(row => {
+        const home = document.createElement('span');
+        home.className = 'qhome';
+        home.dataset.for = row.getAttribute('data-qid');
+        home.style.display = 'none';
+        row.parentNode.insertBefore(home, row);
+        bucketBodies[ivBucket(row)].appendChild(row);
+      });
+    }
+    document.querySelectorAll('.pillar-section').forEach(s => s.style.display = 'none');
+    document.getElementById('interview-groups').style.display = '';
+  } else {
+    // Restore rows to their exact original positions
+    const wrap = document.getElementById('interview-groups');
+    if (wrap) {
+      document.querySelectorAll('.qhome').forEach(home => {
+        const row = document.getElementById('qrow-' + home.dataset.for);
+        if (row) home.parentNode.insertBefore(row, home);
+        home.remove();
+      });
+      wrap.remove();
+    }
+    document.querySelectorAll('.pillar-section').forEach(s => s.style.display = '');
+  }
+  applyFilters();
 }
 
 function clearFilters() {
