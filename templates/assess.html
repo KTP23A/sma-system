@@ -663,6 +663,9 @@ function applyFilters() {
   const fStandards = getChecked('dd-standard');
   const fStatuses = getChecked('dd-status');
 
+  // In interview mode, a selected "Show part" also restricts which rows show
+  const partActive = document.getElementById('interview-groups') && window.ivPart && window.ivPart !== 'all';
+
   let visible = 0;
   document.querySelectorAll('.question-row').forEach(row => {
     const pillar = row.getAttribute('data-pillar');
@@ -682,6 +685,7 @@ function applyFilters() {
       (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
       (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy)) &&
       (fStandards.length === 0 || fStandards.includes(standard)) &&
+      (!partActive || row.dataset.bucket === window.ivPart) &&
       matchStatus;
 
     row.style.display = show ? '' : 'none';
@@ -781,7 +785,9 @@ function setGroupMode(mode) {
         tag.innerHTML = `<i>From:</i> <span class="fw-semibold">${pillarName[p] || p}</span> › ${elemName[e] || e}`
           + ` · <span class="badge level-badge-${lv}">Level ${lv}: ${levelName[lv] || ''}</span>`;
         row.insertBefore(tag, row.firstChild);
-        bucketBodies[ivBucket(row)].appendChild(row);
+        const b = ivBucket(row);
+        row.dataset.bucket = b;
+        bucketBodies[b].appendChild(row);
       });
     }
     document.querySelectorAll('.pillar-section').forEach(s => s.style.display = 'none');
