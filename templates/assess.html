@@ -70,8 +70,9 @@
               <option value="all">All parts</option>
               <option value="mgr">1 · Manager</option>
               <option value="sv">2 · Supervisor</option>
-              <option value="genba">3 · Genba</option>
-              <option value="doc">4 · Documents</option>
+              <option value="tm">3 · Teammate</option>
+              <option value="genba">4 · Genba</option>
+              <option value="doc">5 · Documents</option>
             </select>
           </span>
         </span>
@@ -717,18 +718,23 @@ function showIvPart(val) {
 // Non-destructive: moves the live .question-row nodes (answer buttons, autosave,
 // comments all intact) into session buckets, and restores them exactly on switch back.
 const IV_SESSIONS = [
-  { key:'mgr',  label:'1 · Manager interview',     bg:'#EEEDFE', fg:'#26215C' },
-  { key:'sv',   label:'2 · Supervisor interview',  bg:'#E1F5EE', fg:'#04342C' },
-  { key:'genba',label:'3 · Genba / floor walk',    bg:'#FAEEDA', fg:'#412402' },
-  { key:'doc',  label:'4 · Document review',       bg:'#FAECE7', fg:'#4A1B0C' },
+  { key:'mgr',  label:'1 · Manager interview',         bg:'#EEEDFE', fg:'#26215C' },
+  { key:'sv',   label:'2 · Supervisor / floor leader', bg:'#E1F5EE', fg:'#04342C' },
+  { key:'tm',   label:'3 · Teammate interview',        bg:'#FBEAF0', fg:'#4B1528' },
+  { key:'genba',label:'4 · Genba / observation',       bg:'#FAEEDA', fg:'#412402' },
+  { key:'doc',  label:'5 · Document review',           bg:'#FAECE7', fg:'#4A1B0C' },
 ];
+// Respondent-aware bucketing — works for both warehouse and retail role names
 function ivBucket(row) {
   const methods = (row.getAttribute('data-methods') || '').split(',');
   const who = row.getAttribute('data-answered-by') || '';
-  if (methods.includes('onsite')) return 'genba';
-  if (/Teammate|Tour/.test(who)) return 'genba';
-  if (methods.includes('interview')) return /Supervisor/.test(who) ? 'sv' : 'mgr';
-  return 'doc';
+  if (methods.includes('onsite') || /tour|observation/i.test(who)) return 'genba';
+  if (methods.includes('interview')) {
+    if (/teammate/i.test(who)) return 'tm';
+    if (/supervisor|genba operation|leader/i.test(who)) return 'sv';
+    return 'mgr';   // site/store/safety manager + any other interview respondent
+  }
+  return 'doc';     // document-only
 }
 function setGroupMode(mode) {
   const pillarParent = document.querySelector('.pillar-section')?.parentNode;
