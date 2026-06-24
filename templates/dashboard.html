@@ -29,42 +29,63 @@
 </div>
 {% else %}
 
-<!-- Summary cards -->
-{% set wh_all = assessments | selectattr('a.type','eq','warehouse') | list %}
-{% set rt_all = assessments | selectattr('a.type','eq','retail') | list %}
-<div class="row g-3 mb-4">
-  <div class="col-6 col-md-3">
-    <div class="card p-3 text-center">
-      <div class="fs-1 fw-bold text-primary">{{ assessments|length }}</div>
-      <div class="text-muted small">Total Assessments</div>
-      <div class="small mt-1">
-        <span class="badge bg-primary">🏭 {{ wh_all|length }}</span>
-        <span class="badge bg-success">🛒 {{ rt_all|length }}</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-6 col-md-3">
-    <div class="card p-3 text-center">
-      <div class="fs-1 fw-bold text-info">{{ assessments | selectattr('a.status', 'eq', 'gc_submitted') | list | length }}</div>
-      <div class="text-muted small">Awaiting Validation</div>
-    </div>
-  </div>
-  <div class="col-6 col-md-3">
-    <div class="card p-3 text-center">
-      <div class="fs-1 fw-bold text-success">{{ assessments | selectattr('a.status', 'eq', 'report_shared') | list | length }}</div>
-      <div class="text-muted small">Report Shared</div>
-    </div>
-  </div>
-  <div class="col-6 col-md-3">
-    <div class="card p-3 text-center">
-      {% set done = assessments | selectattr('scores') | selectattr('scores.overall') | list %}
-      {% if done %}
-        {% set avg = (done | map(attribute='scores.overall') | list | sum) / done|length %}
-        <div class="fs-1 fw-bold text-info">{{ "%.2f"|format(avg) }}</div>
-      {% else %}
-        <div class="fs-1 fw-bold text-secondary">—</div>
-      {% endif %}
-      <div class="text-muted small">Avg Overall Score</div>
+<!-- BU summary table -->
+{% macro pillar_avg(items, pid) -%}
+  {% set vals = [] %}
+  {% for it in items %}
+    {% set ps = it.scores.pillars.get(pid) if it.scores else none %}
+    {% if ps and ps.score is not none %}{% set _ = vals.append(ps.score) %}{% endif %}
+  {% endfor %}
+  {%- if vals %}{{ "%.2f"|format(vals|sum / vals|length) }}{% else %}—{% endif -%}
+{%- endmacro %}
+{% macro sma_avg(items) -%}
+  {% set d = items | selectattr('scores') | selectattr('scores.overall') | list %}
+  {%- if d %}{{ "%.2f"|format((d|map(attribute='scores.overall')|list|sum) / d|length) }}{% else %}—{% endif -%}
+{%- endmacro %}
+<div class="card mb-4">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th class="text-start">BU</th>
+            <th>Total Assessments</th>
+            <th>SMA Avg</th>
+            <th>LD Avg</th>
+            <th>TM Avg</th>
+            <th>Org Avg</th>
+            <th>Sys Avg</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% set bu_rows = [{'type':'warehouse','label':'🏭 Warehouse'},{'type':'retail','label':'🛒 Retail'}] %}
+        {% for bu in bu_rows %}
+          {% set items = assessments | selectattr('a.type','eq',bu.type) | list %}
+          {% if items %}
+          {% set done = items | selectattr('scores') | selectattr('scores.overall') | list %}
+          <tr>
+            <td class="text-start fw-semibold">{{ bu.label }}</td>
+            <td>{{ items|length }}</td>
+            <td><span class="fw-bold">{{ sma_avg(items) }}</span></td>
+            <td>{{ pillar_avg(done, 'leadership') }}</td>
+            <td>{{ pillar_avg(done, 'tm_engagement') }}</td>
+            <td>{{ pillar_avg(done, 'organization') }}</td>
+            <td>{{ pillar_avg(done, 'system') }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+          {% set all_done = assessments | selectattr('scores') | selectattr('scores.overall') | list %}
+          <tr class="table-light fw-bold">
+            <td class="text-start">All BUs</td>
+            <td>{{ assessments|length }}</td>
+            <td>{{ sma_avg(assessments) }}</td>
+            <td>{{ pillar_avg(all_done, 'leadership') }}</td>
+            <td>{{ pillar_avg(all_done, 'tm_engagement') }}</td>
+            <td>{{ pillar_avg(all_done, 'organization') }}</td>
+            <td>{{ pillar_avg(all_done, 'system') }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
