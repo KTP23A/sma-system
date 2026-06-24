@@ -21,7 +21,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example which store manager addressed safety at the morning assembly or monthly meeting etc."
                 },
                 {
                   "id": "RT-ST-LD-003",
@@ -32,7 +33,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can provide one example of activity in each 4 fundamental activities. (e.g. for 3S - cleaning plan, inspection of respect of 3S visual standard; for KY: KYT, self check by teammates before acting; for RA: training on risks, verification of understanding of risks; for SR : verify that the safety rules are displayed in the shop and confirm that Teammates are familiar with them.) BS"
                 },
                 {
                   "id": "RT-ST-LD-007",
@@ -43,7 +45,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain what actions have been taken to improve H&S performances."
                 },
                 {
                   "id": "RT-ST-LD-009",
@@ -54,7 +57,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that he/she involved all teammates with safety discussions and incorporated their idea into safety action."
                 }
               ]
             },
@@ -71,7 +75,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Assessor can confirm that teammates have PPE on site. Or respondent can show where the PPEs are stored."
                 },
                 {
                   "id": "RT-ST-LD-005",
@@ -82,7 +87,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that all teammates are involved 3S activities."
                 },
                 {
                   "id": "RT-ST-LD-010",
@@ -93,7 +99,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain his/her exampled experience which made him/her feeling comfortable reporting. (e.g. Store manager improved the safety issues soon after reported)"
                 }
               ]
             },
@@ -110,7 +117,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain correct way to report incidents."
                 },
                 {
                   "id": "RT-ST-LD-006",
@@ -121,7 +129,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of residual or high risk. He/she can explain how to inform it to teammates."
                 },
                 {
                   "id": "RT-ST-LD-008",
@@ -132,7 +141,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can describe an example that he/she corrected teammate who didn't follow Safety rules. *Record/evidence is not required."
                 }
               ]
             }
@@ -155,7 +165,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain correct requires PPE."
                 },
                 {
                   "id": "RT-ST-TM-002",
@@ -166,7 +177,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain correct way to report incident."
                 },
                 {
                   "id": "RT-ST-TM-003",
@@ -177,7 +189,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain recent safety incident. If there is no incident, it is ok to answer that."
                 }
               ]
             },
@@ -194,7 +207,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that he/she actively participated in safety discussions."
                 },
                 {
                   "id": "RT-ST-TM-006",
@@ -205,7 +219,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of unsafe condition he/she reported and manager's responses."
                 },
                 {
                   "id": "RT-ST-TM-009",
@@ -216,7 +231,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent states that he/she has warned the teammate or has reported when identified."
                 }
               ]
             },
@@ -233,7 +249,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain what should be done before using and can explain how to do if they are not in good condition."
                 },
                 {
                   "id": "RT-ST-TM-007",
@@ -244,7 +261,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain what should be done before using and can explain how to do if they are not in good condition."
                 },
                 {
                   "id": "RT-ST-TM-008",
@@ -255,7 +273,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that he/she proposed safety improvements to prevent injuries or near misses."
                 }
               ]
             }
@@ -278,7 +297,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can give example he/she was very busy but nonetheless gave priority to safety."
                 },
                 {
                   "id": "RT-ST-OR-002",
@@ -289,7 +309,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that all teammates participate in safety activities. (e.g. All TMs participate in group to perform KY training)"
                 },
                 {
                   "id": "RT-ST-OR-006",
@@ -300,7 +321,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain when teammates perform 3S activities."
                 }
               ]
             },
@@ -317,7 +339,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how to access safety procedures and standards."
                 },
                 {
                   "id": "RT-ST-OR-005",
@@ -328,7 +351,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of safety rules, procedures or working standards that are required to be followed."
                 },
                 {
                   "id": "RT-ST-OR-008",
@@ -339,7 +363,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how he/she check if teammates practice safe behaviors."
                 }
               ]
             },
@@ -356,7 +381,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that he/her interrupts the service and communicates with leadership or colleague(s) in case of an abnormal situation."
                 },
                 {
                   "id": "RT-ST-OR-007",
@@ -367,7 +393,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of his/her safety messages to teammate to improve their safety awareness. (e.g. Top management message, own experiences to prevent incidents)"
                 },
                 {
                   "id": "RT-ST-OR-009",
@@ -378,7 +405,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain why they feel comfortable stopping work if you feel there is a risk of injury."
                 }
               ]
             }
@@ -402,7 +430,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Supported Vehicles"
+                  "standard": "Supported Vehicles",
+                  "judgement_criteria": "Respondent can show the latest skill qualification list/table including vehicle elevating/lowering."
                 },
                 {
                   "id": "RT-ST-SY-006",
@@ -414,7 +443,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Supported Vehicles"
+                  "standard": "Supported Vehicles",
+                  "judgement_criteria": "Respondent can show that routine lift inspections are completed by outside vendor with inspection record."
                 },
                 {
                   "id": "RT-ST-SY-011",
@@ -426,7 +456,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Supported Vehicles"
+                  "standard": "Supported Vehicles",
+                  "judgement_criteria": "Safety operations on vehicle elevating/lowering are performed on site. (complied with safety rules for vehicle elevation/lowering operations)"
                 },
                 {
                   "id": "RT-ST-SY-016",
@@ -438,7 +469,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Supported Vehicles"
+                  "standard": "Supported Vehicles",
+                  "judgement_criteria": "Respondent can explain that he/she checks that the rated maximum load of the lift is suitable for the weight of the vehicle to be services, including any load in the vehicle."
                 },
                 {
                   "id": "RT-ST-SY-021",
@@ -450,7 +482,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Supported Vehicles"
+                  "standard": "Supported Vehicles",
+                  "judgement_criteria": "Respondent can explain how to observe store teammates to ensure lifting procedures are being followed"
                 }
               ]
             },
@@ -468,7 +501,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Tire Inflation"
+                  "standard": "Tire Inflation",
+                  "judgement_criteria": "Respondent can show that teammates have required legal licenses and/or legal training records."
                 },
                 {
                   "id": "RT-ST-SY-007",
@@ -480,7 +514,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Tire Inflation"
+                  "standard": "Tire Inflation",
+                  "judgement_criteria": "Prevention measures are taken to ensure no person, objects, or body parts are in the danger zone when inflating tires. *Refer to examples described in question."
                 },
                 {
                   "id": "RT-ST-SY-012",
@@ -492,7 +527,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Tire Inflation"
+                  "standard": "Tire Inflation",
+                  "judgement_criteria": "Respondent can show that he/she knows how to determine the recommended manufacturer pressure for a tyre and he/she does not inflate tires beyond that pressure."
                 },
                 {
                   "id": "RT-ST-SY-017",
@@ -504,7 +540,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Tire Inflation"
+                  "standard": "Tire Inflation",
+                  "judgement_criteria": "Respondent can explain the steps for preliminary inspection before inflating a tire."
                 },
                 {
                   "id": "RT-ST-SY-022",
@@ -516,7 +553,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Tire Inflation"
+                  "standard": "Tire Inflation",
+                  "judgement_criteria": "Respondent can explain the procedure to checks for unexpected bulges or defects when inflating a tire."
                 }
               ]
             },
@@ -534,7 +572,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Material Handling"
+                  "standard": "Material Handling",
+                  "judgement_criteria": "Respondent can explain the proper lifting techniques."
                 },
                 {
                   "id": "RT-ST-SY-008",
@@ -546,7 +585,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Material Handling"
+                  "standard": "Material Handling",
+                  "judgement_criteria": "Paths are kept clear to allow for material movement in the shop area on site."
                 },
                 {
                   "id": "RT-ST-SY-013",
@@ -558,7 +598,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Material Handling"
+                  "standard": "Material Handling",
+                  "judgement_criteria": "Respondent can show that e.g. they access rack and shelves in safety (e.g. with platform ladder, or with forklift), that tyres on shelves and racks do not pose a risk of fall, that the max. loads indicated on storage system is respected, that stacks of tyres are no higher than shoulder's height, that large tyre/wheels (>200kg) are not left upright without falling prevention measures."
                 },
                 {
                   "id": "RT-ST-SY-018",
@@ -570,7 +611,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Material Handling"
+                  "standard": "Material Handling",
+                  "judgement_criteria": "Respondent can show an example that teammates are using mechanical aids or ask for assistance when handling on site."
                 },
                 {
                   "id": "RT-ST-SY-023",
@@ -582,7 +624,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Material Handling"
+                  "standard": "Material Handling",
+                  "judgement_criteria": "Respondent can show that heavier items or frequently used items are stored at mid-body height to make them easier to reach by site observation."
                 }
               ]
             },
@@ -600,7 +643,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide",
+                  "judgement_criteria": "Respondent can explain one and more safety rules on forklifts. (e.g. fasten seatbelt, avoid raising or lowering forks while the forklift is in motion) 1"
                 },
                 {
                   "id": "RT-ST-SY-009",
@@ -612,7 +656,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide",
+                  "judgement_criteria": "Vehicles are parked at a location where the task can be conducted in a safe condition on site. *Refer to examples described in question."
                 },
                 {
                   "id": "RT-ST-SY-014",
@@ -624,7 +669,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide",
+                  "judgement_criteria": "Respondents say that e.g. he/she wear seatbelts, doesn't use cell phone and follows local law when operating vehicles."
                 },
                 {
                   "id": "RT-ST-SY-019",
@@ -636,7 +682,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide",
+                  "judgement_criteria": "Respondent can explain examples to comply. (e.g. maintain a safe position away from the moving vehicle (stay visible etc), guide the driver to move safely the vehicle using hand/arm and/or voice signals, keep attention on the teammates in the store)"
                 },
                 {
                   "id": "RT-ST-SY-024",
@@ -648,7 +695,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide"
+                  "standard": "Motor Vehicle, Maintenance & Vehicle Guide",
+                  "judgement_criteria": "Respondent can explain the way teammates complete an inspection to confirm safe operation of the vehicle before driving."
                 }
               ]
             },
@@ -666,7 +714,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Mechanical Hazard"
+                  "standard": "Mechanical Hazard",
+                  "judgement_criteria": "Respondent can explain that intervention next to rotating/moving part shall be avoided, engine shall be switched off for maintenance, and JHA/JSA/KY must be conducted and safety measures are in place when engine cannot be off."
                 },
                 {
                   "id": "RT-ST-SY-010",
@@ -678,7 +727,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Mechanical Hazard"
+                  "standard": "Mechanical Hazard",
+                  "judgement_criteria": "Rotating equipment or objects under mechanical compression or tension have guarding/barriers on site."
                 },
                 {
                   "id": "RT-ST-SY-015",
@@ -690,7 +740,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Mechanical Hazard"
+                  "standard": "Mechanical Hazard",
+                  "judgement_criteria": "Teammates use the right tools for specific tasks and the tools are in good condition on site."
                 },
                 {
                   "id": "RT-ST-SY-020",
@@ -702,7 +753,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Mechanical Hazard"
+                  "standard": "Mechanical Hazard",
+                  "judgement_criteria": "Respondent indicates that unsafe equipment, or requiring maintenance or repair are immediately taken out of service and signed as out of order."
                 },
                 {
                   "id": "RT-ST-SY-025",
@@ -714,7 +766,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Mechanical Hazard"
+                  "standard": "Mechanical Hazard",
+                  "judgement_criteria": "Respondent can explain the way to verify proper safety steps on EV service. (e.g. check the service manual for EV.)"
                 }
               ]
             }
@@ -742,7 +795,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain when regularly meeting is held. He/she can show an example of safety discussion at the meeting."
                 },
                 {
                   "id": "RT-LC-LD-006",
@@ -753,7 +807,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that he/she communicated measurable expectations for safety performance."
                 },
                 {
                   "id": "RT-LC-LD-010",
@@ -764,7 +819,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that how they make effort in order that safety is aligned with other business values such as revenue, margin and cost reduction. For example, he/she monitors and reports safety KPIs along with revenue, margin and cost KPI."
                 }
               ]
             },
@@ -781,7 +837,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of their effort to allocate support and resources for implementing safety programs and activities."
                 },
                 {
                   "id": "RT-LC-LD-003",
@@ -792,7 +849,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain detail of the training, when and what supervisors and Leader to GENBA operation are trained to use \"On the spot coaching\" when a safety risk is identified."
                 },
                 {
                   "id": "RT-LC-LD-007",
@@ -803,7 +861,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example to collect Best Practices and improve the Safety Program."
                 }
               ]
             },
@@ -820,7 +879,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that the effectiveness of the Site Safety Rules reviewed after incidents and audits."
                 },
                 {
                   "id": "RT-LC-LD-005",
@@ -831,7 +891,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example to guide continuous improvement efforts and decision-making with use of leading & lagging metrics."
                 },
                 {
                   "id": "RT-LC-LD-008",
@@ -842,7 +903,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show their safety goals and business planning. Assessor can confirm that safety goals are reviewed/revised regularly and used in business planning."
                 },
                 {
                   "id": "RT-LC-LD-009",
@@ -853,7 +915,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show the definitions of responsibilities for safety on each positions."
                 }
               ]
             }
@@ -876,7 +939,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show that safety orientation/induction training for new teammates is conducted with the guideline or training record etc."
                 },
                 {
                   "id": "RT-LC-TM-003",
@@ -887,7 +951,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain which language are used for teammates' training with the training material etc. All teammates can understand the language at a literacy level."
                 },
                 {
                   "id": "RT-LC-TM-005",
@@ -898,7 +963,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show the formal safety training program for Teammates, including supervisors and Leaders to GENBA operation."
                 },
                 {
                   "id": "RT-LC-TM-008",
@@ -909,7 +975,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of safety trends or analytics* shared with Teammates. *e.g. He/she shared information to call teammates' attention. \"Recently, slip/trip accidents have occurred frequently.\""
                 }
               ]
             },
@@ -926,7 +993,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how teammate are informed of their personal responsibility for a safe workplace. (e.g. BSFA and compliance of store rule are informed at orientation/induction training for new teammates. They are reminded by e-learning annually.)"
                 },
                 {
                   "id": "RT-LC-TM-004",
@@ -937,7 +1005,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how to train teammates on how to report an injury, illness, hazard, or concern, including near misses with the guideline or training record etc."
                 },
                 {
                   "id": "RT-LC-TM-010",
@@ -948,7 +1017,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how to seek Teammate input on hazard reduction and safety improvement by Leader to GENBA operation."
                 }
               ]
             },
@@ -965,7 +1035,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how the Bridgestone Safety Mission Statement is communicated to all teammates with the guideline or communication record etc."
                 },
                 {
                   "id": "RT-LC-TM-007",
@@ -976,7 +1047,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that cross-functional teams* were used to address specific safety and health concerns. *e.g. other departments in your local company, other local companies"
                 },
                 {
                   "id": "RT-LC-TM-009",
@@ -987,7 +1059,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example of the recognition program* for teammates that demonstrate safe behaviors. *e.g. Safety awards for performing above expectation"
                 }
               ]
             }
@@ -1010,7 +1083,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain the way all teammate access to relevant Safety Procedures."
                 },
                 {
                   "id": "RT-LC-OR-008",
@@ -1021,7 +1095,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that safety training is delivered by qualified trainers with the guideline or training record etc."
                 },
                 {
                   "id": "RT-LC-OR-010",
@@ -1032,7 +1107,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show an example that Near Miss and Lesson Learned Reports are reviewed and used to improve the Safety Program."
                 }
               ]
             },
@@ -1049,7 +1125,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that adequate safety equipment is provided and that teammates are trained on the usage with an example."
                 },
                 {
                   "id": "RT-LC-OR-003",
@@ -1060,7 +1137,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show the assessment program with scheduled compliance and systems audits."
                 },
                 {
                   "id": "RT-LC-OR-006",
@@ -1071,7 +1149,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that the safety training curriculum is tailored to the specific roles and responsibilities at each level of the organization."
                 },
                 {
                   "id": "RT-LC-OR-007",
@@ -1082,7 +1161,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show a sample of RA conducted for new projects, materials and work methods."
                 }
               ]
             },
@@ -1099,7 +1179,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain how to trace the completion of the certifications and training required by government regulations with the guideline or training record etc."
                 },
                 {
                   "id": "RT-LC-OR-005",
@@ -1110,7 +1191,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can show the guideline or rule etc. to identify important documents/records and to keep them. If safety dept. have to keep some documents, assessor can confirm that all of them are kept on site."
                 },
                 {
                   "id": "RT-LC-OR-009",
@@ -1121,7 +1203,8 @@
                   "audit_methods": [
                     "interview"
                   ],
-                  "standard": null
+                  "standard": null,
+                  "judgement_criteria": "Respondent can explain that regulatory and corporate compliance are systematically checked to ensure they are up-to-date with check record etc."
                 }
               ]
             }
@@ -1145,7 +1228,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Emergency Planning"
+                  "standard": "Emergency Planning",
+                  "judgement_criteria": "Respondent can show the established emergency policy/procedure that complies with regulations."
                 },
                 {
                   "id": "RT-LC-SY-006",
@@ -1157,7 +1241,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Emergency Planning"
+                  "standard": "Emergency Planning",
+                  "judgement_criteria": "Respondent can show that hazards associated with emergencies and non-routine operations are identified in the emergency action plan and operating procedures, respectively."
                 },
                 {
                   "id": "RT-LC-SY-024",
@@ -1169,7 +1254,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Emergency Planning"
+                  "standard": "Emergency Planning",
+                  "judgement_criteria": "Respondent can show that emergency plans are written, communicated, revise. He/she can show that facility drills conducted with the drill record."
                 }
               ]
             },
@@ -1187,7 +1273,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show that all regulatory required safety training is included in the safety training matrix/plan."
                 },
                 {
                   "id": "RT-LC-SY-003",
@@ -1199,7 +1286,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show that job descriptions have safety specific responsibilities identified."
                 },
                 {
                   "id": "RT-LC-SY-009",
@@ -1211,7 +1299,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show an example that safety awareness is communicated via activities such as newsletters, alerts, and toolbox talks, etc."
                 },
                 {
                   "id": "RT-LC-SY-016",
@@ -1223,7 +1312,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show a sampled evidence that BS provided necessary safety information to contractors. (e.g. online program, email, training record)"
                 },
                 {
                   "id": "RT-LC-SY-017",
@@ -1235,7 +1325,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show the written Contractor Safety Program."
                 },
                 {
                   "id": "RT-LC-SY-018",
@@ -1247,7 +1338,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show a sampled evidence that safety control measures were reviewed with BS. (e.g. meeting minutes, pre-work planning document)"
                 },
                 {
                   "id": "RT-LC-SY-019",
@@ -1259,7 +1351,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Training and Education, Contractor management"
+                  "standard": "Training and Education, Contractor management",
+                  "judgement_criteria": "Respondent can show the record of safety inspection/observation. (e.g. checksheet that is used before the start of service)"
                 }
               ]
             },
@@ -1277,7 +1370,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show the established policies/procedures describing safety expectations, roles, and responsibilities."
                 },
                 {
                   "id": "RT-LC-SY-005",
@@ -1289,7 +1383,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show a sample of RA and identified job hazards. He/she can explain how to communicate them to teammates."
                 },
                 {
                   "id": "RT-LC-SY-008",
@@ -1301,7 +1396,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can explain the system to ensure that corrective actions, with accountability, are tracked to closure."
                 },
                 {
                   "id": "RT-LC-SY-010",
@@ -1313,7 +1409,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can explain that controls are selected according to the “hierarchy of controls,” emphasizing, in order of priority with a sample of RA."
                 },
                 {
                   "id": "RT-LC-SY-011",
@@ -1325,7 +1422,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show that the standard practice for Vehicle Elevating and Lowering Operation that includes all elements of the SBU Standard has been developed and Implemented."
                 },
                 {
                   "id": "RT-LC-SY-012",
@@ -1337,7 +1435,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show that the standard practice for Tire Inflation that includes all elements of the SBU Standard has been developed and Implemented."
                 },
                 {
                   "id": "RT-LC-SY-013",
@@ -1349,7 +1448,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show that the standard practice for Tire/Large Tire Manual Handling Operation that includes all elements of the SBU Standard has been developed and Implemented."
                 },
                 {
                   "id": "RT-LC-SY-014",
@@ -1361,7 +1461,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show that the standard practice for Motor Vehicle Safety that includes all elements of the SBU Standard has been developed and Implemented."
                 },
                 {
                   "id": "RT-LC-SY-015",
@@ -1373,7 +1474,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show a sample of RA that controls have been developed and implemented to mitigate Mechanical Hazard risks."
                 },
                 {
                   "id": "RT-LC-SY-022",
@@ -1385,7 +1487,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show the documented process for investigation and corrective action following a safety incident."
                 },
                 {
                   "id": "RT-LC-SY-026",
@@ -1397,7 +1500,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Hazard Prevention and Control"
+                  "standard": "Hazard Prevention and Control",
+                  "judgement_criteria": "Respondent can show the record to ensure that teammates understand safety controls' use and application and to verify that they are effective."
                 }
               ]
             },
@@ -1415,7 +1519,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Management of Change"
+                  "standard": "Management of Change",
+                  "judgement_criteria": "Respondent can show an example that interim controls were adopted while permanent controls were being determined."
                 },
                 {
                   "id": "RT-LC-SY-023",
@@ -1427,7 +1532,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Management of Change"
+                  "standard": "Management of Change",
+                  "judgement_criteria": "Respondent can show the record of the safety review to identify any safety or health issues before making changes to operations, workflow/work methodology, physical plant/facility, equipment, or materials."
                 },
                 {
                   "id": "RT-LC-SY-025",
@@ -1439,7 +1545,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Management of Change"
+                  "standard": "Management of Change",
+                  "judgement_criteria": "Respondent can show that teammates receive supplemental training when a change in the workplace could introduce new or increased hazards with the guideline or training record etc."
                 }
               ]
             },
@@ -1457,7 +1564,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Continual Improvement"
+                  "standard": "Continual Improvement",
+                  "judgement_criteria": "Respondent can show an example that leading indicators are used to review and analyzing safety policies, procedures and trends for continual improvement"
                 },
                 {
                   "id": "RT-LC-SY-021",
@@ -1469,7 +1577,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Continual Improvement"
+                  "standard": "Continual Improvement",
+                  "judgement_criteria": "Respondent can show an example that performance indicators are used to track progress toward safety program goals."
                 },
                 {
                   "id": "RT-LC-SY-027",
@@ -1481,7 +1590,8 @@
                     "interview",
                     "document"
                   ],
-                  "standard": "Continual Improvement"
+                  "standard": "Continual Improvement",
+                  "judgement_criteria": "Respondent can show an example of targeted safety campaigns/initiatives used to improve performance."
                 }
               ]
             }
