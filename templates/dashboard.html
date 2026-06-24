@@ -77,7 +77,15 @@
 {% endif %}
 
 <!-- Assessments table -->
-<div class="card">
+{% set dash_groups = [
+     {'type':'warehouse','label':'🏭 Warehouse','color':'primary'},
+     {'type':'retail','label':'🛒 Retail','color':'success'}] %}
+{% for grp in dash_groups %}
+{% set grp_items = assessments | selectattr('a.type','eq',grp.type) | list %}
+{% if grp_items %}
+<h5 class="fw-bold mt-4 mb-2">{{ grp.label }}
+  <span class="badge bg-{{ grp.color }} align-middle">{{ grp_items|length }}</span></h5>
+<div class="card mb-3">
   <div class="card-body p-0">
     <div class="table-responsive">
       <table class="table table-hover mb-0 align-middle">
@@ -95,7 +103,7 @@
           </tr>
         </thead>
         <tbody>
-        {% for item in assessments %}
+        {% for item in grp_items %}
           {% set a = item.a %}
           {% set s = item.scores %}
           {% set st_label = status_labels.get(a.status, ('Unknown','secondary')) %}
@@ -176,6 +184,8 @@
     </div>
   </div>
 </div>
+{% endif %}
+{% endfor %}
 
 {% endif %}
 {% endblock %}
