@@ -55,7 +55,12 @@
     <!-- ── Filters ──────────────────────────────────────────────────── -->
     <div class="card mb-3 p-3 sticky-filter">
       <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-        <span class="fw-semibold small">Filter:</span>
+        <span class="input-group input-group-sm" style="width:auto">
+          <span class="input-group-text">🔍</span>
+          <input type="search" id="q-search" class="form-control form-control-sm"
+                 placeholder="Search questions or ID..." style="min-width:200px"
+                 oninput="applyFilters()">
+        </span>
         <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
         <span id="active-filter-tags" class="d-flex flex-wrap gap-1"></span>
         <span class="ms-auto d-flex align-items-center gap-2">
@@ -684,6 +689,7 @@ function applyFilters() {
 
   // In interview mode, a selected "Show part" also restricts which rows show
   const partActive = document.getElementById('interview-groups') && window.ivPart && window.ivPart !== 'all';
+  const query = (document.getElementById('q-search')?.value || '').trim().toLowerCase();
 
   let visible = 0;
   document.querySelectorAll('.question-row').forEach(row => {
@@ -697,6 +703,9 @@ function applyFilters() {
     const matchStatus = fStatuses.length === 0 || fStatuses.some(s =>
       s === 'unanswered' ? answer === '' : answer === s
     );
+    const matchSearch = query === '' ||
+      (row.getAttribute('data-qid') || '').toLowerCase().includes(query) ||
+      (row.textContent || '').toLowerCase().includes(query);
 
     const show =
       (fPillars.length === 0 || fPillars.includes(pillar)) &&
@@ -705,6 +714,7 @@ function applyFilters() {
       (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy)) &&
       (fStandards.length === 0 || fStandards.includes(standard)) &&
       (!partActive || row.dataset.bucket === window.ivPart) &&
+      matchSearch &&
       matchStatus;
 
     row.style.display = show ? '' : 'none';
@@ -836,6 +846,7 @@ function clearFilters() {
   ['dd-pillar','dd-level','dd-method','dd-answered-by','dd-standard','dd-status'].forEach(id => {
     document.querySelectorAll(`#${id} input[type=checkbox]`).forEach(cb => cb.checked = false);
   });
+  const sb = document.getElementById('q-search'); if (sb) sb.value = '';
   applyFilters();
 }
 
