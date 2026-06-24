@@ -58,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-        {% set bu_rows = [{'type':'warehouse','label':'🏭 Warehouse'},{'type':'retail','label':'🛒 Retail'}] %}
+        {% set bu_rows = [{'type':'warehouse','label':'🚛 Warehouse'},{'type':'retail','label':'🛞 Retail'}] %}
         {% for bu in bu_rows %}
           {% set items = assessments | selectattr('a.type','eq',bu.type) | list %}
           {% if items %}
@@ -105,8 +105,8 @@
 
 <!-- Assessments table -->
 {% set dash_groups = [
-     {'type':'warehouse','label':'🏭 Warehouse','color':'primary'},
-     {'type':'retail','label':'🛒 Retail','color':'success'}] %}
+     {'type':'warehouse','label':'🚛 Warehouse','color':'primary'},
+     {'type':'retail','label':'🛞 Retail','color':'success'}] %}
 {% for grp in dash_groups %}
 {% set grp_items = assessments | selectattr('a.type','eq',grp.type) | list %}
 {% if grp_items %}
