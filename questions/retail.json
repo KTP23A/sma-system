@@ -770,6 +770,120 @@
                   "judgement_criteria": "Respondent can explain the way to verify proper safety steps on EV service. (e.g. check the service manual for EV.)"
                 }
               ]
+            },
+            {
+              "id": "disaster_prevention",
+              "name": "Disaster Prevention",
+              "questions": [
+                {
+                  "id": "RT-ST-SY-DP1",
+                  "no": "DP1",
+                  "text": "Are all evacuation routes always free and accessible?",
+                  "level": 1,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "onsite"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "There is no obstacle in the evacuation route."
+                },
+                {
+                  "id": "RT-ST-SY-DP2",
+                  "no": "DP2",
+                  "text": "What are the rules for waste tires storage area to mitigate fire risks including arson?",
+                  "level": 2,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "Respondent can explain e.g. to store in non-combustible lockable containers with cover to make them invisible from the outside."
+                },
+                {
+                  "id": "RT-ST-SY-DP3",
+                  "no": "DP3",
+                  "text": "What actions do you take when gasoline or oil leakage from customer's vehicle is identified?",
+                  "level": 2,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "The respondent can explain his/her action against gasoline/oil leakage."
+                },
+                {
+                  "id": "RT-ST-SY-DP4",
+                  "no": "DP4",
+                  "text": "Have you been trained for fire fighting? (This includes online training like E-learning)",
+                  "level": 2,
+                  "answered_by": "Teammate",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "Respondent can explain the training contents he/she has received recently."
+                },
+                {
+                  "id": "RT-ST-SY-DP5",
+                  "no": "DP5",
+                  "text": "Are the fire prevention measures for waste tire storage areas implemented?",
+                  "level": 3,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "onsite"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "Waste tire storage area in the store meets the requirement of secure area or similar designated location."
+                },
+                {
+                  "id": "RT-ST-SY-DP6",
+                  "no": "DP6",
+                  "text": "Do you regularly check that there is enough space in front of the fire extinguishing equipment?",
+                  "level": 3,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "Respondent can explain when he/she check space in front of the fire extinguishing equipment to ensure that they are accessible to all."
+                },
+                {
+                  "id": "RT-ST-SY-DP7",
+                  "no": "DP7",
+                  "text": "Is it prohibited to smoke except in designated smoking area? Is there no cigarette butts on floor/ground and in wastebasket?",
+                  "level": 3,
+                  "answered_by": "On site observation",
+                  "audit_methods": [
+                    "onsite"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "The smoking area is designated and excluding designated smoking area, there is no cigarette butts on floor/ground and in wastebasket."
+                },
+                {
+                  "id": "RT-ST-SY-DP8",
+                  "no": "DP8",
+                  "text": "Is at least one Fire Brigade teammate present in the location? And, is fire extinguisher operation training provided to some employees other than internal fire brigade?",
+                  "level": 4,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "The respondent can show that one and more Fire Brigade teammates are present and some employee joins fire extinguisher operation training with training records etc."
+                },
+                {
+                  "id": "RT-ST-SY-DP9",
+                  "no": "DP9",
+                  "text": "Does your store have your own countermeasures and activities against arson, riots, and arson attacks? (e.g.) 3S around site boundaries, Installation of surveillance cameras, Introduction of automatic notification system",
+                  "level": 5,
+                  "answered_by": "Store manager",
+                  "audit_methods": [
+                    "interview"
+                  ],
+                  "standard": "Disaster Prevention",
+                  "judgement_criteria": "The respondent can show an example of countermeasure and activity against arson, riots, and arson attacks in the store."
+                }
+              ]
             }
           ]
         }
