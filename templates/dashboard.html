@@ -30,11 +30,17 @@
 {% else %}
 
 <!-- Summary cards -->
+{% set wh_all = assessments | selectattr('a.type','eq','warehouse') | list %}
+{% set rt_all = assessments | selectattr('a.type','eq','retail') | list %}
 <div class="row g-3 mb-4">
   <div class="col-6 col-md-3">
     <div class="card p-3 text-center">
       <div class="fs-1 fw-bold text-primary">{{ assessments|length }}</div>
       <div class="text-muted small">Total Assessments</div>
+      <div class="small mt-1">
+        <span class="badge bg-primary">🏭 {{ wh_all|length }}</span>
+        <span class="badge bg-success">🛒 {{ rt_all|length }}</span>
+      </div>
     </div>
   </div>
   <div class="col-6 col-md-3">
@@ -83,8 +89,13 @@
 {% for grp in dash_groups %}
 {% set grp_items = assessments | selectattr('a.type','eq',grp.type) | list %}
 {% if grp_items %}
+{% set grp_done = grp_items | selectattr('scores') | selectattr('scores.overall') | list %}
 <h5 class="fw-bold mt-4 mb-2">{{ grp.label }}
-  <span class="badge bg-{{ grp.color }} align-middle">{{ grp_items|length }}</span></h5>
+  <span class="badge bg-{{ grp.color }} align-middle">{{ grp_items|length }} assessments</span>
+  {% if grp_done %}
+  {% set grp_avg = (grp_done | map(attribute='scores.overall') | list | sum) / grp_done|length %}
+  <span class="badge bg-light text-dark align-middle">Avg {{ "%.2f"|format(grp_avg) }}</span>
+  {% endif %}</h5>
 <div class="card mb-3">
   <div class="card-body p-0">
     <div class="table-responsive">
