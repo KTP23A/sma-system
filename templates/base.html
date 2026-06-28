@@ -8,34 +8,14 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark px-4 mb-4">
+<nav class="navbar navbar-dark px-4 mb-4" style="background:var(--primary);box-shadow:0 3px 12px rgba(84,88,232,.25)">
   <a class="navbar-brand" href="{{ url_for('dashboard') }}">&#9724; SMA System</a>
   <div class="d-flex align-items-center gap-3">
     {% if user %}
-      <!-- Notifications -->
-      <a href="{{ url_for('notifications') }}" class="text-white text-decoration-none position-relative">
-        🔔
-        {% if unread > 0 %}
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:.65rem">
-            {{ unread }}
-          </span>
-        {% endif %}
-      </a>
-      <!-- Role badge -->
-      <span class="badge
-        {% if user.role == 'admin' %}bg-danger
-        {% elif user.role == 'sbu_pic' %}bg-primary
-        {% else %}bg-secondary{% endif %}">
-        {{ user.role|replace('_',' ')|title }}
-      </span>
       <span class="text-white small">{{ user.full_name }}</span>
-      {% if user.role in ('admin', 'sbu_pic') %}
-        <a href="{{ url_for('new_assessment') }}" class="btn btn-warning btn-sm">+ New</a>
-      {% endif %}
-      {% if user.role == 'admin' %}
-        <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-light btn-sm">⚙ Admin</a>
-      {% endif %}
-      <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+      <a href="{{ url_for('new_assessment') }}" class="btn btn-warning btn-sm">+ New</a>
+      <a href="{{ url_for('analysis') }}" class="btn btn-outline-light btn-sm">📊 Analysis</a>
+      <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-light btn-sm">⚙ Admin</a>
     {% endif %}
   </div>
 </nav>

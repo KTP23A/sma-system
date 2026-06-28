@@ -67,7 +67,7 @@
     <div class="card p-4 text-center h-100">
       <div class="text-muted small mb-1">Overall Safety Maturity</div>
       {% if scores.overall %}
-        {% set lv = scores.overall|round|int %}
+        {% set lv = scores.overall|int %}
         <div class="score-circle mx-auto level-badge-{{ lv }}" style="width:100px;height:100px;font-size:2.2rem">{{ "%.2f"|format(scores.overall) }}</div>
         <div class="mt-2 fw-bold fs-5">{{ scores.level_name }}</div>
       {% else %}
@@ -86,7 +86,7 @@
       <div class="text-muted small mb-1">Safety Awareness</div>
       <div class="text-muted small">(Leadership + TM Engagement)</div>
       {% if scores.safety_awareness %}
-        {% set lv = scores.safety_awareness|round|int %}
+        {% set lv = scores.safety_awareness|int %}
         <div class="score-circle mx-auto level-badge-{{ lv }} mt-2">{{ "%.2f"|format(scores.safety_awareness) }}</div>
         <div class="mt-2 fw-semibold">{{ level_names.get(lv,'') }}</div>
       {% else %}<div class="text-muted mt-4">—</div>{% endif %}
@@ -97,7 +97,7 @@
       <div class="text-muted small mb-1">System Implementation</div>
       <div class="text-muted small">(Organization + System)</div>
       {% if scores.system_implementation %}
-        {% set lv = scores.system_implementation|round|int %}
+        {% set lv = scores.system_implementation|int %}
         <div class="score-circle mx-auto level-badge-{{ lv }} mt-2">{{ "%.2f"|format(scores.system_implementation) }}</div>
         <div class="mt-2 fw-semibold">{{ level_names.get(lv,'') }}</div>
       {% else %}<div class="text-muted mt-4">—</div>{% endif %}

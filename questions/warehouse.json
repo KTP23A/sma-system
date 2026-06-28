@@ -18,7 +18,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent can explain how safety procedures have been evaluated to ensure they are compliant with OH&S regulations."
             },
             {
               "id": "WH-LD-005",
@@ -29,7 +30,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site leadership follows safety lagging OH&S KPIs, and give directions to review the safety program if necessary."
             },
             {
               "id": "WH-LD-006",
@@ -40,7 +42,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The cause of incident in the most recent year has been determined and the countermeasures are followed-up by the termination."
             },
             {
               "id": "WH-LD-012",
@@ -51,7 +54,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site manager can show disciplinary procedure or documented examples (e.g. consequence matrix) of carrying out disciplinary action, etc."
             },
             {
               "id": "WH-LD-013",
@@ -62,7 +66,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site leadership follow not only lagging indicator(e.g. # of injuries), but also leading indicators, and give directions to review and/or improve safety programs if necessary."
             },
             {
               "id": "WH-LD-015",
@@ -74,7 +79,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent can explain an example that was changed from annual planning for previous year and its reason."
             },
             {
               "id": "WH-LD-021",
@@ -85,7 +91,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site manager can explain how he/she motivate teammates to find best practices and how he/she allocate resources to implement them. (e.g. Teammates join in safety meeting where other site's members are present)"
             },
             {
               "id": "WH-LD-022",
@@ -96,7 +103,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent can give example of Safety and DP trends which the management team referred."
             }
           ]
         },
@@ -114,7 +122,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The H&S and DP regulations are listed up and actions in the site are determined. Besides, the site is compliant with these regulations."
             },
             {
               "id": "WH-LD-007",
@@ -126,7 +135,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site leadership can show a plan to improve safety activities in the site and explain that the plan is implemented."
             },
             {
               "id": "WH-LD-010",
@@ -137,7 +147,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site manager could both explain why teammate involvement in safety management is important and can provide examples of actions taken to promote this and the results of those actions."
             },
             {
               "id": "WH-LD-011",
@@ -148,7 +159,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The meeting minute indicates that the meetings are held at planned intervals and the participants discuss the improvement of safety on site."
             },
             {
               "id": "WH-LD-014",
@@ -160,7 +172,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondents can show an example of ongoing safety project with allocated budgets."
             },
             {
               "id": "WH-LD-018",
@@ -171,7 +184,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondents can give examples of industry best practices, where they came from and how they are being implemented on site."
             }
           ]
         },
@@ -188,7 +202,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can show examples that the site manager addresses at the morning assembly, roll call, etc."
             },
             {
               "id": "WH-LD-004",
@@ -199,7 +214,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents stated that site leadership (e.g. site manager and supervisor) was involved in the root cause analysis process when a serious incident (lost-time-injury, fire accident, etc.) occurred"
             },
             {
               "id": "WH-LD-008",
@@ -210,7 +226,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondents can show an example that they provide feedbacks to teammates to ensure adherence to safety rules, such as procedures, standards, etc."
             },
             {
               "id": "WH-LD-009",
@@ -221,7 +238,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can explain their own responsibilities for safety. (e.g. participation of safety activity, etc.)"
             },
             {
               "id": "WH-LD-016",
@@ -232,7 +250,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site manager can explain an example of this kind of reward in the most recent year."
             },
             {
               "id": "WH-LD-017",
@@ -243,7 +262,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The plan clarifies the Safety and/or DP items and their presumed recourses to implement."
             },
             {
               "id": "WH-LD-019",
@@ -254,7 +274,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Meeting minute indicate that the respondent contributes to discussion in the safety meeting. (e.g. Site managers meeting in SBU, meeting in the local safety association, etc.)"
             },
             {
               "id": "WH-LD-020",
@@ -265,7 +286,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents confirm that they feel safety is essential. They are comfortable stopping work when they feel their safety is compromised."
             }
           ]
         }
@@ -288,7 +310,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents are trained to recognize the H&S risks applicable in the site."
             },
             {
               "id": "WH-TM-003",
@@ -299,7 +322,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Site manager stated that they have an impact on teammate safety. They can show an example of their contribution for safety. (e.g. They patrol on site, prioritize safety measures, allocate budget, etc.)"
             },
             {
               "id": "WH-TM-005",
@@ -311,7 +335,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents"
             },
             {
               "id": "WH-TM-008",
@@ -322,7 +347,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can explain their site/job safety rules and why they are important."
             },
             {
               "id": "WH-TM-011",
@@ -333,7 +359,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can explain the greatest potential risks in their work and controls to mitigate these risks."
             },
             {
               "id": "WH-TM-015",
@@ -344,7 +371,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent can explain how to share H&S risks and control to mitigate these risks between sites. (e.g. Teammates introduce their safety activities to other site teammates.)"
             }
           ]
         },
@@ -361,7 +389,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents know that safety is considered more important than operation."
             },
             {
               "id": "WH-TM-006",
@@ -372,7 +401,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can explain the actions required to prevent the reoccurrence of incident that occurred in their site. They stated that they are involved in the required actions."
             },
             {
               "id": "WH-TM-010",
@@ -383,7 +413,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "On-site observation indicates that teammates follow their site/job safety rules."
             },
             {
               "id": "WH-TM-013",
@@ -394,7 +425,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Materials indicate that teammates propose improvements of H&S risks and risk mitigation measures at the creations or revisions of work standards, training materials, etc."
             },
             {
               "id": "WH-TM-016",
@@ -405,7 +437,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents stated that unsafe behavior is unacceptable and anyone acting unsafe will be corrected by their peers."
             }
           ]
         },
@@ -422,7 +455,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent can show an example that they explain safety requirements based on regulation to teammates."
             },
             {
               "id": "WH-TM-007",
@@ -434,7 +468,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents are informed of recent safety incidents in their site and countermeasures. Their statements match incident records."
             },
             {
               "id": "WH-TM-009",
@@ -445,7 +480,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents agreed that they are regularly reminded and trained of their site/job safety rules."
             },
             {
               "id": "WH-TM-012",
@@ -456,7 +492,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they took the training on residual risks based on the work standard."
             },
             {
               "id": "WH-TM-014",
@@ -467,7 +504,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Meeting material or minute indicate that H&S risks and countermeasures of other sites have been shared at the safety meeting in your site."
             }
           ]
         }
@@ -490,7 +528,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Compliance evaluation and training records in the most recent year indicate that H&S training required by regulation has been provided to all teammates."
             },
             {
               "id": "WH-OR-005",
@@ -501,7 +540,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "A review of the last incident (injury, disease/illness, near-miss) record show that the incident was investigated by qualified people (managements or site safety), and the identified causes were added to the risk tracking."
             },
             {
               "id": "WH-OR-009",
@@ -512,7 +552,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The site manager or site safety (if available) could describe how the H&S rule's effectiveness is evaluated, who is involved in the evaluation process and how the processes are improved after evaluation."
             },
             {
               "id": "WH-OR-014",
@@ -523,7 +564,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Safety instructions and safety training are included in the work/job specific training materials."
             },
             {
               "id": "WH-OR-019",
@@ -535,7 +577,8 @@
                 "interview",
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The site manager said that risk assessment is always done in the early planning stages for upcoming projects/work sessions and could show the recent RA result ."
             }
           ]
         },
@@ -552,7 +595,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents can show items recently reported to him/her and the examples of follow-ups associated with the reports."
             },
             {
               "id": "WH-OR-003",
@@ -563,7 +607,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Notifications board, document record etc show that updated/created H&S/DP rules are communicated to teammates."
             },
             {
               "id": "WH-OR-006",
@@ -574,7 +619,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents could describe the most recent H&S initiatives (key projects or activities) to improve H&S management on site, and knew if the results were positive or negative."
             },
             {
               "id": "WH-OR-010",
@@ -585,7 +631,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they would report specific safety issues to their site leadership (e.g. site manager and supervisor) ."
             },
             {
               "id": "WH-OR-011",
@@ -596,7 +643,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All supervisors could explain system and scope of management of change (4M changes)."
             },
             {
               "id": "WH-OR-013",
@@ -607,7 +655,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The respondent could show an example that he/she discuss the injury/illness/fire risks associated with upcoming changes to work processes with internal/external safety expert."
             },
             {
               "id": "WH-OR-016",
@@ -618,7 +667,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "All respondents stated that management had taken specific actions to address hazards they reported, and these actions have been communicated to them."
             },
             {
               "id": "WH-OR-020",
@@ -629,7 +679,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Regarding the safety management system in the sites, the respondent can explain evaluation results by third party (external, SBU Safety or Logistic Top management), feedback, and the actions."
             }
           ]
         },
@@ -646,7 +697,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The site manager can explain their roles and responsibilities on safety activity in their teams."
             },
             {
               "id": "WH-OR-007",
@@ -657,7 +709,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "A review of the last incident (injury, disease/illness, near-miss) record show evidence that site management and Logistic safety dept. collaborate to prevent reoccurrence of the accident by addressing the causation."
             },
             {
               "id": "WH-OR-008",
@@ -668,7 +721,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The safety training material for newcomers includes frequent incidents, severe risks and their controls."
             },
             {
               "id": "WH-OR-012",
@@ -679,7 +733,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Document history of H&S procedures and standards from the last year showed that safety processes had been updated to address newly identified risks and controls based on review."
             },
             {
               "id": "WH-OR-015",
@@ -690,7 +745,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "A review of the safety action plans (ex. meeting minutes, RA, etc.) from the most recent safety projects (safety programs or safety activities) show that teammates were involved and consulted."
             },
             {
               "id": "WH-OR-017",
@@ -702,7 +758,8 @@
                 "interview",
                 "onsite"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "Observation in genba showed that teammates are actively conscious of their safety and the safety of others. Activities for improvement were conducted in CFT being conscious of safety for not only their selves, but also teammates."
             },
             {
               "id": "WH-OR-018",
@@ -713,7 +770,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": null
+              "standard": null,
+              "judgement_criteria": "The site manager could explain an example that they voluntarily discussed safety with managers from other sites or external parties to improve safety knowledge."
             }
           ]
         }
@@ -736,7 +794,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "Training records show all teammates on site have been given training on the Safety Mission Statement. Training records show that required employees have received training for high risk activities."
             },
             {
               "id": "WH-SY-002",
@@ -747,7 +806,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "The reapondent can explain the regulations concerning safety training."
             },
             {
               "id": "WH-SY-021",
@@ -758,7 +818,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "There are knowledge/skill matrix table for each occupation/role, necessary training is described, and the implementation or plan of training can be confirmed."
             },
             {
               "id": "WH-SY-022",
@@ -769,7 +830,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "Training documents indicate that training was reviewed after an accident."
             },
             {
               "id": "WH-SY-042",
@@ -780,7 +842,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "Revision history of treaining documents indicate that training have been adjusted based on relevant safety control changes."
             },
             {
               "id": "WH-SY-064",
@@ -791,7 +854,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "Training material and training records indicate that new identified risks are added to the training material and communicated to teammates."
             },
             {
               "id": "WH-SY-086",
@@ -802,7 +866,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "The respondent can show an example of trainings being updated with industry best practices."
             },
             {
               "id": "WH-SY-087",
@@ -814,7 +879,8 @@
                 "interview",
                 "document"
               ],
-              "standard": "Training and Education"
+              "standard": "Training and Education",
+              "judgement_criteria": "There is evidence of pre and post training assessments. The respondent can show an example of the improvement based on the assessment results."
             }
           ]
         },
@@ -831,7 +897,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "The site emergency response policy/procedure has clarified the roles & responsibilities of each emerfency responders and been checked by the safety team to ensure the compliance with legal & local regulation."
             },
             {
               "id": "WH-SY-023",
@@ -842,7 +909,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "There is evidence of an emergency drill performed within the last 12 months."
             },
             {
               "id": "WH-SY-024",
@@ -854,7 +922,8 @@
                 "interview",
                 "document"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "The emergency response procedure was updated based on the review on the drills or performance of actual emergencies."
             },
             {
               "id": "WH-SY-043",
@@ -865,7 +934,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "Multiple potential scenarios are identified and each responses have been defined with clear rules and guidelines."
             },
             {
               "id": "WH-SY-065",
@@ -876,7 +946,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "Drills on every identified potential scenarios have been performed in each shifts."
             },
             {
               "id": "WH-SY-088",
@@ -887,7 +958,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Emergency Planning"
+              "standard": "Emergency Planning",
+              "judgement_criteria": "The respondent can show an example that the best practices in other sites are incorporated into the site procedure for emergency. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -904,7 +976,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "There is no difference between the language used by teammates and the language used in the sampled communication record or training material. (or Multiple forms are used and language differences are accounted for.)"
             },
             {
               "id": "WH-SY-025",
@@ -915,7 +988,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "The respondent indicates that the causes of incidents are communicated to him/her and how these information are communicated."
             },
             {
               "id": "WH-SY-044",
@@ -926,7 +1000,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "The sampled teammates all say that they are well informed and can explain how the information communicated contributes to their safety."
             },
             {
               "id": "WH-SY-066",
@@ -937,7 +1012,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "The respondent is able to provide at least one recent example of top-down communication on hazards and risks."
             },
             {
               "id": "WH-SY-067",
@@ -948,7 +1024,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "The respondent is able to provide at least one recent example of bottom-up communication on hazards and risks."
             },
             {
               "id": "WH-SY-089",
@@ -959,7 +1036,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Communication"
+              "standard": "Communication",
+              "judgement_criteria": "The respondent can show an example of record that improvements against unsafe conditions or near misses TM reported are communicated."
             }
           ]
         },
@@ -977,7 +1055,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "Training record indicates that the teammates who perform servicing or maintenance tasks have been trained on LOTO. On-site observation indicate that service and maintenance teammates who need LOTO have locks and tags. LOTO"
             },
             {
               "id": "WH-SY-026",
@@ -989,7 +1068,8 @@
                 "interview",
                 "document"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "The respondent can show an example that LOTO standard (site standard, ECP, work standard, etc.) is reviewed in response to incidents, audit findings, authority guidance and concerns raised by teammates. The respondence agrees with the revision history of LOTO standard."
             },
             {
               "id": "WH-SY-045",
@@ -1000,7 +1080,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "LOTO standard (site standard, ECP, work standard, etc.) was followed by all teammates observed performing maintenance/operation tasks that required LOTO. In case that LOTO operation cannot be observed on site, confirm site tour records, etc. LOTO"
             },
             {
               "id": "WH-SY-046",
@@ -1011,7 +1092,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "The respondent can show any sampled evidence where check results are filled out. LOTO"
             },
             {
               "id": "WH-SY-068",
@@ -1022,7 +1104,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "ECP includes all applicable energy source (electrical, mechanical, pneumatic, etc.) has been prepared for all applicable machinery. LOTO"
             },
             {
               "id": "WH-SY-090",
@@ -1033,7 +1116,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "LOTO Standard"
+              "standard": "LOTO Standard",
+              "judgement_criteria": "The respondent can show an example that the best practices on LOTO have been gathered from other sites, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1050,7 +1134,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "All respondents know the applicable All Bridgestone Safety Rules in their job positions."
             },
             {
               "id": "WH-SY-027",
@@ -1061,7 +1146,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "The respondent can show an example that Site Safety Rules are reviewed and improved."
             },
             {
               "id": "WH-SY-047",
@@ -1072,7 +1158,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "All respondents can demonstrate knowledge of the Safety Rules and explain key points on safety in the work standard."
             },
             {
               "id": "WH-SY-069",
@@ -1083,7 +1170,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "Therespondent can show an example that they collaboratd with management to evaluate risks in the work area."
             },
             {
               "id": "WH-SY-070",
@@ -1094,7 +1182,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "The respondent can give an example that safety rules were updated after risk evaluation with teammates."
             },
             {
               "id": "WH-SY-071",
@@ -1105,7 +1194,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "The respondent can show an example that thier feedback was used to revise the Safety Rules."
             },
             {
               "id": "WH-SY-091",
@@ -1116,7 +1206,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Safety Rules"
+              "standard": "Safety Rules",
+              "judgement_criteria": "The respondent can show an example that the respondent can show an example that the best practices on Safety rules have been gathered from other sites/industry, and it has been incorporated into the site procedure. Or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1133,7 +1224,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Work at Height"
+              "standard": "Work at Height",
+              "judgement_criteria": "There is the training"
             },
             {
               "id": "WH-SY-028",
@@ -1144,7 +1236,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Work at Height"
+              "standard": "Work at Height",
+              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving work at height which occurred in the site."
             },
             {
               "id": "WH-SY-048",
@@ -1155,7 +1248,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Work at Height"
+              "standard": "Work at Height",
+              "judgement_criteria": "On-site observaion indicate that all observed teammates show good application of Work at height safety rules. In case that Work at height operation cannot be observed on site, confirm site tour records, etc."
             },
             {
               "id": "WH-SY-072",
@@ -1166,7 +1260,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Work at Height"
+              "standard": "Work at Height",
+              "judgement_criteria": "The respondent can explain the recent identified risks and their follow-up actions."
             },
             {
               "id": "WH-SY-092",
@@ -1177,7 +1272,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Work at Height"
+              "standard": "Work at Height",
+              "judgement_criteria": "The respondent can show an example that the best practices on Work at height have been gathered from other sites/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other plants."
             }
           ]
         },
@@ -1194,7 +1290,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "There is the training"
             },
             {
               "id": "WH-SY-029",
@@ -1205,7 +1302,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving mobile equipment which occurred in the site."
             },
             {
               "id": "WH-SY-049",
@@ -1216,7 +1314,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "On-site observaion indicate that all observed teammates show good application of mobile equipment safety rules. In case that forklift operation cannot be observed on site, confirm site tour records, etc."
             },
             {
               "id": "WH-SY-073",
@@ -1227,7 +1326,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The respondent can explain the recent identified risks and their follow-up actions."
             },
             {
               "id": "WH-SY-074",
@@ -1238,7 +1338,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The respondent can show an example that thier feedback is used to revise the rule or procedure for mobile equipment."
             },
             {
               "id": "WH-SY-093",
@@ -1249,7 +1350,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Mobile Equipment"
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The respondent can show an example that the best practices on mobile equipment have been gathered from other sites/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other plants."
             }
           ]
         },
@@ -1266,7 +1368,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "There is evidence that the need of 3S has been communicated to teammates. 3S"
             },
             {
               "id": "WH-SY-010",
@@ -1277,7 +1380,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "3S Documents are displayed in work areas. 3S"
             },
             {
               "id": "WH-SY-030",
@@ -1288,7 +1392,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "3S leaders has been assigned and there is evidence of 3S self check performed by the 3S leaders. 3S"
             },
             {
               "id": "WH-SY-050",
@@ -1299,7 +1404,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "All inspected work areas were cleaned (no debris on floor, no spillages) as defined in the 3S visual standard, and there were no unnecessary objects or plans to remove unnecessary objects."
             },
             {
               "id": "WH-SY-051",
@@ -1310,7 +1416,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "All necessary items are stored in their clearly marked space/position."
             },
             {
               "id": "WH-SY-075",
@@ -1322,7 +1429,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "On-site observation indicated that 3S activity for the improvement of 3S level has been proceeded. or 3S documents indicated that improvement of 3S level can be confirmed or 3S level is over 4."
             },
             {
               "id": "WH-SY-094",
@@ -1333,7 +1441,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "3S"
+              "standard": "3S",
+              "judgement_criteria": "The respondent can show an example that the best practices on 3S have been gathered from other sites/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1350,7 +1459,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "The respondent can explain the regulations and give at least one method for ensuring compliance."
             },
             {
               "id": "WH-SY-012",
@@ -1361,7 +1471,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "There is a crane and hoist safety standard that highlights the legal requirements."
             },
             {
               "id": "WH-SY-031",
@@ -1372,7 +1483,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "There is an official list of licensed crane operators that highlights the expiry dates of their licenses."
             },
             {
               "id": "WH-SY-032",
@@ -1383,7 +1495,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "All respondents can explain sampled countermeasures against hoist & crane incident which occurred in the site."
             },
             {
               "id": "WH-SY-052",
@@ -1394,7 +1507,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "All crane operators work according to the crane and hoist safety rules stated in the crane and hoist procedure (Operator and others were kept away from hoisted loads, there was a work leader that gave hand signals, hoisted load's stability was checked with a lift of a few inches, etc.). In case that hoist and crane operation cannot be observed on site, confirm site tour records, etc."
             },
             {
               "id": "WH-SY-076",
@@ -1405,7 +1519,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "Crane operators observe each other and provide feedback. Or Information on how to operate crane safely has been shared."
             },
             {
               "id": "WH-SY-095",
@@ -1416,7 +1531,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Crane and Hoist"
+              "standard": "Crane and Hoist",
+              "judgement_criteria": "The respondent can show an example that the best practices on crane and hoist have been gathered from other sites/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1433,7 +1549,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "There is evidence of a defined KY process that been communicated with teammates."
             },
             {
               "id": "WH-SY-033",
@@ -1444,7 +1561,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "There are an officially appointed KY leader and KY representatives on site."
             },
             {
               "id": "WH-SY-053",
@@ -1455,7 +1573,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "KYT records indicate that all teammates and temporary staff have participated in KYT within the last 3 months. KYT"
             },
             {
               "id": "WH-SY-054",
@@ -1466,7 +1585,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "The respondent can provide evidence of a improvement of safety measures for hazards or a safety rule that was recently changed because of the KY system's recommendations."
             },
             {
               "id": "WH-SY-077",
@@ -1477,7 +1597,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "KYT records indicate that KYT is completed periodically in accordance with SBU and/or site standard by everyone on site. KYT"
             },
             {
               "id": "WH-SY-078",
@@ -1488,7 +1609,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "The respondent can explain the evaluation result of KYT activity and improvement discussed with the site manager last time."
             },
             {
               "id": "WH-SY-096",
@@ -1499,7 +1621,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "KY"
+              "standard": "KY",
+              "judgement_criteria": "The respondent can show an example that the best practices and/or risks found in other sites during KY have been gathered, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other ites."
             }
           ]
         },
@@ -1516,7 +1639,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "The respondent can explain the key points which need to pay attention to in the tire inflation process."
             },
             {
               "id": "WH-SY-034",
@@ -1527,7 +1651,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "There is a clearly marked tire inflation area."
             },
             {
               "id": "WH-SY-035",
@@ -1538,7 +1663,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "All the required safety equipment as stated in the Tire Inflation Operation procedure is in the inflation area."
             },
             {
               "id": "WH-SY-055",
@@ -1549,7 +1675,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "All observed operators work in accordance to the Tire Inflation procedure's safety rules. In case that tire inflation operation cannot be observed on site, confirm site tour records, etc."
             },
             {
               "id": "WH-SY-079",
@@ -1560,7 +1687,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "Sampled teammates can all give some examples of how the H&S risks in the tire inflation area are mitigated."
             },
             {
               "id": "WH-SY-097",
@@ -1571,7 +1699,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Tire Inflation Operation"
+              "standard": "Tire Inflation Operation",
+              "judgement_criteria": "The respondent can show an example that the best practices on tire inflation have been gathered from other sites/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1588,7 +1717,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "There is evidence to certify that contractor employees who perform unload/load the tires have required skills. (e.g. mobile equipment) BS"
             },
             {
               "id": "WH-SY-036",
@@ -1599,7 +1729,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "There is evidence that pre-work meetings are conducted prior to the start of work, risks are identified and risk mitigation measures/administrative controls are defined."
             },
             {
               "id": "WH-SY-056",
@@ -1610,7 +1741,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "There are records that all contractors received H&S orientation/training from BS prior to the work. BS"
             },
             {
               "id": "WH-SY-057",
@@ -1621,7 +1753,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "The material of contractor H&S orientation/training includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities."
             },
             {
               "id": "WH-SY-080",
@@ -1632,7 +1765,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "There is evidence that BS teammates perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted. BS"
             },
             {
               "id": "WH-SY-098",
@@ -1643,7 +1777,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Contractor management"
+              "standard": "Contractor management",
+              "judgement_criteria": "The respondent can show an example that the best practices on contractor management have been gathered from other plants/industry, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other sites."
             }
           ]
         },
@@ -1660,7 +1795,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "Operations requiring manual handling of large tires are properly identified and justified. A working procedure exists for each."
             },
             {
               "id": "WH-SY-017",
@@ -1671,7 +1807,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "Training records show that all relevant people within the site have been given training on the Large Tire Manual Handling Operations procedure."
             },
             {
               "id": "WH-SY-037",
@@ -1682,7 +1819,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "The revision history of the large tire manual handling operations procedure indicate that it was reviewed based on a reported incident"
             },
             {
               "id": "WH-SY-058",
@@ -1693,7 +1831,8 @@
               "audit_methods": [
                 "onsite"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "All observed teammates who execute large tire manual handling comply with its procedure. In case the operation cannot be observed on site during SMA, confirm site tour records, etc."
             },
             {
               "id": "WH-SY-081",
@@ -1704,7 +1843,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "The revision history of the large tire manual handling operations procedure indicate that it was reviewed based on new activities introduced or teammates feedback"
             },
             {
               "id": "WH-SY-082",
@@ -1715,7 +1855,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "Training records show that teammates are re-trained in the large tire manual handling operations procedure when required (e.g. returning from absence, changes in procedure)"
             },
             {
               "id": "WH-SY-099",
@@ -1726,7 +1867,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Large Tire Manual Handling Operation"
+              "standard": "Large Tire Manual Handling Operation",
+              "judgement_criteria": "The respondent can show an example that the best practices on Large Tire Manual Handling Operations have been gathered from industry and have been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other sites."
             }
           ]
         },
@@ -1743,7 +1885,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "There is evidence that OH&S and/or Fire risks in the site are evaluated."
             },
             {
               "id": "WH-SY-038",
@@ -1754,7 +1897,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "There is evidence that machines risks in the site are evaluated."
             },
             {
               "id": "WH-SY-039",
@@ -1765,7 +1909,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "There is the implementation plan of risk control on risk category III & IV."
             },
             {
               "id": "WH-SY-059",
@@ -1776,7 +1921,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "There is evidence that checmical & ergonomics risks in the site are evaluated."
             },
             {
               "id": "WH-SY-060",
@@ -1788,7 +1934,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "A review of sampled risk assessment record shows that the majority of risks are covered by administrative and engineering controls."
             },
             {
               "id": "WH-SY-083",
@@ -1799,7 +1946,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "The respondent can show an example of risk assessment documents which are periodically updated."
             },
             {
               "id": "WH-SY-100",
@@ -1810,7 +1958,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Integrated risk assessment"
+              "standard": "Integrated risk assessment",
+              "judgement_criteria": "The respondent can show an example that the best practices or new technology have been gathered from industry and have been incorporated to mitigate the OH&S and Fire risks on site. Or there is a evidence of information exchange and the comparison with other sites."
             }
           ]
         },
@@ -1827,7 +1976,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "The respondents can explain the person to whom they have to report."
             },
             {
               "id": "WH-SY-020",
@@ -1838,7 +1988,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "The respondents can show an example of incident that occurred at other site"
             },
             {
               "id": "WH-SY-040",
@@ -1849,7 +2000,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "There is evidence of an incident report with determined countermeasures."
             },
             {
               "id": "WH-SY-041",
@@ -1860,7 +2012,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "There is evidence of investigation results on site based on reurrence prevention request"
             },
             {
               "id": "WH-SY-061",
@@ -1871,7 +2024,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "There is evidence of an incident report with root cause analysis. JS"
             },
             {
               "id": "WH-SY-062",
@@ -1883,7 +2037,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "Countermeasures are being implemented on site following incidents reports"
             },
             {
               "id": "WH-SY-063",
@@ -1894,7 +2049,8 @@
               "audit_methods": [
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "There is evidenve of implementation plan to take countermeasures for similar incident preventions."
             },
             {
               "id": "WH-SY-084",
@@ -1906,7 +2062,8 @@
                 "interview",
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "The respondent can show an evidence that periodical review is conducted to verify effectiveness of the implemented countermasures."
             },
             {
               "id": "WH-SY-085",
@@ -1918,7 +2075,8 @@
                 "onsite",
                 "document"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "Countermeasures are being implemented on site following recurrence prevention requests"
             },
             {
               "id": "WH-SY-101",
@@ -1929,7 +2087,8 @@
               "audit_methods": [
                 "interview"
               ],
-              "standard": "Integrated incidents management"
+              "standard": "Integrated incidents management",
+              "judgement_criteria": "The respondent can show an example that the best practices have been gathered from other sites/industry, and it has been incorporated into the contermeasures. or There is a evidence of the comparison with other sites."
             }
           ]
         }

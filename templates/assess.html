@@ -54,10 +54,33 @@
 
     <!-- ── Filters ──────────────────────────────────────────────────── -->
     <div class="card mb-3 p-3 sticky-filter">
-      <div class="d-flex align-items-center gap-2 mb-2">
-        <span class="fw-semibold small">Filter:</span>
+      <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+        <span class="input-group input-group-sm" style="width:auto">
+          <span class="input-group-text">🔍</span>
+          <input type="search" id="q-search" class="form-control form-control-sm"
+                 placeholder="Search questions or ID..." style="min-width:200px"
+                 oninput="applyFilters()">
+        </span>
         <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
         <span id="active-filter-tags" class="d-flex flex-wrap gap-1"></span>
+        <span class="ms-auto d-flex align-items-center gap-2">
+          <span class="fw-semibold small">Group by:</span>
+          <select id="group-mode" class="form-select form-select-sm" style="width:auto" onchange="setGroupMode(this.value)">
+            <option value="pillar">Pillar (default)</option>
+            <option value="interview">Interview sequence</option>
+          </select>
+          <span id="iv-part-wrap" style="display:none">
+            <span class="fw-semibold small ms-2">Show part:</span>
+            <select id="iv-part" class="form-select form-select-sm" style="width:auto" onchange="showIvPart(this.value)">
+              <option value="all">All parts</option>
+              <option value="mgr">1 · Manager</option>
+              <option value="sv">2 · Supervisor</option>
+              <option value="tm">3 · Teammate</option>
+              <option value="genba">4 · Genba</option>
+              <option value="doc">5 · Documents</option>
+            </select>
+          </span>
+        </span>
       </div>
       <div class="row g-2">
 
@@ -225,6 +248,20 @@
                   <!-- Question text -->
                   <div class="mb-2 fw-semibold">{{ q.text }}</div>
 
+                  <!-- Judgement criteria (collapsible) -->
+                  {% if q.judgement_criteria %}
+                  <div class="mb-2">
+                    <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none criteria-toggle"
+                            onclick="toggleCriteria(this)" style="font-size:.8rem">
+                      ⓘ Show criteria ▾
+                    </button>
+                    <div class="criteria-body small text-muted mt-1 px-2 py-1 rounded"
+                         style="display:none; background:#f3f4ff; border-left:3px solid #5458e8">
+                      {{ q.judgement_criteria }}
+                    </div>
+                  </div>
+                  {% endif %}
+
                   <!-- Metadata badges -->
                   <div class="d-flex flex-wrap gap-1 mb-2">
                     {% for m in q.audit_methods %}
@@ -351,16 +388,16 @@
           <div class="d-flex justify-content-around align-items-center">
             <div class="text-center">
               <div class="small text-muted mb-1">GC Self</div>
-              <div class="score-circle mx-auto level-badge-{{ (self_scores.overall|round|int) if self_scores and self_scores.overall else 0 }}"
+              <div class="score-circle mx-auto level-badge-{{ (self_scores.overall|int) if self_scores and self_scores.overall else 0 }}"
                    style="width:60px;height:60px;font-size:1.2rem">
                 {{ "%.1f"|format(self_scores.overall) if self_scores and self_scores.overall else "—" }}
               </div>
-              <div class="small mt-1">{{ level_names.get((self_scores.overall|round|int) if self_scores and self_scores.overall else 0, '—') }}</div>
+              <div class="small mt-1">{{ level_names.get((self_scores.overall|int) if self_scores and self_scores.overall else 0, '—') }}</div>
             </div>
             <div class="text-muted fs-4">→</div>
             <div class="text-center">
               <div class="small text-muted mb-1">Validation</div>
-              <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+              <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|int if scores.overall else 0 }}"
                    style="width:60px;height:60px;font-size:1.2rem">
                 {{ "%.1f"|format(scores.overall) if scores.overall else "—" }}
               </div>
@@ -370,7 +407,7 @@
           {% else %}
           <!-- Normal mode -->
           <div class="mb-1 small text-muted">Overall Safety Maturity</div>
-          <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|round|int if scores.overall else 0 }}"
+          <div id="overall-score-circle" class="score-circle mx-auto level-badge-{{ scores.overall|int if scores.overall else 0 }}"
                style="width:70px;height:70px;font-size:1.5rem">
             {{ "%.2f"|format(scores.overall) if scores.overall else "—" }}
           </div>
@@ -501,6 +538,25 @@ let commentTimers = {};
 
 // ── Auto-save answer via AJAX ─────────────────────────────────────────────────
 document.querySelectorAll('.answer-radio input[type=radio]').forEach(radio => {
+  // The radio is hidden; the user clicks its <label>. Record the checked state
+  // on the label's pointerdown, BEFORE the click toggles it.
+  const lbl = document.querySelector('label[for="' + radio.id + '"]');
+  if (lbl) {
+    lbl.addEventListener('pointerdown', function() { radio._wasChecked = radio.checked; });
+  }
+  // Click the already-selected answer again → undo (back to unanswered)
+  radio.addEventListener('click', function() {
+    if (this._wasChecked) {
+      this.checked = false;
+      this._wasChecked = false;
+      const qid = this.name;
+      const comment = document.getElementById('cmt-' + qid)?.value || '';
+      const row = document.getElementById('qrow-' + qid);
+      row.setAttribute('data-answer', '');
+      updateRowColor(row, '');
+      saveAnswer(qid, '', comment);
+    }
+  });
   radio.addEventListener('change', function() {
     const qid = this.name;
     const answer = this.value;
@@ -645,6 +701,10 @@ function applyFilters() {
   const fStandards = getChecked('dd-standard');
   const fStatuses = getChecked('dd-status');
 
+  // In interview mode, a selected "Show part" also restricts which rows show
+  const partActive = document.getElementById('interview-groups') && window.ivPart && window.ivPart !== 'all';
+  const query = (document.getElementById('q-search')?.value || '').trim().toLowerCase();
+
   let visible = 0;
   document.querySelectorAll('.question-row').forEach(row => {
     const pillar = row.getAttribute('data-pillar');
@@ -657,6 +717,9 @@ function applyFilters() {
     const matchStatus = fStatuses.length === 0 || fStatuses.some(s =>
       s === 'unanswered' ? answer === '' : answer === s
     );
+    const matchSearch = query === '' ||
+      (row.getAttribute('data-qid') || '').toLowerCase().includes(query) ||
+      (row.textContent || '').toLowerCase().includes(query);
 
     const show =
       (fPillars.length === 0 || fPillars.includes(pillar)) &&
@@ -664,6 +727,8 @@ function applyFilters() {
       (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
       (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy)) &&
       (fStandards.length === 0 || fStandards.includes(standard)) &&
+      (!partActive || row.dataset.bucket === window.ivPart) &&
+      matchSearch &&
       matchStatus;
 
     row.style.display = show ? '' : 'none';
@@ -682,13 +747,129 @@ function applyFilters() {
       .some(r => r.style.display !== 'none');
     sec.style.display = anyVisible ? '' : 'none';
   });
+  // Collapse empty interview-sequence groups + honour the "Show part" selector
+  document.querySelectorAll('.iv-group').forEach(g => {
+    const anyVisible = Array.from(g.querySelectorAll('.question-row'))
+      .some(r => r.style.display !== 'none');
+    const inPart = (window.ivPart === undefined || window.ivPart === 'all' || g.dataset.bucket === window.ivPart);
+    g.style.display = (anyVisible && inPart) ? '' : 'none';
+  });
+}
+
+function showIvPart(val) {
+  window.ivPart = val;
+  applyFilters();
+}
+
+// ── Group by: Pillar (default) ⟷ Interview sequence ───────────────────────────
+// Non-destructive: moves the live .question-row nodes (answer buttons, autosave,
+// comments all intact) into session buckets, and restores them exactly on switch back.
+const IV_SESSIONS = [
+  { key:'mgr',  label:'1 · Manager interview',         bg:'#EEEDFE', fg:'#26215C' },
+  { key:'sv',   label:'2 · Supervisor / floor leader', bg:'#E1F5EE', fg:'#04342C' },
+  { key:'tm',   label:'3 · Teammate interview',        bg:'#FBEAF0', fg:'#4B1528' },
+  { key:'genba',label:'4 · Genba / observation',       bg:'#FAEEDA', fg:'#412402' },
+  { key:'doc',  label:'5 · Document review',           bg:'#FAECE7', fg:'#4A1B0C' },
+];
+// Respondent-aware bucketing — works for both warehouse and retail role names
+function ivBucket(row) {
+  const methods = (row.getAttribute('data-methods') || '').split(',');
+  const who = row.getAttribute('data-answered-by') || '';
+  if (methods.includes('onsite') || /tour|observation/i.test(who)) return 'genba';
+  if (methods.includes('interview')) {
+    if (/teammate/i.test(who)) return 'tm';
+    if (/supervisor|genba operation|leader/i.test(who)) return 'sv';
+    return 'mgr';   // site/store/safety manager + any other interview respondent
+  }
+  return 'doc';     // document-only
+}
+function setGroupMode(mode) {
+  const pillarParent = document.querySelector('.pillar-section')?.parentNode;
+  if (!pillarParent) return;
+  if (mode === 'interview') {
+    if (!document.getElementById('interview-groups')) {
+      const wrap = document.createElement('div');
+      wrap.id = 'interview-groups';
+      const bucketBodies = {};
+      IV_SESSIONS.forEach(s => {
+        const g = document.createElement('div');
+        g.className = 'iv-group mb-3';
+        g.dataset.bucket = s.key;
+        g.innerHTML =
+          `<div class="px-3 py-2 mb-2 rounded fw-bold" style="background:${s.bg};color:${s.fg}">${s.label}</div>`
+          + `<div class="iv-body"></div>`;
+        wrap.appendChild(g);
+        bucketBodies[s.key] = g.querySelector('.iv-body');
+      });
+      pillarParent.appendChild(wrap);
+      // Read pillar / element / level names from the existing headers before hiding them
+      const pillarName = {}, elemName = {}, levelName = {};
+      document.querySelectorAll('.pillar-section').forEach(s => {
+        pillarName[s.getAttribute('data-pillar')] = (s.querySelector('h5')?.textContent || '').trim();
+      });
+      document.querySelectorAll('.element-card').forEach(c => {
+        elemName[c.getAttribute('data-element')] = (c.querySelector('.card-header .fw-semibold')?.textContent || '').trim();
+      });
+      document.querySelectorAll('#dd-level .ms-item').forEach(l => {
+        const m = (l.textContent || '').trim().match(/L(\d+):\s*(.*)/);
+        if (m) levelName[m[1]] = m[2];
+      });
+      // Move every question row into its session bucket, leaving a home anchor behind
+      document.querySelectorAll('.question-row').forEach(row => {
+        const home = document.createElement('span');
+        home.className = 'qhome';
+        home.dataset.for = row.getAttribute('data-qid');
+        home.style.display = 'none';
+        row.parentNode.insertBefore(home, row);
+        // Inject a "from" context tag (Pillar › Element · Level) at the top of the row
+        const p = row.getAttribute('data-pillar'), e = row.getAttribute('data-element'), lv = row.getAttribute('data-level');
+        const tag = document.createElement('div');
+        tag.className = 'iv-context small text-muted px-3 pt-2';
+        tag.innerHTML = `<i>From:</i> <span class="fw-semibold">${pillarName[p] || p}</span> › ${elemName[e] || e}`
+          + ` · <span class="badge level-badge-${lv}">Level ${lv}: ${levelName[lv] || ''}</span>`;
+        row.insertBefore(tag, row.firstChild);
+        const b = ivBucket(row);
+        row.dataset.bucket = b;
+        bucketBodies[b].appendChild(row);
+      });
+    }
+    document.querySelectorAll('.pillar-section').forEach(s => s.style.display = 'none');
+    document.getElementById('interview-groups').style.display = '';
+    document.getElementById('iv-part-wrap').style.display = '';
+  } else {
+    window.ivPart = 'all';
+    const ivp = document.getElementById('iv-part'); if (ivp) ivp.value = 'all';
+    document.getElementById('iv-part-wrap').style.display = 'none';
+    // Restore rows to their exact original positions
+    const wrap = document.getElementById('interview-groups');
+    if (wrap) {
+      document.querySelectorAll('.iv-context').forEach(t => t.remove());
+      document.querySelectorAll('.qhome').forEach(home => {
+        const row = document.getElementById('qrow-' + home.dataset.for);
+        if (row) home.parentNode.insertBefore(row, home);
+        home.remove();
+      });
+      wrap.remove();
+    }
+    document.querySelectorAll('.pillar-section').forEach(s => s.style.display = '');
+  }
+  applyFilters();
 }
 
 function clearFilters() {
   ['dd-pillar','dd-level','dd-method','dd-answered-by','dd-standard','dd-status'].forEach(id => {
     document.querySelectorAll(`#${id} input[type=checkbox]`).forEach(cb => cb.checked = false);
   });
+  const sb = document.getElementById('q-search'); if (sb) sb.value = '';
   applyFilters();
+}
+
+// ── Judgement criteria toggle ─────────────────────────────────────────────────
+function toggleCriteria(btn) {
+  const body = btn.nextElementSibling;
+  const open = body.style.display === 'none';
+  body.style.display = open ? '' : 'none';
+  btn.innerHTML = open ? 'ⓘ Hide criteria ▴' : 'ⓘ Show criteria ▾';
 }
 
 // ── Collapsible elements ──────────────────────────────────────────────────────
