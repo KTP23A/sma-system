@@ -5,8 +5,6 @@ and Retail business units. Assessors answer level-based questions per site, the 
 scores them automatically (element → pillar → overall), and presents results through a
 dashboard, an analysis matrix, and PDF/Excel exports.
 
-🌐 **Live app:** https://kantapon.pythonanywhere.com
-📚 **Checklists:** Warehouse (159 questions) · Retail Store (62) · Retail Local Company (57)
 
 ---
 
