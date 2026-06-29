@@ -611,15 +611,6 @@ def admin_backup():
     return send_file(str(DB_PATH), mimetype="application/octet-stream", as_attachment=True,
                      download_name=f"sma_backup_{date.today().isoformat()}.db")
 
-@app.route("/api/export-all")
-@login_required
-def export_all():
-    db = get_db()
-    assessments = [dict(r) for r in db.execute("SELECT * FROM assessments").fetchall()]
-    responses   = [dict(r) for r in db.execute(
-        "SELECT assessment_id,question_id,answer,comment FROM responses").fetchall()]
-    return jsonify({"assessments": assessments, "responses": responses})
-
 @app.errorhandler(403)
 def forbidden(e): return render_template("403.html"), 403
 
