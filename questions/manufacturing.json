@@ -2767,7 +2767,7 @@
         },
         {
           "id": "change_emergency_planning",
-          "name": "Change & Emergency planning &",
+          "name": "Change & Emergency planning",
           "questions": [
             {
               "id": "MFG-SY-005",
