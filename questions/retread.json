@@ -1,0 +1,1477 @@
+{
+  "type": "retread",
+  "pillars": [
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "elements": [
+        {
+          "id": "prioritization",
+          "name": "Prioritization",
+          "questions": [
+            {
+              "id": "RTR-LD-001",
+              "no": 1,
+              "text": "Have applicable Safety regulations been identified, and are the compliance with these regulations evaluated?",
+              "level": 1,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain how they have identified Safety regulations and the method to evaluate the compliance with these regulations, referring to recent example."
+            },
+            {
+              "id": "RTR-LD-006",
+              "no": 6,
+              "text": "Have Site management monitored Safety KPIs in own site?",
+              "level": 2,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain progress status of exampled Safety KPIs. KPI"
+            },
+            {
+              "id": "RTR-LD-011",
+              "no": 11,
+              "text": "Are safety performances reviewed annually before creating the site annual safety plan?",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain one of new/updated safety initiative and its reason, or there is a record of management review."
+            },
+            {
+              "id": "RTR-LD-012",
+              "no": 12,
+              "text": "Is \"Leading indicators\" used in the site safety result tracking? KPI",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management follows not only lagging indicator(e.g. # of injuries), but also leading indicators. KPI(KPI"
+            },
+            {
+              "id": "RTR-LD-018",
+              "no": 18,
+              "text": "Does you motivate teams to find and implement new best practices relevant to safety?",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain how they motivate teammates to find best practices and how they allocate resources to implement them. e.g. TMs have opportunity to learn Safety activities in other locations /"
+            }
+          ]
+        },
+        {
+          "id": "decisions",
+          "name": "Decisions",
+          "questions": [
+            {
+              "id": "RTR-LD-002",
+              "no": 2,
+              "text": "Are the Safety management processes required by regulations executed on time?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "All observed Safety management processes have been implemented, and comply with legal requirements."
+            },
+            {
+              "id": "RTR-LD-005",
+              "no": 5,
+              "text": "Are site safety annual implementation plan and objectives of each safety activities created?",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management has created site safety annual plan with objectives. If the SBU or other organization created and operated the system, answer \"N/A.\" If the site does not understand the objectives, answer \"NG.\" SBUN/ANG"
+            },
+            {
+              "id": "RTR-LD-009",
+              "no": 9,
+              "text": "Does Site management know how important teammate involvement in safety is, and involve teammates in safety activities?",
+              "level": 3,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain why teammate involvement in safety management is important and can provide examples of actions taken (e.g., assigned safety-related tasks/activities, participation in safety committee, etc.) to promote this."
+            },
+            {
+              "id": "RTR-LD-010",
+              "no": 10,
+              "text": "Is there a periodical H&S meeting between site management and representation from teammates, and does site management give directions to solve issues? /",
+              "level": 3,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Meeting minute indicates that representative of teammates participated and direction/action plans are recorded."
+            },
+            {
+              "id": "RTR-LD-013",
+              "no": 13,
+              "text": "Are there ongoing safety projects addressing potential high risk operations/equipment?",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management has identified potential top risks on site based on RA or feedback from teammates, and can describe the on going projects or action plan for improvement. RA"
+            },
+            {
+              "id": "RTR-LD-015",
+              "no": 15,
+              "text": "Have you gathered best practices on safety activity from your managing company or other sites, and implement them in your site?",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can give an exampled best practices from managing company/other sites and how they have been implemented on site. 1"
+            }
+          ]
+        },
+        {
+          "id": "support",
+          "name": "Support",
+          "questions": [
+            {
+              "id": "RTR-LD-003",
+              "no": 3,
+              "text": "Does Site Leadership consider safety a priority and address safety at the meetings?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that Safety is considered a high priority on site and showed one example that their management addresses safety at the meetings."
+            },
+            {
+              "id": "RTR-LD-004",
+              "no": 4,
+              "text": "Is Site management involved in the root cause analysis and corrective actions when injury/disease/fire occurs?",
+              "level": 2,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain the main causes, countermeasures and their progress on one of recent injury/disease/fire which occurred at own site."
+            },
+            {
+              "id": "RTR-LD-007",
+              "no": 7,
+              "text": "Does Site management actively provide feedback to teammates and promote safety while touring their location?",
+              "level": 3,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management conducts floor observations(e.g. site tours) and provides feedback to teammates to ensure adherence to safety rules, such as procedures, standards, etc."
+            },
+            {
+              "id": "RTR-LD-008",
+              "no": 8,
+              "text": "Do teammates report hazards (e.g., near misses, hidden dangers) regularly? (:",
+              "level": 3,
+              "answered_by": "Teammate / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "There are records that teammates report hazards regularly when identified."
+            },
+            {
+              "id": "RTR-LD-014",
+              "no": 14,
+              "text": "Do you recognize good safety behaviors of teammates and give them rewards??",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain an example of this kind of reward in the most recent year. 1"
+            },
+            {
+              "id": "RTR-LD-016",
+              "no": 16,
+              "text": "Is there a mid term OH&S strategy for the site? (3)",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can describe 3-year site OH&S strategy with goal and method how it will be implemented."
+            },
+            {
+              "id": "RTR-LD-017",
+              "no": 17,
+              "text": "Do you feel comfortable stopping work if they feel there is a risk of injury/fire?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they feel safety is essential. They are comfortable stopping work when they feel their safety is compromised."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm_engagement",
+      "name": "Teammate Engagement",
+      "elements": [
+        {
+          "id": "capability",
+          "name": "Capability",
+          "questions": [
+            {
+              "id": "RTR-TM-001",
+              "no": 1,
+              "text": "What are general Injury/Illness risks and Fire risks in your job position?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain both exampled Injury/Illness and Fire risks in their job position. 1"
+            },
+            {
+              "id": "RTR-TM-004",
+              "no": 4,
+              "text": "What actions should you take when an incident (Injury/Illness and fire) occurs?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they immediately report incident to their management."
+            },
+            {
+              "id": "RTR-TM-007",
+              "no": 7,
+              "text": "What are the greatest potential risks that may cause injury, Illness and fire in your job position, and how they are controlled?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain the greatest potential risks in their job position and controls to mitigate these risks."
+            },
+            {
+              "id": "RTR-TM-008",
+              "no": 8,
+              "text": "What are the most important safety procedures and rules at your site/job and why?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain their site/job safety procedures and rules and why they are important."
+            },
+            {
+              "id": "RTR-TM-014",
+              "no": 14,
+              "text": "Do you know the procedures how to perform Risk assessment?",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "One and more teammates can explain the steps to assess the risk. (hazard identification, risk evaluation which is combination of probability and severity, and then determination of the risk revel) 1RA"
+            },
+            {
+              "id": "RTR-TM-016",
+              "no": 16,
+              "text": "Have you proposed to update/upgrade any safety activities based on best practices on safety in other location?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "One and more respondent can explain an exampled activities which they have proposed to introduce/improve based on safety activities in other location. 1"
+            }
+          ]
+        },
+        {
+          "id": "action",
+          "name": "Action",
+          "questions": [
+            {
+              "id": "RTR-TM-002",
+              "no": 2,
+              "text": "What would be considered a priority: continue to work towards the daily operation plan or follow safety procedures/rules?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents know that safety is considered more important than operations."
+            },
+            {
+              "id": "RTR-TM-006",
+              "no": 6,
+              "text": "After communication of above incident information, what actions do you take during work to prevent an incident from reoccurring? /",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain the actions how they have prevented a reoccurrence."
+            },
+            {
+              "id": "RTR-TM-011",
+              "no": 11,
+              "text": "Are the site/job Safety procedures and rules followed strictly? (Required checks: safety rules, hearing protector, safety glasses) 8",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": null,
+              "judgement_criteria": "On site observation indicates that teammates follow site/job safety procedures and rules. (Required checks: safety rules, hearing protector, safety glasses) 8"
+            },
+            {
+              "id": "RTR-TM-013",
+              "no": 13,
+              "text": "Have you proposed improvements to work standards, training materials, etc. based on identified Safety risks?",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Materials indicate that teammates propose improvements, based on identified risks, when creating/revising work standards, training materials, etc."
+            },
+            {
+              "id": "RTR-TM-017",
+              "no": 17,
+              "text": "What will you do if you find unsafe behavior of your colleague? What response would you expect from your colleague when you act unsafe?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that unsafe behavior is unacceptable and anyone acting unsafe will be corrected by their peers."
+            }
+          ]
+        },
+        {
+          "id": "knowledge",
+          "name": "Knowledge",
+          "questions": [
+            {
+              "id": "RTR-TM-003",
+              "no": 3,
+              "text": "Do you explain safety regulation to your teammates?",
+              "level": 1,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site Management stated one of exampled safety regulations which they explained to teammates."
+            },
+            {
+              "id": "RTR-TM-005",
+              "no": 5,
+              "text": "What recent incidents (injuries, Illness/illness or fires) at your site and at another BS locations and related potential causes were communicated by management?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain one and more recent incidents and potential causes they were communicated. 1"
+            },
+            {
+              "id": "RTR-TM-009",
+              "no": 9,
+              "text": "Are you regularly trained about the site/job safety procedures and rules?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondent stated that they are regularly trained on Safety procedures and rules."
+            },
+            {
+              "id": "RTR-TM-010",
+              "no": 10,
+              "text": "What is your responsibility for Safety?",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents can explain own responsibilities for Safety. (e.g. Stop work and report trouble, Comply with procedures/rules) (. )"
+            },
+            {
+              "id": "RTR-TM-012",
+              "no": 12,
+              "text": "Have you taken training on residual risks based on the work standard",
+              "level": 4,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they took the training on residual risks based on the work standard."
+            },
+            {
+              "id": "RTR-TM-015",
+              "no": 15,
+              "text": "Do you proactively take the initiative to acquire new safety knowledge through communication with people in other professions?",
+              "level": 5,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "The responses described cases in which one or more teammates had taken action to acquire new safety knowledge through communication with people in other occupations. 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organization",
+      "name": "Organization",
+      "elements": [
+        {
+          "id": "information",
+          "name": "Information",
+          "questions": [
+            {
+              "id": "RTR-OR-001",
+              "no": 1,
+              "text": "Is the legally required Safety training (including safety/disaster emergency drills) given to all teammates?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "A review of the most recent training records show that mandatory teammates (regardless of rank) have all received the Safety training (including safety/disaster emergency drills) required by regulation."
+            },
+            {
+              "id": "RTR-OR-002",
+              "no": 2,
+              "text": "Are Safety mission statement and Bridgestone Safety Fundamental Activities trained to all employees in the site?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Training records indicate that Global common training materials have been used to train."
+            },
+            {
+              "id": "RTR-OR-005",
+              "no": 5,
+              "text": "Teammates who use the chemicals receive training program using SDS etc.? SDS",
+              "level": 1,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Managers can answer that teammates have educated employees on risk reduction measures using SDSs, etc. SDS"
+            },
+            {
+              "id": "RTR-OR-006",
+              "no": 6,
+              "text": "Are incident reports from other sites shared?",
+              "level": 2,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Respondent can provide examples of injuries/diseases/fires which occurred at other BS locations."
+            },
+            {
+              "id": "RTR-OR-009",
+              "no": 9,
+              "text": "Are current Safety rule's effectiveness being evaluated?",
+              "level": 3,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain an exampled safety rule/procedure or corrective actions taken after evaluation of rule's effectiveness."
+            },
+            {
+              "id": "RTR-OR-011",
+              "no": 11,
+              "text": "Is there a skill matrix table for teammates that identifies the training requirements/needs for each job, including training dates?",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "There are mandatory training requirements for each activity. Specific safety trainings are repeated at a standard interval to ensure the competence of people working on site and ensure compliance with local and SBU requirements."
+            },
+            {
+              "id": "RTR-OR-014",
+              "no": 14,
+              "text": "Do you train the safety control measures addressed to the risks and defined in the safety working instructions?",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Training materials indicated that safety instructions during the work/job were included."
+            },
+            {
+              "id": "RTR-OR-019",
+              "no": 19,
+              "text": "Is risk assessment performed during the planning phase of new projects/work tasks? /RA",
+              "level": 5,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "There is a document to indicate that RA was conducted during the planning phase for upcoming projects/work tasks. /RADR"
+            }
+          ]
+        },
+        {
+          "id": "communication",
+          "name": "Communication",
+          "questions": [
+            {
+              "id": "RTR-OR-003",
+              "no": 3,
+              "text": "Do teammates communicate near-misses/hidden dangers to managers, and does management follow-up on them? /",
+              "level": 1,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "The record (or specific tool) indicates that corrective actions have been taken for the reported near-misses/hidden dangers."
+            },
+            {
+              "id": "RTR-OR-007",
+              "no": 7,
+              "text": "Does new hire orientation or refresh safety training cover incidents (injuries/diseases/fires) which occurred at the site or similar location and identified risks?",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Orientation/training materials cover relevant incidents from the site or similar location and identified risks. /"
+            },
+            {
+              "id": "RTR-OR-012",
+              "no": 12,
+              "text": "What is the site \"management of change\" process? 4M(3M)",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain the \"management of change\" process. (4M changes)."
+            },
+            {
+              "id": "RTR-OR-013",
+              "no": 13,
+              "text": "Have you communicated to Safety window or Biz managing department when you have any concerns on Safety.",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management can explain an example what actions have been taken after communication to these window."
+            },
+            {
+              "id": "RTR-OR-016",
+              "no": 16,
+              "text": "What feedback did you receive from management when you reported most recent hazard?",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "All respondents stated that they received feedback on their most recent hazard reported (to include investigation details, root cause, countermeasures, etc.) from their management."
+            },
+            {
+              "id": "RTR-OR-020",
+              "no": 20,
+              "text": "Do you receive feedback from third party assessors on how effective is the site safety management system (SBU)",
+              "level": 5,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "There are audit/assessment reports issued by third party. (e.g. ISO45001 external audit)"
+            }
+          ]
+        },
+        {
+          "id": "participation",
+          "name": "Participation",
+          "questions": [
+            {
+              "id": "RTR-OR-004",
+              "no": 4,
+              "text": "Do you define roles and responsibilities for safety activities?",
+              "level": 1,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "The management can explain a few exampled safety activities where the person in charge is assigned from teammate and their roles."
+            },
+            {
+              "id": "RTR-OR-008",
+              "no": 8,
+              "text": "Is the similar accident prevention requested by SBU/Biz management function conducted? SBU/",
+              "level": 2,
+              "answered_by": "Site tour / Documentation",
+              "audit_methods": [
+                "onsite",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "The site conducts investigation and takes countermeasures based on these requests."
+            },
+            {
+              "id": "RTR-OR-010",
+              "no": 10,
+              "text": "Are the job safety instructions (or WS, SOP, etc.) periodically reviewed with teammates?",
+              "level": 3,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "The records indicate that the job safety instructions etc. are periodically reviewed with teammates. (or originated by teammates)"
+            },
+            {
+              "id": "RTR-OR-015",
+              "no": 15,
+              "text": "Have you involved TMs in periodical review on safety action plans? ()",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": null,
+              "judgement_criteria": "A review of the safety action plans (ex. meeting minutes, RA, etc.) from the most recent safety projects (safety programs or safety activities) show that teammates were involved and consulted. RA"
+            },
+            {
+              "id": "RTR-OR-017",
+              "no": 17,
+              "text": "Have you lead any safety initiatives/improvements whose scope is not your job position?",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "A half of respondents stated that they have expedience to lead safety initiatives/improvement. 1/2"
+            },
+            {
+              "id": "RTR-OR-018",
+              "no": 18,
+              "text": "Do you engage with external parties about safety?",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null,
+              "judgement_criteria": "Site management stated an example that they voluntarily discussed safety with managers from BS internal/external locations to enhance safety knowledge."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "name": "System",
+      "elements": [
+        {
+          "id": "integration",
+          "name": "Integration",
+          "questions": [
+            {
+              "id": "RTR-SY-001",
+              "no": 1,
+              "text": "Are teammates performing servicing or maintenance trained by using LOTO standard and are Locks & Tags distributed to them? (or enable to use?) LOTO",
+              "level": 1,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "LOTO",
+              "judgement_criteria": "Training record indicates that the teammates who perform servicing or maintenance tasks have been trained on LOTO. On site observation indicates that they have locks and tags. LOTO"
+            },
+            {
+              "id": "RTR-SY-002",
+              "no": 2,
+              "text": "Have the teammates received periodical training on BS global 8 safety rules? Have understanding verification of safety rules been conducted after the periodical training on Global/SBU/Site safety rules? BSBSSBU",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Safety Rules",
+              "judgement_criteria": "Training record indicates that BS global 8 safety rules are periodically trained. There are records indicating periodical training on Global/SBU/Site safety rules. BSSBU"
+            },
+            {
+              "id": "RTR-SY-003",
+              "no": 3,
+              "text": "Have you communicated with drivers about safety requirements on mobile equipment?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "There are training records for mobile equipment operators."
+            },
+            {
+              "id": "RTR-SY-004",
+              "no": 4,
+              "text": "Have you created an annual 3S activity plan which includes semi-annual department 3S level evaluation? 63S3S",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "3S",
+              "judgement_criteria": "An annual 3S activities plan has been prepared. If the SBU or other organization created 3S plane, answer \"N/A.\" If the site does not understand the plan, answer \"NG.\" 3S3S (SBUsiteN/ANG)"
+            },
+            {
+              "id": "RTR-SY-005",
+              "no": 5,
+              "text": "Have you created an annual KY activity plan which includes periodical KYT and annual KYT evaluation? KYTKYTKY",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY",
+              "judgement_criteria": "An annual KY activities plan which includes periodical KYT and annual KYT evaluation has been prepared. If the SBU or other organization created KY plane, answer \"N/A.\" If the site does not understand the plan, answer \"NG.\" KYTKYTKY (SBUsiteN/ANG)"
+            },
+            {
+              "id": "RTR-SY-006",
+              "no": 6,
+              "text": "Have therisk assessments been performed or is there a plan to complete? RA",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "There is evidence that the required risk assessments have been done or there is a plan to complete. RA"
+            },
+            {
+              "id": "RTR-SY-008",
+              "no": 8,
+              "text": "Are the PPEs which are required to perform maintenance services standardized?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Safety management for maintenance",
+              "judgement_criteria": "Required PPEs are defined when performing maintenance services."
+            },
+            {
+              "id": "RTR-SY-010",
+              "no": 10,
+              "text": "Are DP trainings frequently conducted to teammates to remind flammable material management, smoking rules, duct managements and if performed, hot work procedures? ()",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "All teammates have received fire prevention training etc. when they are newly employed or transferred from other departments."
+            },
+            {
+              "id": "RTR-SY-011",
+              "no": 11,
+              "text": "Are lockout and tagout procedures implemented during abnormal operations work? (Abunormal operations: Inspecting, Cleaning, Setting-up, Tool changing, Repair, Periodic maintenance etc.) LOTO (/)",
+              "level": 2,
+              "answered_by": "Teammate / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "LOTO",
+              "judgement_criteria": "It is possible to present the tasks for which LOTO should be performed. LOTO"
+            },
+            {
+              "id": "RTR-SY-012",
+              "no": 12,
+              "text": "Have the teammates identified BS global 8 safety rules? (especially Dangerous zone, hoisting work and work at height) BS(",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "judgement_criteria": "All respondents stated what are defined as BS global 8 safety rules."
+            },
+            {
+              "id": "RTR-SY-013",
+              "no": 13,
+              "text": "What are the required safety rules when using the mobile equipment in your site?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The respondent can explain some mobile equipment safety rules. (speed limit, load capacity, forks down, wear seatbelt, hoot at cross walks, etc.)"
+            },
+            {
+              "id": "RTR-SY-014",
+              "no": 14,
+              "text": "Does the management perform 3S monitoring and follow up if his/her recommended actions are complete? 3S",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "3S",
+              "judgement_criteria": "There is evidence of 3S monitoring by management and actions recommended to improve 3S. 3S"
+            },
+            {
+              "id": "RTR-SY-015",
+              "no": 15,
+              "text": "Does the site RA cover the injury and fire risks which have caused serious event at Bridgestone* in the past? (body trapped by the Shearography machine, fire from dust collector duct on buffing machine) *RA*",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "Those hazards are listed and risk mitigation measures are clarified in RA documents. (Are safety measures implemented to prevent access to the Shearography machine from the side as well as the front?) RA"
+            },
+            {
+              "id": "RTR-SY-016",
+              "no": 16,
+              "text": "Are the risk controls measures for tire manual handling operations including OTR tire determined to prevent the injury and MSD? MSD()",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "Postures and/or method to prevent the landing tire are standardized in the working procedures to mitigate the Injury/MSD risks."
+            },
+            {
+              "id": "RTR-SY-017",
+              "no": 17,
+              "text": "Is KYT are conducted periodically by all employee on site in accordance with SBU or/and site standard? KYTSBU/",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY",
+              "judgement_criteria": "KYT sheets indicate that KYT is completed periodically by all employees on site in accordance with the required frequency by SBU and/or site standard. KYTSBU/"
+            },
+            {
+              "id": "RTR-SY-018",
+              "no": 18,
+              "text": "Are pre-work meetings conducted prior to the start of work, are risks identified and risk mitigation measures/administrative controls defined. /",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management",
+              "judgement_criteria": "There is evidence that pre-work meetings are conducted prior to the start of work, risks are identified and risk mitigation measures/administrative controls are defined. /"
+            },
+            {
+              "id": "RTR-SY-019",
+              "no": 19,
+              "text": "Have you communicated with your management prior to the start of maintenance service to review the risks and their control measures?",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Safety management for maintenance",
+              "judgement_criteria": "The identified risks and determined risk mitigation & control are filled out on premeeting minutes. (or communicated)"
+            },
+            {
+              "id": "RTR-SY-020",
+              "no": 20,
+              "text": "Including contractor work, is the hot work permission required?",
+              "level": 2,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Hot work permission are prepared and approved by management prior to hot work."
+            },
+            {
+              "id": "RTR-SY-021",
+              "no": 21,
+              "text": "Do you know how to use a fire extinguisher?",
+              "level": 2,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Teammates understand how to use the fire extinguisher."
+            },
+            {
+              "id": "RTR-SY-022",
+              "no": 22,
+              "text": "Are the designated smoking areas prepared and no cigarette butts found other than the smoking areas?",
+              "level": 2,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "There are no cigarette butts other than the designated smoking areas?"
+            },
+            {
+              "id": "RTR-SY-023",
+              "no": 23,
+              "text": "Do you know LOTO operation procedure in your job position? (do you demonstrate how/where to do LOTO which is in line with ECP?) /LOTO?ECP",
+              "level": 3,
+              "answered_by": "Teammate",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO",
+              "judgement_criteria": "The respondent can explain LOTO procedure. LOTO"
+            },
+            {
+              "id": "RTR-SY-024",
+              "no": 24,
+              "text": "Do you frequently conduct compliance monitoring/audit to ensure that All Bridgestone Safety Rules are followed? BS",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Safety Rules",
+              "judgement_criteria": "Periodical patrol/monitoring is conducted to ensure that Safety rules are complied."
+            },
+            {
+              "id": "RTR-SY-025",
+              "no": 25,
+              "text": "Do you frequently conduct compliance monitoring/audit to ensure that safety requirements on mobile equipment are followed?",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "There are records indicating that periodical monitoring are conducted."
+            },
+            {
+              "id": "RTR-SY-026",
+              "no": 26,
+              "text": "Are all unnecessary objects being removed from the work area? And, are necessary equipment/tools being put in clearly marked and fixed positions?",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "3S",
+              "judgement_criteria": "The 3S Visual Standards have been prepared and in all sampled areas, there are no unnecessary objects (or plan to remove), all necessary items are stored in designated locations and the workplace are well cleaned (no debris on floor, no spillages). 3S"
+            },
+            {
+              "id": "RTR-SY-027",
+              "no": 27,
+              "text": "Is the implementation of On-site KY standardized in the site procedures? KY()",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "KY",
+              "judgement_criteria": "There is a documentation which defines when on-site KY must be performed. KY"
+            },
+            {
+              "id": "RTR-SY-029",
+              "no": 29,
+              "text": "Are the Teammates exposed to chemical hazards wearing the required PPEs such as gloves and masks determined by RA? RA",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "Teammates are wearing required PPEs to reduce exposure of chemical hazards on site."
+            },
+            {
+              "id": "RTR-SY-030",
+              "no": 30,
+              "text": "Are risk assessment triggered when 3M changes are implemented? (in case new machine installed, new materials/tasks adopted) 3MRA",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "Evaluated risks and their control measures are registered in 3M change document. 3MRA"
+            },
+            {
+              "id": "RTR-SY-031",
+              "no": 31,
+              "text": "Does BS perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted? BS",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management",
+              "judgement_criteria": "There is evidence that BS perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted. BS"
+            },
+            {
+              "id": "RTR-SY-033",
+              "no": 33,
+              "text": "Are flammable materials such as cements properly stored on the designated position?",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Flammable materials are stored on the designated position and are not over the quantity limits."
+            },
+            {
+              "id": "RTR-SY-034",
+              "no": 34,
+              "text": "Does a designee other than the fire users and fire watcher observe/inspect to verify that hot work procedures are complied?",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "There is a signature by the designee on the inspection record."
+            },
+            {
+              "id": "RTR-SY-036",
+              "no": 36,
+              "text": "Are outdoor waste storage areas invisible from the outside of the premises?",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Non-combustible containers or the waste with an opaque sheet or bag are used for outdoor waste storage areas not to be visible from the outside of the premises"
+            },
+            {
+              "id": "RTR-SY-037",
+              "no": 37,
+              "text": "Is the temperature of high-voltage equipment and high-voltage wiring measured annually by using e.g. thermos-vision?",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "There is an evidence that temperature of high-voltage equipment and high-voltage wiring was measured in the past 12 months. 1"
+            },
+            {
+              "id": "RTR-SY-038",
+              "no": 38,
+              "text": "Are the inspection windows installed on dust collector ducts?",
+              "level": 3,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Dust collector ducts are equipped with inspection windows."
+            },
+            {
+              "id": "RTR-SY-039",
+              "no": 39,
+              "text": "Are the inspection on dust accumulation inside the ducts and its cleaning performed once and more per year? 1",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "There are the records which shows that the inspection on dust accumulation inside the ducts and its cleaning have been performed once and more per year. 1"
+            },
+            {
+              "id": "RTR-SY-040",
+              "no": 40,
+              "text": "Do you analyze the causes and implement countermeasures for LOTO violations? LOTO ⇒Is the LOTO system being implemented with periodical monitoring? LOTO",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "LOTO",
+              "judgement_criteria": "LOTO violations are investigated, and countermeasures and working standards/rules are revised as necessary. Periodical patrol/monitoring is conducted to ensure that LOTO are properly implemented when performing maintenances or services. LOTO"
+            },
+            {
+              "id": "RTR-SY-043",
+              "no": 43,
+              "text": "Do teammates proceed with 3S activity for the improvement of 3S level? (Actual 3S condition is well managed) 3S(3S)",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "judgement_criteria": "3S activity for the improvement of 3S level has been proceeded, and 3S level is 4 and more. 3S3S4"
+            },
+            {
+              "id": "RTR-SY-044",
+              "no": 44,
+              "text": "Are risk evaluations results and risk mitigation measures reviewed periodically?",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "Site management can explain an example to review the RA and control measures and what have been updated. RA"
+            },
+            {
+              "id": "RTR-SY-049",
+              "no": 49,
+              "text": "Are there any defective wirings on shop floor and office area?",
+              "level": 4,
+              "answered_by": "Site tour",
+              "audit_methods": [
+                "onsite"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "No defective wirings are detected in the sampled areas."
+            }
+          ]
+        },
+        {
+          "id": "change_emergency_planning",
+          "name": "Change & Emergency planning",
+          "questions": [
+            {
+              "id": "RTR-SY-007",
+              "no": 7,
+              "text": "Prior to the start of the work, do all contractor employees receive contractor Safety orientation/training which includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities? /",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Contractor management",
+              "judgement_criteria": "There are records that all contractors received H&S orientation/training from BS prior to the work. BS/"
+            },
+            {
+              "id": "RTR-SY-032",
+              "no": 32,
+              "text": "Do you conduct GENBA observation on maintenance tasks?",
+              "level": 3,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety management for maintenance",
+              "judgement_criteria": "Site management can explain what is the recent maintenance task they observed."
+            },
+            {
+              "id": "RTR-SY-048",
+              "no": 48,
+              "text": "Are corrective actions on e.g. emergency preparedness procedures taken when any opportunity for improvements are identified through evacuation or fire fighting training/drill?",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "According to the training/drill record, opportunity for improvements are identified and action status have been followed until completed."
+            }
+          ]
+        },
+        {
+          "id": "design",
+          "name": "Design",
+          "questions": [
+            {
+              "id": "RTR-SY-009",
+              "no": 9,
+              "text": "Do you perform the periodic inspection of the fire extinguishing equipment in accordance with laws and regulations?",
+              "level": 1,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "There are inspection records on fire extinguishing equipment."
+            },
+            {
+              "id": "RTR-SY-028",
+              "no": 28,
+              "text": "Are all risks in the risk register covered by administrative or technical controls? Besides, are the remaining risks written in the work standard? III&IV",
+              "level": 3,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "There is at least one control prescribed for each risk identified. These controls are either administrative or technical by nature. The remaining risks are written in the work standard."
+            },
+            {
+              "id": "RTR-SY-035",
+              "no": 35,
+              "text": "Has the training to teammates been conducted so that the fire extinguishing equipment can be operated appropriately?",
+              "level": 3,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "Everyone who may use the fire extinguishing equipment is trained periodically."
+            },
+            {
+              "id": "RTR-SY-041",
+              "no": 41,
+              "text": "When a safety rule violation is identified, are root cause analysis and corrective action implemented?",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Safety Rules",
+              "judgement_criteria": "The respondent can give at least one example of an action taken to improve health and safety of work."
+            },
+            {
+              "id": "RTR-SY-042",
+              "no": 42,
+              "text": "When any near-misses where mobile equipment was involved occurred, are root cause analysis and corrective action implemented?",
+              "level": 4,
+              "answered_by": "Documentation",
+              "audit_methods": [
+                "document"
+              ],
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The respondent can provide one example which shows the root causes and corrective actions are in place after any violation near-miss is identified."
+            },
+            {
+              "id": "RTR-SY-045",
+              "no": 45,
+              "text": "Are the results from KY used to develop new safety rules or adjust old rules or improvement of safety measures for hazards((risk mitigation/administrative measures)? KY(/)",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "KY",
+              "judgement_criteria": "The respondent can provide evidence of a improvement of safety measures for hazards or a safety rule that was recently changed because of the KY system's recommendations. KY"
+            },
+            {
+              "id": "RTR-SY-046",
+              "no": 46,
+              "text": "When noncompliance with predetermined risk mitigation measures/administrative are identified, are the contractor notified to stop the work and correct the issue?",
+              "level": 4,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Contractor management",
+              "judgement_criteria": "There is an evidence that contractor stopped work to correct the issues. (e.g. monitoring sheet) 1"
+            },
+            {
+              "id": "RTR-SY-047",
+              "no": 47,
+              "text": "When the determined risk control measures are not implemented or any unsafe behavior is identified, is recurrence prevention measures in place?",
+              "level": 4,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety management for maintenance",
+              "judgement_criteria": "Site management can explain an example what corrective actions were taken when identified. 1"
+            },
+            {
+              "id": "RTR-SY-050",
+              "no": 50,
+              "text": "Have you gathered best practices on LOTO from other locations, and considered to incorporate them into the site procedure? /LOTO",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO",
+              "judgement_criteria": "The best practices on LOTO have been gathered from other locations, and it has been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other locations.(E.g. Good practices on how to apply LOTO to contractors) LOTO(LOTO"
+            },
+            {
+              "id": "RTR-SY-051",
+              "no": 51,
+              "text": "Have you gathered best practices on safety rules(e.g. work standards) from other locations, and considered to incorporate them into the site procedure? /(",
+              "level": 5,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "Safety Rules",
+              "judgement_criteria": "The best practices on Safety rules have been gathered from other locations, and it has been incorporated into the site procedure. Or There is a evidence of information exchange and the comparison with other plants. /"
+            },
+            {
+              "id": "RTR-SY-052",
+              "no": 52,
+              "text": "Have you gathered best practices on mobile equipment from other locations, and considered to incorporate them into the site procedure? /",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "judgement_criteria": "The best practices on mobile equipment have been gathered from other locations, and it has been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other plants. /"
+            },
+            {
+              "id": "RTR-SY-053",
+              "no": 53,
+              "text": "Have you gathered best practices on 3S from other locations, and considered to incorporate them into the site procedure? /3S",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "judgement_criteria": "The best practices on 3S have been gathered from other locations, and it has been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other locations.(E.g. Cross 3S check) 3S"
+            },
+            {
+              "id": "RTR-SY-054",
+              "no": 54,
+              "text": "Have you gathered best practices of KY activities performed in other locations and considered to incorporate then into site KY program? KY",
+              "level": 5,
+              "answered_by": "Management / Documentation",
+              "audit_methods": [
+                "interview",
+                "document"
+              ],
+              "standard": "KY",
+              "judgement_criteria": "The best practices of KY activities have been gathered, and it has been incorporated into the site procedure. or There is a evidence of the comparison with other plants. KY"
+            },
+            {
+              "id": "RTR-SY-055",
+              "no": 55,
+              "text": "Does the site benchmark the Risk Assessment results with other locations, and consider best practice methods? RASBU",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "judgement_criteria": "The respondent can explain an example of at least one review performed in the past 12 months where the risk assessment result/process was improved based on external best practice. RA1"
+            },
+            {
+              "id": "RTR-SY-056",
+              "no": 56,
+              "text": "Have you gathered best practices on contractor management from other plants/external companies, and considered to incorporate them into the site procedure? (E.g. Daily JSA, using the external consultant for selecting contractors, etc.) /(:RA",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "judgement_criteria": "The best practices on contractor management have been gathered from other plants/industry, and it has been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other locations. /"
+            },
+            {
+              "id": "RTR-SY-057",
+              "no": 57,
+              "text": "Have you gathered best practices on safety maintenance management from other locations, and considered to incorporate them into the site procedure? /(:RA",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety management for maintenance",
+              "judgement_criteria": "The best practices have been gathered, and it has been incorporated into the site procedure. or There is a evidence of information exchange and the comparison with other locations. /"
+            },
+            {
+              "id": "RTR-SY-058",
+              "no": 58,
+              "text": "Do you acquire the information from other BS locations to incorporate best practices on D.P. activities performed e.g. on D.P. Day? BS",
+              "level": 5,
+              "answered_by": "Management",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention",
+              "judgement_criteria": "They can answer one or more cases in which best practices are incorporated."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
