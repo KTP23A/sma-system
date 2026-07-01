@@ -82,6 +82,12 @@
                    onchange="toggleScope()">
             <label class="form-check-label" for="type_mfg">Manufacturing (MFG)</label>
           </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" id="type_rtr" value="retread"
+                   {% if prefill_gc and prefill_gc.type == 'retread' %}checked{% endif %}
+                   onchange="toggleScope()">
+            <label class="form-check-label" for="type_rtr">Retread</label>
+          </div>
         </div>
       </div>
 

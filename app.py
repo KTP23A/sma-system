@@ -35,6 +35,8 @@ def load_questions(assessment_type, scope=None):
         return json.loads((Q_DIR/"retail.json").read_text())["scopes"][scope or "store"]["pillars"]
     elif assessment_type == "manufacturing":
         return json.loads((Q_DIR/"manufacturing.json").read_text())["pillars"]
+    elif assessment_type == "retread":
+        return json.loads((Q_DIR/"retread.json").read_text())["pillars"]
     return []
 
 def all_questions_flat(pillars):
