@@ -1,0 +1,2830 @@
+{
+  "type": "manufacturing",
+  "pillars": [
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "elements": [
+        {
+          "id": "support",
+          "name": "Support",
+          "questions": [
+            {
+              "id": "MFG-LD-001",
+              "no": 1,
+              "text": "In general, does site leadership understand the legal OH&S and DP requirements & how these obligations are fulfilled? 管理者は、自身の安全衛生および防災に関する法的義務を理解しているか？",
+              "level": 1,
+              "answered_by": "Plant manager 工場長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-005",
+              "no": 5,
+              "text": "Does Site Leadership consider safety a priority? 管理者は、安全を第一優先として、考慮しているか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-006",
+              "no": 6,
+              "text": "Is Site Leadership involved in the OH&S management when a serious incident occurs? 管理者は、重大インシデント（休業災害・火災等）発生時、安全衛生管理に関与しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-011",
+              "no": 11,
+              "text": "Does line management actively provide feedback to teammates and promote safety while touring their department/area?  ライン管理者（課長・主任・職長）は、巡回時、積極的に技能員へフィードバックを行い、安全を推進しているか？",
+              "level": 3,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-012",
+              "no": 12,
+              "text": "Do teammates know what their responsibilities are when it comes to Safety? 技能員は、安全に関する自身の責任を理解しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-020",
+              "no": 20,
+              "text": "Do teammates report hazards (e.g., near misses, hidden dangers) regularly? 技能員は、定期的に危険源(例:ヒヤリ、不具合、潜在的危険源）を報告しているか？",
+              "level": 4,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-021",
+              "no": 21,
+              "text": "Are good safety behaviors of teammates rewarded and recognized by managements? 技能員の優れた安全行動が管理者によって認知され、表彰されているか?",
+              "level": 4,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-023",
+              "no": 23,
+              "text": "Is there an external/cross-plant safety meeting? If so, does safety manager share H&S issues or best practices?  他工場、もしくは社外との安全会議があり、課題や好事例を共有しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-024",
+              "no": 24,
+              "text": "Is there a long term OH&S strategy for the plant? 事業所の長期的な安全衛生計画はあるか？",
+              "level": 5,
+              "answered_by": "Plant manager 工場長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-025",
+              "no": 25,
+              "text": "Do teammates feel comfortable stopping work if they feel there is a risk of injury? 技能員は、災害リスクに直面した際、作業を停止することを、よいことだと感じているか？",
+              "level": 5,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "prioritization",
+          "name": "Prioritization",
+          "questions": [
+            {
+              "id": "MFG-LD-002",
+              "no": 2,
+              "text": "Have applicable site-specific OH&S regulations been identified, and site-specific safety procedures been implemented that they are compliant with local regulation and SBU standards? 安全衛生法令が特定されているか？また、安全手順が法令に準拠しているか確認するため、評価が実施されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-003",
+              "no": 3,
+              "text": null,
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-007",
+              "no": 7,
+              "text": "Are safety results (KPIs) being monitored by leadership? 管理者は、安全結果をモニタリングしているか？",
+              "level": 2,
+              "answered_by": "Plant manager 工場長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-008",
+              "no": 8,
+              "text": null,
+              "level": 2,
+              "answered_by": "Plant manager 工場長 Production general manager 製造部長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-009",
+              "no": 9,
+              "text": "Are the root causes of incidents categorized and then tracked? 災害の原因は、分類（要因分析）され、追跡（フォロー）されているか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-015",
+              "no": 15,
+              "text": "Are there repercussions/consequences for not following the Safety Rules and procedures? 安全ルール違反時の影響/結果（罰則・対応手順）はあるか？",
+              "level": 3,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-016",
+              "no": 16,
+              "text": "Does Leadership use \"Leading indicators\" in their safety result tracking? 安全関連の指標について、先行指標（プロセスKPI）を使っているか？",
+              "level": 4,
+              "answered_by": "Plant manager 工場長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-017",
+              "no": 17,
+              "text": null,
+              "level": 4,
+              "answered_by": "Plant manager 工場長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-019",
+              "no": 19,
+              "text": "Are pre and post assessments used to determine the effectiveness of OH&S initiatives? 安全衛生施策の有効性を確認するため、施策の導入前と後に有効性の評価を行っているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-026",
+              "no": 26,
+              "text": "Does leadership motivate teams to find and implement new best practices relevant to safety? 管理者は、各部署に対し、安全に関するベストプラクティスの収集や実行を推進しているか？",
+              "level": 5,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "decisions",
+          "name": "Decisions",
+          "questions": [
+            {
+              "id": "MFG-LD-004",
+              "no": 4,
+              "text": "Are the OH&S management processes required by regulations executed on time? 法令で要求される労働安全衛生の実施事項が遅延なく、実行されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-010",
+              "no": 10,
+              "text": "Are safety initiatives being implemented to improve safety or improve operational results? 安全性向上のために、リーダーシップが発揮されているか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-013",
+              "no": 13,
+              "text": "Does leadership know how important teammate involvement in safety is, and involve teammates in safety activities? 管理者は、安全活動に従業員を参加させることの重要性を理解し、安全活動に参加させているか？",
+              "level": 3,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-014",
+              "no": 14,
+              "text": "Is there a H&S meeting with representation from teammates, leadership and H&S, and leadership give directions to solve issues? 技能員、管理者、安全衛生部署からの代表者で構成される安全衛生会議では、管理者、工場長による課題解決のための指示があるか？",
+              "level": 3,
+              "answered_by": "Managers 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-018",
+              "no": 18,
+              "text": "Are there ongoing safety projects addressing safety issues? 安全の問題に対する、進行中の安全プロジェクト（安全に関する取り組み）があるか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-LD-022",
+              "no": 22,
+              "text": "Have you gathered best practices on safety activity from GBS/SBU or external companies, and implement them in the plant? 社外またはGBS/SBUから展開された安全活動の好事例を自工場へ適用し、推進されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm_engagement",
+      "name": "Teammate Engagement",
+      "elements": [
+        {
+          "id": "capability",
+          "name": "Capability",
+          "questions": [
+            {
+              "id": "MFG-TM-001",
+              "no": 1,
+              "text": "Are general H&S risks explained during new-hire training to new teammates? 一般的な安全衛生リスクは、新入社員に周知されているか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-003",
+              "no": 3,
+              "text": "Is management aware of their personal impact on safety and do they leverage this to improve safety? 管理者は、安全に対する自身の影響力を認識し、安全向上に、活用しているか？",
+              "level": 1,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-005",
+              "no": 5,
+              "text": "Do teammates know how to report incidents (injury, occupational disease/illness, near-miss/hidden danger)? 技能員はインシデント発生時の報告方法を知っていますか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-008",
+              "no": 8,
+              "text": "Do teammates know the department/job safety rules applicable to them? 技能員は、自部署/自作業に適用される安全ルールを理解しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-012",
+              "no": 12,
+              "text": "Do you understand the greatest potential risks, and how they are controlled? 技能員は、最も危険なリスクの内容及び管理方法を把握しているか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-013",
+              "no": 13,
+              "text": "Have teammates proposed improvements of H&S risks and risk mitigation measures at the creations or revisions of work standards, training materials, etc. 作業標準や教育資料等を作成、改訂する際、安全リスクや低減策の改善提案をしていますか？",
+              "level": 4,
+              "answered_by": "Production Supervisor 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-014",
+              "no": 14,
+              "text": "Are some teammates capable of performing full risk assessments? 複数の技能員は、リスクアセスメントの全プロセス（危険源の同定から低減対策まで）を実行する能力があるか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-018",
+              "no": 18,
+              "text": "Do teammates know safety related information (H&S risk, recurrence prevention measures issued by GBS/SBU, etc.) shared among teams (department/areas) and plants? 部署間/工場間で共有された安全関連の情報（安全リスク、類災対策、GBS/SBUからの展開施策 等）を把握しているか？",
+              "level": 5,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "action",
+          "name": "Action",
+          "questions": [
+            {
+              "id": "MFG-TM-002",
+              "no": 2,
+              "text": "Do you think that safety is considered more important than production? あなたは、生産よりも安全が優先されると考えますか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-006",
+              "no": 6,
+              "text": "Are teammates involved in preventing recurring incidents (injury, occupational disease/illness, near-miss/hidden danger)? 技能員は、再発防止（活動）に参加しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-010",
+              "no": 10,
+              "text": "Are the Department/Job Safety rules being followed strictly? 自部署/自作業における安全ルールは、厳密に順守されているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-015",
+              "no": 15,
+              "text": "Have teammates proposed improvements for @reventation of incidents (injure/near-miss/hidden danger) and management has given feedback to them? 技能員から、インシデント（労働災害・ヒヤリ・潜在的危険源）に関する改善提案があり、管理者が対策実施内容をフィードバックしているか",
+              "level": 4,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-016",
+              "no": 16,
+              "text": "Are teammates involved and consulted in safety action plans? 技能員は、安全実施計画（策定）に参加し、協議を行っているか？",
+              "level": 4,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-020",
+              "no": 20,
+              "text": "Is unsafe behavior completely unacceptable on site? 事業所において、不安全行動は、例外なく、容認されていないか？",
+              "level": 5,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "knowledge",
+          "name": "Knowledge",
+          "questions": [
+            {
+              "id": "MFG-TM-004",
+              "no": 4,
+              "text": "Do managers explain safety requirements based on site-specific regulation to teammates? 管理者は、技能員に安全に関する法的要求事項を説明しているか？",
+              "level": 1,
+              "answered_by": "Production Supervisor 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-007",
+              "no": 7,
+              "text": "Are teammates informed of recent safety incidents (injury, occupational disease/illness, near-miss/hidden danger) in their areas and know what actions have been taken to address these? 技能員は、自職場の最近発生した災害とどのような対策が講じられたか連絡を受けているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-009",
+              "no": 9,
+              "text": "Are teammates regularly trained about the departmental/job safety rules applicable to them? 技能員は、自部署/自作業に適用される安全ルールについて、定期的に教育を受けているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-011",
+              "no": 11,
+              "text": "Have teammates taken training on residual risks based on the work standard？  技能員は、残留リスクについて作業標準ベースに教育を受けているか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-017",
+              "no": 17,
+              "text": "Are there opportunities to share H&S risks/measures of other departments at the safety meeting in your department? 他部署での安全リスク/対策を共有する場があるか　(自部署内の安全衛生会議などで)",
+              "level": 5,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-TM-019",
+              "no": 19,
+              "text": "Do you have opportunities to get *best practices from internal/external sources, and do you implement them in the plant? 社内外の*ベストプラクティス情報を入手する機会があり、自拠点への導入を行っているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organization",
+      "name": "Organization",
+      "elements": [
+        {
+          "id": "information",
+          "name": "Information",
+          "questions": [
+            {
+              "id": "MFG-OR-001",
+              "no": 1,
+              "text": "Is the legally required H&S training (including safety/disaster emergency drills) given to all teammates? 法令で要求される安全衛生教育（安全・防災の緊急時対応訓練を含む）は、全ての従業員に実施されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-005",
+              "no": 5,
+              "text": "Are incident investigations carried out by qualified people? 災害調査は、知識・能力をもった者が実施しているか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-009",
+              "no": 9,
+              "text": "Are current Safety rule's effectiveness being evaluated by a team?  現在の安全管理ルールの有効性が、各部署で評価されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-011",
+              "no": 11,
+              "text": "Is there a skill matrix table for teammates that identifies the training requirements/needs for each job, including training dates? 能力要件表を定めており、各技能員の教育実施日や要件等について記載しているか？",
+              "level": 3,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-015",
+              "no": 15,
+              "text": "Do work/job specific trainings highlight safety risks and processes associated with that work/job?　 作業訓練において、関連する安全上のリスクや作業手順について、強調されているか？",
+              "level": 4,
+              "answered_by": "Production Supervisor 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-020",
+              "no": 20,
+              "text": "Is risk assessment one of the first actions taken when planning new projects/work sessions? 新たなプロジェクト/作業の計画段階において、初期対応の1つとして、RAが実施されているか？",
+              "level": 5,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "communication",
+          "name": "Communication",
+          "questions": [
+            {
+              "id": "MFG-OR-002",
+              "no": 2,
+              "text": "Do teammates communicate injuries/near-misses/defects to managers, and does management follow-up on them?  管理者は、災害/ヒヤリ/不具合情報を技能員から入手し、フォローアップしているか？",
+              "level": 1,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-003",
+              "no": 3,
+              "text": "Is passive communication, such as notification boards and e-mails, being used to convey safety information? 安全管理を周知するための受動的なコミュニケーション（例：掲示物・メールによる展開）は、使用されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-006",
+              "no": 6,
+              "text": "Does management know what safety initiatives are active on site and how they are performing, and impact on the site's lagging indicators? 管理者は、現場でどの安全の取り組みが有効で、どのように実行されているか、把握しているか？",
+              "level": 2,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-010",
+              "no": 10,
+              "text": "Do teammates know who to speak to about H&S/DP and how the reporting structure works? 技能員は、安全衛生や防災について誰に報告すべきか、また、報告の仕組みを理解しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-013",
+              "no": 13,
+              "text": "Is there a system on management of changes? 変更に関する管理の仕組みはありますか？",
+              "level": 3,
+              "answered_by": "Supervisors  監督者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-014",
+              "no": 14,
+              "text": "Do management and process owners communicate with H&S team about upcoming changes on site, along with any risks associated with the change? 管理者と監督者は、職場の予定された変更とそれに伴うリスクに関して、安全衛生担当課と話し合っていますか？",
+              "level": 4,
+              "answered_by": "Supervisors  監督者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-017",
+              "no": 17,
+              "text": "Does management take action when a hazard/injury/near-miss/defects is reported, and communicate these action to the reporter? 管理者は、危険源/災害/ヒヤリ/不具合情報が報告された際、対処しているか？また、対処結果を報告書へフィードバックしているか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-021",
+              "no": 21,
+              "text": "Do you receive feedback from third party on effectiveness of safety management system  安全マネジメントシステムの有効性について、定期的に外部のフィードバックを受けていますか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        },
+        {
+          "id": "participation",
+          "name": "Participation",
+          "questions": [
+            {
+              "id": "MFG-OR-004",
+              "no": 4,
+              "text": "Does management have defined roles and responsibilities for safety activities? 管理者は、自部署の安全活動の担当者の役割を明確にし、任命しているか？",
+              "level": 1,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-007",
+              "no": 7,
+              "text": "Is there collaboration between H&S and management to address recurring incidents, with focus on causation? 再発防止において、安全機能と管理者は連携しているか？",
+              "level": 2,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-008",
+              "no": 8,
+              "text": "Do safety training sessions for newcomers reference relevant frequent incidents and risks? 安全教育において、よく発生する関連災害やリスクが参照されているか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-012",
+              "no": 12,
+              "text": "Are all safety programs reviewed periodically? 全ての安全プログラムは、年に1回、レビューされているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-016",
+              "no": 16,
+              "text": "Are safety procedures and processes frequency reviewed and updated using findings from the review? 安全手順は、頻繁に見直され、見直し結果をもとに、改善されているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-018",
+              "no": 18,
+              "text": "Do teammates and managers have a genuine concern for themselves and one another?  When there are safety relates issues, is a CFT approach taken to resolving them? 技能員や管理者は、自身や同僚をお互いに危険に曝さぬように意識しているか？ 安全に関する問題が発生した場合、CFTによる解決への方策が図られているか？",
+              "level": 5,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            },
+            {
+              "id": "MFG-OR-019",
+              "no": 19,
+              "text": "Do line managers engage with external parties about safety? 管理者（工場長・部長・課長）は、安全の外部団体に参加しているか？",
+              "level": 5,
+              "answered_by": "Management 管理者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "name": "System",
+      "elements": [
+        {
+          "id": "design",
+          "name": "Design",
+          "questions": [
+            {
+              "id": "MFG-SY-001",
+              "no": 1,
+              "text": "Are the regulations concerning safety training known at the site? 事業所において、安全教育に関する法令要求は、把握されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-027",
+              "no": 27,
+              "text": "Are lists of approved chemicals, Material Use Forms and Safety Data Sheets kept according to local regulation? 認可された化学物質のリスト、原材料取扱基準表、SDSの記録は、法規にしたがって保管されているか？",
+              "level": 1,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-031",
+              "no": 31,
+              "text": "Are you aware of laws and regulations regarding flammable materials? 危険物に関する法令を理解しているか？",
+              "level": 1,
+              "answered_by": "Production Supervisor 製造職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Flammable Materials Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-032",
+              "no": 32,
+              "text": "When conducting hot work, do you review a fire watcher assignment? 火気使用時に火気監視人の配置条件を把握しているか？",
+              "level": 1,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-033",
+              "no": 33,
+              "text": "Do you perform the periodic inspection of the fire extinguishing equipment in accordance with laws and regulations? 消火設備の定期点検を国・地域の要求事項に従い実施しているか？",
+              "level": 1,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Fighting",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-034",
+              "no": 34,
+              "text": "Is Mixing MUST11 deployed to mixing department and maintenance department?  MUST11が工場内で展開されているか？",
+              "level": 1,
+              "answered_by": "Teammate (Mixing), Maintenance Staff 技能員（精練）、保全員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mixing MUST-11 MUST11",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-042",
+              "no": 42,
+              "text": "Is the LOTO standard reviewed after incidents, audits or when opportunity areas have been identified? LOTO標準は、災害、監査、特定された（改善の）機会の後、見直しされていますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-043",
+              "no": 43,
+              "text": "Is the effectiveness of the Site Safety Rules reviewed after incidents, audits or opportunity areas have been identified? 事業所の安全ルールの有効性は、災害、監査、特定された（改善の）機会の後、見直されていますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-044",
+              "no": 44,
+              "text": "Is the Work at height procedure and its trainings reviewed after a Work at height incident has occurred?  高所作業の災害後、高所作業手順や教育は、見直されていますか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-045",
+              "no": 45,
+              "text": "Is there any accidents on mobile equipment last one year? Is the Mobile Equipment procedure and its trainings reviewed after an incident involving mobile equipment has occurred?  過去１年間に動力車の災害は発生しましたか？動力車関連の災害後、動力車作業手順や教育は、見直されていますか？",
+              "level": 2,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-065",
+              "no": 65,
+              "text": "Are you trained how to use the fire extinguishing equipment? 消火設備の使用方法を理解しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Fighting",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-068",
+              "no": 68,
+              "text": "Do you standardize how to maintain the electrical wirings? 電気配線の管理方法はあるか？",
+              "level": 2,
+              "answered_by": "D.P. Manager, Maintenance Manager 防災担当課長、保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Electric system",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-069",
+              "no": 69,
+              "text": "Are trainings reviewed and adjusted when safety rules and controls that involve that specific subject matter change? 安全ルール・安全管理に変更が生じた場合は、教育の見直し・変更が行われているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-090",
+              "no": 90,
+              "text": "Are all risks in the risk register covered by administrative or technical controls? Besides, are the remaining risks written in the work standard? 登録されたリスクカテゴリIII&IVの残留リスクに対し、ハード対策もしくは、ソフト対策が実施されていますか？また、残留リスクが作業標準に明記されていますか？",
+              "level": 3,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-096",
+              "no": 96,
+              "text": "Is there a regular training and communication program on site for teammates exposed to chemical hazards?  化学物物質の危険源にさらされる従業員に対して、定期的な教育および現場でのコミュニケーション（周知）が実施されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager / staff 安全または衛生担当課長、または担当部署",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-097",
+              "no": 97,
+              "text": "Is there a Chemical air sampling protocol in place for the site? 現場にて大気中の化学物質サンプリング（作業環境測定）が実施されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager / staff 安全または衛生担当課長、または担当部署",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-105",
+              "no": 105,
+              "text": "Has the training been conducted so that the fire extinguishing equipment can be operated appropriately? 消火設備を適切に使用できるように訓練ができているか？",
+              "level": 3,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Fighting",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-106",
+              "no": 106,
+              "text": "Do you comply with safety working standards related to Mixing MUST 11? MUST11に関する作業標準を正しく実施できているか？",
+              "level": 3,
+              "answered_by": "Mixing Supervisor, Teammate (Mixing) 製造（精練）職長/主任、技能員（精練）",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mixing MUST-11 MUST11",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-108",
+              "no": 108,
+              "text": "Do you review the results of periodical inspections on electrical wirings? 電気配線の状況について把握しているか？",
+              "level": 3,
+              "answered_by": "D.P. Manager, Maintenance Manager 防災担当課長、保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Electric system",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-110",
+              "no": 110,
+              "text": "Feedback from the trainees is included when reviewing training program? 教育受講者からのフィードバックを基に、教育プログラムを見直しているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-117",
+              "no": 117,
+              "text": "Are safety rules developed/adjusted after these evaluations take place? 上記評価後、*安全ルールは策定/見直されていますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-118",
+              "no": 118,
+              "text": "Are Work at height controls reviewed and adapted after new risks are identified? 新たなリスクが特定された後、高所作業の管理は見直され、修正されていますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-119",
+              "no": 119,
+              "text": "Are Mobile Equipment controls reviewed and adapted after new risks are identified? 新たなリスクが特定された後、動力車作業の管理は見直され、修正されていますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-125",
+              "no": 125,
+              "text": "Are the results from KY used to develop new safety rules or adjust old rules or improvement of safety measures for hazards((risk mitigation/administrative measures)?  KY（活動）の結果は、新しいルールの策定や既存ルールの見直しや危険源への対策の是正(リスク低減/管理策)につながっていますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-130",
+              "no": 130,
+              "text": "Is there a plan of periodical activities to increase employee's awareness on Ergonomics? エルゴノミクス（腰痛等の疾病リスク）に関して従業員の意識を向上させる定期的な活動が計画されているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-133",
+              "no": 133,
+              "text": "Do you consider the ongoing countermeasures to address residual risks? 残留リスクに対して継続的に対策を検討しているか？",
+              "level": 4,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Risk Assessment RA",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-140",
+              "no": 140,
+              "text": "Are trainings (materials/methods) updated with industry best practices? 業界の好事例をもとに、教育（内容・方法）が更新されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-141",
+              "no": 141,
+              "text": "Are industry best practices being considered to conduct counter measure for incidents (industrial accidents, fire accidents, near misses/hidden dangers reports and recurrence preventions)? インシデント（労働災害、出火事故、ヒヤリおよび潜在的危険源、類災報告）の対策のため、業界の好事例が考慮されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-143",
+              "no": 143,
+              "text": "Have you gathered best practices on LOTO from other plants/industry, and considered to incorporate them into the site procedure? 他事業所/業界のLOTOに関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-144",
+              "no": 144,
+              "text": "Is feedback from the LOTO standard (ECP, work standard) users considered when adapting the LOTO standard? LOTO標準(ECP*, 作業標準)の適用時、LOTO実行者からのフィードバックは、考慮されているか？ *動力源車断手順書",
+              "level": 5,
+              "answered_by": "Teammate, Maintenance Staff 技能員、保全員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-145",
+              "no": 145,
+              "text": "Have you gathered best practices on safety rules(e.g. work standards) from other plants/industry, and considered to incorporate them into the site procedure? 他事業所/業界の安全ルール(作業標準等）に関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-146",
+              "no": 146,
+              "text": "Is feedback from the teammates considered when adapting the safety rules? 安全ルールの適用時、作業者からのフィードバックは、考慮されているか？",
+              "level": 5,
+              "answered_by": "Operators  技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-147",
+              "no": 147,
+              "text": "Have you gathered best practices on safety rules(e.g. work standards) from other plants/industry, and considered to incorporate them into the site procedure? 他事業所/業界の高所作業に関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-148",
+              "no": 148,
+              "text": "Is feedback from the Work at height standard users considered when adapting the Work at height standard? 高所作業標準の適用時、高所作業を実施する作業者からのフィードバックは、考慮されているか？",
+              "level": 5,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-149",
+              "no": 149,
+              "text": "Have you gathered best practices on mobile equipment from other plants/industry, and considered to incorporate them into the site procedure? 他事業所/業界の動力車に関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-150",
+              "no": 150,
+              "text": "Is feedback from the mobile equipment users considered when adapting the mobile equipment standard? 動力車標準の適用時、動力車を使用する作業者からのフィードバックは、考慮されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-151",
+              "no": 151,
+              "text": "Have you gathered best practices on 3S from other plants/industry, and considered to incorporate them into the site procedure? 他事業所/業界の3Sに関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-152",
+              "no": 152,
+              "text": "Have you gathered best practices on　crane and hoist from other plants/external companies, and considered to incorporate them into the site procedure? 他事業所/他社からクレーン・ホイスト運用に関する好事例を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-153",
+              "no": 153,
+              "text": "Have you gathered best practices and/or risks found in other plants during KY, and considered to incorporate them into site procedure? 他事業所のKYで見つかったリスクの内容や、改善の好事例を入手し、自拠点への落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "KY leader  KYリーダー（実行責任者）",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-154",
+              "no": 154,
+              "text": "Does the site benchmark the Risk Assessment results with other sites and SBUs, and consider *best practice methods? 事業所は、RA結果において、他事業所や他SBUと比較し、*好事例を考慮しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-155",
+              "no": 155,
+              "text": "Have you gathered best practices on contractor management from other plants/external companies, and considered to incorporate them into the site procedure? (E.g. Daily JSA, using the external consultant for selecting contractors, etc.) 他事業所/他社から協力会社の安全管理に関する好事例(例:日々のRA、業者選定において社外コンサルを活用　等）を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-156",
+              "no": 156,
+              "text": "Are best industry practices and new advances in large tire manual handling equipment considered to modify or improve procedures on site? 大型タイヤハンドリング標準の改善や修正のため、業界の好事例や最新安全技術・装置の導入が検討されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-157",
+              "no": 157,
+              "text": "Are best practices shared by authorities or experts considered to modify or improve the procedure to reduce Ergonomic hazards? エルゴノミクス（腰痛等の疾病リスク）上のリスクを低減するため、標準の改善や修正のため、当局や専門家から共有された好事例の導入が検討されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-158",
+              "no": 158,
+              "text": "Are best industry practices considered to reduce Chemical hazards on site? 現場に残存する化学物質のリスクを低減するため、業界の好事例の導入が検討されているか？",
+              "level": 5,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-159",
+              "no": 159,
+              "text": "Have you gathered best practices on safety maintenance management from other plants/external companies, and considered to incorporate them into the site procedure? 他事業所/他社から保全作業の安全管理に関する好事例(例:日々のRA、業者選定において社外コンサルを活用　等）を入手し、自拠点へ落とし込みを検討しているか？",
+              "level": 5,
+              "answered_by": "Maintenance manager 保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-160",
+              "no": 160,
+              "text": "Do you periodically review the risk mitigation measures against residual fire risks? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Risk Assessment RA",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-161",
+              "no": 161,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Flammable Materials Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-162",
+              "no": 162,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-163",
+              "no": 163,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Fighting",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-164",
+              "no": 164,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mixing MUST-11 MUST11",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-165",
+              "no": 165,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場の情報を入手し､ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention General",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-166",
+              "no": 166,
+              "text": "Do you acquire the information from other plants to incorporate best practices? 他工場や業界の情報から、ベストプラクティスを取り込んでいるか？",
+              "level": 5,
+              "answered_by": "D.P. Manager, Maintenance Manager 防災担当課長、保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Electric system",
+              "dp": true
+            }
+          ]
+        },
+        {
+          "id": "integration",
+          "name": "Integration",
+          "questions": [
+            {
+              "id": "MFG-SY-002",
+              "no": 2,
+              "text": "Does  the safety manager send out the OH&S communications required by regulations to relevant departments as per the communication procedure and appropriate methods/language? 安全担当課長は、コミュニケーション手順に従い、法令で要求される安全衛生に関わる情報を関係部署に適切な手段/言語を用いて発信しているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-003",
+              "no": 3,
+              "text": "Has the Injury and Fire and Near-miss Reporting Process been communicated to the correct person? 労働災害・出火事故、ヒヤリの連絡手順は、周知されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-004",
+              "no": 4,
+              "text": "Is the procedure for reporting to management Near-Misses / Hidden Dangers known by the employees? ヒヤリおよび潜在的危険源を上司に報告する手順を従業員は理解しているか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-007",
+              "no": 7,
+              "text": "Have the required people been given locks and tags? キーとタグは、（LOTOの実行が）要求される人に配布されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-008",
+              "no": 8,
+              "text": "Are the required people educated in the LOTO standard? （LOTOの実行が）要求される人は、LOTO標準を教育されているか？",
+              "level": 1,
+              "answered_by": "Production and Maintenance SV 製造職長 保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-009",
+              "no": 9,
+              "text": "Do People on site know the safety rules that are required to be followed?  事業所の人たちは、順守が要求される安全ルールを知って（理解して）いますか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-010",
+              "no": 10,
+              "text": "Have Work at height requirements been communicated to the necessary teammates? 高所作業の要求事項は、（要求事項の実行が）必要な作業者に周知されていますか？",
+              "level": 1,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-011",
+              "no": 11,
+              "text": "Can teammates say Work at height requirements(What must not be done & What must be done) of All Bridgestone safety rules? 技能員は、BS共通安全ルール”高所作業”の順守事項・禁止事項を言えるか",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-012",
+              "no": 12,
+              "text": "Have you communicated with drivers about requirements on mobile equipment 動力車の運転に関する要求事項は必要な作業者に周知されていますか？",
+              "level": 1,
+              "answered_by": "Production Supervisor 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-013",
+              "no": 13,
+              "text": "Has the need for 3S(Select & remove, Sort, Keep clean) in the work place been properly communicated?　 作業場所における3S(整理・整頓・清掃）の必要性は、周知されているか？",
+              "level": 1,
+              "answered_by": "Production and Maintenance Supervisor 製造職長/保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-014",
+              "no": 14,
+              "text": "Is basic 3S being carried out and prepared 3S (visual) standard posted throughout the site? And 3S (visual) standard are reviewed/revised appropriately? 基本的な3Sは、決められた3S標準やビジュアル標準に基づき、事業所で実行されているか？ 3S標準や3Sビジュアル標準は全てのエリアで作成され、適宜更新されていますか？",
+              "level": 1,
+              "answered_by": "Production and Maintenance Supervisor 製造職長/保全職長 Teammate and Maint Staff 技能員/保全員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-015",
+              "no": 15,
+              "text": "Have you created an annual 3S activity plan? 年間の3S活動の計画を作成しているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-016",
+              "no": 16,
+              "text": "Are the regulations concerning crane and hoist operations known? クレーン・ホイストに関する法令要求は、理解されているか？",
+              "level": 1,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-017",
+              "no": 17,
+              "text": "Is there an established crane and hoist safety standard that complies with legal requirements? 作成されているクレーン・ホイスト標準は、法令要求を順守しているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-018",
+              "no": 18,
+              "text": "Do you conduct the safety training session based on the established crane and hoist safety standard that complies with legal requirements? 法令要求を織り込んだクレーン・ホイスト標準は、クレーン作業者に教育されていますか？",
+              "level": 1,
+              "answered_by": "Production Supervisor 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-019",
+              "no": 19,
+              "text": "Has the importance of the KY process been communicated to the teammates by management? 管理者（課長以上）は、作業者に、KY手順（4ラウンド）の重要性を周知しているか？",
+              "level": 1,
+              "answered_by": "Production Manager 製造課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-020",
+              "no": 20,
+              "text": "Have the regulations and/or expectations concerning risk assessments been identified? RAに関する法令要求は、特定されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-021",
+              "no": 21,
+              "text": "Have the　risk assessments been performed or is there a plan to complete? RAは、実行されているか？または、計画があるか？",
+              "level": 1,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-022",
+              "no": 22,
+              "text": "Do contractor employees who perform construction/works in BS have required skills and certification(E.g. crane and hoist)? 工事/作業を行う協力会社の従業員は、工事/作業に必要な能力・法的資格(例：クレーン・ホイスト）を有しているか？",
+              "level": 1,
+              "answered_by": "Maintenance Supervisor 保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-023",
+              "no": 23,
+              "text": "Are large tire manual handling operations identified? Is there a procedure for each of these operations? Has an assessment been completed in each case to determine that manual handling is necessary. 大型タイヤのハンドリング作業は特定されており、これらの各作業の標準はあるか？ またそれらの作業が必要だと判断した場合にRAは完了しているか？",
+              "level": 1,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-024",
+              "no": 24,
+              "text": "Has the Large Tire Manual Handling Operation procedure been communicated to the relevant people? 大型タイヤハンドリング作業の標準は、関係者へコミュニケーション（周知）されているか？",
+              "level": 1,
+              "answered_by": "Production Supervisor 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-025",
+              "no": 25,
+              "text": "Have Ergonomics hazards been identified on site? エルゴノミクス（腰痛等の疾病リスク）に関する危険源が現場で特定されているか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-026",
+              "no": 26,
+              "text": "Are all chemicals used on site (production and non-production chemicals) listed in a list of approved chemicals, and each has a corresponding Material Use Form (MUF) and current and compliant Safety Data Sheet (SDS)? 事業所で使用される全ての化学物質はリスト化され、対応する原材料取扱基準表およびSDSはあるか？",
+              "level": 1,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-028",
+              "no": 28,
+              "text": "Have employees been made aware of the Chemical hazards of their jobs? 従業員は自身の業務で扱う化学物質の危険性を把握しており、どんな時に危険にさらされるか教育を受けているか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-029",
+              "no": 29,
+              "text": "Is SBU/site local maintenance safety management procedure trained to maintenance staff? SBUまたは工場保全安全管理要領/手順は、保全員に教育していますか。",
+              "level": 1,
+              "answered_by": "Maintenance Supervisor 保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-030",
+              "no": 30,
+              "text": "Are you aware of fire risks in your job position/services? 自工程の火災リスクを認識しているか？",
+              "level": 1,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Risk Assessment RA",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-035",
+              "no": 35,
+              "text": "Have employees experienced evacuation routes and procedures during evacuation drills? 従業員へ避難訓練で避難ルートおよび手順を経験しているか？",
+              "level": 1,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention General",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-036",
+              "no": 36,
+              "text": "Do you standardize the inspection points and maintenance plan for electrical wiring? 電気配線の管理箇所や点検計画はあるか？",
+              "level": 1,
+              "answered_by": "D.P. Manager, Maintenance Manager 防災担当課長、保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Electric system",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-038",
+              "no": 38,
+              "text": "Are the causes of accidents/incidents that have occurred at this site communicated to teammates and is this shown by communication records? 自工場で発生した災害・事故の原因は従業員に周知され、コミュニケーション記録に記載されているか？",
+              "level": 2,
+              "answered_by": "Safety Manager/Teammate 安全担当課長/技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-039",
+              "no": 39,
+              "text": "Does the safety leader share incident reports from other sites? 安全担当課長は、他事業所の災害報告を共有化しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-046",
+              "no": 46,
+              "text": "Has a 3S leader been appointed in each area? 3Sのエリアごとの責任者は、任命されていますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-047",
+              "no": 47,
+              "text": "Does the 3S leader inspect work areas and follow up on his/her recommended actions are complete? 3S実行責任者は、職場内を点検し、推奨事項が完了しているかフォローアップしていますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-048",
+              "no": 48,
+              "text": "Is there a list of licensed crane operators? クレーンの有資格者リストはありますか？",
+              "level": 2,
+              "answered_by": "Production SV 製造職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-049",
+              "no": 49,
+              "text": "Are the crane operators aware of past incidents and know the procedures to avoid these from happening again? クレーン操作者は、過去災害を認識していますか？また、再発防止に向けた手順を理解していますか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-050",
+              "no": 50,
+              "text": "Is there a risk tracking on site? 事業所において、リスク一覧は、ありますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-051",
+              "no": 51,
+              "text": "Are new risks added to the risk tracking or safety controls adjusted after incident investigations? 災害調査後、新たなリスクがリスク一覧に追加されますか？また、安全管理（方法）は見直されますか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-052",
+              "no": 52,
+              "text": "Is KYT are conducted by all employee on site? KYTは、事業所の全ての従業員が実施しているか？",
+              "level": 2,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-053",
+              "no": 53,
+              "text": "Are pre-work meetings conducted prior to the start of work, are risks identified and risk mitigation measures/administrative controls defined. 作業の開始前に事前打ち合わせを実施し、リスクの顕在化およびその対応/リスク低減対策を決めているか？",
+              "level": 2,
+              "answered_by": "Maintenance Supervisor 保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-054",
+              "no": 54,
+              "text": "Are there criteria for selecting contractors and are contracts awarded in accordance with those criteria? Are contracts renewed at a regular frequency? 協力会社を選定する際の基準があり、それに従って契約しているか？契約の更新は決めれた頻度で行っているか？",
+              "level": 2,
+              "answered_by": "procurement Manager 調達担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-055",
+              "no": 55,
+              "text": "Is the large tire manual handling operation procedure reviewed in response to incidents? 災害・ヒヤリの発生に対して、大型タイヤ手動ハンドリング標準のレビュー（見直し）を行っているか？",
+              "level": 2,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-056",
+              "no": 56,
+              "text": "Have employees been made aware of the Ergonomics hazards of their jobs and when they are increasing their ergonomic risks due to poor techniques or not using tools provided to prevent these hazards? 従業員は、エルゴノミクス（腰痛等の疾病リスク）上の危険源を認識しており、どんなときにエルゴノミクス上の危険にさらされるか知らされているか？ また必要な保護具を使用しなかったり、作業標準を守らなかった場合のリスクについても認識しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-057",
+              "no": 57,
+              "text": "Are countermeasures in place to reduce exposure to Chemical Hazards? 化学物質に関する危険にさらされることを低減する対策が行われているか？",
+              "level": 2,
+              "answered_by": "Production Manager 製造課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-058",
+              "no": 58,
+              "text": "Do you hold the premeeting before maintenance work? And during this meeting do you identify the risks and determine risk mitigation & control? 作業の開始前に事前打ち合わせを実施し、リスクの顕在化およびその対応/リスク低減対策を決めているか？",
+              "level": 2,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-059",
+              "no": 59,
+              "text": "Are the identified risks and determined risks mitigation & control shared to maintenance staff. 顕在化したリスクおよび決定したリスク低減対策は保全員に周知されていますか？",
+              "level": 2,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-060",
+              "no": 60,
+              "text": "Do the maintenance technicians recognize what actions they should take when any unexpected / uncontrolled change occurs or new risks are identified? 保全員は、保全作業中に想定されていない変化点や新たなリスクを発見した場合の対応方法を理解しているか？",
+              "level": 2,
+              "answered_by": "Maintenance staff 保全員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-061",
+              "no": 61,
+              "text": "Are you aware of the fire prevention measures (rules) in your own processes/services? 自工程の防火対策(ルール)を理解しているか？",
+              "level": 2,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Risk Assessment RA",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-062",
+              "no": 62,
+              "text": "Do you share information or educate that the teammates can properly treat flammable materials? 危険物が正しく管理されるように周知・教育を行っているか？",
+              "level": 2,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Flammable Materials Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-063",
+              "no": 63,
+              "text": "When hot work has to be performed do you prepare the existence of necessary fire fighting tools? 火気使用の際に必要な消火器等の準備がされているか？",
+              "level": 2,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-064",
+              "no": 64,
+              "text": "Do you prepare the proper curing to prevent spreading sparks during hot work? 火花飛散防止のための養生を適切に行っているか？",
+              "level": 2,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-066",
+              "no": 66,
+              "text": "Do you understand the operation standards related to MUST11? MUST11に関する作業標準を理解しているか？",
+              "level": 2,
+              "answered_by": "Mixing Supervisor, Teammate (Mixing) 製造（精練）職長/主任、技能員（精練）",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mixing MUST-11 MUST11",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-067",
+              "no": 67,
+              "text": "Is DP training conducted to teammates on hiring or job transferring? 入社時、異動時の火災予防に関する研修などを行い、育成しているか？",
+              "level": 2,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention General",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-070",
+              "no": 70,
+              "text": "Are site safety rules communicated to teammates in a clear and structured manner? 事業所の安全ルール、明確かつ標準化された方法で、作業者に周知されているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-071",
+              "no": 71,
+              "text": "After incidents occur, do you know what actions should be taken to prevent a recurrence? インシデント（労働災害、出火事故、ヒヤリ、潜在的危険源、類災報告）が発生した際、安全担当課として再発防止のためにどのような行動をするか理解しているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-075",
+              "no": 75,
+              "text": "Do you know LOTO operation procedure in your process/work? 自工程/業務での、LOTO手順は理解していますか?",
+              "level": 3,
+              "answered_by": "Operators  技能員 Maintenance Staff 保全員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-076",
+              "no": 76,
+              "text": "Is LOTO being performed correctly on site? LOTOは現場において正しく実施されていますか？",
+              "level": 3,
+              "answered_by": "Tour 現場巡回",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-077",
+              "no": 77,
+              "text": "Is the LOTO system being used with periodical monitoring? LOTOの仕組みは運用され、定期的にモニタリングが実施されているか？",
+              "level": 3,
+              "answered_by": "Production SV and Maintenance SV 製造職長と保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-078",
+              "no": 78,
+              "text": "Are ECPs prepared for all applicable machinery?  LOTO対象の全ての設備に対し、ECP（動力車断手順書）を作成していますか？",
+              "level": 3,
+              "answered_by": "Production SV 製造職長 Maintenance SV 保全担当職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-079",
+              "no": 79,
+              "text": "Do all teammates have a good knowledge of the Safety Rules applicable to their work/process? 全ての作業者は、自部署/自作業に適用される安全ルールを（十分）理解しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-080",
+              "no": 80,
+              "text": "Do you know Work at height safety rules in your plant? 自工場の高所作業に関する安全ルールを理解していますか？",
+              "level": 3,
+              "answered_by": "Operators  技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-081",
+              "no": 81,
+              "text": "Are Work at height controls being used and applied by teammates performing tasks that require Work at height? 高所作業の管理は、運用されているか？また、高所作業において、実行されているか？",
+              "level": 3,
+              "answered_by": "Tour 現場巡回",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Work at Height",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-082",
+              "no": 82,
+              "text": "Do you know mobile equipment driving rules in your plant? 自工場での、動力車の運転ルールは理解していますか?",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-083",
+              "no": 83,
+              "text": "Do all teammates that use mobile equipment follow the rules and procedures for mobile equipment? 動力車を使用している全作業者は、動力車に関するルール・手順を順守しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mobile Equipment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-084",
+              "no": 84,
+              "text": "Are all unnecessary objects being removed from the work area? 全ての不要物は、作業場から排除されているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-085",
+              "no": 85,
+              "text": "Are necessary equipment/tools being put in clearly marked and fixed positions? 必要なものは、明示された決められた場所に置かれているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-086",
+              "no": 86,
+              "text": "Do you know crane and hoist operation rules in your process? 自工程での、クレーン・ホイストの操作ルールは理解していますか?",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-087",
+              "no": 87,
+              "text": "Do crane operators follow the rules and standards concerning cranes and hoist operations? クレーン作業者は、クレーン・ホイストのルール・標準を順守しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-088",
+              "no": 88,
+              "text": "Is KYT conducted periodically in accordance with SBU or/and site standard by everyone on site? KYTは、SBU/現場の標準で決められた頻度で実施されているか？",
+              "level": 3,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-089",
+              "no": 89,
+              "text": "Is the KYT activity evaluated and opportunity for improvement discussed with the plant manager annually? 毎年、KYTの活動内容は、評価され、改善の機会を事業所長と議論されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "KY",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-091",
+              "no": 91,
+              "text": "Do all contractor employees receive contractor H&S orientation/training prior to the start of the work?  協力会社の全従業員へ、作業開始前に安全教育/オリエンテーションを行っているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-093",
+              "no": 93,
+              "text": "Do employees follow proper procedure when manually handling large tires? 大型タイヤを手動ハンドリングする際に従業員は標準を順守しているか？",
+              "level": 3,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-094",
+              "no": 94,
+              "text": "Are risk assessments for ergonomic hazards performed following the Global Ergonomics procedure? グローバル標準に従い、エルゴノミクス（腰痛等の疾病リスク）上の危険源に対しリスクアセスメントが実施されているか？",
+              "level": 3,
+              "answered_by": "Production Manager 製造課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-095",
+              "no": 95,
+              "text": "Are risk assessments performed during the new chemical approval process for all identified chemical hazards? 全ての化学物質に対してリスクアセスメントが実施されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager / staff 安全または衛生担当課長、または担当部署",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-099",
+              "no": 99,
+              "text": "Before maintenance work, does the maintenance manager confirms that countermeasures established working standards/pre-working meeting have been correctly implemented? 管理監督者は作業開始前に、事前打ち合わせや作業標準で決められた対策が正しく実施されているか確認しているか？",
+              "level": 3,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-101",
+              "no": 101,
+              "text": "Do you inspect fire risks in your own process/area/department periodically? 自工程内の火災に関するリスクを定期的に点検しているか？",
+              "level": 3,
+              "answered_by": "Production Supervisor 製造職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Risk Assessment RA",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-102",
+              "no": 102,
+              "text": "Do you check the storage condition of flammable materials through patrols etc.? 法令に従い、危険物を適切な置場に正しく保管しているか？",
+              "level": 3,
+              "answered_by": "Production Supervisor 製造職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Flammable Materials Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-103",
+              "no": 103,
+              "text": "Do you standardize the management of hot work? 火気使用における仕組みがあるか？",
+              "level": 3,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-104",
+              "no": 104,
+              "text": "Do you observe/inspect to verify that hot work procedures are complied? パトロールなどをして火気運用状況を把握しているか？",
+              "level": 3,
+              "answered_by": "Others (in charge of patrol) その他（パトロール実施者）",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-107",
+              "no": 107,
+              "text": "Do you create the procedure to check personnel safety on employees and contractors when disaster occurs? (e.g. count the number of persons at designated evacuation point when evacuation from the buildings is needed) 従業員や工事業者の安否が正しく確認できるか？（建屋からの避難の際の人数確認・点呼の実施など）",
+              "level": 3,
+              "answered_by": "Production Supervisor 製造職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention General",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-114",
+              "no": 114,
+              "text": "Do you analyze the causes and implement countermeasures for LOTO violations? LOTO違反に対して原因分析や対策を実施していますか？",
+              "level": 4,
+              "answered_by": "Production SV Maintenance SV 製造職長、保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-115",
+              "no": 115,
+              "text": "Are monitoring/patrol methods for LOTO activity reviewed and considered for consistency with monitoring/patrol results, occurrence injury, and multiple monitoring instruments (if do), and updated as necessary? LOTO作業に対するモニタリング方法は、モニタリング結果や災害の発生状況、複数のモニタリング手段との整合性から見直しが検討され、必要に応じて更新されていますか？",
+              "level": 4,
+              "answered_by": "Production SV Maintenance SV 製造職長、保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "LOTO Standard LOTO",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-116",
+              "no": 116,
+              "text": "Do teammates engage management about and evaluate the risks involved in their work? 作業者は、自職場のリスク管理やリスク評価に参加していますか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety Rules",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-120",
+              "no": 120,
+              "text": "Do teammates proceed with 3S activity for the improvement of 3S level? 3S活動は、3Sレベルアップに向けた改善が進められているか(実際の)",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-121",
+              "no": 121,
+              "text": "Are the progress of 3S activity reported for top management and reviewed? 3S活動の進捗は安全衛生委員会等で工場長等へ報告され、レビューされていますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "3S",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-122",
+              "no": 122,
+              "text": "Do crane operators provide feedback(safety perspective) to their peers inside and outside of their plants?  クレーン作業者は、事業所SBU内外の同僚にフィードバックしているか（安全に関する操作ポイント等の情報共有）？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Crane and Hoist",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-123",
+              "no": 123,
+              "text": "Do you perform risk assessment to tasks? 作業に対してリスクアセスメントを実施していますか？",
+              "level": 4,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-124",
+              "no": 124,
+              "text": "Countermeasures for risk are assessed and are it reviewed as necessary? リスク低減対策は評価され、必要に応じて見直しが行われてますか。",
+              "level": 4,
+              "answered_by": "安全担当課長/保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Risk Assessment",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-126",
+              "no": 126,
+              "text": "Does BS perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted? BSは協力会社の作業エリアの安全パトロールを行い、事前打ち合わせで決めたリスク低減対策・管理が行われていることを確認しているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-127",
+              "no": 127,
+              "text": "Is the procedure reviewed when new activities are introduced on the site or when teammates offer relevant feedback? 現場に新規活動が導入される際、または、従業員から関連するフィードバックの提供があった際、標準が見直しされているか？",
+              "level": 4,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-128",
+              "no": 128,
+              "text": "Is there evidence of large tire manual handling procedure training refreshments being performed for the relevant teammates when required? 必要に応じて、関連する従業員へ大型タイヤ手動ハンドリング手順に関する再教育が実施されている記録はあるか？",
+              "level": 4,
+              "answered_by": "Production Foreman 製造主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Large Tire Manual Handling Operation",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-129",
+              "no": 129,
+              "text": "Are ergonomic risk assessment triggered when new tasks, and/or new or modified equipment are installed, in order for new risks to be identified? 新規作業導入時や新たにリスクが特定された際、エルゴノミクス（腰痛等の疾病リスク）RAが実施されているか？",
+              "level": 4,
+              "answered_by": "Production Manager 製造課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Ergonomics",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-131",
+              "no": 131,
+              "text": "Is there any risk mitigation control taken above legal requirements and/or local regulations? 法令・地区基準等でで求められる基準以上の化学物質管理を行っている事例はありますか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全または衛生担当課長、または担当部署",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Chemical Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-132",
+              "no": 132,
+              "text": "Do you promote the improvements on safety working standards and/or working environment based on RA outcome or safety proposals from teammate? 保全作業のRA結果や技能員からのフィードバックを基に課題を抽出し、作業標準や就業環境の改善を行っているか？",
+              "level": 4,
+              "answered_by": "Maintenance Supervisor 保全職長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            }
+          ]
+        },
+        {
+          "id": "change_emergency_planning",
+          "name": "Change & Emergency planning",
+          "questions": [
+            {
+              "id": "MFG-SY-005",
+              "no": 5,
+              "text": "Has an MOC Coordinator, an MOC reviewer and final approver been defined with clear roles an responsibilities defined? 変更管理における起案者・審議者・最終承認者は明確になっており、役割と責任が定義（明文化）されているか？",
+              "level": 1,
+              "answered_by": "MOC coordinator  変更管理起案者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-006",
+              "no": 6,
+              "text": "Are proposed changes evaluated in a structured manner that considers the legal compliance? 起案された変更案は、法令順守の確認を含む標準化された手順に従い、評価（審議）されているか？",
+              "level": 1,
+              "answered_by": "MOC coordinator  変更管理起案者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-037",
+              "no": 37,
+              "text": "Are trainings needs and content reviewed and edited after an accident occurs? 災害発生後、教育の必要性や内容について、見直し・改訂が実施されているか？",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-040",
+              "no": 40,
+              "text": "Did you take measures to recently incidents*? *Refer to “Safety Maturity Assessment Guidelines” (Manufacturing) Appendix 4 発生したインシデント（労働災害、出火事故、ヒヤリ、潜在的危険源、類災報告）に対して対策を実施しているか？ *添付資料4　生産拠点向け安全成熟度評価：システムチェックシート 「インシデント管理」 補足説明資料を参照",
+              "level": 2,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-041",
+              "no": 41,
+              "text": "Have change initiators been adequately trained to fulfil their duties? 変更管理に関わる人たちは、責務について、適切な教育を受けているか？",
+              "level": 2,
+              "answered_by": "MOC coordinator  変更管理起案者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-072",
+              "no": 72,
+              "text": "Is the effectiveness of implemented countermeasures reviewed with the reporting individual, H&S and maintenance department? 対策の有効性は、報告者や安全担当課、保全課によってレビューされているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-073",
+              "no": 73,
+              "text": "Are the site's safety rules analyzed in depth and are the risks regarding the change evaluated considered when a proposed change is being deliberated?  起案された変更（3M/4M）を審議する際、事業所の安全ルール・作業標準が十分に分析され、変更に関するリスクが評価されているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-074",
+              "no": 74,
+              "text": null,
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-092",
+              "no": 92,
+              "text": "Does the material of contractor H&S orientation/training includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities? 協力会社への安全教育/オリエンテーションには、緊急時の手順および安全宣言・共通規定項目が含まれているか？",
+              "level": 3,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Contractor management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-098",
+              "no": 98,
+              "text": "Are JSA / JHA / KY conducted before emergency maintenance tasks? 突発保全作業においても、作業前にJSA*やJHA、KYを実施しているか？ *Job Safety Analysis",
+              "level": 3,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-100",
+              "no": 100,
+              "text": "Do you conduct GENBA observation on maintenance tasks? What do you do when insufficient safety measures or violation of rules are found? 管理監督者は、保全作業中に巡回を行っているか？巡回中に異常を検出した際、どのように対応するか？",
+              "level": 3,
+              "answered_by": "Maintenance Supervisor 保全職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "General safety management for maintenance",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-109",
+              "no": 109,
+              "text": "Do teammates communicate hazards and risks to their supervisors as soon as they identify them?  作業者は、危険源およびリスクを特定した場合、速やかに監督者へ報告しているか？",
+              "level": 4,
+              "answered_by": "Teammate 技能員",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Safety communication",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-111",
+              "no": 111,
+              "text": "Are risk assessments reviewed for similar task/service/equipment when incidents (industrial accidents, fire accidents, near misses/hidden dangers reports and recurrence preventions) were reported?  インシデント（労働災害、出火事故、ヒヤリおよび潜在的危険源の報告、類災報告）と類似した作業、設備、プロセスに対してRAが実施されているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Incident Management",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-112",
+              "no": 112,
+              "text": "Do risk assessments addressing the new possible risks take place before a change is implemented? 変更実施前に、新たに発生する可能性のあるリスクへ対処するため、RAが実施されているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-113",
+              "no": 113,
+              "text": "Are preventative controls implemented before the change is made? 変更実施前に、予防管理（未然防止対策）が実施されているか？",
+              "level": 4,
+              "answered_by": "Safety Manager 安全担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            },
+            {
+              "id": "MFG-SY-134",
+              "no": 134,
+              "text": "Do you take corrective/improvement actions for flammable material storage areas based on fire prevention inspection or patrol feedbacks? 点検やパトロールの結果やフィードバックをもとに危険物保管場所における新たな改善を行っているか？",
+              "level": 4,
+              "answered_by": "D.P. Manager 防災担当課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Flammable Materials Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-135",
+              "no": 135,
+              "text": "Do you respond appropriately for identified failures or violations? 検出された不具合や違反に対して適切に対応しているか？",
+              "level": 4,
+              "answered_by": "Others (in charge of patrol) その他（パトロール実施者）",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Hot Work Management",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-136",
+              "no": 136,
+              "text": "Are any corrective actions taken when opportunity for improvements are identified through fire fighting training/drill? 検出された不具合を洗出し､改善しているか？",
+              "level": 4,
+              "answered_by": "Production Supervisor 製造職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Fire Fighting",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-137",
+              "no": 137,
+              "text": "When a defect is found during the MUST11 inspection, do you improve the defect at that time? MUST11点検で不具合発生時に改善しているか？",
+              "level": 4,
+              "answered_by": "Mixing Supervisor 製造（精練）職長/主任",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Mixing MUST-11 MUST11",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-138",
+              "no": 138,
+              "text": "Are corrective actions on emergency preparedness procedures taken when any opportunity for improvements are identified through training/drill? 訓練不具合を洗出し､改善しているか？",
+              "level": 4,
+              "answered_by": "Production Supervisor, D. P. Staff 製造職長/主任、防災担当",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Disaster Prevention General",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-139",
+              "no": 139,
+              "text": "Do you review the prevent measures on electrical wirings based on periodical inspections/maintenance? 得られた点検結果を活用してさらなる予防に繋げているか？",
+              "level": 4,
+              "answered_by": "D.P. Manager, Maintenance Manager 防災担当課長、保全課長",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Electric system",
+              "dp": true
+            },
+            {
+              "id": "MFG-SY-142",
+              "no": 142,
+              "text": "Are changes designed, planned, executed and evaluated based on pre-defined safety criteria which include hazards, risks and industry best-practices? 変更（管理）は、危険源・リスク・業界の好事例を含む既定の安全基準に従い、設計・計画・実行・評価（PDCA運用）されているか？",
+              "level": 5,
+              "answered_by": "MOC coordinator  変更管理起案者",
+              "audit_methods": [
+                "interview"
+              ],
+              "standard": "Management of Change",
+              "dp": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
