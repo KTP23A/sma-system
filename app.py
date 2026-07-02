@@ -210,6 +210,30 @@ def logout():
 
 # ─── Score calculation ────────────────────────────────────────────────────────
 
+def _std_name(s):
+    """Tidy a system-item name: drop a trailing bare uppercase acronym artifact
+    (e.g. 'LOTO Standard LOTO' -> 'LOTO Standard', 'Fire Risk Assessment RA' -> ...)."""
+    words = (s or "").split()
+    if len(words) >= 2 and words[-1].isupper() and words[-1].replace('-','').isalnum() and len(words[-1]) <= 6:
+        return " ".join(words[:-1])
+    return s
+
+def _std_slug(s):
+    n = (_std_name(s) or "").lower()
+    return "".join(c if c.isalnum() else "_" for c in n).strip("_")
+
+def _element_score(questions, responses):
+    appl = [q for q in questions if responses.get(q["id"]) not in ("na","not_rolled_out",None,"")]
+    if not appl:
+        return None
+    by_lv = {}
+    for q in appl:
+        by_lv.setdefault(q["level"], []).append(responses.get(q["id"]))
+    for lv in sorted(by_lv):
+        if "no" in by_lv[lv]:
+            return max(1, lv - 1)
+    return 5
+
 def calculate_scores(pillars, responses):
     pillar_scores = {}
     for pillar in pillars:
@@ -241,8 +265,23 @@ def calculate_scores(pillars, responses):
     sys_ = pillar_scores.get("system",        {}).get("score")
     sa = avg(ld,tm); si = avg(org,sys_); overall = avg(sa,si)
 
+    # System items breakdown: group system-pillar questions by 'standard', score each like an element
+    system_items = []
+    sysp = next((p for p in pillars if p["id"] == "system"), None)
+    if sysp:
+        groups, order = {}, []
+        for element in sysp["elements"]:
+            for q in element["questions"]:
+                std = q.get("standard") or "Other"
+                if std not in groups:
+                    groups[std] = []; order.append(std)
+                groups[std].append(q)
+        for std in order:
+            system_items.append({"id": _std_slug(std), "name": _std_name(std),
+                                  "score": _element_score(groups[std], responses)})
+
     return {"overall":overall,"safety_awareness":sa,"system_implementation":si,
-            "pillars":pillar_scores,
+            "pillars":pillar_scores, "system_items":system_items,
             "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
 def get_responses_dict(db, assessment_id):
