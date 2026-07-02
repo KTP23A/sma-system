@@ -295,6 +295,55 @@
                   {% endif %}
 
                   <!-- Answer buttons -->
+                  {% if q.responders %}
+                  {% set det = resp.get(q.id, {}).get('detail') or {} %}
+                  {% set rdet = det.get('roles', {}) %}
+                  <div class="responder-panel border rounded p-2 mb-2" data-qid="{{ q.id }}" style="background:#f8fafc">
+                    <div class="small text-muted mb-2">Interview results — question is <b>Yes</b> only if <u>every</u> respondent answers Yes; any No ⇒ No.</div>
+                    {% for role in q.responders %}
+                      {% set cfg = role_config.get(role, {}) %}
+                      {% set rd = rdet.get(role, {}) %}
+                      <div class="resp-role d-flex flex-wrap align-items-center gap-2 mb-1" data-role="{{ role }}" data-mode="{{ cfg.get('mode','count') }}">
+                        <span class="badge bg-secondary" style="min-width:135px;text-align:left">{{ cfg.get('label', role) }}</span>
+                        {% if cfg.get('mode') == 'single' %}
+                          <div class="btn-group btn-group-sm">
+                            <input type="radio" class="btn-check rsp-single" name="{{q.id}}_{{role}}" id="{{q.id}}_{{role}}_y" value="yes" {% if rd.get('yes') %}checked{% endif %}>
+                            <label class="btn btn-outline-success" for="{{q.id}}_{{role}}_y">Yes</label>
+                            <input type="radio" class="btn-check rsp-single" name="{{q.id}}_{{role}}" id="{{q.id}}_{{role}}_n" value="no" {% if rd.get('no') %}checked{% endif %}>
+                            <label class="btn btn-outline-danger" for="{{q.id}}_{{role}}_n">No</label>
+                          </div>
+                        {% elif cfg.get('mode') == 'departments' %}
+                          {% set depts = rd.get('departments', []) %}
+                          <div class="dept-rows d-flex flex-column gap-1">
+                            {% for i in range(cfg.get('max',6)) %}
+                              {% set dp = depts[i] if i < depts|length else {} %}
+                              <div class="dept-row d-flex align-items-center gap-1">
+                                <input type="text" class="form-control form-control-sm rsp-dept-name" style="width:150px" placeholder="Dept {{i+1}} (type name)" value="{{ dp.get('name','') }}">
+                                <div class="btn-group btn-group-sm">
+                                  <input type="radio" class="btn-check rsp-dept" name="{{q.id}}_pmd{{i}}" id="{{q.id}}_pmd{{i}}_y" value="yes" {% if dp.get('answer')=='yes' %}checked{% endif %}>
+                                  <label class="btn btn-outline-success" for="{{q.id}}_pmd{{i}}_y">Y</label>
+                                  <input type="radio" class="btn-check rsp-dept" name="{{q.id}}_pmd{{i}}" id="{{q.id}}_pmd{{i}}_n" value="no" {% if dp.get('answer')=='no' %}checked{% endif %}>
+                                  <label class="btn btn-outline-danger" for="{{q.id}}_pmd{{i}}_n">N</label>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        {% else %}
+                          <span class="small">interview <input type="number" min="1" class="form-control form-control-sm d-inline-block rsp-expected" style="width:60px" value="{{ rd.get('expected', cfg.get('default_expected',1)) }}" {% if not cfg.get('adjustable') %}readonly{% endif %}></span>
+                          <span class="small text-success">Yes <input type="number" min="0" class="form-control form-control-sm d-inline-block rsp-yes" style="width:60px" value="{{ rd.get('yes',0) }}"></span>
+                          <span class="small text-danger">No <input type="number" min="0" class="form-control form-control-sm d-inline-block rsp-no" style="width:60px" value="{{ rd.get('no',0) }}"></span>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                    <div class="d-flex align-items-center gap-3 mt-2 pt-1 border-top">
+                      <label class="small mb-0"><input type="checkbox" class="rsp-na" {% if det.get('na') %}checked{% endif %}> N/A</label>
+                      <label class="small mb-0"><input type="checkbox" class="rsp-nr" {% if det.get('not_rolled_out') %}checked{% endif %}> Not rolled out</label>
+                      <span class="ms-auto small">Result:
+                        <span class="rsp-result badge {% if ans=='yes' %}bg-success{% elif ans=='no' %}bg-danger{% else %}bg-secondary{% endif %}">{% if ans=='yes' %}Yes{% elif ans=='no' %}No{% elif ans=='na' %}N/A{% elif ans=='not_rolled_out' %}Not rolled out{% else %}— incomplete{% endif %}</span>
+                      </span>
+                    </div>
+                  </div>
+                  {% else %}
                   <div class="answer-radio d-flex flex-wrap gap-1 mb-2">
                     <input type="radio" name="{{ q.id }}" id="{{ q.id }}_yes" value="yes" {% if ans == 'yes' %}checked{% endif %}>
                     <label for="{{ q.id }}_yes" class="yes-lbl">✓ Yes</label>
@@ -308,6 +357,7 @@
                     <input type="radio" name="{{ q.id }}" id="{{ q.id }}_nr" value="not_rolled_out" {% if ans == 'not_rolled_out' %}checked{% endif %}>
                     <label for="{{ q.id }}_nr" class="nr-lbl">Not rolled out</label>
                   </div>
+                  {% endif %}
 
                   <!-- Comment -->
                   <div class="mb-2">
@@ -577,6 +627,8 @@ document.querySelectorAll('.comment-field').forEach(ta => {
   });
   ta.addEventListener('blur', function() {
     const qid = this.getAttribute('data-qid');
+    const panel = document.querySelector(`.responder-panel[data-qid="${qid}"]`);
+    if (panel) { saveResponder(panel); return; }   // responder question: derive from panel
     const answer = document.querySelector(`input[name="${qid}"]:checked`)?.value || '';
     saveAnswer(qid, answer, this.value);
   });
@@ -599,6 +651,67 @@ function updateRowColor(row, answer) {
   row.classList.remove('q-yes','q-no','q-na','q-not_rolled_out');
   if (answer) row.classList.add('q-' + answer);
 }
+
+// ── Responder panels (MFG count-based judgement) ──────────────────────────────
+function collectDetail(panel) {
+  const roles = {};
+  panel.querySelectorAll('.resp-role').forEach(rr => {
+    const role = rr.dataset.role, mode = rr.dataset.mode;
+    if (mode === 'single') {
+      const v = rr.querySelector('.rsp-single:checked')?.value;
+      roles[role] = { yes: v === 'yes' ? 1 : 0, no: v === 'no' ? 1 : 0 };
+    } else if (mode === 'departments') {
+      const depts = [];
+      rr.querySelectorAll('.dept-row').forEach(dr => {
+        const name = dr.querySelector('.rsp-dept-name').value.trim();
+        const ans = dr.querySelector('.rsp-dept:checked')?.value || null;
+        if (name || ans) depts.push({ name, answer: ans });
+      });
+      roles[role] = { departments: depts };
+    } else {
+      roles[role] = {
+        expected: parseInt(rr.querySelector('.rsp-expected').value) || 1,
+        yes: parseInt(rr.querySelector('.rsp-yes').value) || 0,
+        no:  parseInt(rr.querySelector('.rsp-no').value) || 0
+      };
+    }
+  });
+  return { roles,
+           na: panel.querySelector('.rsp-na').checked,
+           not_rolled_out: panel.querySelector('.rsp-nr').checked };
+}
+
+function saveResponder(panel) {
+  const qid = panel.dataset.qid;
+  const detail = collectDetail(panel);
+  const comment = document.getElementById('cmt-' + qid)?.value || '';
+  clearTimeout(saveTimers[qid]);
+  saveTimers[qid] = setTimeout(() => {
+    fetch('/api/answer', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ assessment_id: ASSESSMENT_ID, question_id: qid, detail, comment })
+    })
+    .then(r => r.json())
+    .then(data => {
+      updateScorePanel(data);
+      const d = data.derived || '';
+      const badge = panel.querySelector('.rsp-result');
+      const M = { yes:['Yes','bg-success'], no:['No','bg-danger'],
+                  na:['N/A','bg-secondary'], not_rolled_out:['Not rolled out','bg-secondary'] };
+      const m = M[d] || ['— incomplete','bg-secondary'];
+      badge.textContent = m[0]; badge.className = 'rsp-result badge ' + m[1];
+      const row = panel.closest('[data-answer]');
+      if (row) { row.setAttribute('data-answer', d); updateRowColor(row, d); }
+    });
+  }, 250);
+}
+
+document.querySelectorAll('.responder-panel').forEach(panel => {
+  panel.addEventListener('change', () => saveResponder(panel));
+  panel.addEventListener('input', e => {
+    if (e.target.matches('.rsp-yes,.rsp-no,.rsp-expected,.rsp-dept-name')) saveResponder(panel);
+  });
+});
 
 // ── Update score panel ────────────────────────────────────────────────────────
 function updateScorePanel(data) {
