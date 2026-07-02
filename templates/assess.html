@@ -328,6 +328,9 @@
                               </div>
                             {% endfor %}
                           </div>
+                        {% elif cfg.get('mode') == 'sections' %}
+                          <div class="sections-wrap flex-grow-1" data-max="{{ cfg.get('max_sections',6) }}"
+                               data-sections='{{ (rd.get("sections", []) or [])|tojson }}'></div>
                         {% else %}
                           <span class="small">interview <input type="number" min="1" class="form-control form-control-sm d-inline-block rsp-expected" style="width:60px" value="{{ rd.get('expected', cfg.get('default_expected',1)) }}" {% if not cfg.get('adjustable') %}readonly{% endif %}></span>
                           <span class="small text-success">Yes <input type="number" min="0" class="form-control form-control-sm d-inline-block rsp-yes" style="width:60px" value="{{ rd.get('yes',0) }}"></span>
@@ -668,6 +671,19 @@ function collectDetail(panel) {
         if (name || ans) depts.push({ name, answer: ans });
       });
       roles[role] = { departments: depts };
+    } else if (mode === 'sections') {
+      const sections = [];
+      rr.querySelectorAll('.rsp-section').forEach(sec => {
+        const sname = sec.querySelector('.rsp-sec-name').value.trim();
+        const people = [];
+        sec.querySelectorAll('.person-row').forEach(pr => {
+          const pname = pr.querySelector('.rsp-person-name').value.trim();
+          const ans = pr.querySelector('.rsp-person-ans:checked')?.value || null;
+          if (pname || ans) people.push({ name: pname, answer: ans });
+        });
+        if (sname || people.length) sections.push({ name: sname, people });
+      });
+      roles[role] = { sections };
     } else {
       roles[role] = {
         expected: parseInt(rr.querySelector('.rsp-expected').value) || 1,
@@ -706,10 +722,64 @@ function saveResponder(panel) {
   }, 250);
 }
 
+// Build sectioned roles (Teammate/Foreperson/Maintenance) from saved data
+let _pc = 0;
+function escHtml(s){ return (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function personRowHTML(name='', answer=''){
+  const nm = 'pp'+(++_pc);
+  return `<div class="person-row d-flex align-items-center gap-1 mb-1">
+    <input type="text" class="form-control form-control-sm rsp-person-name" style="max-width:170px" placeholder="Name" value="${escHtml(name)}">
+    <div class="btn-group btn-group-sm">
+      <input type="radio" class="btn-check rsp-person-ans" name="${nm}" id="${nm}_y" value="yes" ${answer==='yes'?'checked':''}>
+      <label class="btn btn-outline-success" for="${nm}_y">Y</label>
+      <input type="radio" class="btn-check rsp-person-ans" name="${nm}" id="${nm}_n" value="no" ${answer==='no'?'checked':''}>
+      <label class="btn btn-outline-danger" for="${nm}_n">N</label>
+    </div>
+    <button type="button" class="btn btn-sm btn-link text-danger p-0 del-person" title="remove">✕</button>
+  </div>`;
+}
+function sectionHTML(name='', people=null){
+  const rows = (people && people.length ? people.map(p=>personRowHTML(p.name, p.answer)).join('') : personRowHTML());
+  return `<div class="rsp-section border rounded mb-1">
+    <div class="section-head d-flex align-items-center gap-1 p-1" style="background:#eef2f7">
+      <button type="button" class="btn btn-sm btn-light py-0 section-toggle">▾</button>
+      <input type="text" class="form-control form-control-sm rsp-sec-name" style="max-width:220px" placeholder="Section name (e.g. Mixing)" value="${escHtml(name)}">
+    </div>
+    <div class="section-body p-1">
+      <div class="people-list">${rows}</div>
+      <button type="button" class="btn btn-sm btn-outline-secondary py-0 add-person">+ add teammate</button>
+    </div>
+  </div>`;
+}
+document.querySelectorAll('.sections-wrap').forEach(wrap => {
+  let secs=[]; try { secs=JSON.parse(wrap.dataset.sections||'[]'); } catch(e){}
+  const inner = (secs && secs.length ? secs.map(s=>sectionHTML(s.name, s.people)).join('') : sectionHTML());
+  wrap.innerHTML = inner + `<button type="button" class="btn btn-sm btn-outline-primary py-0 add-section">+ add section</button>`;
+});
+
 document.querySelectorAll('.responder-panel').forEach(panel => {
   panel.addEventListener('change', () => saveResponder(panel));
   panel.addEventListener('input', e => {
-    if (e.target.matches('.rsp-yes,.rsp-no,.rsp-expected,.rsp-dept-name')) saveResponder(panel);
+    if (e.target.matches('.rsp-yes,.rsp-no,.rsp-expected,.rsp-dept-name,.rsp-sec-name,.rsp-person-name')) saveResponder(panel);
+  });
+  panel.addEventListener('click', e => {
+    if (e.target.closest('.add-person')) {
+      e.preventDefault();
+      e.target.closest('.section-body').querySelector('.people-list').insertAdjacentHTML('beforeend', personRowHTML());
+    } else if (e.target.closest('.del-person')) {
+      e.preventDefault(); e.target.closest('.person-row').remove(); saveResponder(panel);
+    } else if (e.target.closest('.add-section')) {
+      e.preventDefault();
+      const wrap = e.target.closest('.sections-wrap');
+      if (wrap.querySelectorAll('.rsp-section').length < (parseInt(wrap.dataset.max)||6))
+        e.target.insertAdjacentHTML('beforebegin', sectionHTML());
+    } else if (e.target.closest('.section-toggle')) {
+      e.preventDefault();
+      const body = e.target.closest('.rsp-section').querySelector('.section-body');
+      const hidden = body.style.display === 'none';
+      body.style.display = hidden ? '' : 'none';
+      e.target.closest('.section-toggle').textContent = hidden ? '▾' : '▸';
+    }
   });
 });
 

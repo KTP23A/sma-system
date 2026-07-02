@@ -79,6 +79,12 @@ def derive_answer(question, detail, role_config):
             answered = [d for d in used if d.get("answer") in ("yes","no")]
             if any(d.get("answer") == "no" for d in answered): any_no = True
             if not used or len(answered) < len(used): complete = False
+        elif cfg.get("mode") == "sections":
+            people = [p for sec in rd.get("sections", []) for p in sec.get("people", [])]
+            answered = [p for p in people if p.get("answer") in ("yes","no")]
+            started = [p for p in people if (p.get("name") or "").strip() and p.get("answer") not in ("yes","no")]
+            if any(p.get("answer") == "no" for p in answered): any_no = True
+            if not answered or started: complete = False
         else:
             yes = int(rd.get("yes") or 0); no = int(rd.get("no") or 0)
             expected = int(rd.get("expected") or cfg.get("default_expected", 1) or 1)

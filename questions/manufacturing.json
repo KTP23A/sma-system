@@ -3769,9 +3769,8 @@
     },
     "foreperson": {
       "label": "Foreperson",
-      "mode": "count",
-      "default_expected": 3,
-      "adjustable": true
+      "mode": "sections",
+      "max_sections": 6
     },
     "supervisor": {
       "label": "Supervisor",
@@ -3781,9 +3780,8 @@
     },
     "teammate": {
       "label": "Teammate",
-      "mode": "count",
-      "default_expected": 5,
-      "adjustable": true
+      "mode": "sections",
+      "max_sections": 6
     },
     "maintenance_manager": {
       "label": "Maintenance Manager",
@@ -3792,15 +3790,13 @@
     },
     "maintenance_foreman": {
       "label": "Maintenance Foreman",
-      "mode": "count",
-      "default_expected": 2,
-      "adjustable": true
+      "mode": "sections",
+      "max_sections": 6
     },
     "maintenance_staff": {
       "label": "Maintenance Staff",
-      "mode": "count",
-      "default_expected": 3,
-      "adjustable": true
+      "mode": "sections",
+      "max_sections": 6
     },
     "safety_manager": {
       "label": "Safety Manager",
