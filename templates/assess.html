@@ -313,21 +313,8 @@
                             <label class="btn btn-outline-danger" for="{{q.id}}_{{role}}_n">No</label>
                           </div>
                         {% elif cfg.get('mode') == 'departments' %}
-                          {% set depts = rd.get('departments', []) %}
-                          <div class="dept-rows d-flex flex-column gap-1">
-                            {% for i in range(cfg.get('max',6)) %}
-                              {% set dp = depts[i] if i < depts|length else {} %}
-                              <div class="dept-row d-flex align-items-center gap-1">
-                                <input type="text" class="form-control form-control-sm rsp-dept-name" style="width:150px" placeholder="Dept {{i+1}} (type name)" value="{{ dp.get('name','') }}">
-                                <div class="btn-group btn-group-sm">
-                                  <input type="radio" class="btn-check rsp-dept" name="{{q.id}}_pmd{{i}}" id="{{q.id}}_pmd{{i}}_y" value="yes" {% if dp.get('answer')=='yes' %}checked{% endif %}>
-                                  <label class="btn btn-outline-success" for="{{q.id}}_pmd{{i}}_y">Y</label>
-                                  <input type="radio" class="btn-check rsp-dept" name="{{q.id}}_pmd{{i}}" id="{{q.id}}_pmd{{i}}_n" value="no" {% if dp.get('answer')=='no' %}checked{% endif %}>
-                                  <label class="btn btn-outline-danger" for="{{q.id}}_pmd{{i}}_n">N</label>
-                                </div>
-                              </div>
-                            {% endfor %}
-                          </div>
+                          <div class="depts-wrap flex-grow-1" data-max="{{ cfg.get('max',6) }}"
+                               data-depts='{{ (rd.get("departments", []) or [])|tojson }}'></div>
                         {% elif cfg.get('mode') == 'sections' %}
                           <div class="sections-wrap flex-grow-1" data-max="{{ cfg.get('max_sections',6) }}"
                                data-sections='{{ (rd.get("sections", []) or [])|tojson }}'></div>
@@ -757,12 +744,44 @@ document.querySelectorAll('.sections-wrap').forEach(wrap => {
   wrap.innerHTML = inner + `<button type="button" class="btn btn-sm btn-outline-primary py-0 add-section">+ add section</button>`;
 });
 
+// Build Production Manager departments (add/deletable) from saved data
+function deptRowHTML(name='', answer=''){
+  const nm = 'dd'+(++_pc);
+  return `<div class="dept-row d-flex align-items-center gap-1 mb-1">
+    <input type="text" class="form-control form-control-sm rsp-dept-name" style="max-width:170px" placeholder="Department name" value="${escHtml(name)}">
+    <div class="btn-group btn-group-sm">
+      <input type="radio" class="btn-check rsp-dept" name="${nm}" id="${nm}_y" value="yes" ${answer==='yes'?'checked':''}>
+      <label class="btn btn-outline-success" for="${nm}_y">Y</label>
+      <input type="radio" class="btn-check rsp-dept" name="${nm}" id="${nm}_n" value="no" ${answer==='no'?'checked':''}>
+      <label class="btn btn-outline-danger" for="${nm}_n">N</label>
+    </div>
+    <button type="button" class="btn btn-sm btn-link text-danger p-0 del-dept" title="remove">✕</button>
+  </div>`;
+}
+document.querySelectorAll('.depts-wrap').forEach(wrap => {
+  let depts=[]; try { depts=JSON.parse(wrap.dataset.depts||'[]'); } catch(e){}
+  const inner = (depts && depts.length ? depts.map(d=>deptRowHTML(d.name, d.answer)).join('') : deptRowHTML());
+  wrap.innerHTML = inner + `<button type="button" class="btn btn-sm btn-outline-primary py-0 add-dept">+ add department</button>`;
+});
+
 document.querySelectorAll('.responder-panel').forEach(panel => {
   panel.addEventListener('change', () => saveResponder(panel));
   panel.addEventListener('input', e => {
     if (e.target.matches('.rsp-yes,.rsp-no,.rsp-expected,.rsp-dept-name,.rsp-sec-name,.rsp-person-name')) saveResponder(panel);
   });
+  // Re-click a checked Y/N to clear it (deselect → unanswered)
+  panel.addEventListener('pointerdown', e => {
+    const lbl = e.target.closest('label.btn');
+    if (!lbl) return;
+    const inp = document.getElementById(lbl.htmlFor);
+    if (inp && inp.matches('.rsp-single,.rsp-dept,.rsp-person-ans')) inp._wasChecked = inp.checked;
+  });
   panel.addEventListener('click', e => {
+    const rin = e.target.closest('.rsp-single,.rsp-dept,.rsp-person-ans');
+    if (rin && rin.tagName === 'INPUT') {
+      if (rin._wasChecked) { rin.checked = false; rin._wasChecked = false; saveResponder(panel); return; }
+      rin._wasChecked = false;
+    }
     if (e.target.closest('.add-person')) {
       e.preventDefault();
       e.target.closest('.section-body').querySelector('.people-list').insertAdjacentHTML('beforeend', personRowHTML());
@@ -773,6 +792,13 @@ document.querySelectorAll('.responder-panel').forEach(panel => {
       const wrap = e.target.closest('.sections-wrap');
       if (wrap.querySelectorAll('.rsp-section').length < (parseInt(wrap.dataset.max)||6))
         e.target.insertAdjacentHTML('beforebegin', sectionHTML());
+    } else if (e.target.closest('.add-dept')) {
+      e.preventDefault();
+      const wrap = e.target.closest('.depts-wrap');
+      if (wrap.querySelectorAll('.dept-row').length < (parseInt(wrap.dataset.max)||6))
+        e.target.insertAdjacentHTML('beforebegin', deptRowHTML());
+    } else if (e.target.closest('.del-dept')) {
+      e.preventDefault(); e.target.closest('.dept-row').remove(); saveResponder(panel);
     } else if (e.target.closest('.section-toggle')) {
       e.preventDefault();
       const body = e.target.closest('.rsp-section').querySelector('.section-body');
