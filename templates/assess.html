@@ -531,6 +531,21 @@
                   {% endif %}
                 </tr>
               {% endfor %}
+              {% if pillar.id == 'system' and scores.system_items %}
+                <tr><td class="text-muted ps-3 fst-italic" colspan="{{ 4 if self_assessment else 2 }}" style="font-size:.66rem;background:#eef2f7">System items (per standard)</td></tr>
+                {% for item in scores.system_items %}
+                <tr>
+                  <td class="text-muted ps-4" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:0;font-size:.7rem" title="{{ item.name }}">{{ item.name }}</td>
+                  {% if self_assessment %}
+                  <td></td>
+                  <td class="text-center"><span class="badge level-badge-{{ item.score or 0 }}" id="sysitem-badge-{{ item.id }}" style="font-size:.62rem;padding:2px 5px">{{ item.score if item.score is not none else '—' }}</span></td>
+                  <td></td>
+                  {% else %}
+                  <td class="text-center"><span class="badge level-badge-{{ item.score or 0 }}" id="sysitem-badge-{{ item.id }}" style="font-size:.62rem;padding:2px 5px">{{ item.score if item.score is not none else '—' }}</span></td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+              {% endif %}
             {% endfor %}
             <!-- SA / SI summary -->
             <tr class="table-light">
@@ -855,6 +870,16 @@ function updateScorePanel(data) {
       }
     }
   }
+
+  // Update System-item badges (per-standard breakdown)
+  (scores.system_items || []).forEach(it => {
+    const b = document.getElementById('sysitem-badge-' + it.id);
+    if (b) {
+      b.textContent = (it.score !== null && it.score !== undefined) ? it.score : '—';
+      b.className = 'badge level-badge-' + (it.score || 0);
+      b.style.cssText = 'font-size:.62rem;padding:2px 5px';
+    }
+  });
 
   // Progress
   const pct = total ? Math.round(answered / total * 100) : 0;
