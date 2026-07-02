@@ -39,8 +39,53 @@ def load_questions(assessment_type, scope=None):
         return json.loads((Q_DIR/"retread.json").read_text())["pillars"]
     return []
 
+_TYPE_FILES = {"warehouse":"warehouse.json","retail":"retail.json",
+               "manufacturing":"manufacturing.json","retread":"retread.json"}
+
+def load_type_meta(assessment_type):
+    """Top-level metadata for a type (role_config, department_options, rollup). {} if none."""
+    f = _TYPE_FILES.get(assessment_type)
+    if not f: return {}
+    data = json.loads((Q_DIR/f).read_text())
+    return {"role_config": data.get("role_config", {}),
+            "department_options": data.get("department_options", []),
+            "rollup": data.get("rollup")}
+
 def all_questions_flat(pillars):
     return [q for p in pillars for e in p["elements"] for q in e["questions"]]
+
+def find_question(pillars, qid):
+    for q in all_questions_flat(pillars):
+        if q["id"] == qid: return q
+    return None
+
+def derive_answer(question, detail, role_config):
+    """Strict 100%-Yes roll-up from per-role responder counts.
+    Returns 'yes' (all required responders answered, zero No), 'no' (any No),
+    'na'/'not_rolled_out' (manual toggles), or '' (incomplete → unanswered)."""
+    responders = question.get("responders") or []
+    if not responders:
+        return None  # not a responder question; caller keeps the plain answer
+    detail = detail or {}
+    if detail.get("na"): return "na"
+    if detail.get("not_rolled_out"): return "not_rolled_out"
+    roles = detail.get("roles", {}) or {}
+    any_no = False; complete = True
+    for rk in responders:
+        cfg = role_config.get(rk, {})
+        rd  = roles.get(rk, {}) or {}
+        if cfg.get("mode") == "departments":
+            used = [d for d in rd.get("departments", []) if (d.get("name") or d.get("answer"))]
+            answered = [d for d in used if d.get("answer") in ("yes","no")]
+            if any(d.get("answer") == "no" for d in answered): any_no = True
+            if not used or len(answered) < len(used): complete = False
+        else:
+            yes = int(rd.get("yes") or 0); no = int(rd.get("no") or 0)
+            expected = int(rd.get("expected") or cfg.get("default_expected", 1) or 1)
+            if no > 0: any_no = True
+            if (yes + no) < max(expected, 1): complete = False
+    if any_no: return "no"
+    return "yes" if complete else ""
 
 
 # ─── Database ─────────────────────────────────────────────────────────────────
@@ -91,6 +136,7 @@ def init_db():
             question_id TEXT NOT NULL,
             answer TEXT,
             comment TEXT,
+            detail TEXT,
             updated_at TEXT DEFAULT (datetime('now')),
             UNIQUE(assessment_id, question_id)
         );
@@ -117,6 +163,10 @@ def init_db():
             updated_at TEXT DEFAULT (datetime('now'))
         );
     """)
+    # Migration: add responses.detail to existing DBs (per-role responder counts)
+    cols = [r[1] for r in db.execute("PRAGMA table_info(responses)")]
+    if "detail" not in cols:
+        db.execute("ALTER TABLE responses ADD COLUMN detail TEXT")
     if db.execute("SELECT COUNT(*) FROM users").fetchone()[0] == 0:
         db.execute("INSERT INTO users (username, full_name, password_hash) VALUES (?,?,?)",
             ("admin","Administrator",generate_password_hash("admin123",method="pbkdf2:sha256")))
@@ -190,8 +240,13 @@ def calculate_scores(pillars, responses):
             "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
 def get_responses_dict(db, assessment_id):
-    rows = db.execute("SELECT question_id, answer, comment FROM responses WHERE assessment_id=?",(assessment_id,)).fetchall()
-    return {r["question_id"]:{"answer":r["answer"],"comment":r["comment"] or ""} for r in rows}
+    rows = db.execute("SELECT question_id, answer, comment, detail FROM responses WHERE assessment_id=?",(assessment_id,)).fetchall()
+    out = {}
+    for r in rows:
+        try: det = json.loads(r["detail"]) if r["detail"] else None
+        except Exception: det = None
+        out[r["question_id"]] = {"answer":r["answer"],"comment":r["comment"] or "","detail":det}
+    return out
 
 def answers_only(resp_dict):
     return {qid: v["answer"] for qid,v in resp_dict.items()}
@@ -302,6 +357,7 @@ def assess(assessment_id):
     if not assessment: return redirect(url_for("dashboard"))
 
     pillars = load_questions(assessment["type"], assessment["scope"])
+    meta    = load_type_meta(assessment["type"])
     resp    = get_responses_dict(db, assessment_id)
     ans     = answers_only(resp)
     all_qs  = all_questions_flat(pillars)
@@ -321,6 +377,8 @@ def assess(assessment_id):
         all_standards=sorted({q["standard"] for q in all_qs if q["standard"]}),
         all_elements=[(p["id"],e["id"],e["name"]) for p in pillars for e in p["elements"]],
         attachments=attachments,
+        role_config=meta.get("role_config", {}),
+        department_options=meta.get("department_options", []),
         total_q=len(all_qs),
         answered_q=sum(1 for q in all_qs if ans.get(q["id"]) not in (None,"")),
         user=dict(user), read_only=False, unread=0,
@@ -337,21 +395,34 @@ def api_answer():
     db = get_db()
     assessment = db.execute("SELECT * FROM assessments WHERE id=?",(assessment_id,)).fetchone()
     if not assessment: return jsonify({"error":"not found"}),404
+    pillars  = load_questions(assessment["type"], assessment["scope"])
+    qid = data.get("question_id")
+    answer = data.get("answer","")
+    detail_json = None
+    # Responder-based question: derive the answer server-side from per-role counts
+    if "detail" in data and data["detail"] is not None:
+        detail = data["detail"]
+        q = find_question(pillars, qid)
+        meta = load_type_meta(assessment["type"])
+        derived = derive_answer(q, detail, meta.get("role_config", {})) if q else None
+        if derived is not None:
+            answer = derived
+            detail_json = json.dumps(detail)
     db.execute(
-        """INSERT INTO responses (assessment_id,question_id,answer,comment,updated_at)
-           VALUES (?,?,?,?,datetime('now'))
+        """INSERT INTO responses (assessment_id,question_id,answer,comment,detail,updated_at)
+           VALUES (?,?,?,?,?,datetime('now'))
            ON CONFLICT(assessment_id,question_id)
-           DO UPDATE SET answer=excluded.answer,comment=excluded.comment,updated_at=excluded.updated_at""",
-        (assessment_id,data.get("question_id"),data.get("answer",""),data.get("comment",""))
+           DO UPDATE SET answer=excluded.answer,comment=excluded.comment,detail=excluded.detail,updated_at=excluded.updated_at""",
+        (assessment_id,qid,answer,data.get("comment",""),detail_json)
     )
     db.commit()
-    pillars  = load_questions(assessment["type"], assessment["scope"])
     resp     = get_responses_dict(db, assessment_id)
     ans      = answers_only(resp)
     all_qs   = all_questions_flat(pillars)
     scores   = calculate_scores(pillars, ans)
     answered = sum(1 for q in all_qs if ans.get(q["id"]) not in (None,""))
     return jsonify({"scores":scores,"answered":answered,"total":len(all_qs),
+                    "qid":qid,"derived":answer,
                     "level_name":scores["level_name"],"level_names":LEVEL_NAMES})
 
 

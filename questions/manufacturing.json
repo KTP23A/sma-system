@@ -19,7 +19,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Site leadership can demonstrate general knowledge of their legal obligations in OH&S and DP management and how to fulfil these."
+              "judgement_criteria": "Site leadership can demonstrate general knowledge of their legal obligations in OH&S and DP management and how to fulfil these.",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-005",
@@ -31,7 +34,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements from workers indicate that safety is considered a priority by leadership. \""
+              "judgement_criteria": "Interview statements from workers indicate that safety is considered a priority by leadership. \"",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-LD-006",
@@ -43,7 +49,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Communication records and statements from workers indicate that leadership is involved in OH&S management when serious incidents(lost-time-injury, fire accident, etc.) occur."
+              "judgement_criteria": "Communication records and statements from workers indicate that leadership is involved in OH&S management when serious incidents(lost-time-injury, fire accident, etc.) occur.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-LD-011",
@@ -55,7 +64,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Site tour(s) indicate that line-management conducts floor observations to ensure adherence to safety rules, such as procedures, standards, etc."
+              "judgement_criteria": "Site tour(s) indicate that line-management conducts floor observations to ensure adherence to safety rules, such as procedures, standards, etc.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-012",
@@ -67,7 +79,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements from teammates and line-managers indicate that they accept own responsibilities when it comes to safety management and the importance of their contributions."
+              "judgement_criteria": "Interview statements from teammates and line-managers indicate that they accept own responsibilities when it comes to safety management and the importance of their contributions.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-LD-020",
@@ -79,7 +94,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Hazard reporting records indicate that teammates are actively involved in reporting and addressing hazards and risks in their daily jobs"
+              "judgement_criteria": "Hazard reporting records indicate that teammates are actively involved in reporting and addressing hazards and risks in their daily jobs",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-021",
@@ -91,7 +109,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Good safety behaviors of teammates are rewarded and recognized by managements."
+              "judgement_criteria": "Good safety behaviors of teammates are rewarded and recognized by managements.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-023",
@@ -103,7 +124,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Management contributes to cross-plant and external H&S meetings during which H&S challenges and insights are shared"
+              "judgement_criteria": "Management contributes to cross-plant and external H&S meetings during which H&S challenges and insights are shared",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-024",
@@ -115,7 +139,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Site leadership has incorporated the OH&S program in their overall strategy and can explain how the conflicting objectives are prevented in that strategy"
+              "judgement_criteria": "Site leadership has incorporated the OH&S program in their overall strategy and can explain how the conflicting objectives are prevented in that strategy",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-025",
@@ -127,7 +154,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All interviewed workers confirm that safety is essential and that they feel comfortable stopping work whenever health or safety might be compromised"
+              "judgement_criteria": "All interviewed workers confirm that safety is essential and that they feel comfortable stopping work whenever health or safety might be compromised",
+              "responders": [
+                "teammate"
+              ]
             }
           ]
         },
@@ -145,7 +175,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Applicable site-specific OH&S regulations have been identified and current safety procedures and processes have been evaluated to ensure they are compliant with local regulation. SBU requirements."
+              "judgement_criteria": "Applicable site-specific OH&S regulations have been identified and current safety procedures and processes have been evaluated to ensure they are compliant with local regulation. SBU requirements.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-003",
@@ -157,7 +190,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Applicable site-specific OH&S regulations have been identified and current safety procedures and processes have been evaluated to ensure they are compliant with local regulation. SBU requirements."
+              "judgement_criteria": "Applicable site-specific OH&S regulations have been identified and current safety procedures and processes have been evaluated to ensure they are compliant with local regulation. SBU requirements.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-007",
@@ -169,7 +205,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety performance (Safety KPIs) based on OH&S policy is monitored and tracked by site leadership. KPI"
+              "judgement_criteria": "Safety performance (Safety KPIs) based on OH&S policy is monitored and tracked by site leadership. KPI",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-008",
@@ -181,7 +220,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety performance (Safety KPIs) based on OH&S policy is monitored and tracked by site leadership. KPI"
+              "judgement_criteria": "Safety performance (Safety KPIs) based on OH&S policy is monitored and tracked by site leadership. KPI",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-009",
@@ -193,7 +235,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Incident investigation records identify the root causes of incidents, categorizes them, and tracks the number of incidents by each category. (Human error, system error, Natural causes) *()"
+              "judgement_criteria": "Incident investigation records identify the root causes of incidents, categorizes them, and tracks the number of incidents by each category. (Human error, system error, Natural causes) *()",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-015",
@@ -205,7 +250,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Leadership often emphasizes the importance of the Safety Rules and breaking the rules results in repercussions/consequences."
+              "judgement_criteria": "Leadership often emphasizes the importance of the Safety Rules and breaking the rules results in repercussions/consequences.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-016",
@@ -217,7 +265,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Leadership keeps track of leading indicators to determine the results of investments made to improve health and safety at the facility"
+              "judgement_criteria": "Leadership keeps track of leading indicators to determine the results of investments made to improve health and safety at the facility",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-017",
@@ -229,7 +280,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Leadership keeps track of leading indicators to determine the results of investments made to improve health and safety at the facility"
+              "judgement_criteria": "Leadership keeps track of leading indicators to determine the results of investments made to improve health and safety at the facility",
+              "responders": [
+                "plant_manager"
+              ]
             },
             {
               "id": "MFG-LD-019",
@@ -241,7 +295,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Managers and/or the safety department are conduct pre- and post- assessments to determine the effectiveness of OH&S initiatives /()"
+              "judgement_criteria": "Managers and/or the safety department are conduct pre- and post- assessments to determine the effectiveness of OH&S initiatives /()",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-026",
@@ -253,7 +310,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Leadership motivate teams to find the best safety practices and provide the resources to implement them."
+              "judgement_criteria": "Leadership motivate teams to find the best safety practices and provide the resources to implement them.",
+              "responders": [
+                "production_manager"
+              ]
             }
           ]
         },
@@ -271,7 +331,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Review of records indicates that legally required OH&S management processes are implemented in a consistent manner."
+              "judgement_criteria": "Review of records indicates that legally required OH&S management processes are implemented in a consistent manner.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-010",
@@ -283,7 +346,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety Initiatives are being implemented to improve safety results, not operational performance results."
+              "judgement_criteria": "Safety Initiatives are being implemented to improve safety results, not operational performance results.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-013",
@@ -295,7 +361,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Leadership understand the importance of teammate involvement in safety management and can demonstrate clear actions regularly incorporated to help the site realize the positive results of those actions."
+              "judgement_criteria": "Leadership understand the importance of teammate involvement in safety management and can demonstrate clear actions regularly incorporated to help the site realize the positive results of those actions.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-014",
@@ -307,7 +376,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "The H&S team, teammates and leadership meet at planned intervals to provide inputs to improve safety on site."
+              "judgement_criteria": "The H&S team, teammates and leadership meet at planned intervals to provide inputs to improve safety on site.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-LD-018",
@@ -319,7 +391,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "There is a clear OH&S program consisting of multiple improvement/enhancement projects and allocated budgets to address defined OH&S priorities"
+              "judgement_criteria": "There is a clear OH&S program consisting of multiple improvement/enhancement projects and allocated budgets to address defined OH&S priorities",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-LD-022",
@@ -331,7 +406,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "The safety team can demonstrate how industry(tire industry, rubber industry, manufacturing industry, etc.) *best-practice and scientifically proven best-practices are incorporated in their H&S program ( *"
+              "judgement_criteria": "The safety team can demonstrate how industry(tire industry, rubber industry, manufacturing industry, etc.) *best-practice and scientifically proven best-practices are incorporated in their H&S program ( *",
+              "responders": [
+                "safety_manager"
+              ]
             }
           ]
         }
@@ -355,7 +433,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates are made aware of general H&S risks during new hire training."
+              "judgement_criteria": "Teammates are made aware of general H&S risks during new hire training.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-003",
@@ -367,7 +448,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Management is aware of their responsibility in keeping teammates safe and enforcing safety rules and procedures."
+              "judgement_criteria": "Management is aware of their responsibility in keeping teammates safe and enforcing safety rules and procedures.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-TM-005",
@@ -379,7 +463,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates know how to report when incident(injury, occupational disease/illness, near-miss, hidden danger, fire) occurs, and incident reporting records and interview statements indicate that teammates report incidents. ()"
+              "judgement_criteria": "Teammates know how to report when incident(injury, occupational disease/illness, near-miss, hidden danger, fire) occurs, and incident reporting records and interview statements indicate that teammates report incidents. ()",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-008",
@@ -391,7 +478,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates demonstrate a clear understanding of the H&S rules involved in their work and the relevance of these rules"
+              "judgement_criteria": "Teammates demonstrate a clear understanding of the H&S rules involved in their work and the relevance of these rules",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-012",
@@ -403,7 +493,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements indicate that teammates take trainings and understand the greatest potential H&S risks involved in their work and the controls applied to reduce these risks."
+              "judgement_criteria": "Interview statements indicate that teammates take trainings and understand the greatest potential H&S risks involved in their work and the controls applied to reduce these risks.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-013",
@@ -415,7 +508,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates propose improvements of H&S risks and risk mitigation measures at the creations or revisions of work standard, training material, etc."
+              "judgement_criteria": "Teammates propose improvements of H&S risks and risk mitigation measures at the creations or revisions of work standard, training material, etc.",
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-TM-014",
@@ -427,7 +523,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "A sample of teammates participate in the risk assessment (RA) process, and they can demonstrate capability in performing a risk assessment on their work activities"
+              "judgement_criteria": "A sample of teammates participate in the risk assessment (RA) process, and they can demonstrate capability in performing a risk assessment on their work activities",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-018",
@@ -439,7 +538,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates are encouraged to talk with other teams and speak about H&S risks regularly to share best-practices and lessons-learned."
+              "judgement_criteria": "Teammates are encouraged to talk with other teams and speak about H&S risks regularly to share best-practices and lessons-learned.",
+              "responders": [
+                "production_manager"
+              ]
             }
           ]
         },
@@ -457,7 +559,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates know that safety is considered more important than production."
+              "judgement_criteria": "Teammates know that safety is considered more important than production.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-006",
@@ -469,7 +574,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates are involved in the actions implemented to prevent the reoccurrence of an incident (injury, occupational disease/illness, near-miss, hidden danger, fire) relevant to their daily job to ensure the appropriateness of such actions ()"
+              "judgement_criteria": "Teammates are involved in the actions implemented to prevent the reoccurrence of an incident (injury, occupational disease/illness, near-miss, hidden danger, fire) relevant to their daily job to ensure the appropriateness of such actions ()",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-010",
@@ -481,7 +589,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Site tour(s) indicates a structural adherence to the Department/Job Safety Rules applied to the sampled working areas."
+              "judgement_criteria": "Site tour(s) indicates a structural adherence to the Department/Job Safety Rules applied to the sampled working areas.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-015",
@@ -493,7 +604,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates proposed improvements to prevent incidents (injure, occupational disease/illness, near-miss/hidden danger) and received feedback from managements."
+              "judgement_criteria": "Teammates proposed improvements to prevent incidents (injure, occupational disease/illness, near-miss/hidden danger) and received feedback from managements.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-TM-016",
@@ -505,7 +619,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Review of action plans show that teammates have been involved in the design, implementation and evaluation of safety action plans."
+              "judgement_criteria": "Review of action plans show that teammates have been involved in the design, implementation and evaluation of safety action plans.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-TM-020",
@@ -517,7 +634,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements and site tour(s) indicate that unsafe behavior is perceived as unacceptable. It is that anyone acting unsafe will be corrected by their peers."
+              "judgement_criteria": "Interview statements and site tour(s) indicate that unsafe behavior is perceived as unacceptable. It is that anyone acting unsafe will be corrected by their peers.",
+              "responders": [
+                "teammate"
+              ]
             }
           ]
         },
@@ -535,7 +655,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Managers explain safety requirements based on regulation to teammate."
+              "judgement_criteria": "Managers explain safety requirements based on regulation to teammate.",
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-TM-007",
@@ -547,7 +670,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Statements from teammates indicate that they are informed of recent safety incidents relevant to them and the follow-up/actions taken to address them."
+              "judgement_criteria": "Statements from teammates indicate that they are informed of recent safety incidents relevant to them and the follow-up/actions taken to address them.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-009",
@@ -559,7 +685,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates are trained at planned intervals of the different H&S rules aimed at ensuring their safety."
+              "judgement_criteria": "Teammates are trained at planned intervals of the different H&S rules aimed at ensuring their safety.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-011",
@@ -571,7 +700,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements indicate that teammates take trainings and understand the greatest potential H&S risks involved in their work and the controls applied to reduce these risks."
+              "judgement_criteria": "Interview statements indicate that teammates take trainings and understand the greatest potential H&S risks involved in their work and the controls applied to reduce these risks.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-017",
@@ -583,7 +715,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "H&S risks/measures of other departments have been shared at the safety meeting in your department. /"
+              "judgement_criteria": "H&S risks/measures of other departments have been shared at the safety meeting in your department. /",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-TM-019",
@@ -595,7 +730,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "The site safety department communicates their best-practices in risk control with other plants to ensure cross-company learning and awareness."
+              "judgement_criteria": "The site safety department communicates their best-practices in risk control with other plants to ensure cross-company learning and awareness.",
+              "responders": [
+                "safety_manager"
+              ]
             }
           ]
         }
@@ -619,7 +757,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Compliance evaluation and training records indicate that H&S training required by regulation (including safety/disaster emergency drills) has been provided to all teammates."
+              "judgement_criteria": "Compliance evaluation and training records indicate that H&S training required by regulation (including safety/disaster emergency drills) has been provided to all teammates.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-005",
@@ -631,7 +772,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Incident(injury, fire occupational disease/illness, near-miss, hidden danger)investigations are conducted by qualified people and the identified causes are included in the risk tracking as to-be-controlled risks (SE"
+              "judgement_criteria": "Incident(injury, fire occupational disease/illness, near-miss, hidden danger)investigations are conducted by qualified people and the identified causes are included in the risk tracking as to-be-controlled risks (SE",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-009",
@@ -643,7 +787,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "The H&S team, teammates and their supervisors evaluate the design, implementation and effectiveness of current safety rules in order to optimize these"
+              "judgement_criteria": "The H&S team, teammates and their supervisors evaluate the design, implementation and effectiveness of current safety rules in order to optimize these",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-011",
@@ -655,7 +802,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Specific safety trainings are repeated at a standard interval to ensure the competence of people working on site. There are mandatory training requirements for each activity."
+              "judgement_criteria": "Specific safety trainings are repeated at a standard interval to ensure the competence of people working on site. There are mandatory training requirements for each activity.",
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-OR-015",
@@ -667,7 +817,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety instructions and trainings have been integrated into regular job-related training which is provided to teammates before they start the associated work."
+              "judgement_criteria": "Safety instructions and trainings have been integrated into regular job-related training which is provided to teammates before they start the associated work.",
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-OR-020",
@@ -679,7 +832,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Risks are assessed at the earliest possible planning stages of every team in the organization to avoid risks where they might materialize."
+              "judgement_criteria": "Risks are assessed at the earliest possible planning stages of every team in the organization to avoid risks where they might materialize.",
+              "responders": [
+                "production_manager"
+              ]
             }
           ]
         },
@@ -697,7 +853,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Incidents (injury, occupational disease/illness, near-miss, hidden danger) defects are communicated to management and they are encouraged to follow-up."
+              "judgement_criteria": "Incidents (injury, occupational disease/illness, near-miss, hidden danger) defects are communicated to management and they are encouraged to follow-up.",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-OR-003",
@@ -709,7 +868,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates are made aware of the function of safety controls through passive communication channels such as notice boards and e-mails"
+              "judgement_criteria": "Teammates are made aware of the function of safety controls through passive communication channels such as notice boards and e-mails",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-006",
@@ -721,7 +883,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "H and S activities are observed/reviewed by management for results and activities have the opportunity for continuous improvement about the lagging performance indication (e.g. # of injury, frequency rate, etc.) ."
+              "judgement_criteria": "H and S activities are observed/reviewed by management for results and activities have the opportunity for continuous improvement about the lagging performance indication (e.g. # of injury, frequency rate, etc.) .",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-OR-010",
@@ -733,7 +898,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Interview statements indicate that teammates know who to report to in order to fulfil their H&S/DP relevant responsibilities"
+              "judgement_criteria": "Interview statements indicate that teammates know who to report to in order to fulfil their H&S/DP relevant responsibilities",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-OR-013",
@@ -745,7 +913,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Forepersons/supervisors understand the system and scope of management of changes(4M changes) 4M"
+              "judgement_criteria": "Forepersons/supervisors understand the system and scope of management of changes(4M changes) 4M",
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-OR-014",
@@ -757,7 +928,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Prior to a change in process or equipment, are the risks associated with the change reviewed, evaluated and communicated with H&S team."
+              "judgement_criteria": "Prior to a change in process or equipment, are the risks associated with the change reviewed, evaluated and communicated with H&S team.",
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-OR-017",
@@ -769,7 +943,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Risk records indicate that hazards/injury/near-miss/defects reported are used by management to take actions and the result of these actions are communicated with the reporter. ///"
+              "judgement_criteria": "Risk records indicate that hazards/injury/near-miss/defects reported are used by management to take actions and the result of these actions are communicated with the reporter. ///",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-OR-021",
@@ -781,7 +958,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "For the improvement of safety management system of the plant, external party evaluate the system."
+              "judgement_criteria": "For the improvement of safety management system of the plant, external party evaluate the system.",
+              "responders": [
+                "safety_manager"
+              ]
             }
           ]
         },
@@ -799,7 +979,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Roles and responsibilities of safety activities set out, and they are understood by those required to fulfil them"
+              "judgement_criteria": "Roles and responsibilities of safety activities set out, and they are understood by those required to fulfil them",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-OR-007",
@@ -811,7 +994,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Management and the H&S team collaborate to prevent reoccurrence of accidents by addressing the causation of these accidents"
+              "judgement_criteria": "Management and the H&S team collaborate to prevent reoccurrence of accidents by addressing the causation of these accidents",
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-OR-008",
@@ -823,7 +1009,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety training for newcomers includes reference to *frequent incidents(injury, occupational disease/illness, near-miss, hidden danger)and severe risks to ensure teammates understand these and corresponding controls. *Frequent incident means that same incident is re-occurring"
+              "judgement_criteria": "Safety training for newcomers includes reference to *frequent incidents(injury, occupational disease/illness, near-miss, hidden danger)and severe risks to ensure teammates understand these and corresponding controls. *Frequent incident means that same incident is re-occurring",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-012",
@@ -835,7 +1024,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety procedures are periodically reviewed to identify opportunities for improvement. This is often done by the H&S team and the line-managers involved in the specific safety processes. ()()"
+              "judgement_criteria": "Safety procedures are periodically reviewed to identify opportunities for improvement. This is often done by the H&S team and the line-managers involved in the specific safety processes. ()()",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-016",
@@ -847,7 +1039,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Safety procedures and processes are reviewed at regular intervals by those involved, and revisions are made based upon relevant findings."
+              "judgement_criteria": "Safety procedures and processes are reviewed at regular intervals by those involved, and revisions are made based upon relevant findings.",
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-OR-018",
@@ -859,7 +1054,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Teammates and managers are mindful of the need for safety, not only for themselves but also for others. Teammates and managers have a genuine concern for one another; a CFT approach is used to review and address safety issues. CFT"
+              "judgement_criteria": "Teammates and managers are mindful of the need for safety, not only for themselves but also for others. Teammates and managers have a genuine concern for one another; a CFT approach is used to review and address safety issues. CFT",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-OR-019",
@@ -871,7 +1069,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "Line managers are actively engaging with *external parties to obtain knowledge on how they have controlled their risks and exchange knowledge on safety processes regularly. *External includes other company, SBU, other plants in BS * *SBU"
+              "judgement_criteria": "Line managers are actively engaging with *external parties to obtain knowledge on how they have controlled their risks and exchange knowledge on safety processes regularly. *External includes other company, SBU, other plants in BS * *SBU",
+              "responders": [
+                "production_manager"
+              ]
             }
           ]
         }
@@ -896,7 +1097,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "All teammates receive training on the safety mission statement, *high-risk activities and the regulation for training are known. *High-risk activity: Activity which are risk category III&IV. E.g. Work at height, heavy object handling, mobile equipment, caught by machine, tire inflation, etc. *III&IV",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-027",
@@ -909,7 +1113,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Is there a list of all approved chemicals for the site, along with a corresponding Material Use Form (MUF) and Safety Data Sheet (SDS), and these records are kept according to local regulation.Required employees are aware of Chemical hazards. SDS",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-031",
@@ -922,7 +1129,10 @@
               ],
               "standard": "Flammable Materials Management",
               "judgement_criteria": "The flammable materials are listed and these list are frequently and properly maintained.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-032",
@@ -935,7 +1145,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "When conducting hot work, the required control measures are correctly recognized.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-033",
@@ -948,7 +1161,10 @@
               ],
               "standard": "Fire Fighting",
               "judgement_criteria": "The fire extinguishing equipment is properly managed and operated.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-034",
@@ -961,7 +1177,10 @@
               ],
               "standard": "Mixing MUST-11 MUST11",
               "judgement_criteria": "Mixing MUST 11 is deployed and educated in sites. MUST11",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-042",
@@ -974,7 +1193,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "The LOTO standard(site standard, ECP, work standard, etc.) is reviewed in response to incidents, audit findings, authority guidance and concerns raised by teammates LOTOECP* *",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-043",
@@ -987,7 +1209,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "The effectiveness of Site Safety Rules is reviewed in response to incidents, audits and authority's guidance.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-044",
@@ -1000,7 +1225,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "Work at height training and controls are reviewed and improved when incidents involving Work at height have occurred.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-045",
@@ -1013,7 +1241,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "The implementation and design of mobile equipment safety controls are reviewed and improved after incidents occur.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-065",
@@ -1026,7 +1257,10 @@
               ],
               "standard": "Fire Fighting",
               "judgement_criteria": "Teammates understand how to use the fire extinguisher.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-068",
@@ -1039,7 +1273,10 @@
               ],
               "standard": "Electric system",
               "judgement_criteria": "Electric system inspection method are trained to person in charge. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-069",
@@ -1052,7 +1289,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "Training curricula are reviewed when adjustments are made to safety rules and controls significant to that training.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-090",
@@ -1065,7 +1305,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "A review of risk records shows that the majority of risks are covered by administrative and engineering technical controls.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-096",
@@ -1078,7 +1321,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Risk assessments are performed for all identified Chemical hazards according to Global Chemical Management procedure before they are approved to be used on site. There is a Hazard Communication Program (HCP) on site and required teammates are trained regularly to handle the specific chemical hazard types to which they may be exposed in their work area. Chemical air sampling protocol is in place for the site, and testing is done periodically.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-097",
@@ -1091,7 +1337,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Risk assessments are performed for all identified Chemical hazards according to Global Chemical Management procedure before they are approved to be used on site. There is a Hazard Communication Program (HCP) on site and required teammates are trained regularly to handle the specific chemical hazard types to which they may be exposed in their work area. Chemical air sampling protocol is in place for the site, and testing is done periodically.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-105",
@@ -1104,7 +1353,10 @@
               ],
               "standard": "Fire Fighting",
               "judgement_criteria": "Fire extinguishing equipment trainings are properly planned and implemented.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-106",
@@ -1117,7 +1369,10 @@
               ],
               "standard": "Mixing MUST-11 MUST11",
               "judgement_criteria": "Teammates can work based on Mixing MUST 11. MUST11",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-108",
@@ -1130,7 +1385,10 @@
               ],
               "standard": "Electric system",
               "judgement_criteria": "Electric systems (wiring/equipment) status are inspected and corrective actions are taken. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-110",
@@ -1143,7 +1401,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "The effect of training is reviewed and feed back from trainees is taken into consideration.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-117",
@@ -1156,7 +1417,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "teammates contribute to the development of the safety rules applicable to them by evaluating these together with management to consolidate their knowledge of risks involved in work. *",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-118",
@@ -1169,7 +1433,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "Work at height controls are reviewed and improved when new risks have been identified.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-119",
@@ -1182,7 +1449,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "Controls related to the use of mobile equipment are reviewed and improved when new risks have been identified.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-125",
@@ -1195,7 +1465,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "KYT results are efforts have resulted in the development/adjustment of safety rules or improvement of measures for hazards(risk mitigation/administrative measures). KYT(/",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-130",
@@ -1208,7 +1481,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "Ergonomic risks assessments are performed when new tasks are included or new risks are identified. There is a plan to periodically increase employee's awareness on Ergonomics RA",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-133",
@@ -1221,7 +1497,10 @@
               ],
               "standard": "Fire Risk Assessment RA",
               "judgement_criteria": "The site recognizes residual fire risks and conduct fire prevention measures.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-140",
@@ -1234,7 +1513,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "Training curricula are kept up-to-date to industry *best-practices and latest authority guidance's. *",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-141",
@@ -1247,7 +1529,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "The Near-Misses / Hidden Dangers reporting is reviewed by regular benchmarking with other sites and industry best practices.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-143",
@@ -1260,7 +1545,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "The LOTO standard is kept up-to-date with industry and internal best-practices as well as the feedback from those working with the standard. LOTOLOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-144",
@@ -1273,7 +1561,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "The LOTO standard is kept up-to-date with industry and internal best-practices as well as the feedback from those working with the standard. LOTOLOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-145",
@@ -1286,7 +1577,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "The effectiveness of safety rules is improved by incorporating other plant's/industry best-practice and feedback from teammates on a periodic basis. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-146",
@@ -1299,7 +1593,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "The effectiveness of safety rules is improved by incorporating other plant's/industry best-practice and feedback from teammates on a periodic basis. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-147",
@@ -1312,7 +1609,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "The Work at height standard is periodically reviewed and updated by the incorporation of internal and industry best-practices and the feedback from teammates performing Work at height.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-148",
@@ -1325,7 +1625,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "The Work at height standard is periodically reviewed and updated by the incorporation of internal and industry best-practices and the feedback from teammates performing Work at height.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-149",
@@ -1338,7 +1641,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "The safety controls applied to the use of mobile equipment are subject to periodic review through which the feedback of teammates, internal and industry best-practices are incorporated.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-150",
@@ -1351,7 +1657,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "The safety controls applied to the use of mobile equipment are subject to periodic review through which the feedback of teammates, internal and industry best-practices are incorporated.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-151",
@@ -1364,7 +1673,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "The site is benchmarking its 3S results and systems with other sites, and looking for more solutions to improve 3S even further. 3S3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-152",
@@ -1377,7 +1689,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "The best practices on crane and hoist have been gathered from other plants/industry, and it has been incorporated into the site procedure. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-153",
@@ -1390,7 +1705,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "KY is benchmarked with other sites, and the most common appearing and dangerous risks are shared as well as the meditative actions. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-154",
@@ -1403,7 +1721,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "Risk assessment results are compared to other SBU's and external best-practices such as guidelines and scientific publications. RASBU",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-155",
@@ -1416,7 +1737,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "The contractor management is benchmarked with other sites/external companies to determine best practice methods. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-156",
@@ -1429,7 +1753,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Benchmarking is performed for new ways to reduce (e.g. introducing new handling equipment) and countermeasure large tire manual handling according to industries best practices or with feedback from teammates.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-157",
@@ -1442,7 +1769,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "The effectiveness of ergonomic procedure is improved by incorporating best practices shared by authorities, experts, effective standards (e.g. ISO) and feedback from teammates on a periodic basis. ISO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-158",
@@ -1455,7 +1785,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Benchmarking is performed for new ways to reduce and countermeasure Chemical hazards according to industries best practices or with feedback from teammates.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-159",
@@ -1468,7 +1801,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "The maintenance safety standard is periodically developed by the incorporation of internal and industry best-practices. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_manager"
+              ]
             },
             {
               "id": "MFG-SY-160",
@@ -1481,7 +1817,10 @@
               ],
               "standard": "Fire Risk Assessment RA",
               "judgement_criteria": "The best practices on fire RA have been gathered from other plants/industry, and it has been deployed to the site. /RA",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-161",
@@ -1494,7 +1833,10 @@
               ],
               "standard": "Flammable Materials Management",
               "judgement_criteria": "The best practices on flammable material controls have been gathered from other plants/industry, and it has been deployed to the site. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-162",
@@ -1507,7 +1849,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "The best practices on hot work controls have been gathered from other plants/industry, and it has been deployed to the site. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-163",
@@ -1520,7 +1865,10 @@
               ],
               "standard": "Fire Fighting",
               "judgement_criteria": "The best practices on the fire extinguishing equipment controls have been gathered from other plants/industry, and it has been deployed to the site. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-164",
@@ -1533,7 +1881,10 @@
               ],
               "standard": "Mixing MUST-11 MUST11",
               "judgement_criteria": "The best practices on Mixing MUST11 have been gathered from other plants, and it has been deployed to the site. MUST11",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-165",
@@ -1546,7 +1897,10 @@
               ],
               "standard": "Disaster Prevention General",
               "judgement_criteria": "The best practices on evacuation training have been gathered from other plants, and it has been deployed to the site.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-166",
@@ -1559,7 +1913,10 @@
               ],
               "standard": "Electric system",
               "judgement_criteria": "The best practices on management of electrical wirings have been gathered from other plants, and it has been deployed to the site.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             }
           ]
         },
@@ -1578,7 +1935,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "OH&S communication required by regulation is sent by management as per the communication procedure, through multiple communication channels with consideration to language barriers.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-003",
@@ -1591,7 +1951,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "Evidence indicates that the SBU injury and fire reporting process has been communicated to the relevant people on site.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-004",
@@ -1604,7 +1967,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "Incidents (industrial accidents, fire accidents, near misses/hidden dangers reports and recurrence preventions) local procedure exists and teammates know how to report Near-Misses / Hidden Dangers.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-007",
@@ -1617,7 +1983,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "People performing service and/or maintenance activities are aware of the LOTO standard and have been provided with locks and tags as required. LOTOLOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-008",
@@ -1630,7 +1999,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "People performing service and/or maintenance activities are aware of the LOTO standard and have been provided with locks and tags as required. LOTOLOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-009",
@@ -1643,7 +2015,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "People on site demonstrate consistent knowledge of the Safety Rules.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-010",
@@ -1656,7 +2031,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "Work at height requirements have been communicated and both managers and teammates are aware of Work at height training requirements .",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-011",
@@ -1669,7 +2047,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "Work at height requirements have been communicated and both managers and teammates are aware of Work at height training requirements .",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-012",
@@ -1682,7 +2063,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "Rules governing the use of mobile equipment have been communicated and both managers and teammates are aware of the training requirements for mobile equipment.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-013",
@@ -1695,7 +2079,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "The need for housekeeping and removal of unnecessary items in the workplace has been communicated. Visual standard postings are visible in work areas, and the site is utilizing the 3S checklist. 3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-014",
@@ -1708,7 +2095,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "The need for housekeeping and removal of unnecessary items in the workplace has been communicated. Visual standard postings are visible in work areas, and the site is utilizing the 3S checklist. 3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-015",
@@ -1721,7 +2111,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "Management team prepares an annual 3S plan. 3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-016",
@@ -1734,7 +2127,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Regulations regarding crane and hoist operations are known and used to establish a standard for crane and hoist safety for the facility.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-017",
@@ -1747,7 +2143,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Regulations regarding crane and hoist operations are known and used to establish a standard for crane and hoist safety for the facility.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-018",
@@ -1760,7 +2159,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Regulations regarding crane and hoist operations are known and used to establish a standard for crane and hoist safety for the facility.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-019",
@@ -1773,7 +2175,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "The need for compliance towards the KY standard has been communicated by management. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-SY-020",
@@ -1786,7 +2191,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "Managements identified what risk assessment it is required to undertake by regulation and knows to what extent these have been performed. RA",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-021",
@@ -1799,7 +2207,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "Managements identified what risk assessment it is required to undertake by regulation and knows to what extent these have been performed. RA",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-022",
@@ -1812,7 +2223,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "Contractor employees who perform construction/works in BS have required skills and certification(E.g. crane and hoist). //(",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-023",
@@ -1825,7 +2239,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Large Tire Manual Handling Operations are identified. A procedure exists and teammates are aware of it.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-024",
@@ -1838,7 +2255,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Large Tire Manual Handling Operations are identified. A procedure exists and teammates are aware of it.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-025",
@@ -1851,7 +2271,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "Ergonomics hazards have been identified on site",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-026",
@@ -1864,7 +2287,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Is there a list of all approved chemicals for the site, along with a corresponding Material Use Form (MUF) and Safety Data Sheet (SDS), and these records are kept according to local regulation.Required employees are aware of Chemical hazards. SDS",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-028",
@@ -1877,7 +2303,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Is there a list of all approved chemicals for the site, along with a corresponding Material Use Form (MUF) and Safety Data Sheet (SDS), and these records are kept according to local regulation.Required employees are aware of Chemical hazards. SDS",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-029",
@@ -1890,7 +2319,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "General safety management for maintenance requirements have been communicated and both maintenance managers and staffs are aware of General safety management for maintenance.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-030",
@@ -1903,7 +2335,10 @@
               ],
               "standard": "Fire Risk Assessment RA",
               "judgement_criteria": "Teammates understand the fire risks.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-035",
@@ -1916,7 +2351,10 @@
               ],
               "standard": "Disaster Prevention General",
               "judgement_criteria": "The evacuation drill are conducted for all employees working in the site.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-036",
@@ -1929,7 +2367,10 @@
               ],
               "standard": "Electric system",
               "judgement_criteria": "Electric systems (wiring/equipment) that have to be checked are listed and updated properly. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-038",
@@ -1942,7 +2383,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "The site has a process to communicate the cause of accidents timely as indicated by communication records.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-039",
@@ -1955,7 +2399,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "Site Safety Manager leader shares the incident or fire reports from other sites.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-046",
@@ -1968,7 +2415,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "3S leaders have been appointed and regularly inspect work areas and teams follow-up on the findings/advice from the 3S leader. 3S3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-047",
@@ -1981,7 +2431,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "3S leaders have been appointed and regularly inspect work areas and teams follow-up on the findings/advice from the 3S leader. 3S3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-048",
@@ -1994,7 +2447,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "There is a list of licensed and trained crane operators who are aware of past incidents and know how to prevent reoccurrence of these.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-049",
@@ -2007,7 +2463,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "There is a list of licensed and trained crane operators who are aware of past incidents and know how to prevent reoccurrence of these.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-050",
@@ -2020,7 +2479,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "Incident investigation results are used to supplement the risk tracking either by registering the causation as a new risk or adjusting control levels.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-051",
@@ -2033,7 +2495,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "Incident investigation results are used to supplement the risk tracking either by registering the causation as a new risk or adjusting control levels.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-052",
@@ -2046,7 +2511,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "KY is conducted by everyone on site. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-053",
@@ -2059,7 +2527,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "Pre-work meetings are conducted prior to the start of work, risks are identified and risk mitigation measures/administrative controls are defined. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-054",
@@ -2072,7 +2543,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "The contractor selection criteria are established based on regulatory, Bridgestone, and/or site safety requirements. And contractor is reviewed based on these criteria and judged to determine if the contractor may be selected for work.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-SY-055",
@@ -2085,7 +2559,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "The large tire manual handling procedure is reviewed in response to incidents",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-056",
@@ -2098,7 +2575,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "Employees are aware of Ergonomic hazards",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-057",
@@ -2111,7 +2591,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "There are countermeasures in place to reduce exposure to Chemical Hazards (e.g., gloves, local exhaust, etc.) according to the information on Material Use Form (MUF), Safety Data Sheet (SDS), and PPE hazard assessment. MUF)SDS",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-SY-058",
@@ -2124,7 +2607,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Maintenance manager responding to risks and sharing information as defined in the standard before to start the maintenance work.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-059",
@@ -2137,7 +2623,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Before maintenance, maintenance technicians join KY activity/tool box meeting and able to understand the shared information/cautions in work. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-060",
@@ -2150,7 +2639,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Before maintenance, maintenance technicians join KY activity/tool box meeting and able to understand the shared information/cautions in work. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_staff"
+              ]
             },
             {
               "id": "MFG-SY-061",
@@ -2163,7 +2655,10 @@
               ],
               "standard": "Fire Risk Assessment RA",
               "judgement_criteria": "Teammates understand the fire prevention rules.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-062",
@@ -2176,7 +2671,10 @@
               ],
               "standard": "Flammable Materials Management",
               "judgement_criteria": "Fire prevention control on the flammable materials are trained/educated to the teammates who may treat.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-063",
@@ -2189,7 +2687,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "When conducting hot work, the required fire fighting tools are correctly prepared.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-064",
@@ -2202,7 +2703,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "When conducting hot work, the curing to prevent spreading sparks are properly conducted.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-066",
@@ -2215,7 +2719,10 @@
               ],
               "standard": "Mixing MUST-11 MUST11",
               "judgement_criteria": "Teammates understand requirements defined in Mixing MUST 11. MUST11",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-067",
@@ -2228,7 +2735,10 @@
               ],
               "standard": "Disaster Prevention General",
               "judgement_criteria": "The fire prevention training are conducted proper frequency/method.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-070",
@@ -2241,7 +2751,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "Site safety rules and are communicated by management structurally as indicated by worker statements and communication records.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-071",
@@ -2254,7 +2767,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "The Safety Leader is knowledgeable in the Recurrence Prevention Procedure of incidents (industrial accidents, fire accidents, near misses/hidden dangers reports and recurrence preventions) occurred and complies with recommendations and countermeasure implementation instructions.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-075",
@@ -2267,7 +2783,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "LOTO procedures are understood and being followed. LOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-076",
@@ -2293,7 +2812,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "LOTO procedures are understood and being followed. LOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-078",
@@ -2306,7 +2828,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "ECP(Energy control procedures) includes all applicable energy source(electrical, mechanical, pneumatic, etc.) has been prepared for all applicable machinery. LOTOECP()",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-079",
@@ -2319,7 +2844,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "teammates have a consistent understanding of the Safety Rules applicable to them as indicated by worker statements.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-080",
@@ -2332,7 +2860,10 @@
               ],
               "standard": "Work at Height",
               "judgement_criteria": "The teammates understand Work at height safety rules, and follow the rules correctly.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-081",
@@ -2358,7 +2889,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "Site tour(s) indicate that observed operators use mobile equipment in accordance to prescribed controls.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-083",
@@ -2371,7 +2905,10 @@
               ],
               "standard": "Mobile Equipment",
               "judgement_criteria": "Site tour(s) indicate that observed operators use mobile equipment in accordance to prescribed controls.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-084",
@@ -2384,7 +2921,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "All unnecessary objects are being removed from the workspace and necessary items have a fixed and clearly marked position which is respected by the teammates.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-085",
@@ -2397,7 +2937,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "All unnecessary objects are being removed from the workspace and necessary items have a fixed and clearly marked position which is respected by the teammates.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-086",
@@ -2410,7 +2953,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Crane operators are aware of the safety rules applicable to them and show adherence to these as indicated during the site tour(s) and worker statements.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-087",
@@ -2423,7 +2969,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Crane operators are aware of the safety rules applicable to them and show adherence to these as indicated during the site tour(s) and worker statements.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-088",
@@ -2436,7 +2985,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "KYT is conducted regularly and an annual KYT evaluation is conducted to improve the system. KYTKYT",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-089",
@@ -2449,7 +3001,10 @@
               ],
               "standard": "KY",
               "judgement_criteria": "KYT is conducted regularly and an annual KYT evaluation is conducted to improve the system. KYTKYT",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-091",
@@ -2462,7 +3017,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "All contractors receive H&S orientation/training prior to the work. The material includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities. //",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-093",
@@ -2475,7 +3033,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Large Tire Manual Handling Operation Procedure follows the Global Standard and teammates follow it accordingly.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-094",
@@ -2488,7 +3049,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "Risk assessments are performed following the Global Ergonomics procedure for all identified Ergonomic hazards.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-SY-095",
@@ -2501,7 +3065,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Risk assessments are performed for all identified Chemical hazards according to Global Chemical Management procedure before they are approved to be used on site. There is a Hazard Communication Program (HCP) on site and required teammates are trained regularly to handle the specific chemical hazard types to which they may be exposed in their work area. Chemical air sampling protocol is in place for the site, and testing is done periodically.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-099",
@@ -2514,7 +3081,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Before maintenance work, the maintenance manager confirms that countermeasures established working standards and derived from KY activity are in place. KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-101",
@@ -2527,7 +3097,10 @@
               ],
               "standard": "Fire Risk Assessment RA",
               "judgement_criteria": "Fire risks in the site are periodically inspected.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-102",
@@ -2540,7 +3113,10 @@
               ],
               "standard": "Flammable Materials Management",
               "judgement_criteria": "The flammable material’s storage status are checked and maintained.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-103",
@@ -2553,7 +3129,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "The designated hot work area are specified and certified.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-104",
@@ -2566,7 +3145,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "When conducting hot work, person in charge correctly conduct patrol.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-107",
@@ -2579,7 +3161,10 @@
               ],
               "standard": "Disaster Prevention General",
               "judgement_criteria": "Personnel safety confirmation on all employee safety are ensured in a prescribed methods (e.g., roll call) at evacuation drill.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-114",
@@ -2592,7 +3177,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "When a LOTO safety rule violation is identified, investigate root causes, and take corrective action for the causes. LOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-115",
@@ -2605,7 +3193,10 @@
               ],
               "standard": "LOTO Standard LOTO",
               "judgement_criteria": "Compliance monitoring/audits are performed on LOTO activity at a defined timing and frequency. LOTO",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-116",
@@ -2618,7 +3209,10 @@
               ],
               "standard": "Safety Rules",
               "judgement_criteria": "teammates contribute to the development of the safety rules applicable to them by evaluating these together with management to consolidate their knowledge of risks involved in work. *",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-120",
@@ -2631,7 +3225,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "3S is carried out autonomously by everyone on shift for improvement of 3S level and is considered a base expectation. 3S3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-121",
@@ -2644,7 +3241,10 @@
               ],
               "standard": "3S",
               "judgement_criteria": "Conducted 3S activities are evaluated by monitoring and the results are reviewed by top management. 3S",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-122",
@@ -2657,7 +3257,10 @@
               ],
               "standard": "Crane and Hoist",
               "judgement_criteria": "Crane operators occasionally go and observe crane operations in the plant or in other plants and provide feedback to their peers.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-123",
@@ -2670,7 +3273,10 @@
               ],
               "standard": "Risk Assessment",
               "judgement_criteria": "The risk tracking shows that RA and risk mitigation have been performed to not only equipment, but also tasks. RA",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-124",
@@ -2696,7 +3302,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "BS perform safety patrols of contractor's work area, and confirm that risk mitigation measures/administrative controls defined at the pre-work meeting are conducted. BS",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-127",
@@ -2709,7 +3318,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Large tire manual operations are reviewed whenever a new task or activity is introduced. Teammates receive periodical training refreshments in the procedure when required (e.g. returning from absence, changes in procedure)",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-128",
@@ -2722,7 +3334,10 @@
               ],
               "standard": "Large Tire Manual Handling Operation",
               "judgement_criteria": "Large tire manual operations are reviewed whenever a new task or activity is introduced. Teammates receive periodical training refreshments in the procedure when required (e.g. returning from absence, changes in procedure)",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "foreperson"
+              ]
             },
             {
               "id": "MFG-SY-129",
@@ -2735,7 +3350,10 @@
               ],
               "standard": "Ergonomics",
               "judgement_criteria": "Ergonomic risks assessments are performed when new tasks are included or new risks are identified. There is a plan to periodically increase employee's awareness on Ergonomics RA",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "production_manager"
+              ]
             },
             {
               "id": "MFG-SY-131",
@@ -2748,7 +3366,10 @@
               ],
               "standard": "Chemical Management",
               "judgement_criteria": "Risk mitigation controls above legal requirements and/or local regulations are implemented for chemicals. (e.g. Regarding chemical which requires no engineering controls, they have been added for risk mitigation as site rules.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-132",
@@ -2761,7 +3382,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Management review/draft the plan based on that was reported by the results of risk assessment and feedback from maintenance operator. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             }
           ]
         },
@@ -2780,7 +3404,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Changes are managed by an appointed MOC coordinator, a reviewer and change approver who evaluate the legal compliance of a proposed change structurally.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-006",
@@ -2793,7 +3420,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Changes are managed by an appointed MOC coordinator, a reviewer and change approver who evaluate the legal compliance of a proposed change structurally.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-037",
@@ -2806,7 +3436,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "Updating training material or providing additional training is reviewed when accidents occur.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-040",
@@ -2819,7 +3452,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "Countermeasures following of incidents (industrial accidents, fire accidents, near misses/hidden dangers reports and recurrence preventions) are implemented.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-041",
@@ -2832,7 +3468,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Change initiators and approvers have been trained to fulfil their duties based on a local process in preparation to change on safety, IH and DP.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-072",
@@ -2845,7 +3484,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "Reports of incidents (industrial accidents, fire accidents, and near misses, hidden dangers reports) are stored according to local legislations. The effectiveness of the countermeasures is evaluated.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-073",
@@ -2858,7 +3500,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Site safety rules and work standards are analyzed to identify how the proposed change might affect these positively or negatively. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-074",
@@ -2871,7 +3516,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Site safety rules and work standards are analyzed to identify how the proposed change might affect these positively or negatively. /",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-092",
@@ -2884,7 +3532,10 @@
               ],
               "standard": "Contractor management",
               "judgement_criteria": "All contractors receive H&S orientation/training prior to the work. The material includes emergency procedures, introduction to the Safety Mission Statement and Safety fundamental Activities. //",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-098",
@@ -2897,7 +3548,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Before emergency maintenance, other hazard identification method such as JSA(Job Safety Analysis), JHA(Job Hazard Analysis), KY or similar shall take place. And these information are shared and record. /JSA(Job Safety Analysis), JHA(Job Hazard Analysis), KY",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-100",
@@ -2910,7 +3564,10 @@
               ],
               "standard": "General safety management for maintenance",
               "judgement_criteria": "Maintenance manager and staff could detect that unexpected or uncontrolled change or discovered new risk occurs during maintenance works. This response procedure has been defined and documented.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "maintenance_foreman"
+              ]
             },
             {
               "id": "MFG-SY-109",
@@ -2923,7 +3580,10 @@
               ],
               "standard": "Safety communication",
               "judgement_criteria": "Management informs teammates as soon as reasonably possible about newly found hazards and risks. Teammates communicate hazards and risks immediately to their supervisor.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "MFG-SY-111",
@@ -2936,7 +3596,10 @@
               ],
               "standard": "Incident Management",
               "judgement_criteria": "A recognition program to promote Near-Misses / Hidden Danger reporting is in place. Risk Assessments are reviewed during the investigation of a near-miss where applicable.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-112",
@@ -2949,7 +3612,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "The potential hazards and risks involved in a change are subject to risk assessment in preparation to that change. Controls are implemented before the change is made.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-113",
@@ -2962,7 +3628,10 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "The potential hazards and risks involved in a change are subject to risk assessment in preparation to that change. Controls are implemented before the change is made.",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-134",
@@ -2975,7 +3644,10 @@
               ],
               "standard": "Flammable Materials Management",
               "judgement_criteria": "The flammable materials storage methods are planned/conducted improvements based on inspection person in charge feedbacks.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-135",
@@ -2988,7 +3660,10 @@
               ],
               "standard": "Hot Work Management",
               "judgement_criteria": "Corrective actions are properly taken when any failures on hot work rules are identified.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "safety_manager"
+              ]
             },
             {
               "id": "MFG-SY-136",
@@ -3001,7 +3676,10 @@
               ],
               "standard": "Fire Fighting",
               "judgement_criteria": "Based on the inspections results, the methods of fire extinguishing equipment, standards, and training methods have been reviewed.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-137",
@@ -3014,7 +3692,10 @@
               ],
               "standard": "Mixing MUST-11 MUST11",
               "judgement_criteria": "Results of Mixing MUST11 inspection are reviewed by site top management. MUST11",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-138",
@@ -3027,7 +3708,10 @@
               ],
               "standard": "Disaster Prevention General",
               "judgement_criteria": "Evacuation (training) method is reviewed/revised based on failures that have been detected during evacuation drills.",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "supervisor"
+              ]
             },
             {
               "id": "MFG-SY-139",
@@ -3040,7 +3724,10 @@
               ],
               "standard": "Electric system",
               "judgement_criteria": "Electric system(wiring/equipment) inspection points/items are reviewed based on feedbacks from in charge of inspectors. /",
-              "dp": true
+              "dp": true,
+              "responders": [
+                "dp_manager"
+              ]
             },
             {
               "id": "MFG-SY-142",
@@ -3053,11 +3740,85 @@
               ],
               "standard": "Management of Change",
               "judgement_criteria": "Changes are designed, planned, executed and evaluated based on pre-defined safety criteria which include hazards, risks and industry *best-practices *",
-              "dp": false
+              "dp": false,
+              "responders": [
+                "safety_manager"
+              ]
             }
           ]
         }
       ]
     }
+  ],
+  "rollup": "all_yes",
+  "role_config": {
+    "plant_manager": {
+      "label": "Plant Manager",
+      "mode": "single",
+      "default_expected": 1
+    },
+    "production_gm": {
+      "label": "Production GM",
+      "mode": "single",
+      "default_expected": 1
+    },
+    "production_manager": {
+      "label": "Production Manager",
+      "mode": "departments",
+      "max": 6
+    },
+    "foreperson": {
+      "label": "Foreperson",
+      "mode": "count",
+      "default_expected": 3,
+      "adjustable": true
+    },
+    "supervisor": {
+      "label": "Supervisor",
+      "mode": "count",
+      "default_expected": 3,
+      "adjustable": true
+    },
+    "teammate": {
+      "label": "Teammate",
+      "mode": "count",
+      "default_expected": 5,
+      "adjustable": true
+    },
+    "maintenance_manager": {
+      "label": "Maintenance Manager",
+      "mode": "single",
+      "default_expected": 1
+    },
+    "maintenance_foreman": {
+      "label": "Maintenance Foreman",
+      "mode": "count",
+      "default_expected": 2,
+      "adjustable": true
+    },
+    "maintenance_staff": {
+      "label": "Maintenance Staff",
+      "mode": "count",
+      "default_expected": 3,
+      "adjustable": true
+    },
+    "safety_manager": {
+      "label": "Safety Manager",
+      "mode": "single",
+      "default_expected": 1
+    },
+    "dp_manager": {
+      "label": "DP Manager",
+      "mode": "single",
+      "default_expected": 1
+    }
+  },
+  "department_options": [
+    "Mixing",
+    "Building",
+    "Curing",
+    "Inspection",
+    "Warehouse",
+    "Maintenance"
   ]
 }
