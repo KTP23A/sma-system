@@ -3774,9 +3774,8 @@
     },
     "supervisor": {
       "label": "Supervisor",
-      "mode": "count",
-      "default_expected": 3,
-      "adjustable": true
+      "mode": "sections",
+      "max_sections": 6
     },
     "teammate": {
       "label": "Teammate",
