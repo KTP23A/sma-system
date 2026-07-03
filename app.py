@@ -267,6 +267,7 @@ def calculate_scores(pillars, responses):
 
     # System items breakdown: group system-pillar questions by 'standard', score each like an element
     system_items = []
+    system_safety = system_dp = None
     sysp = next((p for p in pillars if p["id"] == "system"), None)
     if sysp:
         groups, order = {}, []
@@ -277,11 +278,22 @@ def calculate_scores(pillars, responses):
                     groups[std] = []; order.append(std)
                 groups[std].append(q)
         for std in order:
+            qs = groups[std]
+            track = "dp" if all(q.get("dp") for q in qs) else "safety"
             system_items.append({"id": _std_slug(std), "name": _std_name(std),
-                                  "score": _element_score(groups[std], responses)})
+                                  "track": track, "score": _element_score(qs, responses)})
+        # DP-vs-Safety aggregate: min over element scores within each subset (mirrors pillar score)
+        def _subset_min(pred):
+            es = [s for element in sysp["elements"]
+                  for s in [_element_score([q for q in element["questions"] if pred(q)], responses)]
+                  if s is not None]
+            return min(es) if es else None
+        system_safety = _subset_min(lambda q: not q.get("dp"))
+        system_dp     = _subset_min(lambda q: q.get("dp"))
 
     return {"overall":overall,"safety_awareness":sa,"system_implementation":si,
             "pillars":pillar_scores, "system_items":system_items,
+            "system_safety":system_safety, "system_dp":system_dp,
             "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
 def get_responses_dict(db, assessment_id):
