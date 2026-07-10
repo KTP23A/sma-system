@@ -173,6 +173,10 @@ def init_db():
     cols = [r[1] for r in db.execute("PRAGMA table_info(responses)")]
     if "detail" not in cols:
         db.execute("ALTER TABLE responses ADD COLUMN detail TEXT")
+    # Migration: add assessments.kind ('self' | 'validation'). Existing rows → 'self'.
+    acols = [r[1] for r in db.execute("PRAGMA table_info(assessments)")]
+    if "kind" not in acols:
+        db.execute("ALTER TABLE assessments ADD COLUMN kind TEXT DEFAULT 'self'")
     if db.execute("SELECT COUNT(*) FROM users").fetchone()[0] == 0:
         db.execute("INSERT INTO users (username, full_name, password_hash) VALUES (?,?,?)",
             ("admin","Administrator",generate_password_hash("admin123",method="pbkdf2:sha256")))
@@ -390,12 +394,13 @@ def new_assessment():
     if request.method == "POST":
         gc_id = request.form.get("gc_id") or None
         if gc_id: gc_id = int(gc_id)
+        kind = "validation" if request.form.get("kind") == "validation" else "self"
         cur = db.execute(
-            "INSERT INTO assessments (site_name,type,scope,gc_id,assessor_a,assessor_b,assessment_date,status) VALUES (?,?,?,?,?,?,?,'in_progress')",
+            "INSERT INTO assessments (site_name,type,scope,gc_id,assessor_a,assessor_b,assessment_date,status,kind) VALUES (?,?,?,?,?,?,?,'in_progress',?)",
             (request.form["site_name"].strip(), request.form["type"],
              request.form.get("scope","store"), gc_id,
              request.form.get("assessor_a","").strip(), request.form.get("assessor_b","").strip(),
-             request.form.get("assessment_date") or date.today().isoformat())
+             request.form.get("assessment_date") or date.today().isoformat(), kind)
         )
         db.commit()
         return redirect(url_for("assess", assessment_id=cur.lastrowid))
@@ -424,6 +429,51 @@ def assess(assessment_id):
     for r in att_rows:
         attachments.setdefault(r["question_id"],[]).append(dict(r))
 
+    # ── Comparison: eligible past assessments share the same type + scope so the
+    #    question set (pillar/element/question ids) aligns. Same BU is preferred
+    #    (same gc_id or same site_name) but not required.
+    compare_options = db.execute(
+        """SELECT a.id, a.site_name, a.assessment_date, a.status, a.kind, g.name AS gc_name
+             FROM assessments a LEFT JOIN gcs g ON g.id = a.gc_id
+            WHERE a.id != ? AND a.type = ? AND IFNULL(a.scope,'') = IFNULL(?,'')
+            ORDER BY (a.gc_id IS NOT NULL AND a.gc_id = ?) DESC,
+                     (a.site_name = ?) DESC,
+                     a.assessment_date DESC""",
+        (assessment_id, assessment["type"], assessment["scope"],
+         assessment["gc_id"], assessment["site_name"])
+    ).fetchall()
+
+    # Load every selected comparison assessment (?compare=1&compare=3&…).
+    # Keep only eligible ids, de-duplicated, in the order the user picked them.
+    eligible = {o["id"] for o in compare_options}
+    compare_ids, seen = [], set()
+    for cid in request.args.getlist("compare", type=int):
+        if cid in eligible and cid not in seen:
+            compare_ids.append(cid); seen.add(cid)
+
+    compares = []
+    for cid in compare_ids:
+        cmp      = db.execute("SELECT * FROM assessments WHERE id=?",(cid,)).fetchone()
+        cmp_full = get_responses_dict(db, cid)
+        cmp_ans  = answers_only(cmp_full)
+        kind      = (cmp["kind"] if "kind" in cmp.keys() else None) or "self"
+        kind_full = "Validation" if kind == "validation" else "Self"
+        kind_abbr = "Val" if kind == "validation" else "Self"
+        year      = (cmp["assessment_date"] or "")[:4]
+        compares.append({
+            "id":        cid,
+            "site_name": cmp["site_name"],
+            "date":      cmp["assessment_date"] or "",
+            "kind":      kind_full,
+            # full label (banner, tooltips, picker): Site · Validation/Self · date
+            "label":     f"{cmp['site_name']} · {kind_full} · {cmp['assessment_date'] or 'no date'}",
+            # compact label (column headers, per-question lines): Val/Self + year
+            "short":     f"{kind_abbr} {year}" if year else f"{kind_abbr} #{cid}",
+            "resp":      cmp_ans,
+            "resp_full": cmp_full,
+            "scores":    calculate_scores(pillars, cmp_ans),
+        })
+
     return render_template("assess.html",
         assessment=dict(assessment), pillars=pillars, resp=resp,
         scores=calculate_scores(pillars, ans),
@@ -439,7 +489,8 @@ def assess(assessment_id):
         total_q=len(all_qs),
         answered_q=sum(1 for q in all_qs if ans.get(q["id"]) not in (None,"")),
         user=dict(user), read_only=False, unread=0,
-        self_resp={}, self_resp_full={}, self_scores=None, self_assessment=None)
+        compare_options=[dict(o) for o in compare_options],
+        compare_ids=compare_ids, compares=compares)
 
 
 # ─── AJAX: auto-save ──────────────────────────────────────────────────────────
