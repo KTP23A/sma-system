@@ -698,6 +698,31 @@ def api_scores(assessment_id):
     answered = sum(1 for q in all_qs if ans.get(q["id"]) not in (None,""))
     return jsonify({"scores":scores,"answered":answered,"total":len(all_qs),"level_names":LEVEL_NAMES})
 
+def _result_ssdpma(db, assessment, user):
+    bank   = load_ssdpma_bank()
+    resp   = get_responses_dict(db, assessment["id"])
+    ans    = answers_only(resp)
+    scores = calculate_ssdpma_scores(bank, ans)
+    total, answered = _ssdpma_progress(bank, ans)
+    # per-solid-pillar item detail for the two solid tracks
+    def track_detail(code):
+        by = {p["id"]: {"name": p["name"], "rows": []} for p in bank["solid_pillars"]}
+        for s in bank["sections"][code]:
+            lvl = ans.get(s["id"])
+            lvl = int(lvl) if isinstance(lvl, str) and lvl.isdigit() else None
+            by[s["solid_pillar"]]["rows"].append(
+                {"id": s["id"], "topic": s["topic"], "class": s["class"],
+                 "level": lvl, "grade": SOLID_GRADE.get(lvl) if lvl else None})
+        return [v for v in by.values() if v["rows"]]
+    gc = db.execute("SELECT * FROM gcs WHERE id=?",(assessment["gc_id"],)).fetchone() if assessment["gc_id"] else None
+    return render_template("result_ssdpma.html",
+        assessment=assessment, scores=scores, total_q=total, answered_q=answered,
+        safety_detail=track_detail("safety_solid"), dp_detail=track_detail("dp_solid"),
+        solid_pillars=bank["solid_pillars"], grade_scale=bank["grade_scale"],
+        level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
+        gc=dict(gc) if gc else None, user=user, unread=0)
+
+
 @app.route("/result/<int:assessment_id>")
 @login_required
 def result(assessment_id):
@@ -705,6 +730,8 @@ def result(assessment_id):
     user       = current_user()
     assessment = db.execute("SELECT * FROM assessments WHERE id=?",(assessment_id,)).fetchone()
     if not assessment: return redirect(url_for("dashboard"))
+    if assessment["type"] == "ssdpma":
+        return _result_ssdpma(db, dict(assessment), user)
     pillars = load_questions(assessment["type"], assessment["scope"])
     resp    = get_responses_dict(db, assessment_id)
     ans     = answers_only(resp)

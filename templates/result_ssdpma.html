@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}SSDPMA Result · {{ assessment.site_name }}{% endblock %}
+
+{% macro gradebadge(lvl, grade) %}
+  {% if lvl %}<span class="badge {% if lvl<2 %}bg-danger{% elif lvl<3 %}bg-warning text-dark{% elif lvl<4 %}bg-info{% elif lvl<5 %}bg-primary{% else %}bg-success{% endif %}">{{ grade or lvl }}</span>
+  {% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
+{% endmacro %}
+
+{% block content %}
+<div class="container py-3">
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div>
+      <h4 class="mb-0">{{ assessment.site_name }}
+        <span class="badge bg-dark">SSDPMA</span></h4>
+      <div class="text-muted small">
+        {% if gc %}{{ gc.name }} · {% endif %}{{ assessment.assessment_date or 'no date' }}
+        · {{ answered_q }}/{{ total_q }} answered
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="{{ url_for('assess', assessment_id=assessment.id) }}" class="btn btn-sm btn-outline-primary">✎ Continue</a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-secondary">← Dashboard</a>
+    </div>
+  </div>
+
+  <!-- 3 headline scores -->
+  <div class="row g-3 mb-4">
+    {% set S = scores.sma %}
+    <div class="col-md-4">
+      <div class="card border-primary h-100"><div class="card-body text-center">
+        <div class="text-primary fw-semibold">SMA Maturity</div>
+        <div class="display-4 fw-bold">{{ S.overall if S.overall is not none else '—' }}</div>
+        <div class="text-muted">{{ S.level_name or '—' }}</div>
+        <hr class="my-2">
+        <div class="d-flex justify-content-around small">
+          <div>SA<br><b>{{ S.safety_awareness if S.safety_awareness is not none else '—' }}</b></div>
+          <div>SI<br><b>{{ S.system_implementation if S.system_implementation is not none else '—' }}</b></div>
+        </div>
+      </div></div>
+    </div>
+    {% for key,label,color in [('safety_solid','Safety Solidification','success'),('dp_solid','DP Solidification','danger')] %}
+    {% set T = scores[key] %}
+    <div class="col-md-4">
+      <div class="card border-{{ color }} h-100"><div class="card-body text-center">
+        <div class="text-{{ color }} fw-semibold">{{ label }}</div>
+        <div class="display-4 fw-bold">{{ T.overall if T.overall is not none else '—' }}
+          {% if T.overall_grade %}<span class="fs-3">{{ T.overall_grade }}</span>{% endif %}</div>
+        <div class="text-muted">{{ 'Grade ' + T.overall_grade if T.overall_grade else '—' }}</div>
+        <hr class="my-2">
+        <div class="d-flex justify-content-around small flex-wrap">
+          {% for p in solid_pillars %}
+            <div class="px-1" title="{{ p.name }}">{{ p.name.split(' ')[0][:4] }}<br>{{ gradebadge(T.pillars[p.id], grade_scale[T.pillars[p.id]|string] if T.pillars[p.id] else None) }}</div>
+          {% endfor %}
+        </div>
+      </div></div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- SMA pillar table -->
+  <h6 class="text-primary">SMA — pillar scores</h6>
+  <table class="table table-sm table-bordered mb-4">
+    <thead class="table-light"><tr><th>Leadership</th><th>Teammate</th><th>Organization</th><th>System</th><th>Safety Awareness</th><th>System Impl.</th><th>Overall</th></tr></thead>
+    <tbody><tr class="text-center">
+      {% for k in ['leadership','tm_engagement','organization','system'] %}
+        {% set pv = scores.sma.pillars[k] %}
+        <td>{{ pv.score if pv and pv.score is not none else '—' }}</td>
+      {% endfor %}
+      <td>{{ scores.sma.safety_awareness if scores.sma.safety_awareness is not none else '—' }}</td>
+      <td>{{ scores.sma.system_implementation if scores.sma.system_implementation is not none else '—' }}</td>
+      <td class="fw-bold">{{ scores.sma.overall if scores.sma.overall is not none else '—' }}</td>
+    </tr></tbody>
+  </table>
+
+  <!-- Solid track detail -->
+  {% for label,color,detail,tk in [('Safety Solidification','success',safety_detail,scores.safety_solid),('DP Solidification','danger',dp_detail,scores.dp_solid)] %}
+  <h6 class="text-{{ color }}">{{ label }} — item grades <span class="text-muted small">(pillar = lowest item)</span></h6>
+  <div class="row g-2 mb-4">
+    {% for pil in detail %}
+    <div class="col-md-6">
+      <div class="card"><div class="card-body py-2">
+        <div class="fw-semibold small border-bottom pb-1 mb-1">{{ pil.name }}</div>
+        {% for it in pil.rows %}
+        <div class="d-flex justify-content-between align-items-center py-1">
+          <span class="small">
+            {% if it.class=='carryover' %}<span class="badge bg-warning text-dark" style="font-size:.6rem">SMA+</span>{% endif %}
+            {{ it.topic }}</span>
+          {{ gradebadge(it.level, it.grade) }}
+        </div>
+        {% endfor %}
+      </div></div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
