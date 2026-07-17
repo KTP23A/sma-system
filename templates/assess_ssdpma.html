@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% block title %}SSDPMA · {{ assessment.site_name }}{% endblock %}
+
+{% macro grade_picker(section) %}
+  <div class="btn-group btn-group-sm grade-pick" role="group" data-qid="{{ section.id }}">
+    {% for band in section.solid_rubric %}
+      <input type="radio" class="btn-check" name="g_{{ section.id }}" id="{{ section.id }}_{{ band.level }}"
+             value="{{ band.level }}" autocomplete="off"
+             {% if resp.get(section.id) and resp[section.id].answer == band.level|string %}checked{% endif %}>
+      <label class="btn btn-outline-secondary grade-lbl" for="{{ section.id }}_{{ band.level }}"
+             title="{{ band.criteria|striptags }}">{{ band.grade }}</label>
+    {% endfor %}
+    <input type="radio" class="btn-check" name="g_{{ section.id }}" id="{{ section.id }}_na"
+           value="na" autocomplete="off"
+           {% if resp.get(section.id) and resp[section.id].answer == 'na' %}checked{% endif %}>
+    <label class="btn btn-outline-light text-muted border" for="{{ section.id }}_na">N/A</label>
+  </div>
+{% endmacro %}
+
+{% macro yesno(qid) %}
+  <div class="btn-group btn-group-sm yesno" role="group" data-qid="{{ qid }}">
+    {% set cur = resp.get(qid).answer if resp.get(qid) else '' %}
+    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_y" value="yes" autocomplete="off" {% if cur=='yes' %}checked{% endif %}>
+    <label class="btn btn-outline-success" for="{{ qid }}_y">Yes</label>
+    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_n" value="no" autocomplete="off" {% if cur=='no' %}checked{% endif %}>
+    <label class="btn btn-outline-danger" for="{{ qid }}_n">No</label>
+    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_na" value="na" autocomplete="off" {% if cur=='na' %}checked{% endif %}>
+    <label class="btn btn-outline-secondary" for="{{ qid }}_na">N/A</label>
+  </div>
+{% endmacro %}
+
+{% macro solid_section(section) %}
+  <div class="card mb-2 shadow-sm">
+    <div class="card-body py-2">
+      <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+        <div class="flex-grow-1">
+          <span class="badge bg-light text-dark border me-1">{{ section.id }}</span>
+          {% if section.class == 'carryover' %}<span class="badge bg-warning text-dark" title="Also feeds the SMA score">SMA + Solid.</span>
+          {% elif section.class == 'new' %}<span class="badge bg-success-subtle text-success-emphasis border">New</span>
+          {% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">BSAPIC</span>{% endif %}
+          {% if section.axis %}<span class="badge bg-info-subtle text-info-emphasis border">{{ section.axis }}</span>{% endif %}
+          <span class="fw-semibold ms-1">{{ section.topic }}</span>
+        </div>
+        <div>{{ grade_picker(section) }}</div>
+      </div>
+
+      {% if section.class == 'carryover' and section.sma_group_qids %}
+        <details class="mt-2 combined-block">
+          <summary class="small text-primary">Combined block · {{ section.sma_group_qids|length }} SMA question(s) — asked once, feeds SMA score</summary>
+          <div class="mt-2 ps-2 border-start">
+            {% for qid in section.sma_group_qids %}{% set q = qmap.get(qid) %}{% if q %}
+              <div class="d-flex justify-content-between align-items-center gap-2 py-1 border-bottom">
+                <div class="small"><span class="text-muted">L{{ q.level }}</span> {{ q.text }}</div>
+                <div>{{ yesno(qid) }}</div>
+              </div>
+            {% endif %}{% endfor %}
+          </div>
+        </details>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% block content %}
+<div class="container-fluid py-3">
+
+  <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+    <div>
+      <h5 class="mb-0">{{ assessment.site_name }}
+        <span class="badge bg-dark">SSDPMA</span>
+        <span class="text-muted small">Solidification Safety &amp; DP Maturity Assessment</span>
+      </h5>
+    </div>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-secondary">← Dashboard</a>
+  </div>
+
+  <!-- 3 live score panels -->
+  <div class="row g-2 mb-3" id="panels">
+    {% set tracks = [('sma','SMA','primary'),('safety_solid','Safety Solidification','success'),('dp_solid','DP Solidification','danger')] %}
+    {% for key,label,color in tracks %}
+    <div class="col-md-4">
+      <div class="card border-{{ color }} shadow-sm h-100">
+        <div class="card-body py-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold text-{{ color }}">{{ label }}</span>
+            <span class="fs-4 fw-bold" id="{{ key }}_overall">—</span>
+          </div>
+          <div class="small text-muted" id="{{ key }}_sub">&nbsp;</div>
+          <div class="d-flex gap-1 mt-1" id="{{ key }}_pillars"></div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="progress mb-3" style="height:6px">
+    <div class="progress-bar" id="progbar" style="width:{{ (answered_q/total_q*100)|round }}%"></div>
+  </div>
+  <div class="small text-muted mb-2"><span id="answered">{{ answered_q }}</span> / {{ total_q }} answered</div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-safety">Safety Solidification <span class="badge bg-success">{{ bank.sections.safety_solid|length }}</span></button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-dp">DP Solidification <span class="badge bg-danger">{{ bank.sections.dp_solid|length }}</span></button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-sma">SMA (additional)</button></li>
+  </ul>
+
+  <div class="tab-content pt-3">
+    <!-- SAFETY -->
+    <div class="tab-pane fade show active" id="tab-safety">
+      {% for p in solid_pillars %}
+        {% set secs = bank.sections.safety_solid | selectattr('solid_pillar','equalto',p.id) | list %}
+        {% if secs %}
+          <h6 class="text-success mt-2">{{ p.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></h6>
+          {% for s in secs %}{{ solid_section(s) }}{% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <!-- DP -->
+    <div class="tab-pane fade" id="tab-dp">
+      {% for p in solid_pillars %}
+        {% set secs = bank.sections.dp_solid | selectattr('solid_pillar','equalto',p.id) | list %}
+        {% if secs %}
+          <h6 class="text-danger mt-2">{{ p.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></h6>
+          {% for s in secs %}{{ solid_section(s) }}{% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <!-- SMA standalone -->
+    <div class="tab-pane fade" id="tab-sma">
+      <p class="small text-muted">SMA questions with no solidification counterpart. Together with the combined blocks (above tabs) they make the full 233-item SMA score.</p>
+      {% for p in sma_groups %}
+        <h6 class="text-primary mt-2">{{ p.name }}</h6>
+        {% for e in p.elements %}
+          <div class="fw-semibold small text-muted mt-2">{{ e.name }}</div>
+          {% for q in e.questions %}
+            <div class="d-flex justify-content-between align-items-center gap-2 py-1 border-bottom">
+              <div class="small"><span class="badge bg-light text-dark border">{{ q.no }}</span>
+                <span class="text-muted">L{{ q.level }}</span> {{ q.text }}
+                {% if q.standard %}<span class="badge bg-info-subtle text-info-emphasis border">{{ q.standard }}</span>{% endif %}</div>
+              <div>{{ yesno(q.id) }}</div>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ASSESSMENT_ID = {{ assessment.id }};
+const TOTAL = {{ total_q }};
+const GRADE = {1:'C',2:'B-',3:'B',4:'B+',5:'A'};
+
+function renderTrack(key, t){
+  const ov = document.getElementById(key+'_overall');
+  const sub = document.getElementById(key+'_sub');
+  const pil = document.getElementById(key+'_pillars');
+  if(!t){ return; }
+  if(key==='sma'){
+    ov.textContent = (t.overall==null?'—':t.overall);
+    sub.textContent = t.level_name || ' ';
+    pil.innerHTML='';
+    const labels={leadership:'LD',tm_engagement:'TM',organization:'Org',system:'Sys'};
+    Object.keys(labels).forEach(k=>{ let v=(t.pillars||{})[k]; if(v&&typeof v==='object') v=v.score;
+      pil.appendChild(chip(labels[k], v)); });
+  } else {
+    ov.textContent = (t.overall==null?'—':t.overall) + (t.overall_grade?(' '+t.overall_grade):'');
+    sub.textContent = t.overall_grade ? ('Grade '+t.overall_grade) : ' ';
+    pil.innerHTML='';
+    const slab={issue_solving:'Iss',risk_management:'Risk',business_strategy:'Biz',independency:'Ind',integration:'Intg'};
+    Object.keys(t.pillars||{}).forEach(k=>{ pil.appendChild(chip(slab[k]||k.slice(0,3), t.pillars[k])); });
+  }
+}
+function chip(lbl, v){
+  const d=document.createElement('span');
+  d.className='badge '+(v==null?'bg-light text-muted border':(v<2?'bg-danger':v<3?'bg-warning text-dark':v<4?'bg-info':v<5?'bg-primary':'bg-success'));
+  d.style.fontSize='.65rem'; d.title=lbl;
+  d.textContent=(v==null?'—':v);
+  return d;
+}
+function updatePanels(s){
+  if(!s) return;
+  renderTrack('sma', s.sma);
+  renderTrack('safety_solid', s.safety_solid);
+  renderTrack('dp_solid', s.dp_solid);
+}
+function setProgress(answered){
+  document.getElementById('answered').textContent = answered;
+  document.getElementById('progbar').style.width = Math.round(answered/TOTAL*100)+'%';
+}
+async function save(qid, answer){
+  try{
+    const r = await fetch('/api/answer', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer})});
+    const data = await r.json();
+    if(data.ssdpma) updatePanels(data.ssdpma);
+    if(typeof data.answered==='number') setProgress(data.answered);
+  }catch(e){ console.error('save failed', e); }
+}
+document.addEventListener('change', ev=>{
+  const inp = ev.target;
+  if(inp.matches('.grade-pick input') || inp.matches('.yesno input')){
+    const wrap = inp.closest('[data-qid]');
+    save(wrap.dataset.qid, inp.value);
+  }
+});
+// initial paint
+updatePanels({{ scores|tojson }});
+setProgress({{ answered_q }});
+</script>
+{% endblock %}

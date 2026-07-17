@@ -37,13 +37,28 @@ def load_questions(assessment_type, scope=None):
         return json.loads((Q_DIR/"manufacturing.json").read_text())["pillars"]
     elif assessment_type == "retread":
         return json.loads((Q_DIR/"retread.json").read_text())["pillars"]
+    elif assessment_type == "ssdpma":
+        # The SMA score track uses the full SMA backbone pillars (233 Qs).
+        return load_ssdpma_bank()["sma"]["pillars"]
     return []
 
 _TYPE_FILES = {"warehouse":"warehouse.json","retail":"retail.json",
                "manufacturing":"manufacturing.json","retread":"retread.json"}
 
+_SSDPMA_CACHE = {}
+def load_ssdpma_bank():
+    """SSDPMA merged bank: full SMA backbone + Safety/DP solidification sections."""
+    if "bank" not in _SSDPMA_CACHE:
+        _SSDPMA_CACHE["bank"] = json.loads((Q_DIR/"ssdpma.json").read_text())
+    return _SSDPMA_CACHE["bank"]
+
 def load_type_meta(assessment_type):
     """Top-level metadata for a type (role_config, department_options, rollup). {} if none."""
+    if assessment_type == "ssdpma":
+        sma = load_ssdpma_bank()["sma"]
+        return {"role_config": sma.get("role_config", {}),
+                "department_options": sma.get("department_options", []),
+                "rollup": sma.get("rollup")}
     f = _TYPE_FILES.get(assessment_type)
     if not f: return {}
     data = json.loads((Q_DIR/f).read_text())
@@ -300,6 +315,40 @@ def calculate_scores(pillars, responses):
             "system_safety":system_safety, "system_dp":system_dp,
             "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
+SOLID_GRADE = {1:"C",2:"B-",3:"B",4:"B+",5:"A"}
+
+def _solid_track(sections, responses, solid_pillars):
+    """Solidification score for one track: item = selected grade level (1..5);
+    pillar = min of item levels; overall = avg of pillar scores. Native 'pick-lowest' rule."""
+    per_pillar = {}
+    items = []
+    for s in sections:
+        r = responses.get(s["id"])
+        lvl = int(r) if isinstance(r, int) or (isinstance(r, str) and r.isdigit()) else None
+        items.append({"id": s["id"], "topic": s["topic"], "pillar": s["solid_pillar"],
+                      "class": s["class"], "level": lvl,
+                      "grade": SOLID_GRADE.get(lvl) if lvl else None})
+        if lvl is not None:
+            per_pillar.setdefault(s["solid_pillar"], []).append(lvl)
+    pillar_score = {p["id"]: (min(per_pillar[p["id"]]) if per_pillar.get(p["id"]) else None)
+                    for p in solid_pillars}
+    valid = [v for v in pillar_score.values() if v is not None]
+    overall = round(sum(valid)/len(valid), 2) if valid else None
+    return {"overall": overall,
+            "overall_grade": SOLID_GRADE.get(round(overall)) if overall else None,
+            "pillars": pillar_score, "items": items}
+
+def calculate_ssdpma_scores(bank, responses):
+    """Three independent real-time tracks from one response set:
+    1) SMA (reuses calculate_scores on the full 233-Q backbone — backward-comparable),
+    2) Safety Solidification, 3) DP Solidification (C..A -> 1..5, min-based)."""
+    sma = calculate_scores(bank["sma"]["pillars"], responses)
+    sp = bank["solid_pillars"]
+    return {"sma": sma,
+            "safety_solid": _solid_track(bank["sections"]["safety_solid"], responses, sp),
+            "dp_solid":     _solid_track(bank["sections"]["dp_solid"], responses, sp)}
+
+
 def get_responses_dict(db, assessment_id):
     rows = db.execute("SELECT question_id, answer, comment, detail FROM responses WHERE assessment_id=?",(assessment_id,)).fetchall()
     out = {}
@@ -410,6 +459,48 @@ def new_assessment():
 
 # ─── Assess ───────────────────────────────────────────────────────────────────
 
+def _sma_qmap(bank):
+    """id -> SMA question object, plus (pillar,element) location, from the backbone."""
+    qmap, loc = {}, {}
+    for p in bank["sma"]["pillars"]:
+        for e in p["elements"]:
+            for q in e["questions"]:
+                qmap[q["id"]] = q
+                loc[q["id"]] = (p, e)
+    return qmap, loc
+
+def _ssdpma_progress(bank, ans):
+    """Total answerable = 233 SMA Qs + 73 solidification sections; count answered."""
+    total = sum(len(e["questions"]) for p in bank["sma"]["pillars"] for e in p["elements"])
+    total += len(bank["sections"]["safety_solid"]) + len(bank["sections"]["dp_solid"])
+    ids = [q["id"] for p in bank["sma"]["pillars"] for e in p["elements"] for q in e["questions"]]
+    ids += [s["id"] for s in bank["sections"]["safety_solid"] + bank["sections"]["dp_solid"]]
+    answered = sum(1 for i in ids if ans.get(i) not in (None, ""))
+    return total, answered
+
+def _assess_ssdpma(db, assessment, user):
+    bank   = load_ssdpma_bank()
+    resp   = get_responses_dict(db, assessment["id"])
+    ans    = answers_only(resp)
+    scores = calculate_ssdpma_scores(bank, ans)
+    qmap, _ = _sma_qmap(bank)
+    # standalone SMA questions grouped by pillar -> element (the 132 not inside a combined block)
+    standalone = set(bank.get("sma_standalone_qids", []))
+    sma_groups = []
+    for p in bank["sma"]["pillars"]:
+        elems = []
+        for e in p["elements"]:
+            qs = [q for q in e["questions"] if q["id"] in standalone]
+            if qs: elems.append({"name": e["name"], "id": e["id"], "questions": qs})
+        if elems: sma_groups.append({"name": p["name"], "id": p["id"], "elements": elems})
+    total, answered = _ssdpma_progress(bank, ans)
+    return render_template("assess_ssdpma.html",
+        assessment=assessment, bank=bank, resp=resp, scores=scores, qmap=qmap,
+        sma_groups=sma_groups, solid_pillars=bank["solid_pillars"],
+        grade_scale=bank["grade_scale"], level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
+        total_q=total, answered_q=answered, user=user, unread=0)
+
+
 @app.route("/assess/<int:assessment_id>")
 @login_required
 def assess(assessment_id):
@@ -417,6 +508,9 @@ def assess(assessment_id):
     user       = current_user()
     assessment = db.execute("SELECT * FROM assessments WHERE id=?",(assessment_id,)).fetchone()
     if not assessment: return redirect(url_for("dashboard"))
+
+    if assessment["type"] == "ssdpma":
+        return _assess_ssdpma(db, dict(assessment), user)
 
     pillars = load_questions(assessment["type"], assessment["scope"])
     meta    = load_type_meta(assessment["type"])
@@ -526,6 +620,12 @@ def api_answer():
     db.commit()
     resp     = get_responses_dict(db, assessment_id)
     ans      = answers_only(resp)
+    if assessment["type"] == "ssdpma":
+        bank = load_ssdpma_bank()
+        total, answered = _ssdpma_progress(bank, ans)
+        return jsonify({"ssdpma": calculate_ssdpma_scores(bank, ans),
+                        "answered": answered, "total": total,
+                        "qid": qid, "derived": answer, "level_names": LEVEL_NAMES})
     all_qs   = all_questions_flat(pillars)
     scores   = calculate_scores(pillars, ans)
     answered = sum(1 for q in all_qs if ans.get(q["id"]) not in (None,""))
@@ -583,6 +683,13 @@ def api_scores(assessment_id):
     db = get_db()
     assessment = db.execute("SELECT * FROM assessments WHERE id=?",(assessment_id,)).fetchone()
     if not assessment: return jsonify({}),404
+    if assessment["type"] == "ssdpma":
+        bank = load_ssdpma_bank()
+        resp = get_responses_dict(db, assessment_id)
+        ans  = answers_only(resp)
+        total, answered = _ssdpma_progress(bank, ans)
+        return jsonify({"ssdpma": calculate_ssdpma_scores(bank, ans),
+                        "answered": answered, "total": total, "level_names": LEVEL_NAMES})
     pillars  = load_questions(assessment["type"], assessment["scope"])
     resp     = get_responses_dict(db, assessment_id)
     ans      = answers_only(resp)
