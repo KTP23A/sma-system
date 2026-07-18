@@ -539,6 +539,7 @@ def _assess_ssdpma(db, assessment, user):
                 for qid in s["sma_group_qids"]:
                     solid_link.setdefault(qid, []).append({"track": label, "topic": s["topic"], "id": s["id"]})
     total, answered = _ssdpma_progress(bank, ans)
+    all_sma_qs = all_questions_flat(bank["sma"]["pillars"])
     return render_template("assess_ssdpma.html",
         assessment=assessment, bank=bank, resp=resp, scores=scores,
         sma_pillars=bank["sma"]["pillars"], solid_link=solid_link,
@@ -546,6 +547,10 @@ def _assess_ssdpma(db, assessment, user):
         department_options=bank["sma"].get("department_options", []),
         method_labels=METHOD_LABELS, solid_pillars=bank["solid_pillars"], grc_axes=GRC_AXES,
         grade_scale=bank["grade_scale"], level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
+        all_levels=sorted({q["level"] for q in all_sma_qs}),
+        all_methods=sorted({m for q in all_sma_qs for m in q["audit_methods"]}),
+        all_answered_by=sorted({q["answered_by"] for q in all_sma_qs if q["answered_by"]}),
+        total_rows=len(all_sma_qs) + len(bank["sections"]["safety_solid"]) + len(bank["sections"]["dp_solid"]),
         total_q=total, answered_q=answered, user=user, unread=0)
 
 
