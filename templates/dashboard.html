@@ -74,11 +74,12 @@
           </tr>
           {% endif %}
         {% endfor %}
-          {% set all_done = assessments | selectattr('scores') | selectattr('scores.overall') | list %}
+          {% set bu_assessments = assessments | rejectattr('a.type','eq','ssdpma') | list %}
+          {% set all_done = bu_assessments | selectattr('scores') | selectattr('scores.overall') | list %}
           <tr class="table-light fw-bold">
             <td class="text-start">All BUs</td>
-            <td>{{ assessments|length }}</td>
-            <td>{{ sma_avg(assessments) }}</td>
+            <td>{{ bu_assessments|length }}</td>
+            <td>{{ sma_avg(bu_assessments) }}</td>
             <td>{{ pillar_avg(all_done, 'leadership') }}</td>
             <td>{{ pillar_avg(all_done, 'tm_engagement') }}</td>
             <td>{{ pillar_avg(all_done, 'organization') }}</td>
@@ -89,6 +90,86 @@
     </div>
   </div>
 </div>
+
+<!-- SSDPMA — shown separately: 3 independent tracks (SMA / Safety Solid / DP Solid) -->
+{% macro solid_badge(t) %}
+  {% if t and t.overall is not none %}<span class="badge {% if t.overall<2 %}bg-danger{% elif t.overall<3 %}bg-warning text-dark{% elif t.overall<4 %}bg-info{% elif t.overall<5 %}bg-primary{% else %}bg-success{% endif %}">{{ t.overall_grade }} · {{ t.overall }}</span>{% else %}<span class="text-muted">—</span>{% endif %}
+{% endmacro %}
+{% set ssdpma_items = assessments | selectattr('a.type','eq','ssdpma') | list %}
+{% if ssdpma_items %}
+<h5 class="fw-bold mt-4 mb-2">🧩 SSDPMA <span class="text-muted small fw-normal">(Solidification Safety &amp; DP Maturity)</span>
+  <span class="badge bg-dark align-middle">{{ ssdpma_items|length }} assessments</span></h5>
+<div class="card mb-3">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>GC / Site</th>
+            <th>Kind</th>
+            <th>Date</th>
+            <th class="text-center">SMA Maturity</th>
+            <th class="text-center">Safety Solid</th>
+            <th class="text-center">DP Solid</th>
+            <th class="text-center">Progress</th>
+            <th class="text-center">Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in ssdpma_items %}
+          {% set a = item.a %}
+          {% set s = item.scores %}
+          {% set st_label = status_labels.get(a.status, ('Unknown','secondary')) %}
+          <tr id="row-{{ a.id }}">
+            <td class="fw-semibold">
+              {% if item.gc %}<div>{{ item.gc.name }}</div><div class="small text-muted">{{ a.site_name }}</div>
+              {% else %}{{ a.site_name }}{% endif %}
+            </td>
+            <td>
+              {% if a.kind == 'self' %}<span class="badge bg-info text-dark">Self</span>
+              {% else %}<span class="badge bg-dark">Validation</span>{% endif %}
+            </td>
+            <td>{{ a.assessment_date or '—' }}</td>
+            <td class="text-center">
+              {% if s and s.sma and s.sma.overall is not none %}
+                {% set lv = s.sma.overall|int %}
+                <span class="badge level-badge-{{ lv }}">{{ "%.2f"|format(s.sma.overall) }}</span>
+              {% else %}<span class="text-muted">—</span>{% endif %}
+            </td>
+            <td class="text-center">{{ solid_badge(s.safety_solid if s else none) }}</td>
+            <td class="text-center">{{ solid_badge(s.dp_solid if s else none) }}</td>
+            <td style="min-width:100px">
+              <div class="progress mb-1" style="height:8px">
+                <div class="progress-bar bg-success" style="width:{{ (item.answered_q / item.total_q * 100)|int if item.total_q else 0 }}%"></div>
+              </div>
+              <div class="small text-center text-muted">{{ item.answered_q }}/{{ item.total_q }}</div>
+            </td>
+            <td class="text-center">
+              <span class="badge bg-{{ st_label[1] }}">{{ st_label[0] }}</span>
+            </td>
+            <td>
+              <div class="d-flex gap-1 flex-wrap justify-content-end">
+                {% if a.status == 'done' %}
+                  <a href="{{ url_for('result', assessment_id=a.id) }}" class="btn btn-sm btn-outline-success">Result</a>
+                {% else %}
+                  <a href="{{ url_for('assess', assessment_id=a.id) }}" class="btn btn-sm btn-outline-primary">Continue</a>
+                  <a href="{{ url_for('result', assessment_id=a.id) }}" class="btn btn-sm btn-outline-secondary">Preview</a>
+                {% endif %}
+                <form method="post" action="{{ url_for('delete_assessment', assessment_id=a.id) }}"
+                      onsubmit="return confirm('Delete assessment for {{ a.site_name }}? This cannot be undone.')">
+                  <button class="btn btn-sm btn-danger" title="Delete assessment">🗑 Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 <!-- Radar chart (SBU/Admin only, completed validations) -->
 {% if user.role != 'gc_assessor' %}
