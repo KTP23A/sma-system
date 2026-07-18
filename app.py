@@ -2,7 +2,7 @@
 SMA Check Item System — Simplified single-user edition
 Run: python3 app.py  →  open http://localhost:5001
 """
-import json, os, sqlite3, io
+import json, os, re, sqlite3, io
 from datetime import date
 from functools import wraps
 from pathlib import Path
@@ -24,6 +24,50 @@ MAX_FILE_MB = 20
 LEVEL_NAMES  = {1:"Ad-hoc",2:"Reactive",3:"Standardized",4:"Proactive",5:"Excellence"}
 LEVEL_COLORS = {1:"danger",2:"warning",3:"info",4:"primary",5:"success"}
 METHOD_LABELS = {"interview":"Interview","onsite":"On-site","document":"Document"}
+
+# ── SSDPMA filter-bar helpers ──────────────────────────────────────────────
+# The SMA-MFG backbone's audit_methods field is ['interview'] on every single
+# question (true of the canonical manufacturing.json too, not an ssdpma bug),
+# so it can't drive a useful Method filter on its own. Derive a 3-way split
+# from the signals that actually vary: a referenced standard implies document
+# review; "Tour"/observation in answered_by implies a Genba walk.
+def _ssdpma_method_tag(q):
+    who = q.get("answered_by") or ""
+    if re.search(r"tour|observ", who, re.I):
+        return "genba"
+    if q.get("standard"):
+        return "document"
+    return "interview"
+
+SSDPMA_METHOD_LABELS = {"interview": "Interview", "document": "Document", "genba": "Genba"}
+
+# answered_by is free-text pasted from the source spreadsheet — 35+ near-duplicate
+# variants (casing, trailing "/", comma/and-joined combos, one literal "/").
+# Classify into a small canonical, multi-label role taxonomy for filtering;
+# the raw text is still what's displayed on the question row, unchanged.
+SSDPMA_RESPONDENT_RULES = [
+    ("Safety Manager",           r"safety\s*manager"),
+    ("D.P. Manager",             r"d\.?\s*p\.?\s*manager|d\.?\s*p\.?\s*staff"),
+    ("Plant Manager",            r"plant\s*manager"),
+    ("MOC Coordinator",          r"moc\s*coordinator"),
+    ("Procurement Manager",      r"procurement\s*manager"),
+    ("Production Manager",       r"production\s*(general\s*)?manager"),
+    ("Maintenance Manager",      r"maintenance\s*manager"),
+    ("Maintenance Supervisor",   r"maintenance\s*sv|maintenance\s*supervisor"),
+    ("Maintenance Staff",        r"maintenance\s*staff"),
+    ("Production Supervisor",    r"production\s*sv|production\s*supervisor|production\s*foreman|^supervisors$|mixing\s*supervisor"),
+    ("Teammate",                 r"teammate"),
+    ("Operators",                r"operators"),
+    ("KY Leader",                r"ky\s*leader"),
+    ("Site Tour / Observation",  r"^tour$"),
+    ("Others (Patrol)",          r"others.*patrol"),
+    ("Management",               r"^management$|^managers$"),
+]
+def _ssdpma_respondent_tags(q):
+    raw = (q.get("answered_by") or "").strip()
+    if raw in ("", "/"):
+        return []
+    return [label for label, pat in SSDPMA_RESPONDENT_RULES if re.search(pat, raw, re.I)]
 
 
 # ─── Questions ────────────────────────────────────────────────────────────────
@@ -540,6 +584,8 @@ def _assess_ssdpma(db, assessment, user):
                     solid_link.setdefault(qid, []).append({"track": label, "topic": s["topic"], "id": s["id"]})
     total, answered = _ssdpma_progress(bank, ans)
     all_sma_qs = all_questions_flat(bank["sma"]["pillars"])
+    q_method_tag = {q["id"]: _ssdpma_method_tag(q) for q in all_sma_qs}
+    q_respondent_tags = {q["id"]: _ssdpma_respondent_tags(q) for q in all_sma_qs}
     return render_template("assess_ssdpma.html",
         assessment=assessment, bank=bank, resp=resp, scores=scores,
         sma_pillars=bank["sma"]["pillars"], solid_link=solid_link,
@@ -547,9 +593,11 @@ def _assess_ssdpma(db, assessment, user):
         department_options=bank["sma"].get("department_options", []),
         method_labels=METHOD_LABELS, solid_pillars=bank["solid_pillars"], grc_axes=GRC_AXES,
         grade_scale=bank["grade_scale"], level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
+        q_method_tag=q_method_tag, q_respondent_tags=q_respondent_tags,
+        ssdpma_method_labels=SSDPMA_METHOD_LABELS,
         all_levels=sorted({q["level"] for q in all_sma_qs}),
-        all_methods=sorted({m for q in all_sma_qs for m in q["audit_methods"]}),
-        all_answered_by=sorted({q["answered_by"] for q in all_sma_qs if q["answered_by"]}),
+        all_methods=[m for m in ("interview", "document", "genba") if m in set(q_method_tag.values())],
+        all_answered_by=sorted({t for tags in q_respondent_tags.values() for t in tags}),
         total_rows=len(all_sma_qs) + len(bank["sections"]["safety_solid"]) + len(bank["sections"]["dp_solid"]),
         total_q=total, answered_q=answered, user=user, unread=0)
 

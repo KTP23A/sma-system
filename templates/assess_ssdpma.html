@@ -56,9 +56,11 @@
   {% set ans = resp.get(q.id, {}).get('answer', '') %}
   {% set det = resp.get(q.id, {}).get('detail') or {} %}
   {% set cmt = resp.get(q.id, {}).get('comment', '') %}
+  {% set method_tag = q_method_tag.get(q.id, 'interview') %}
+  {% set respondent_tags = q_respondent_tags.get(q.id, []) %}
   <div class="sma-q filterable-row px-2 py-2 {% if ans %}q-{{ ans }}{% endif %}" id="qrow-{{ q.id }}" data-qid="{{ q.id }}" data-answer="{{ ans }}"
        data-section="sma" data-pillar="{{ pillar_id }}" data-level="{{ q.level }}"
-       data-methods="{{ q.audit_methods | join(',') }}" data-answered-by="{{ q.answered_by or '' }}">
+       data-methods="{{ method_tag }}" data-answered-by="{{ respondent_tags | join(',') }}">
     <div class="d-flex align-items-start gap-2">
       <span class="text-muted small mt-1" style="min-width:2.4rem">{{ q.no }}.</span>
       <div class="flex-grow-1">
@@ -78,7 +80,7 @@
           </div>
         {% endif %}
         <div class="d-flex flex-wrap gap-1 mb-1">
-          {% for m in q.audit_methods %}<span class="badge bg-info-subtle text-info-emphasis border">{{ method_labels.get(m, m) }}</span>{% endfor %}
+          <span class="badge bg-info-subtle text-info-emphasis border">{{ ssdpma_method_labels.get(method_tag, method_tag) }}</span>
           {% if q.answered_by %}<span class="badge bg-light text-dark border">👤 {{ q.answered_by }}</span>{% endif %}
           {% if q.standard %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">📋 {{ q.standard[:30] }}</span>{% endif %}
         </div>
@@ -232,7 +234,7 @@
           </button>
           <div class="ms-menu shadow">
             {% for m in all_methods %}
-            <label class="ms-item"><input type="checkbox" value="{{ m }}" onchange="applyFilters()"> {{ method_labels.get(m, m) }}</label>
+            <label class="ms-item"><input type="checkbox" value="{{ m }}" onchange="applyFilters()"> {{ ssdpma_method_labels.get(m, m) }}</label>
             {% endfor %}
           </div>
         </div>
@@ -467,12 +469,12 @@ function applyFilters() {
     if (section === 'sma') {
       const pillar = row.dataset.pillar, level = row.dataset.level;
       const methods = (row.dataset.methods || '').split(',');
-      const answeredBy = row.dataset.answeredBy || '';
+      const answeredByTags = (row.dataset.answeredBy || '').split(',').filter(Boolean);
       matchTypeSpecific =
         (fPillars.length === 0 || fPillars.includes(pillar)) &&
         (fLevels.length === 0 || fLevels.includes(level)) &&
         (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
-        (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy));
+        (fAnsweredBys.length === 0 || fAnsweredBys.some(t => answeredByTags.includes(t)));
     } else {
       const solidPillar = row.dataset.solidPillar, axis = row.dataset.axis || '', cls = row.dataset.class || '';
       matchTypeSpecific =
