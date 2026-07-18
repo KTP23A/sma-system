@@ -1,59 +1,130 @@
 {% extends "base.html" %}
 {% block title %}SSDPMA · {{ assessment.site_name }}{% endblock %}
 
-{% macro grade_picker(section) %}
-  <div class="btn-group btn-group-sm grade-pick" role="group" data-qid="{{ section.id }}">
-    {% for band in section.solid_rubric %}
-      <input type="radio" class="btn-check" name="g_{{ section.id }}" id="{{ section.id }}_{{ band.level }}"
-             value="{{ band.level }}" autocomplete="off"
-             {% if resp.get(section.id) and resp[section.id].answer == band.level|string %}checked{% endif %}>
-      <label class="btn btn-outline-secondary grade-lbl" for="{{ section.id }}_{{ band.level }}"
-             title="{{ band.criteria|striptags }}">{{ band.grade }}</label>
-    {% endfor %}
-    <input type="radio" class="btn-check" name="g_{{ section.id }}" id="{{ section.id }}_na"
-           value="na" autocomplete="off"
-           {% if resp.get(section.id) and resp[section.id].answer == 'na' %}checked{% endif %}>
-    <label class="btn btn-outline-light text-muted border" for="{{ section.id }}_na">N/A</label>
-  </div>
-{% endmacro %}
-
-{% macro yesno(qid) %}
-  <div class="btn-group btn-group-sm yesno" role="group" data-qid="{{ qid }}">
-    {% set cur = resp.get(qid).answer if resp.get(qid) else '' %}
-    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_y" value="yes" autocomplete="off" {% if cur=='yes' %}checked{% endif %}>
-    <label class="btn btn-outline-success" for="{{ qid }}_y">Yes</label>
-    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_n" value="no" autocomplete="off" {% if cur=='no' %}checked{% endif %}>
-    <label class="btn btn-outline-danger" for="{{ qid }}_n">No</label>
-    <input type="radio" class="btn-check" name="q_{{ qid }}" id="{{ qid }}_na" value="na" autocomplete="off" {% if cur=='na' %}checked{% endif %}>
-    <label class="btn btn-outline-secondary" for="{{ qid }}_na">N/A</label>
-  </div>
-{% endmacro %}
-
-{% macro solid_section(section) %}
-  <div class="card mb-2 shadow-sm">
-    <div class="card-body py-2">
-      <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
-        <div class="flex-grow-1">
-          <span class="badge bg-light text-dark border me-1">{{ section.id }}</span>
-          {% if section.class == 'carryover' %}<span class="badge bg-warning text-dark" title="Also feeds the SMA score">SMA + Solid.</span>
-          {% elif section.class == 'new' %}<span class="badge bg-success-subtle text-success-emphasis border">New</span>
-          {% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">BSAPIC</span>{% endif %}
-          {% if section.axis %}<span class="badge bg-info-subtle text-info-emphasis border">{{ section.axis }}</span>{% endif %}
-          <span class="fw-semibold ms-1">{{ section.topic }}</span>
-        </div>
-        <div>{{ grade_picker(section) }}</div>
+{# ── native SMA responder widget (mirrors assess.html) ─────────────────────── #}
+{% macro responder_panel(q, ans, det) %}
+  {% set rdet = det.get('roles', {}) %}
+  <div class="responder-panel border rounded p-2 mb-1" data-qid="{{ q.id }}" style="background:#f8fafc">
+    <div class="small text-muted mb-2">Interview result is <b>Yes</b> only if <u>every</u> respondent answers Yes; any No ⇒ No.</div>
+    {% for role in q.responders %}
+      {% set cfg = role_config.get(role, {}) %}
+      {% set rd = rdet.get(role, {}) %}
+      <div class="resp-role d-flex flex-wrap align-items-center gap-2 mb-1" data-role="{{ role }}" data-mode="{{ cfg.get('mode','count') }}">
+        <span class="badge bg-secondary" style="min-width:135px;text-align:left">{{ cfg.get('label', role) }}</span>
+        {% if cfg.get('mode') == 'single' %}
+          <div class="btn-group btn-group-sm">
+            <input type="radio" class="btn-check rsp-single" name="{{q.id}}_{{role}}" id="{{q.id}}_{{role}}_y" value="yes" {% if rd.get('yes') %}checked{% endif %}>
+            <label class="btn btn-outline-success" for="{{q.id}}_{{role}}_y">Yes</label>
+            <input type="radio" class="btn-check rsp-single" name="{{q.id}}_{{role}}" id="{{q.id}}_{{role}}_n" value="no" {% if rd.get('no') %}checked{% endif %}>
+            <label class="btn btn-outline-danger" for="{{q.id}}_{{role}}_n">No</label>
+          </div>
+        {% elif cfg.get('mode') == 'departments' %}
+          <div class="depts-wrap flex-grow-1" data-max="{{ cfg.get('max',6) }}"
+               data-depts='{{ (rd.get("departments", []) or [])|tojson }}'></div>
+        {% elif cfg.get('mode') == 'sections' %}
+          <div class="sections-wrap flex-grow-1" data-max="{{ cfg.get('max_sections',6) }}"
+               data-sections='{{ (rd.get("sections", []) or [])|tojson }}'></div>
+        {% else %}
+          <span class="small">interview <input type="number" min="1" class="form-control form-control-sm d-inline-block rsp-expected" style="width:60px" value="{{ rd.get('expected', cfg.get('default_expected',1)) }}" {% if not cfg.get('adjustable') %}readonly{% endif %}></span>
+          <span class="small text-success">Yes <input type="number" min="0" class="form-control form-control-sm d-inline-block rsp-yes" style="width:60px" value="{{ rd.get('yes',0) }}"></span>
+          <span class="small text-danger">No <input type="number" min="0" class="form-control form-control-sm d-inline-block rsp-no" style="width:60px" value="{{ rd.get('no',0) }}"></span>
+        {% endif %}
       </div>
+    {% endfor %}
+    <div class="d-flex align-items-center gap-3 mt-2 pt-1 border-top">
+      <label class="small mb-0"><input type="checkbox" class="rsp-na" {% if det.get('na') %}checked{% endif %}> N/A</label>
+      <label class="small mb-0"><input type="checkbox" class="rsp-nr" {% if det.get('not_rolled_out') %}checked{% endif %}> Not rolled out</label>
+      <span class="ms-auto small">Result:
+        <span class="rsp-result badge {% if ans=='yes' %}bg-success{% elif ans=='no' %}bg-danger{% else %}bg-secondary{% endif %}">{% if ans=='yes' %}Yes{% elif ans=='no' %}No{% elif ans=='na' %}N/A{% elif ans=='not_rolled_out' %}Not rolled out{% else %}— incomplete{% endif %}</span>
+      </span>
+    </div>
+  </div>
+{% endmacro %}
 
-      {% if section.class == 'carryover' and section.sma_group_qids %}
-        <details class="mt-2 combined-block">
-          <summary class="small text-primary">Combined block · {{ section.sma_group_qids|length }} SMA question(s) — asked once, feeds SMA score</summary>
-          <div class="mt-2 ps-2 border-start">
-            {% for qid in section.sma_group_qids %}{% set q = qmap.get(qid) %}{% if q %}
-              <div class="d-flex justify-content-between align-items-center gap-2 py-1 border-bottom">
-                <div class="small"><span class="text-muted">L{{ q.level }}</span> {{ q.text }}</div>
-                <div>{{ yesno(qid) }}</div>
-              </div>
-            {% endif %}{% endfor %}
+{% macro plain_yesno(qid, ans) %}
+  <div class="answer-radio d-flex flex-wrap gap-1 mb-1 sma-plain" data-qid="{{ qid }}">
+    <input type="radio" name="{{ qid }}" id="{{ qid }}_yes" value="yes" {% if ans == 'yes' %}checked{% endif %}>
+    <label for="{{ qid }}_yes" class="yes-lbl btn btn-sm btn-outline-success">✓ Yes</label>
+    <input type="radio" name="{{ qid }}" id="{{ qid }}_no" value="no" {% if ans == 'no' %}checked{% endif %}>
+    <label for="{{ qid }}_no" class="no-lbl btn btn-sm btn-outline-danger">✗ No</label>
+    <input type="radio" name="{{ qid }}" id="{{ qid }}_na" value="na" {% if ans == 'na' %}checked{% endif %}>
+    <label for="{{ qid }}_na" class="na-lbl btn btn-sm btn-outline-secondary">N/A</label>
+  </div>
+{% endmacro %}
+
+{% macro sma_question(q) %}
+  {% set ans = resp.get(q.id, {}).get('answer', '') %}
+  {% set det = resp.get(q.id, {}).get('detail') or {} %}
+  {% set cmt = resp.get(q.id, {}).get('comment', '') %}
+  <div class="sma-q px-2 py-2 {% if ans %}q-{{ ans }}{% endif %}" id="qrow-{{ q.id }}" data-qid="{{ q.id }}" data-answer="{{ ans }}">
+    <div class="d-flex align-items-start gap-2">
+      <span class="text-muted small mt-1" style="min-width:2.4rem">{{ q.no }}.</span>
+      <div class="flex-grow-1">
+        <div class="mb-1"><span class="badge bg-light text-dark border me-1">L{{ q.level }}</span>
+          <span class="fw-semibold">{{ q.text }}</span></div>
+        {% if solid_link.get(q.id) %}
+          <div class="mb-1">
+            {% for lk in solid_link[q.id] %}
+              <span class="badge bg-warning text-dark" title="Asked once here — also feeds this Solidification item">⇄ feeds {{ lk.track }} Solid · {{ lk.topic }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if q.judgement_criteria %}
+          <div class="mb-1">
+            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none" onclick="toggleCrit(this)" style="font-size:.78rem">ⓘ criteria ▾</button>
+            <div class="small text-muted mt-1 px-2 py-1 rounded" style="display:none;background:#f3f4ff;border-left:3px solid #5458e8">{{ q.judgement_criteria }}</div>
+          </div>
+        {% endif %}
+        <div class="d-flex flex-wrap gap-1 mb-1">
+          {% for m in q.audit_methods %}<span class="badge bg-info-subtle text-info-emphasis border">{{ method_labels.get(m, m) }}</span>{% endfor %}
+          {% if q.answered_by %}<span class="badge bg-light text-dark border">👤 {{ q.answered_by }}</span>{% endif %}
+          {% if q.standard %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">📋 {{ q.standard[:30] }}</span>{% endif %}
+        </div>
+        {% if q.responders %}{{ responder_panel(q, ans, det) }}{% else %}{{ plain_yesno(q.id, ans) }}{% endif %}
+        <textarea class="form-control form-control-sm comment-field" id="cmt-{{ q.id }}" rows="1" placeholder="Comment / evidence…" data-qid="{{ q.id }}">{{ cmt }}</textarea>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro solid_item(s) %}
+  {% set ans = resp.get(s.id, {}).get('answer', '') %}
+  {% set linked = s.class == 'carryover' and s.sma_group_qids %}
+  <div class="card mb-2 shadow-sm" data-solid-id="{{ s.id }}">
+    <div class="card-body py-2">
+      <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
+        <div class="flex-grow-1">
+          <span class="badge bg-light text-dark border me-1">{{ s.id }}</span>
+          {% if s.class == 'carryover' %}<span class="badge bg-warning text-dark" title="Answered in the SMA section">SMA-linked</span>
+          {% elif s.class == 'new' %}<span class="badge bg-success-subtle text-success-emphasis border">New</span>
+          {% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">BSAPIC</span>{% endif %}
+          {% if s.axis %}<span class="badge bg-info-subtle text-info-emphasis border">{{ s.axis }}</span>
+          {% else %}<span class="badge bg-light text-muted border" title="No GRC axis tag yet">GRC: untagged</span>{% endif %}
+          <span class="fw-semibold ms-1">{{ s.topic }}</span>
+        </div>
+        <div>
+          {% if linked %}
+            <span class="badge {% if ans=='yes' %}bg-success{% elif ans=='no' %}bg-danger{% elif ans=='na' %}bg-secondary{% else %}bg-light text-muted border{% endif %}" id="linkres-{{ s.id }}">
+              {% if ans=='yes' %}Yes{% elif ans=='no' %}No{% elif ans=='na' %}N/A{% else %}— from SMA{% endif %}</span>
+          {% else %}
+            <div class="btn-group btn-group-sm solid-yesno" role="group" data-qid="{{ s.id }}">
+              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_y" value="yes" autocomplete="off" {% if ans=='yes' %}checked{% endif %}>
+              <label class="btn btn-outline-success" for="{{ s.id }}_y">Yes</label>
+              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_n" value="no" autocomplete="off" {% if ans=='no' %}checked{% endif %}>
+              <label class="btn btn-outline-danger" for="{{ s.id }}_n">No</label>
+              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_na" value="na" autocomplete="off" {% if ans=='na' %}checked{% endif %}>
+              <label class="btn btn-outline-secondary" for="{{ s.id }}_na">N/A</label>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% if linked %}
+        <details class="mt-2 linked-ref rounded p-2">
+          <summary class="small text-primary">Answered once in the SMA section · {{ s.sma_group_qids|length }} question(s)</summary>
+          <div class="mt-1 ps-2 border-start small text-muted">
+            {% for qid in s.sma_group_qids %}
+              <div>{{ qid }} — <a href="#qrow-{{ qid }}" onclick="jump('{{ qid }}')">go to SMA question</a></div>
+            {% endfor %}
           </div>
         </details>
       {% endif %}
@@ -62,87 +133,112 @@
 {% endmacro %}
 
 {% block content %}
+<style>
+  .score-rail { position: sticky; top: 1rem; }
+  .q-yes { border-left: 3px solid #198754; }
+  .q-no  { border-left: 3px solid #dc3545; }
+  .q-na, .q-not_rolled_out { border-left: 3px solid #adb5bd; }
+  .sma-q { background:#fff; border-bottom:1px solid #eee; }
+  .grade-chip { font-size:.65rem; }
+  .linked-ref { background:#fffdf5; border:1px dashed #e0c86a; }
+</style>
 <div class="container-fluid py-3">
-
-  <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
-    <div>
-      <h5 class="mb-0">{{ assessment.site_name }}
-        <span class="badge bg-dark">SSDPMA</span>
-        <span class="text-muted small">Solidification Safety &amp; DP Maturity Assessment</span>
-      </h5>
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">{{ assessment.site_name }}
+      <span class="badge bg-dark">SSDPMA</span>
+      <span class="text-muted small">Solidification Safety &amp; DP Maturity Assessment</span></h5>
     <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-secondary">← Dashboard</a>
   </div>
 
-  <!-- 3 live score panels -->
-  <div class="row g-2 mb-3" id="panels">
-    {% set tracks = [('sma','SMA','primary'),('safety_solid','Safety Solidification','success'),('dp_solid','DP Solidification','danger')] %}
-    {% for key,label,color in tracks %}
-    <div class="col-md-4">
-      <div class="card border-{{ color }} shadow-sm h-100">
-        <div class="card-body py-2">
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-semibold text-{{ color }}">{{ label }}</span>
-            <span class="fs-4 fw-bold" id="{{ key }}_overall">—</span>
-          </div>
-          <div class="small text-muted" id="{{ key }}_sub">&nbsp;</div>
-          <div class="d-flex gap-1 mt-1" id="{{ key }}_pillars"></div>
-        </div>
+  <div class="row g-3">
+    <!-- Questionnaire -->
+    <div class="col-lg-8 order-2 order-lg-1">
+
+      <!-- Section 1 · SMA-MFG -->
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="badge bg-primary rounded-pill">1</span>
+        <h6 class="mb-0 text-primary">SMA — Manufacturing <span class="text-muted small fw-normal">native responder assessment</span></h6>
       </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  <div class="progress mb-3" style="height:6px">
-    <div class="progress-bar" id="progbar" style="width:{{ (answered_q/total_q*100)|round }}%"></div>
-  </div>
-  <div class="small text-muted mb-2"><span id="answered">{{ answered_q }}</span> / {{ total_q }} answered</div>
-
-  <!-- Tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-safety">Safety Solidification <span class="badge bg-success">{{ bank.sections.safety_solid|length }}</span></button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-dp">DP Solidification <span class="badge bg-danger">{{ bank.sections.dp_solid|length }}</span></button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-sma">SMA (additional)</button></li>
-  </ul>
-
-  <div class="tab-content pt-3">
-    <!-- SAFETY -->
-    <div class="tab-pane fade show active" id="tab-safety">
-      {% for p in solid_pillars %}
-        {% set secs = bank.sections.safety_solid | selectattr('solid_pillar','equalto',p.id) | list %}
-        {% if secs %}
-          <h6 class="text-success mt-2">{{ p.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></h6>
-          {% for s in secs %}{{ solid_section(s) }}{% endfor %}
-        {% endif %}
-      {% endfor %}
-    </div>
-    <!-- DP -->
-    <div class="tab-pane fade" id="tab-dp">
-      {% for p in solid_pillars %}
-        {% set secs = bank.sections.dp_solid | selectattr('solid_pillar','equalto',p.id) | list %}
-        {% if secs %}
-          <h6 class="text-danger mt-2">{{ p.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></h6>
-          {% for s in secs %}{{ solid_section(s) }}{% endfor %}
-        {% endif %}
-      {% endfor %}
-    </div>
-    <!-- SMA standalone -->
-    <div class="tab-pane fade" id="tab-sma">
-      <p class="small text-muted">SMA questions with no solidification counterpart. Together with the combined blocks (above tabs) they make the full 233-item SMA score.</p>
-      {% for p in sma_groups %}
-        <h6 class="text-primary mt-2">{{ p.name }}</h6>
-        {% for e in p.elements %}
-          <div class="fw-semibold small text-muted mt-2">{{ e.name }}</div>
-          {% for q in e.questions %}
-            <div class="d-flex justify-content-between align-items-center gap-2 py-1 border-bottom">
-              <div class="small"><span class="badge bg-light text-dark border">{{ q.no }}</span>
-                <span class="text-muted">L{{ q.level }}</span> {{ q.text }}
-                {% if q.standard %}<span class="badge bg-info-subtle text-info-emphasis border">{{ q.standard }}</span>{% endif %}</div>
-              <div>{{ yesno(q.id) }}</div>
-            </div>
+      {% for p in sma_pillars %}
+        <div class="mb-2">
+          <div class="fw-bold small text-primary bg-primary-subtle rounded px-2 py-1">{{ p.name }}</div>
+          {% for e in p.elements %}
+            <div class="text-muted small fw-semibold mt-2 ms-1">{{ e.name }}</div>
+            {% for q in e.questions %}{{ sma_question(q) }}{% endfor %}
           {% endfor %}
-        {% endfor %}
+        </div>
       {% endfor %}
+
+      <!-- Section 2 · Safety Solidification -->
+      <div class="d-flex align-items-center gap-2 mb-2 mt-4">
+        <span class="badge bg-success rounded-pill">2</span>
+        <h6 class="mb-0 text-success">Safety Solidification <span class="badge bg-success">{{ bank.sections.safety_solid|length }}</span></h6>
+      </div>
+      {% for pil in solid_pillars %}
+        {% set secs = bank.sections.safety_solid | selectattr('solid_pillar','equalto',pil.id) | list %}
+        {% if secs %}
+          <div class="text-success small fw-semibold mt-2">{{ pil.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></div>
+          {% for s in secs %}{{ solid_item(s) }}{% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      <!-- Section 3 · DP Solidification -->
+      <div class="d-flex align-items-center gap-2 mb-2 mt-4">
+        <span class="badge bg-danger rounded-pill">3</span>
+        <h6 class="mb-0 text-danger">DP Solidification <span class="badge bg-danger">{{ bank.sections.dp_solid|length }}</span></h6>
+      </div>
+      {% for pil in solid_pillars %}
+        {% set secs = bank.sections.dp_solid | selectattr('solid_pillar','equalto',pil.id) | list %}
+        {% if secs %}
+          <div class="text-danger small fw-semibold mt-2">{{ pil.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></div>
+          {% for s in secs %}{{ solid_item(s) }}{% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Live score rail -->
+    <div class="col-lg-4 order-1 order-lg-2">
+      <div class="score-rail">
+        <div class="progress mb-1" style="height:6px">
+          <div class="progress-bar" id="progbar" style="width:{{ (answered_q/total_q*100)|round if total_q else 0 }}%"></div>
+        </div>
+        <div class="small text-muted mb-2"><span id="answered">{{ answered_q }}</span> / {{ total_q }} answered</div>
+
+        <!-- SMA panel (native) -->
+        <div class="card border-primary shadow-sm mb-2">
+          <div class="card-body py-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-semibold text-primary">SMA (MFG)</span>
+              <span class="fs-4 fw-bold" id="sma_overall">—</span>
+            </div>
+            <div class="small text-muted" id="sma_level">&nbsp;</div>
+            <div class="d-flex gap-3 small mt-1">
+              <span>Safety-Aware <b id="sma_sa">—</b></span><span>System-Impl <b id="sma_si">—</b></span>
+            </div>
+            <div class="d-flex gap-1 mt-1 flex-wrap" id="sma_pillars"></div>
+            <div class="d-flex gap-3 small mt-1 text-muted">
+              <span>Sys·Safety <b id="sma_sys_safety">—</b></span><span>Sys·DP <b id="sma_sys_dp">—</b></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Solid panels -->
+        {% for key,label,color in [('safety_solid','Safety Solidification','success'),('dp_solid','DP Solidification','danger')] %}
+        <div class="card border-{{ color }} shadow-sm mb-2">
+          <div class="card-body py-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-semibold text-{{ color }}">{{ label }}</span>
+              <span class="fs-4 fw-bold" id="{{ key }}_overall">—</span>
+            </div>
+            <div class="small text-muted mt-1">Maturity · 5 axes</div>
+            <div class="d-flex gap-1 flex-wrap" id="{{ key }}_pillars"></div>
+            <div class="small text-muted mt-2">GRC · 3 axes</div>
+            <div class="d-flex gap-1 flex-wrap" id="{{ key }}_axes"></div>
+            <div class="small text-warning mt-1" id="{{ key }}_gap" style="display:none"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
@@ -152,61 +248,136 @@
 <script>
 const ASSESSMENT_ID = {{ assessment.id }};
 const TOTAL = {{ total_q }};
-const GRADE = {1:'C',2:'B-',3:'B',4:'B+',5:'A'};
+const SMASLAB = {leadership:'LD', tm_engagement:'TM', organization:'Org', system:'Sys'};
+const SOLSLAB = {issue_solving:'Iss', risk_management:'Risk', business_strategy:'Biz', independency:'Ind', integration:'Intg'};
+const saveTimers = {};
+function toggleCrit(btn){ const b=btn.nextElementSibling; b.style.display = b.style.display==='none'?'block':'none'; }
+function jump(qid){ const el=document.getElementById('qrow-'+qid); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.transition='background .3s'; el.style.background='#fff3cd'; setTimeout(()=>el.style.background='',1200);} }
 
-function renderTrack(key, t){
-  const ov = document.getElementById(key+'_overall');
-  const sub = document.getElementById(key+'_sub');
-  const pil = document.getElementById(key+'_pillars');
-  if(!t){ return; }
-  if(key==='sma'){
-    ov.textContent = (t.overall==null?'—':t.overall);
-    sub.textContent = t.level_name || ' ';
-    pil.innerHTML='';
-    const labels={leadership:'LD',tm_engagement:'TM',organization:'Org',system:'Sys'};
-    Object.keys(labels).forEach(k=>{ let v=(t.pillars||{})[k]; if(v&&typeof v==='object') v=v.score;
-      pil.appendChild(chip(labels[k], v)); });
-  } else {
-    ov.textContent = (t.overall==null?'—':t.overall) + (t.overall_grade?(' '+t.overall_grade):'');
-    sub.textContent = t.overall_grade ? ('Grade '+t.overall_grade) : ' ';
-    pil.innerHTML='';
-    const slab={issue_solving:'Iss',risk_management:'Risk',business_strategy:'Biz',independency:'Ind',integration:'Intg'};
-    Object.keys(t.pillars||{}).forEach(k=>{ pil.appendChild(chip(slab[k]||k.slice(0,3), t.pillars[k])); });
-  }
+function num(v){ return (v==null)?'—':(Math.round(v*100)/100); }
+function smaChip(lbl,v){
+  const d=document.createElement('span'); d.className='badge grade-chip '+(v==null?'bg-light text-muted border':(v<2?'bg-danger':v<3?'bg-warning text-dark':v<4?'bg-info':v<5?'bg-primary':'bg-success'));
+  d.textContent=lbl+' '+(v==null?'—':v); d.title=lbl; return d;
 }
-function chip(lbl, v){
-  const d=document.createElement('span');
-  d.className='badge '+(v==null?'bg-light text-muted border':(v<2?'bg-danger':v<3?'bg-warning text-dark':v<4?'bg-info':v<5?'bg-primary':'bg-success'));
-  d.style.fontSize='.65rem'; d.title=lbl;
-  d.textContent=(v==null?'—':v);
+function gradeChip(lbl,o){
+  const d=document.createElement('span'); d.className='badge grade-chip ';
+  if(!o || o.score==null){ d.className+='bg-light text-muted border'; d.textContent=lbl+' —'; d.title=lbl+' — no data'; return d; }
+  d.className += (o.score<2?'bg-danger':o.score<3?'bg-warning text-dark':o.score<4?'bg-info':o.score<5?'bg-primary':'bg-success');
+  d.textContent=lbl+' '+o.grade+(o.thin?'*':'');
+  d.title=lbl+' — '+o.grade+' ('+o.n+' item'+(o.n===1?'':'s')+(o.thin?', thin — low confidence':'')+')';
   return d;
 }
-function updatePanels(s){
-  if(!s) return;
-  renderTrack('sma', s.sma);
-  renderTrack('safety_solid', s.safety_solid);
-  renderTrack('dp_solid', s.dp_solid);
+function renderSMA(t){
+  if(!t) return;
+  document.getElementById('sma_overall').textContent = num(t.overall);
+  document.getElementById('sma_level').textContent = t.level_name || ' ';
+  document.getElementById('sma_sa').textContent = num(t.safety_awareness);
+  document.getElementById('sma_si').textContent = num(t.system_implementation);
+  document.getElementById('sma_sys_safety').textContent = num(t.system_safety);
+  document.getElementById('sma_sys_dp').textContent = num(t.system_dp);
+  const pil=document.getElementById('sma_pillars'); pil.innerHTML='';
+  Object.keys(SMASLAB).forEach(k=>{ let v=(t.pillars||{})[k]; if(v&&typeof v==='object') v=v.score; pil.appendChild(smaChip(SMASLAB[k], v)); });
 }
-function setProgress(answered){
-  document.getElementById('answered').textContent = answered;
-  document.getElementById('progbar').style.width = Math.round(answered/TOTAL*100)+'%';
+function renderSolid(key,t){
+  if(!t) return;
+  document.getElementById(key+'_overall').textContent = (t.overall==null?'—':(t.overall+' '+t.overall_grade));
+  const pil=document.getElementById(key+'_pillars'); pil.innerHTML='';
+  Object.keys(SOLSLAB).forEach(k=>{ pil.appendChild(gradeChip(SOLSLAB[k], (t.pillars||{})[k])); });
+  const ax=document.getElementById(key+'_axes'); ax.innerHTML='';
+  ['Governance','Risk','Compliance'].forEach(k=>{ ax.appendChild(gradeChip(k.slice(0,4), (t.axes||{})[k])); });
+  const gap=document.getElementById(key+'_gap');
+  if(t.axis_untagged>0){ gap.style.display=''; gap.textContent='⚠ '+t.axis_untagged+' answered item(s) have no GRC tag'; }
+  else { gap.style.display='none'; }
+  // reflect linked (carryover) results back onto the solid reference badges
+  (t.items||[]).forEach(it=>{ if(it.linked){ const el=document.getElementById('linkres-'+it.id); if(el){
+    const M={yes:['Yes','bg-success'],no:['No','bg-danger'],na:['N/A','bg-secondary']}; const m=M[it.answer]||['— from SMA','bg-light text-muted border'];
+    el.textContent=m[0]; el.className='badge '+m[1]; } } });
 }
-async function save(qid, answer){
-  try{
-    const r = await fetch('/api/answer', {method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer})});
-    const data = await r.json();
-    if(data.ssdpma) updatePanels(data.ssdpma);
-    if(typeof data.answered==='number') setProgress(data.answered);
-  }catch(e){ console.error('save failed', e); }
+function updatePanels(s){ if(!s) return; renderSMA(s.sma); renderSolid('safety_solid', s.safety_solid); renderSolid('dp_solid', s.dp_solid); }
+function setProgress(a){ document.getElementById('answered').textContent=a; document.getElementById('progbar').style.width=Math.round(a/TOTAL*100)+'%'; }
+
+// ── plain save (SMA no-responder + solid yes/no) ──
+function save(qid, answer, comment){
+  clearTimeout(saveTimers[qid]);
+  saveTimers[qid]=setTimeout(()=>{
+    fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer||'', comment:comment||''})})
+    .then(r=>r.json()).then(data=>{ if(data.ssdpma) updatePanels(data.ssdpma); if(typeof data.answered==='number') setProgress(data.answered);
+      const row=document.getElementById('qrow-'+qid); if(row){ row.className=row.className.replace(/q-\w+/g,''); if(answer) row.classList.add('q-'+answer); } });
+  },200);
 }
 document.addEventListener('change', ev=>{
-  const inp = ev.target;
-  if(inp.matches('.grade-pick input') || inp.matches('.yesno input')){
-    const wrap = inp.closest('[data-qid]');
-    save(wrap.dataset.qid, inp.value);
+  const inp=ev.target;
+  if(inp.matches('.solid-yesno input') || inp.matches('.sma-plain input')){
+    const wrap=inp.closest('[data-qid]'); save(wrap.dataset.qid, inp.value);
   }
 });
+// comments
+document.querySelectorAll('.comment-field').forEach(ta=>{
+  ta.addEventListener('input',function(){ this.style.height='auto'; this.style.height=this.scrollHeight+'px'; });
+  ta.addEventListener('blur',function(){
+    const qid=this.getAttribute('data-qid');
+    const panel=document.querySelector(`.responder-panel[data-qid="${qid}"]`);
+    if(panel){ saveResponder(panel); return; }
+    const answer=document.querySelector(`.sma-plain[data-qid="${qid}"] input:checked`)?.value
+              || document.querySelector(`.solid-yesno[data-qid="${qid}"] input:checked`)?.value || '';
+    save(qid, answer, this.value);
+  });
+});
+
+// ── native responder widget (mirrors assess.html) ──
+let _pc=0;
+function escHtml(s){ return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function collectDetail(panel){
+  const roles={};
+  panel.querySelectorAll('.resp-role').forEach(rr=>{
+    const role=rr.dataset.role, mode=rr.dataset.mode;
+    if(mode==='single'){ const v=rr.querySelector('.rsp-single:checked')?.value; roles[role]={yes:v==='yes'?1:0,no:v==='no'?1:0}; }
+    else if(mode==='departments'){ const depts=[]; rr.querySelectorAll('.dept-row').forEach(dr=>{ const name=dr.querySelector('.rsp-dept-name').value.trim(); const ans=dr.querySelector('.rsp-dept:checked')?.value||null; if(name||ans) depts.push({name,answer:ans}); }); roles[role]={departments:depts}; }
+    else if(mode==='sections'){ const sections=[]; rr.querySelectorAll('.rsp-section').forEach(sec=>{ const sname=sec.querySelector('.rsp-sec-name').value.trim(); const people=[]; sec.querySelectorAll('.person-row').forEach(pr=>{ const pname=pr.querySelector('.rsp-person-name').value.trim(); const ans=pr.querySelector('.rsp-person-ans:checked')?.value||null; if(pname||ans) people.push({name:pname,answer:ans}); }); if(sname||people.length) sections.push({name:sname,people}); }); roles[role]={sections}; }
+    else { roles[role]={expected:parseInt(rr.querySelector('.rsp-expected').value)||1, yes:parseInt(rr.querySelector('.rsp-yes').value)||0, no:parseInt(rr.querySelector('.rsp-no').value)||0}; }
+  });
+  return { roles, na:panel.querySelector('.rsp-na').checked, not_rolled_out:panel.querySelector('.rsp-nr').checked };
+}
+function saveResponder(panel){
+  const qid=panel.dataset.qid; const detail=collectDetail(panel); const comment=document.getElementById('cmt-'+qid)?.value||'';
+  clearTimeout(saveTimers[qid]);
+  saveTimers[qid]=setTimeout(()=>{
+    fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, detail, comment})})
+    .then(r=>r.json()).then(data=>{
+      if(data.ssdpma) updatePanels(data.ssdpma); if(typeof data.answered==='number') setProgress(data.answered);
+      const d=data.derived||''; const badge=panel.querySelector('.rsp-result');
+      const M={yes:['Yes','bg-success'],no:['No','bg-danger'],na:['N/A','bg-secondary'],not_rolled_out:['Not rolled out','bg-secondary']};
+      const m=M[d]||['— incomplete','bg-secondary']; badge.textContent=m[0]; badge.className='rsp-result badge '+m[1];
+      const row=panel.closest('[data-answer]'); if(row){ row.setAttribute('data-answer',d); row.className=row.className.replace(/q-\w+/g,''); if(d) row.classList.add('q-'+d); }
+    });
+  },250);
+}
+function personRowHTML(name='',answer=''){ const nm='pp'+(++_pc);
+  return `<div class="person-row d-flex align-items-center gap-1 mb-1"><input type="text" class="form-control form-control-sm rsp-person-name" style="max-width:170px" placeholder="Name" value="${escHtml(name)}"><div class="btn-group btn-group-sm"><input type="radio" class="btn-check rsp-person-ans" name="${nm}" id="${nm}_y" value="yes" ${answer==='yes'?'checked':''}><label class="btn btn-outline-success" for="${nm}_y">Y</label><input type="radio" class="btn-check rsp-person-ans" name="${nm}" id="${nm}_n" value="no" ${answer==='no'?'checked':''}><label class="btn btn-outline-danger" for="${nm}_n">N</label></div><button type="button" class="btn btn-sm btn-link text-danger p-0 del-person">✕</button></div>`; }
+function sectionHTML(name='',people=null){ const rows=(people&&people.length?people.map(p=>personRowHTML(p.name,p.answer)).join(''):personRowHTML());
+  return `<div class="rsp-section border rounded mb-1"><div class="section-head d-flex align-items-center gap-1 p-1" style="background:#eef2f7"><button type="button" class="btn btn-sm btn-light py-0 section-toggle">▾</button><input type="text" class="form-control form-control-sm rsp-sec-name" style="max-width:220px" placeholder="Section (e.g. Mixing)" value="${escHtml(name)}"></div><div class="section-body p-1"><div class="people-list">${rows}</div><button type="button" class="btn btn-sm btn-outline-secondary py-0 add-person">+ add teammate</button></div></div>`; }
+function deptRowHTML(name='',answer=''){ const nm='dd'+(++_pc);
+  return `<div class="dept-row d-flex align-items-center gap-1 mb-1"><input type="text" class="form-control form-control-sm rsp-dept-name" style="max-width:170px" placeholder="Department" value="${escHtml(name)}"><div class="btn-group btn-group-sm"><input type="radio" class="btn-check rsp-dept" name="${nm}" id="${nm}_y" value="yes" ${answer==='yes'?'checked':''}><label class="btn btn-outline-success" for="${nm}_y">Y</label><input type="radio" class="btn-check rsp-dept" name="${nm}" id="${nm}_n" value="no" ${answer==='no'?'checked':''}><label class="btn btn-outline-danger" for="${nm}_n">N</label></div><button type="button" class="btn btn-sm btn-link text-danger p-0 del-dept">✕</button></div>`; }
+document.querySelectorAll('.sections-wrap').forEach(wrap=>{ let secs=[]; try{secs=JSON.parse(wrap.dataset.sections||'[]');}catch(e){} wrap.innerHTML=(secs&&secs.length?secs.map(s=>sectionHTML(s.name,s.people)).join(''):sectionHTML())+`<button type="button" class="btn btn-sm btn-outline-primary py-0 add-section">+ add section</button>`; });
+document.querySelectorAll('.depts-wrap').forEach(wrap=>{ let depts=[]; try{depts=JSON.parse(wrap.dataset.depts||'[]');}catch(e){} wrap.innerHTML=(depts&&depts.length?depts.map(d=>deptRowHTML(d.name,d.answer)).join(''):deptRowHTML())+`<button type="button" class="btn btn-sm btn-outline-primary py-0 add-dept">+ add department</button>`; });
+document.querySelectorAll('.responder-panel').forEach(panel=>{
+  panel.addEventListener('change',()=>saveResponder(panel));
+  panel.addEventListener('input',e=>{ if(e.target.matches('.rsp-yes,.rsp-no,.rsp-expected,.rsp-dept-name,.rsp-sec-name,.rsp-person-name')) saveResponder(panel); });
+  panel.addEventListener('pointerdown',e=>{ const lbl=e.target.closest('label.btn'); if(!lbl) return; const inp=document.getElementById(lbl.htmlFor); if(inp&&inp.matches('.rsp-single,.rsp-dept,.rsp-person-ans')) inp._wasChecked=inp.checked; });
+  panel.addEventListener('click',e=>{
+    const rin=e.target.closest('.rsp-single,.rsp-dept,.rsp-person-ans');
+    if(rin&&rin.tagName==='INPUT'){ if(rin._wasChecked){ rin.checked=false; rin._wasChecked=false; saveResponder(panel); return; } rin._wasChecked=false; }
+    if(e.target.closest('.add-person')){ e.preventDefault(); e.target.closest('.section-body').querySelector('.people-list').insertAdjacentHTML('beforeend',personRowHTML()); }
+    else if(e.target.closest('.del-person')){ e.preventDefault(); e.target.closest('.person-row').remove(); saveResponder(panel); }
+    else if(e.target.closest('.add-section')){ e.preventDefault(); const wrap=e.target.closest('.sections-wrap'); if(wrap.querySelectorAll('.rsp-section').length<(parseInt(wrap.dataset.max)||6)) e.target.insertAdjacentHTML('beforebegin',sectionHTML()); }
+    else if(e.target.closest('.add-dept')){ e.preventDefault(); const wrap=e.target.closest('.depts-wrap'); if(wrap.querySelectorAll('.dept-row').length<(parseInt(wrap.dataset.max)||6)) e.target.insertAdjacentHTML('beforebegin',deptRowHTML()); }
+    else if(e.target.closest('.del-dept')){ e.preventDefault(); e.target.closest('.dept-row').remove(); saveResponder(panel); }
+    else if(e.target.closest('.section-toggle')){ e.preventDefault(); const body=e.target.closest('.rsp-section').querySelector('.section-body'); const hidden=body.style.display==='none'; body.style.display=hidden?'':'none'; e.target.closest('.section-toggle').textContent=hidden?'▾':'▸'; }
+  });
+});
+
 // initial paint
 updatePanels({{ scores|tojson }});
 setProgress({{ answered_q }});

@@ -316,32 +316,70 @@ def calculate_scores(pillars, responses):
             "level_name":LEVEL_NAMES.get(int(overall) if overall else 0,"—")}
 
 SOLID_GRADE = {1:"C",2:"B-",3:"B",4:"B+",5:"A"}
+GRC_AXES = ["Governance", "Risk", "Compliance"]   # the 3-axis view
+MIN_ITEMS_FOR_RANK = 3   # axes/pillars thinner than this are shown but flagged low-confidence
+
+def _solid_item_answer(section, responses):
+    """Resolve one solidification item to 'yes'/'no'/'na'/None.
+    Carryover items are asked ONCE in the SMA section and fed here: strict roll-up —
+    any linked SMA 'no' => no; all real answers 'yes' => yes; only NA => na."""
+    if section.get("class") == "carryover" and section.get("sma_group_qids"):
+        vals = [responses.get(q) for q in section["sma_group_qids"]]
+        vals = [v for v in vals if v not in (None, "")]
+        if not vals:
+            return None
+        if any(v == "no" for v in vals):
+            return "no"
+        real = [v for v in vals if v not in ("na", "not_rolled_out")]
+        if not real:
+            return "na"
+        return "yes" if all(v == "yes" for v in real) else "no"
+    a = responses.get(section["id"])
+    return a if a in ("yes", "no", "na") else None
+
+def _grade_group(answers):
+    """answers: list of 'yes'/'no' (NA already excluded). Derive a C..A rank by proportion:
+    number = 1 + round(4 * yes_fraction), 1..5. Returns {score,grade,n,yes,thin}."""
+    n = len(answers)
+    if n == 0:
+        return {"score": None, "grade": None, "n": 0, "yes": 0, "thin": True}
+    yes = sum(1 for a in answers if a == "yes")
+    num = int(1 + round(4 * yes / n))
+    return {"score": num, "grade": SOLID_GRADE[num], "n": n, "yes": yes,
+            "thin": n < MIN_ITEMS_FOR_RANK}
 
 def _solid_track(sections, responses, solid_pillars):
-    """Solidification score for one track: item = selected grade level (1..5);
-    pillar = min of item levels; overall = avg of pillar scores. Native 'pick-lowest' rule."""
-    per_pillar = {}
+    """Solidification score for one track. Every item is Yes/No (carryover items pull their
+    answer from the SMA section). Grade is DERIVED by proportion and reported three ways:
+    5-axis maturity pillars, 3-axis GRC, and one partition-independent overall."""
     items = []
+    pillar_ans, axis_ans, all_ans = {}, {}, []
     for s in sections:
-        r = responses.get(s["id"])
-        lvl = int(r) if isinstance(r, int) or (isinstance(r, str) and r.isdigit()) else None
+        a = _solid_item_answer(s, responses)
+        linked = bool(s.get("class") == "carryover" and s.get("sma_group_qids"))
         items.append({"id": s["id"], "topic": s["topic"], "pillar": s["solid_pillar"],
-                      "class": s["class"], "level": lvl,
-                      "grade": SOLID_GRADE.get(lvl) if lvl else None})
-        if lvl is not None:
-            per_pillar.setdefault(s["solid_pillar"], []).append(lvl)
-    pillar_score = {p["id"]: (min(per_pillar[p["id"]]) if per_pillar.get(p["id"]) else None)
-                    for p in solid_pillars}
-    valid = [v for v in pillar_score.values() if v is not None]
-    overall = round(sum(valid)/len(valid), 2) if valid else None
-    return {"overall": overall,
-            "overall_grade": SOLID_GRADE.get(round(overall)) if overall else None,
-            "pillars": pillar_score, "items": items}
+                      "axis": s.get("axis"), "class": s["class"], "answer": a,
+                      "linked": linked, "sma_qids": s.get("sma_group_qids") or []})
+        if a in ("yes", "no"):
+            pillar_ans.setdefault(s["solid_pillar"], []).append(a)
+            if s.get("axis"):
+                axis_ans.setdefault(s["axis"], []).append(a)
+            all_ans.append(a)
+    pillars = {p["id"]: _grade_group(pillar_ans.get(p["id"], [])) for p in solid_pillars}
+    axes    = {ax: _grade_group(axis_ans.get(ax, [])) for ax in GRC_AXES}
+    overall = _grade_group(all_ans)
+    untagged = sum(1 for it in items if it["answer"] in ("yes", "no") and not it["axis"])
+    return {"overall": overall["score"], "overall_grade": overall["grade"],
+            "answered": len(all_ans),
+            "pillars": pillars,        # 5-axis maturity view
+            "axes": axes,              # 3-axis GRC view
+            "axis_untagged": untagged, # answered items with no GRC tag (data-gap flag)
+            "items": items}
 
 def calculate_ssdpma_scores(bank, responses):
     """Three independent real-time tracks from one response set:
     1) SMA (reuses calculate_scores on the full 233-Q backbone — backward-comparable),
-    2) Safety Solidification, 3) DP Solidification (C..A -> 1..5, min-based)."""
+    2) Safety Solidification, 3) DP Solidification (Yes/No -> C..A by proportion)."""
     sma = calculate_scores(bank["sma"]["pillars"], responses)
     sp = bank["solid_pillars"]
     return {"sma": sma,
@@ -470,11 +508,14 @@ def _sma_qmap(bank):
     return qmap, loc
 
 def _ssdpma_progress(bank, ans):
-    """Total answerable = 233 SMA Qs + 73 solidification sections; count answered."""
-    total = sum(len(e["questions"]) for p in bank["sma"]["pillars"] for e in p["elements"])
-    total += len(bank["sections"]["safety_solid"]) + len(bank["sections"]["dp_solid"])
+    """Total answerable = 233 SMA Qs + the solidification items that have their OWN input
+    (new + BSAPIC). Carryover solid items are answered once in the SMA section, so they are
+    already counted in the 233 and must not be double-counted here."""
     ids = [q["id"] for p in bank["sma"]["pillars"] for e in p["elements"] for q in e["questions"]]
-    ids += [s["id"] for s in bank["sections"]["safety_solid"] + bank["sections"]["dp_solid"]]
+    for s in bank["sections"]["safety_solid"] + bank["sections"]["dp_solid"]:
+        if not (s.get("class") == "carryover" and s.get("sma_group_qids")):
+            ids.append(s["id"])
+    total = len(ids)
     answered = sum(1 for i in ids if ans.get(i) not in (None, ""))
     return total, answered
 
@@ -483,20 +524,21 @@ def _assess_ssdpma(db, assessment, user):
     resp   = get_responses_dict(db, assessment["id"])
     ans    = answers_only(resp)
     scores = calculate_ssdpma_scores(bank, ans)
-    qmap, _ = _sma_qmap(bank)
-    # standalone SMA questions grouped by pillar -> element (the 132 not inside a combined block)
-    standalone = set(bank.get("sma_standalone_qids", []))
-    sma_groups = []
-    for p in bank["sma"]["pillars"]:
-        elems = []
-        for e in p["elements"]:
-            qs = [q for q in e["questions"] if q["id"] in standalone]
-            if qs: elems.append({"name": e["name"], "id": e["id"], "questions": qs})
-        if elems: sma_groups.append({"name": p["name"], "id": p["id"], "elements": elems})
+    # Map each SMA question -> the solidification item(s) it feeds (carryover links),
+    # so the SMA question row can show a "also feeds Solid" badge (asked once).
+    solid_link = {}
+    for code, label in (("safety_solid", "Safety"), ("dp_solid", "DP")):
+        for s in bank["sections"][code]:
+            if s.get("class") == "carryover" and s.get("sma_group_qids"):
+                for qid in s["sma_group_qids"]:
+                    solid_link.setdefault(qid, []).append({"track": label, "topic": s["topic"], "id": s["id"]})
     total, answered = _ssdpma_progress(bank, ans)
     return render_template("assess_ssdpma.html",
-        assessment=assessment, bank=bank, resp=resp, scores=scores, qmap=qmap,
-        sma_groups=sma_groups, solid_pillars=bank["solid_pillars"],
+        assessment=assessment, bank=bank, resp=resp, scores=scores,
+        sma_pillars=bank["sma"]["pillars"], solid_link=solid_link,
+        role_config=bank["sma"].get("role_config", {}),
+        department_options=bank["sma"].get("department_options", []),
+        method_labels=METHOD_LABELS, solid_pillars=bank["solid_pillars"], grc_axes=GRC_AXES,
         grade_scale=bank["grade_scale"], level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
         total_q=total, answered_q=answered, user=user, unread=0)
 
@@ -704,21 +746,17 @@ def _result_ssdpma(db, assessment, user):
     ans    = answers_only(resp)
     scores = calculate_ssdpma_scores(bank, ans)
     total, answered = _ssdpma_progress(bank, ans)
-    # per-solid-pillar item detail for the two solid tracks
+    # per-solid-pillar item detail from the computed track items (each item = Yes/No)
     def track_detail(code):
         by = {p["id"]: {"name": p["name"], "rows": []} for p in bank["solid_pillars"]}
-        for s in bank["sections"][code]:
-            lvl = ans.get(s["id"])
-            lvl = int(lvl) if isinstance(lvl, str) and lvl.isdigit() else None
-            by[s["solid_pillar"]]["rows"].append(
-                {"id": s["id"], "topic": s["topic"], "class": s["class"],
-                 "level": lvl, "grade": SOLID_GRADE.get(lvl) if lvl else None})
+        for it in scores[code]["items"]:
+            by[it["pillar"]]["rows"].append(it)
         return [v for v in by.values() if v["rows"]]
     gc = db.execute("SELECT * FROM gcs WHERE id=?",(assessment["gc_id"],)).fetchone() if assessment["gc_id"] else None
     return render_template("result_ssdpma.html",
         assessment=assessment, scores=scores, total_q=total, answered_q=answered,
         safety_detail=track_detail("safety_solid"), dp_detail=track_detail("dp_solid"),
-        solid_pillars=bank["solid_pillars"], grade_scale=bank["grade_scale"],
+        solid_pillars=bank["solid_pillars"], grc_axes=GRC_AXES,
         level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
         gc=dict(gc) if gc else None, user=user, unread=0)
 

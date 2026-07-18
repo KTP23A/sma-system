@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block title %}SSDPMA Result · {{ assessment.site_name }}{% endblock %}
 
-{% macro gradebadge(lvl, grade) %}
-  {% if lvl %}<span class="badge {% if lvl<2 %}bg-danger{% elif lvl<3 %}bg-warning text-dark{% elif lvl<4 %}bg-info{% elif lvl<5 %}bg-primary{% else %}bg-success{% endif %}">{{ grade or lvl }}</span>
-  {% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
+{% macro gbadge(o) %}
+  {% if o and o.score is not none %}<span class="badge {% if o.score<2 %}bg-danger{% elif o.score<3 %}bg-warning text-dark{% elif o.score<4 %}bg-info{% elif o.score<5 %}bg-primary{% else %}bg-success{% endif %}" title="{{ o.n }} item(s){% if o.thin %} · thin, low confidence{% endif %}">{{ o.grade }}{% if o.thin %}*{% endif %}</span>{% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
+{% endmacro %}
+
+{% macro ansbadge(a) %}
+  {% if a=='yes' %}<span class="badge bg-success">Yes</span>{% elif a=='no' %}<span class="badge bg-danger">No</span>{% elif a=='na' %}<span class="badge bg-secondary">N/A</span>{% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
 {% endmacro %}
 
 {% block content %}
@@ -11,8 +14,7 @@
 
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <div>
-      <h4 class="mb-0">{{ assessment.site_name }}
-        <span class="badge bg-dark">SSDPMA</span></h4>
+      <h4 class="mb-0">{{ assessment.site_name }} <span class="badge bg-dark">SSDPMA</span></h4>
       <div class="text-muted small">
         {% if gc %}{{ gc.name }} · {% endif %}{{ assessment.assessment_date or 'no date' }}
         · {{ answered_q }}/{{ total_q }} answered
@@ -34,8 +36,8 @@
         <div class="text-muted">{{ S.level_name or '—' }}</div>
         <hr class="my-2">
         <div class="d-flex justify-content-around small">
-          <div>SA<br><b>{{ S.safety_awareness if S.safety_awareness is not none else '—' }}</b></div>
-          <div>SI<br><b>{{ S.system_implementation if S.system_implementation is not none else '—' }}</b></div>
+          <div>Safety-Aware<br><b>{{ S.safety_awareness if S.safety_awareness is not none else '—' }}</b></div>
+          <div>System-Impl<br><b>{{ S.system_implementation if S.system_implementation is not none else '—' }}</b></div>
         </div>
       </div></div>
     </div>
@@ -46,17 +48,27 @@
         <div class="text-{{ color }} fw-semibold">{{ label }}</div>
         <div class="display-4 fw-bold">{{ T.overall if T.overall is not none else '—' }}
           {% if T.overall_grade %}<span class="fs-3">{{ T.overall_grade }}</span>{% endif %}</div>
-        <div class="text-muted">{{ 'Grade ' + T.overall_grade if T.overall_grade else '—' }}</div>
+        <div class="text-muted small">{{ T.answered }} items answered</div>
         <hr class="my-2">
-        <div class="d-flex justify-content-around small flex-wrap">
+        <div class="small text-muted mb-1">Maturity · 5 axes</div>
+        <div class="d-flex justify-content-around flex-wrap gap-1">
           {% for p in solid_pillars %}
-            <div class="px-1" title="{{ p.name }}">{{ p.name.split(' ')[0][:4] }}<br>{{ gradebadge(T.pillars[p.id], grade_scale[T.pillars[p.id]|string] if T.pillars[p.id] else None) }}</div>
+            <div class="px-1 text-center" title="{{ p.name }}"><div style="font-size:.65rem">{{ p.name.split(' ')[0][:4] }}</div>{{ gbadge(T.pillars[p.id]) }}</div>
           {% endfor %}
         </div>
+        <div class="small text-muted mb-1 mt-2">GRC · 3 axes</div>
+        <div class="d-flex justify-content-around flex-wrap gap-1">
+          {% for ax in grc_axes %}
+            <div class="px-1 text-center" title="{{ ax }}"><div style="font-size:.65rem">{{ ax[:4] }}</div>{{ gbadge(T.axes[ax]) }}</div>
+          {% endfor %}
+        </div>
+        {% if T.axis_untagged %}<div class="small text-warning mt-2">⚠ {{ T.axis_untagged }} answered item(s) untagged for GRC</div>{% endif %}
       </div></div>
     </div>
     {% endfor %}
   </div>
+
+  <div class="small text-muted mb-3">* thin axis (&lt;3 items) — grade shown but low confidence. Solidification grade derived from Yes/No by proportion.</div>
 
   <!-- SMA pillar table -->
   <h6 class="text-primary">SMA — pillar scores</h6>
@@ -74,19 +86,21 @@
   </table>
 
   <!-- Solid track detail -->
-  {% for label,color,detail,tk in [('Safety Solidification','success',safety_detail,scores.safety_solid),('DP Solidification','danger',dp_detail,scores.dp_solid)] %}
-  <h6 class="text-{{ color }}">{{ label }} — item grades <span class="text-muted small">(pillar = lowest item)</span></h6>
+  {% for label,color,detail in [('Safety Solidification','success',safety_detail),('DP Solidification','danger',dp_detail)] %}
+  <h6 class="text-{{ color }}">{{ label }} — item answers</h6>
   <div class="row g-2 mb-4">
     {% for pil in detail %}
     <div class="col-md-6">
       <div class="card"><div class="card-body py-2">
         <div class="fw-semibold small border-bottom pb-1 mb-1">{{ pil.name }}</div>
         {% for it in pil.rows %}
-        <div class="d-flex justify-content-between align-items-center py-1">
+        <div class="d-flex justify-content-between align-items-center py-1 gap-2">
           <span class="small">
-            {% if it.class=='carryover' %}<span class="badge bg-warning text-dark" style="font-size:.6rem">SMA+</span>{% endif %}
+            {% if it.linked %}<span class="badge bg-warning text-dark" style="font-size:.6rem" title="Answered in SMA">SMA</span>
+            {% elif it.class=='bsapic' %}<span class="badge bg-secondary" style="font-size:.6rem">BSAPIC</span>{% endif %}
+            {% if it.axis %}<span class="badge bg-info-subtle text-info-emphasis border" style="font-size:.6rem">{{ it.axis[:3] }}</span>{% endif %}
             {{ it.topic }}</span>
-          {{ gradebadge(it.level, it.grade) }}
+          {{ ansbadge(it.answer) }}
         </div>
         {% endfor %}
       </div></div>
