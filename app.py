@@ -410,14 +410,20 @@ def dashboard():
     assessments_raw = db.execute("SELECT * FROM assessments ORDER BY created_at DESC").fetchall()
     enriched = []
     for a in assessments_raw:
-        pillars  = load_questions(a["type"], a["scope"])
-        resp     = get_responses_dict(db, a["id"])
-        ans      = answers_only(resp)
-        all_qs   = all_questions_flat(pillars)
-        answered = sum(1 for q in all_qs if ans.get(q["id"]) not in (None,""))
-        scores   = calculate_scores(pillars, ans) if ans else None
+        resp = get_responses_dict(db, a["id"])
+        ans  = answers_only(resp)
+        if a["type"] == "ssdpma":
+            bank = load_ssdpma_bank()
+            scores = calculate_ssdpma_scores(bank, ans) if ans else None
+            total_q, answered = _ssdpma_progress(bank, ans)
+        else:
+            pillars  = load_questions(a["type"], a["scope"])
+            all_qs   = all_questions_flat(pillars)
+            answered = sum(1 for q in all_qs if ans.get(q["id"]) not in (None,""))
+            total_q  = len(all_qs)
+            scores   = calculate_scores(pillars, ans) if ans else None
         gc = db.execute("SELECT * FROM gcs WHERE id=?",(a["gc_id"],)).fetchone() if a["gc_id"] else None
-        enriched.append({"a":dict(a),"scores":scores,"total_q":len(all_qs),
+        enriched.append({"a":dict(a),"scores":scores,"total_q":total_q,
                          "answered_q":answered,"gc":dict(gc) if gc else None})
     return render_template("dashboard.html", assessments=enriched,
                            level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
