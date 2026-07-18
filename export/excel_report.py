@@ -168,7 +168,7 @@ def generate_excel(assessment, pillars, responses, scores, level_names, comments
                 r2 += 1
                 set_cell(ws2, r2, 1, q["no"], align="center")
                 set_cell(ws2, r2, 2, element["name"], fill=LIGHT_FILL)
-                set_cell(ws2, r2, 3, q["text"], wrap=True)
+                set_cell(ws2, r2, 3, q.get("text") or "", wrap=True)
                 set_cell(ws2, r2, 4, ans_label, align="center", fill=ans_fill, bold=(ans in ("yes","no")))
                 set_cell(ws2, r2, 5, cmt, wrap=True)
                 ws2.row_dimensions[r2].height = 30
