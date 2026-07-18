@@ -201,7 +201,7 @@ def generate_pdf(assessment, pillars, responses, scores, level_names, comments=N
                 cmt = (comments or {}).get(q["id"], "") or ""
                 q_data.append([
                     str(q["no"]),
-                    Paragraph(q["text"], ParagraphStyle("qt", parent=styles["Normal"], fontSize=8, leading=11)),
+                    Paragraph(q.get("text") or "", ParagraphStyle("qt", parent=styles["Normal"], fontSize=8, leading=11)),
                     ans_label,
                     Paragraph(cmt, ParagraphStyle("qc", parent=styles["Normal"], fontSize=7, leading=10, textColor=colors.HexColor("#555"))),
                 ])

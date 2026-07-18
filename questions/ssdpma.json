@@ -4049,7 +4049,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Quickness of issue solving Deep root cause analysis, standardization and implementation"
    },
    {
     "id": "SS-002",
@@ -4109,7 +4111,9 @@
      "MFG-SY-040",
      "MFG-SY-072",
      "MFG-SY-111"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Quickness of issue solving Deep root cause analysis, standardization and implementation"
    },
    {
     "id": "SS-003",
@@ -4159,7 +4163,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Quickness of issue solving Deep root cause analysis, standardization and implementation"
    },
    {
     "id": "SS-004",
@@ -4209,7 +4215,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Quickness of issue solving Deep root cause analysis, standardization and implementation"
    },
    {
     "id": "SS-005",
@@ -4270,7 +4278,9 @@
      "MFG-SY-051",
      "MFG-SY-123",
      "MFG-SY-124"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-006",
@@ -4321,7 +4331,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-007",
@@ -4372,7 +4384,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-008",
@@ -4380,7 +4394,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": "RA",
-    "axis": null,
+    "axis": "Risk",
     "tag": "Safety",
     "class": "new",
     "roles": [],
@@ -4420,7 +4434,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-009",
@@ -4470,7 +4486,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "existing",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-010",
@@ -4518,7 +4536,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "existing",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-011",
@@ -4568,7 +4588,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Symptom Management for QM defct Management and analysis of information which is exploared, issued"
    },
    {
     "id": "SS-012",
@@ -4632,7 +4654,9 @@
      "MFG-LD-023",
      "MFG-LD-024",
      "MFG-LD-025"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-013",
@@ -4695,7 +4719,9 @@
      "MFG-LD-017",
      "MFG-LD-019",
      "MFG-LD-026"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-014",
@@ -4755,7 +4781,9 @@
      "MFG-SY-112",
      "MFG-SY-113",
      "MFG-SY-142"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-015",
@@ -4805,7 +4833,9 @@
      }
     ],
     "sma_group_key": "Management of Change",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "existing",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-016",
@@ -4855,7 +4885,9 @@
      }
     ],
     "sma_group_key": "Incident Management",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "existing",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-017",
@@ -4915,7 +4947,9 @@
      "MFG-OR-016",
      "MFG-OR-018",
      "MFG-OR-019"
-    ]
+    ],
+    "axis_source": "existing",
+    "point_of_evaluation": "Fundamental enhancement by Cpk and COPQ analysis QM management assurerance across value chain"
    },
    {
     "id": "SS-018",
@@ -4966,7 +5000,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-019",
@@ -5030,7 +5066,9 @@
      "MFG-SY-085",
      "MFG-SY-120",
      "MFG-SY-121"
-    ]
+    ],
+    "axis_source": "data-keyword",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-020",
@@ -5088,7 +5126,9 @@
      "MFG-SY-052",
      "MFG-SY-088",
      "MFG-SY-089"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-021",
@@ -5138,7 +5178,9 @@
      }
     ],
     "sma_group_key": "Risk Assessment",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-022",
@@ -5198,7 +5240,9 @@
      "MFG-SY-009",
      "MFG-SY-079",
      "MFG-SY-116"
-    ]
+    ],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-023",
@@ -5248,7 +5292,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-024",
@@ -5299,7 +5345,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-025",
@@ -5349,7 +5397,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-026",
@@ -5399,7 +5449,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-027",
@@ -5449,7 +5501,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Awareness and knowledge for QM"
    },
    {
     "id": "SS-028",
@@ -5499,7 +5553,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Resource and Organization for QM"
    },
    {
     "id": "SS-029",
@@ -5549,7 +5605,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Resource and Organization for QM"
    },
    {
     "id": "SS-030",
@@ -5599,7 +5657,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact",
+    "point_of_evaluation": "Resource and Organization for QM"
    },
    {
     "id": "SS-031",
@@ -5607,7 +5667,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": "安全",
     "class": "new",
     "roles": [],
@@ -5647,7 +5707,9 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default",
+    "point_of_evaluation": "Example of SE international certification"
    },
    {
     "id": "SS-032",
@@ -5655,7 +5717,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": null,
     "class": "bsapic",
     "roles": [
@@ -5711,7 +5773,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "文書管理"
+    "topic_ja": "文書管理",
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "SS-033",
@@ -5719,7 +5782,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": null,
     "class": "bsapic",
     "roles": [
@@ -5775,7 +5838,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "変更管理"
+    "topic_ja": "変更管理",
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "SS-034",
@@ -5783,7 +5847,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": null,
     "class": "bsapic",
     "roles": [
@@ -5807,7 +5871,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "マネジメントコミットメント"
+    "topic_ja": "マネジメントコミットメント",
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "SS-035",
@@ -5815,7 +5880,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": null,
     "class": "bsapic",
     "roles": [
@@ -5871,7 +5936,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "緊急事態計画"
+    "topic_ja": "緊急事態計画",
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "SS-036",
@@ -5879,7 +5945,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "TBD",
     "primary_category": "Plant Management",
-    "axis": null,
+    "axis": "Governance",
     "tag": null,
     "class": "bsapic",
     "roles": [
@@ -5935,7 +6001,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "コミュニケーション"
+    "topic_ja": "コミュニケーション",
+    "axis_source": "data-pillar-default"
    }
   ],
   "dp_solid": [
@@ -5985,7 +6052,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-002",
@@ -6033,7 +6101,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-003",
@@ -6041,7 +6110,7 @@
     "solid_pillar": "issue_solving",
     "solid_pillar_name": "Issue solving",
     "primary_category": null,
-    "axis": null,
+    "axis": "Governance",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6083,7 +6152,8 @@
      }
     ],
     "sma_group_key": "Incident Management",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-004",
@@ -6133,7 +6203,8 @@
      }
     ],
     "sma_group_key": "Incident Management",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-005",
@@ -6141,7 +6212,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6190,7 +6261,8 @@
      "MFG-SY-030",
      "MFG-SY-061",
      "MFG-SY-101"
-    ]
+    ],
+    "axis_source": "data-alias"
    },
    {
     "id": "DP-006",
@@ -6198,7 +6270,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6240,7 +6312,8 @@
      }
     ],
     "sma_group_key": "Fire Risk Assessment RA",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-alias"
    },
    {
     "id": "DP-007",
@@ -6248,7 +6321,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6297,7 +6370,8 @@
      "MFG-SY-105",
      "MFG-SY-163",
      "MFG-SY-136"
-    ]
+    ],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-008",
@@ -6305,7 +6379,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6354,7 +6428,8 @@
      "MFG-SY-166",
      "MFG-SY-036",
      "MFG-SY-139"
-    ]
+    ],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-009",
@@ -6362,7 +6437,7 @@
     "solid_pillar": "risk_management",
     "solid_pillar_name": "Risk Management",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6402,7 +6477,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-010",
@@ -6452,7 +6528,8 @@
      }
     ],
     "sma_group_key": "[Support]",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-011",
@@ -6502,7 +6579,8 @@
      }
     ],
     "sma_group_key": "[Prioritization]",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-012",
@@ -6552,7 +6630,8 @@
      }
     ],
     "sma_group_key": "Management of Change",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-013",
@@ -6560,7 +6639,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Risk",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6600,7 +6679,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-keyword"
    },
    {
     "id": "DP-014",
@@ -6608,7 +6688,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6648,7 +6728,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-015",
@@ -6656,7 +6737,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6696,7 +6777,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-016",
@@ -6704,7 +6786,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6746,7 +6828,8 @@
      }
     ],
     "sma_group_key": "Fire Fighting",
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-017",
@@ -6754,7 +6837,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -6805,7 +6888,8 @@
      "MFG-SY-103",
      "MFG-SY-104",
      "MFG-SY-135"
-    ]
+    ],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-018",
@@ -6813,7 +6897,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6853,7 +6937,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-019",
@@ -6861,7 +6946,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6901,7 +6986,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-020",
@@ -6909,7 +6995,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6949,7 +7035,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-021",
@@ -6957,7 +7044,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -6997,7 +7084,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-022",
@@ -7005,7 +7093,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7045,7 +7133,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-023",
@@ -7053,7 +7142,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7093,7 +7182,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-024",
@@ -7101,7 +7191,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7141,7 +7231,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-025",
@@ -7149,7 +7240,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7189,7 +7280,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-026",
@@ -7197,7 +7289,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7237,7 +7329,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-027",
@@ -7245,7 +7338,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7285,7 +7378,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-028",
@@ -7293,7 +7387,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7333,7 +7427,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-029",
@@ -7341,7 +7436,7 @@
     "solid_pillar": "independency",
     "solid_pillar_name": "Independency and Continuity",
     "primary_category": null,
-    "axis": null,
+    "axis": "Compliance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7381,7 +7476,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-030",
@@ -7389,7 +7485,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "Integration/ Incorporation",
     "primary_category": null,
-    "axis": null,
+    "axis": "Governance",
     "tag": "防災",
     "class": "carryover",
     "roles": [
@@ -7438,7 +7534,8 @@
      "MFG-SY-067",
      "MFG-SY-107",
      "MFG-SY-138"
-    ]
+    ],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-031",
@@ -7446,7 +7543,7 @@
     "solid_pillar": "integration",
     "solid_pillar_name": "Integration/ Incorporation",
     "primary_category": null,
-    "axis": null,
+    "axis": "Governance",
     "tag": "防災",
     "class": "new",
     "roles": [],
@@ -7486,7 +7583,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-pillar-default"
    },
    {
     "id": "DP-032",
@@ -7534,7 +7632,8 @@
      }
     ],
     "sma_group_key": null,
-    "sma_group_qids": []
+    "sma_group_qids": [],
+    "axis_source": "data-exact"
    },
    {
     "id": "DP-033",
@@ -7598,7 +7697,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "文書管理"
+    "topic_ja": "文書管理",
+    "axis_source": "existing"
    },
    {
     "id": "DP-034",
@@ -7662,7 +7762,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "変更管理"
+    "topic_ja": "変更管理",
+    "axis_source": "existing"
    },
    {
     "id": "DP-035",
@@ -7694,7 +7795,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "マネジメントコミットメント"
+    "topic_ja": "マネジメントコミットメント",
+    "axis_source": "existing"
    },
    {
     "id": "DP-036",
@@ -7758,7 +7860,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "緊急事態計画"
+    "topic_ja": "緊急事態計画",
+    "axis_source": "existing"
    },
    {
     "id": "DP-037",
@@ -7822,7 +7925,8 @@
     ],
     "sma_group_key": null,
     "sma_group_qids": [],
-    "topic_ja": "コミュニケーション"
+    "topic_ja": "コミュニケーション",
+    "axis_source": "existing"
    }
   ]
  }
