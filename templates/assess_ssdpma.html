@@ -52,11 +52,13 @@
   </div>
 {% endmacro %}
 
-{% macro sma_question(q) %}
+{% macro sma_question(q, pillar_id) %}
   {% set ans = resp.get(q.id, {}).get('answer', '') %}
   {% set det = resp.get(q.id, {}).get('detail') or {} %}
   {% set cmt = resp.get(q.id, {}).get('comment', '') %}
-  <div class="sma-q px-2 py-2 {% if ans %}q-{{ ans }}{% endif %}" id="qrow-{{ q.id }}" data-qid="{{ q.id }}" data-answer="{{ ans }}">
+  <div class="sma-q filterable-row px-2 py-2 {% if ans %}q-{{ ans }}{% endif %}" id="qrow-{{ q.id }}" data-qid="{{ q.id }}" data-answer="{{ ans }}"
+       data-section="sma" data-pillar="{{ pillar_id }}" data-level="{{ q.level }}"
+       data-methods="{{ q.audit_methods | join(',') }}" data-answered-by="{{ q.answered_by or '' }}">
     <div class="d-flex align-items-start gap-2">
       <span class="text-muted small mt-1" style="min-width:2.4rem">{{ q.no }}.</span>
       <div class="flex-grow-1">
@@ -87,10 +89,11 @@
   </div>
 {% endmacro %}
 
-{% macro solid_item(s) %}
+{% macro solid_item(s, section) %}
   {% set ans = resp.get(s.id, {}).get('answer', '') %}
   {% set linked = s.class == 'carryover' and s.sma_group_qids %}
-  <div class="card mb-2 shadow-sm" data-solid-id="{{ s.id }}">
+  <div class="card mb-2 shadow-sm filterable-row" data-solid-id="{{ s.id }}" data-answer="{{ ans }}"
+       data-section="{{ section }}" data-solid-pillar="{{ s.solid_pillar }}" data-axis="{{ s.axis or '' }}" data-class="{{ s.class }}">
     <div class="card-body py-2">
       <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
         <div class="flex-grow-1">
@@ -141,6 +144,7 @@
   .sma-q { background:#fff; border-bottom:1px solid #eee; }
   .grade-chip { font-size:.65rem; }
   .linked-ref { background:#fffdf5; border:1px dashed #e0c86a; }
+  .hidden-by-filter { display: none !important; }
 </style>
 <div class="container-fluid py-3">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
@@ -150,48 +154,198 @@
     <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-secondary">← Dashboard</a>
   </div>
 
+  <!-- ── Filters (frozen while scrolling) ────────────────────────────── -->
+  <div class="card mb-3 p-3 sticky-filter">
+    <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+      <span class="input-group input-group-sm" style="width:auto">
+        <span class="input-group-text">🔍</span>
+        <input type="search" id="q-search" class="form-control form-control-sm"
+               placeholder="Search questions or ID..." style="min-width:200px"
+               oninput="applyFilters()">
+      </span>
+      <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
+    </div>
+    <div class="row g-2">
+
+      <!-- Section -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-section">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-section')">
+            <span class="ms-label">All Sections</span>
+          </button>
+          <div class="ms-menu shadow">
+            <label class="ms-item"><input type="checkbox" value="sma" onchange="applyFilters()"> SMA-MFG</label>
+            <label class="ms-item"><input type="checkbox" value="safety_solid" onchange="applyFilters()"> Safety Solidification</label>
+            <label class="ms-item"><input type="checkbox" value="dp_solid" onchange="applyFilters()"> DP Solidification</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-status">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-status')">
+            <span class="ms-label">All Status</span>
+          </button>
+          <div class="ms-menu shadow">
+            <label class="ms-item"><input type="checkbox" value="unanswered" onchange="applyFilters()"> Unanswered</label>
+            <label class="ms-item"><input type="checkbox" value="yes" onchange="applyFilters()"> Answered Yes</label>
+            <label class="ms-item"><input type="checkbox" value="no" onchange="applyFilters()"> Answered No</label>
+            <label class="ms-item"><input type="checkbox" value="na" onchange="applyFilters()"> N/A</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMA: Pillar -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-pillar">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-pillar')">
+            <span class="ms-label">All Pillars (SMA)</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for p in sma_pillars %}
+            <label class="ms-item"><input type="checkbox" value="{{ p.id }}" onchange="applyFilters()"> {{ p.name }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- SMA: Level -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-level">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-level')">
+            <span class="ms-label">All Levels (SMA)</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for lv in all_levels %}
+            <label class="ms-item"><input type="checkbox" value="{{ lv }}" onchange="applyFilters()"> L{{ lv }}: {{ level_names[lv] }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- SMA: Method -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-method">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-method')">
+            <span class="ms-label">All Methods (SMA)</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for m in all_methods %}
+            <label class="ms-item"><input type="checkbox" value="{{ m }}" onchange="applyFilters()"> {{ method_labels.get(m, m) }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- SMA: Respondent -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-answered-by">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-answered-by')">
+            <span class="ms-label">All Respondents (SMA)</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for ab in all_answered_by %}
+            <label class="ms-item"><input type="checkbox" value="{{ ab }}" onchange="applyFilters()"> {{ ab[:30] }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Solid: Pillar -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-solid-pillar">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-solid-pillar')">
+            <span class="ms-label">All Pillars (Solid)</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for pil in solid_pillars %}
+            <label class="ms-item"><input type="checkbox" value="{{ pil.id }}" onchange="applyFilters()"> {{ pil.name }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Solid: GRC Axis -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-axis">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-axis')">
+            <span class="ms-label">All GRC Axes</span>
+          </button>
+          <div class="ms-menu shadow">
+            {% for ax in grc_axes %}
+            <label class="ms-item"><input type="checkbox" value="{{ ax }}" onchange="applyFilters()"> {{ ax }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Solid: Item Class -->
+      <div class="col-6 col-md-2">
+        <div class="ms-dropdown" id="dd-class">
+          <button class="ms-btn form-select form-select-sm text-start" onclick="toggleDd('dd-class')">
+            <span class="ms-label">All Item Classes</span>
+          </button>
+          <div class="ms-menu shadow">
+            <label class="ms-item"><input type="checkbox" value="new" onchange="applyFilters()"> New</label>
+            <label class="ms-item"><input type="checkbox" value="carryover" onchange="applyFilters()"> Carryover (SMA-linked)</label>
+            <label class="ms-item"><input type="checkbox" value="bsapic" onchange="applyFilters()"> BSAPIC-added</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mt-2 small text-muted">
+      Showing <span id="visible-count">{{ total_rows }}</span> of {{ total_rows }} questions
+    </div>
+  </div>
+
   <div class="row g-3">
     <!-- Questionnaire -->
     <div class="col-lg-8 order-2 order-lg-1">
 
       <!-- Section 1 · SMA-MFG -->
-      <div class="d-flex align-items-center gap-2 mb-2">
+      <div class="d-flex align-items-center gap-2 mb-2 section-group" data-section="sma">
         <span class="badge bg-primary rounded-pill">1</span>
         <h6 class="mb-0 text-primary">SMA — Manufacturing <span class="text-muted small fw-normal">native responder assessment</span></h6>
       </div>
       {% for p in sma_pillars %}
-        <div class="mb-2">
+        <div class="mb-2 pillar-group" data-section="sma" data-pillar-group="{{ p.id }}">
           <div class="fw-bold small text-primary bg-primary-subtle rounded px-2 py-1">{{ p.name }}</div>
           {% for e in p.elements %}
             <div class="text-muted small fw-semibold mt-2 ms-1">{{ e.name }}</div>
-            {% for q in e.questions %}{{ sma_question(q) }}{% endfor %}
+            {% for q in e.questions %}{{ sma_question(q, p.id) }}{% endfor %}
           {% endfor %}
         </div>
       {% endfor %}
 
       <!-- Section 2 · Safety Solidification -->
-      <div class="d-flex align-items-center gap-2 mb-2 mt-4">
+      <div class="d-flex align-items-center gap-2 mb-2 mt-4 section-group" data-section="safety_solid">
         <span class="badge bg-success rounded-pill">2</span>
         <h6 class="mb-0 text-success">Safety Solidification <span class="badge bg-success">{{ bank.sections.safety_solid|length }}</span></h6>
       </div>
       {% for pil in solid_pillars %}
         {% set secs = bank.sections.safety_solid | selectattr('solid_pillar','equalto',pil.id) | list %}
         {% if secs %}
+          <div class="pillar-group" data-section="safety_solid" data-pillar-group="{{ pil.id }}">
           <div class="text-success small fw-semibold mt-2">{{ pil.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></div>
-          {% for s in secs %}{{ solid_item(s) }}{% endfor %}
+          {% for s in secs %}{{ solid_item(s, 'safety_solid') }}{% endfor %}
+          </div>
         {% endif %}
       {% endfor %}
 
       <!-- Section 3 · DP Solidification -->
-      <div class="d-flex align-items-center gap-2 mb-2 mt-4">
+      <div class="d-flex align-items-center gap-2 mb-2 mt-4 section-group" data-section="dp_solid">
         <span class="badge bg-danger rounded-pill">3</span>
         <h6 class="mb-0 text-danger">DP Solidification <span class="badge bg-danger">{{ bank.sections.dp_solid|length }}</span></h6>
       </div>
       {% for pil in solid_pillars %}
         {% set secs = bank.sections.dp_solid | selectattr('solid_pillar','equalto',pil.id) | list %}
         {% if secs %}
+          <div class="pillar-group" data-section="dp_solid" data-pillar-group="{{ pil.id }}">
           <div class="text-danger small fw-semibold mt-2">{{ pil.name }} <span class="badge bg-light text-dark border">{{ secs|length }}</span></div>
-          {% for s in secs %}{{ solid_item(s) }}{% endfor %}
+          {% for s in secs %}{{ solid_item(s, 'dp_solid') }}{% endfor %}
+          </div>
         {% endif %}
       {% endfor %}
     </div>
@@ -253,6 +407,106 @@ const SOLSLAB = {issue_solving:'Iss', risk_management:'Risk', business_strategy:
 const saveTimers = {};
 function toggleCrit(btn){ const b=btn.nextElementSibling; b.style.display = b.style.display==='none'?'block':'none'; }
 function jump(qid){ const el=document.getElementById('qrow-'+qid); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.transition='background .3s'; el.style.background='#fff3cd'; setTimeout(()=>el.style.background='',1200);} }
+
+// ── Multi-select dropdown helpers (shared pattern with assess.html) ─────────
+function toggleDd(id) {
+  document.querySelectorAll('.ms-dropdown.open').forEach(d => { if (d.id !== id) d.classList.remove('open'); });
+  document.getElementById(id).classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ms-dropdown')) {
+    document.querySelectorAll('.ms-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+function getChecked(ddId) {
+  return Array.from(document.querySelectorAll(`#${ddId} .ms-menu input:checked`)).map(i => i.value);
+}
+function updateDdLabel(ddId, defaultLabel) {
+  const vals = getChecked(ddId);
+  const btn = document.querySelector(`#${ddId} .ms-label`);
+  if (!btn) return;
+  btn.textContent = vals.length === 0 ? defaultLabel : vals.length + ' selected';
+  document.querySelector(`#${ddId} .ms-btn`).classList.toggle('active-filter', vals.length > 0);
+}
+
+// ── Filters — spans SMA rows (.sma-q) and Solid item cards ([data-solid-id]) ─
+function applyFilters() {
+  updateDdLabel('dd-section', 'All Sections');
+  updateDdLabel('dd-status', 'All Status');
+  updateDdLabel('dd-pillar', 'All Pillars (SMA)');
+  updateDdLabel('dd-level', 'All Levels (SMA)');
+  updateDdLabel('dd-method', 'All Methods (SMA)');
+  updateDdLabel('dd-answered-by', 'All Respondents (SMA)');
+  updateDdLabel('dd-solid-pillar', 'All Pillars (Solid)');
+  updateDdLabel('dd-axis', 'All GRC Axes');
+  updateDdLabel('dd-class', 'All Item Classes');
+
+  const fSections = getChecked('dd-section');
+  const fStatuses = getChecked('dd-status');
+  const fPillars = getChecked('dd-pillar');
+  const fLevels = getChecked('dd-level');
+  const fMethods = getChecked('dd-method');
+  const fAnsweredBys = getChecked('dd-answered-by');
+  const fSolidPillars = getChecked('dd-solid-pillar');
+  const fAxes = getChecked('dd-axis');
+  const fClasses = getChecked('dd-class');
+  const query = (document.getElementById('q-search')?.value || '').trim().toLowerCase();
+
+  let visible = 0;
+  document.querySelectorAll('.filterable-row').forEach(row => {
+    const section = row.dataset.section;
+    const answer = row.dataset.answer || '';
+
+    const matchSection = fSections.length === 0 || fSections.includes(section);
+    const matchStatus = fStatuses.length === 0 || fStatuses.some(s => s === 'unanswered' ? answer === '' : answer === s);
+    const matchSearch = query === '' ||
+      (row.getAttribute('data-qid') || row.getAttribute('data-solid-id') || '').toLowerCase().includes(query) ||
+      (row.textContent || '').toLowerCase().includes(query);
+
+    let matchTypeSpecific = true;
+    if (section === 'sma') {
+      const pillar = row.dataset.pillar, level = row.dataset.level;
+      const methods = (row.dataset.methods || '').split(',');
+      const answeredBy = row.dataset.answeredBy || '';
+      matchTypeSpecific =
+        (fPillars.length === 0 || fPillars.includes(pillar)) &&
+        (fLevels.length === 0 || fLevels.includes(level)) &&
+        (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
+        (fAnsweredBys.length === 0 || fAnsweredBys.includes(answeredBy));
+    } else {
+      const solidPillar = row.dataset.solidPillar, axis = row.dataset.axis || '', cls = row.dataset.class || '';
+      matchTypeSpecific =
+        (fSolidPillars.length === 0 || fSolidPillars.includes(solidPillar)) &&
+        (fAxes.length === 0 || fAxes.includes(axis)) &&
+        (fClasses.length === 0 || fClasses.includes(cls));
+    }
+
+    const show = matchSection && matchStatus && matchSearch && matchTypeSpecific;
+    row.classList.toggle('hidden-by-filter', !show);
+    if (show) visible++;
+  });
+
+  document.getElementById('visible-count').textContent = visible;
+
+  document.querySelectorAll('.pillar-group').forEach(g => {
+    const anyVisible = Array.from(g.querySelectorAll('.filterable-row')).some(r => !r.classList.contains('hidden-by-filter'));
+    g.classList.toggle('hidden-by-filter', !anyVisible);
+  });
+  document.querySelectorAll('.section-group').forEach(sec => {
+    const secKey = sec.dataset.section;
+    const anyVisible = Array.from(document.querySelectorAll(`.filterable-row[data-section="${secKey}"]`))
+      .some(r => !r.classList.contains('hidden-by-filter'));
+    sec.classList.toggle('hidden-by-filter', !anyVisible);
+  });
+}
+
+function clearFilters() {
+  ['dd-section','dd-status','dd-pillar','dd-level','dd-method','dd-answered-by','dd-solid-pillar','dd-axis','dd-class'].forEach(id => {
+    document.querySelectorAll(`#${id} input[type=checkbox]`).forEach(cb => cb.checked = false);
+  });
+  const sb = document.getElementById('q-search'); if (sb) sb.value = '';
+  applyFilters();
+}
 
 function num(v){ return (v==null)?'—':(Math.round(v*100)/100); }
 function smaChip(lbl,v){
