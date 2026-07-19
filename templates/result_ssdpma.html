@@ -19,7 +19,6 @@
       <div class="text-muted small">
         {% if gc %}{{ gc.name }} · {% endif %}{{ assessment.assessment_date or 'no date' }}
         · {{ answered_q }}/{{ total_q }} answered
-        {% if assessors %} · 👥 {{ assessors | join(', ') }}{% endif %}
       </div>
     </div>
     <div class="btn-group">
