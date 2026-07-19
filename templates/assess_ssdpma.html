@@ -69,7 +69,7 @@
         {% if solid_link.get(q.id) %}
           <div class="mb-1">
             {% for lk in solid_link[q.id] %}
-              <span class="badge bg-warning text-dark" title="Asked once here — also feeds this Solidification item">⇄ feeds {{ lk.track }} Solid · {{ lk.topic }}</span>
+              <span class="badge bg-warning text-dark" title="This topic is also assessed independently in the Solidification section">⇄ also in {{ lk.track }} Solid · {{ lk.topic }}</span>
             {% endfor %}
           </div>
         {% endif %}
@@ -91,41 +91,42 @@
   </div>
 {% endmacro %}
 
+{% macro solid_grade_badge(item_score) %}
+  {% if item_score and item_score.score is not none %}
+    <span class="badge {% if item_score.score<2 %}bg-danger{% elif item_score.score<3 %}bg-warning text-dark{% elif item_score.score<4 %}bg-info{% elif item_score.score<5 %}bg-primary{% else %}bg-success{% endif %}" id="itemgrade-{{ item_score.id }}">{{ item_score.grade }} · {{ item_score.score }}</span>
+  {% else %}
+    <span class="badge bg-light text-muted border" id="itemgrade-{{ item_score.id if item_score else '' }}">—</span>
+  {% endif %}
+{% endmacro %}
+
 {% macro solid_item(s, section) %}
-  {% set ans = resp.get(s.id, {}).get('answer', '') %}
+  {% set item_score = solid_item_scores.get(s.id) %}
   {% set linked = s.class == 'carryover' and s.sma_group_qids %}
-  <div class="card mb-2 shadow-sm filterable-row" data-solid-id="{{ s.id }}" data-answer="{{ ans }}"
+  {% set rubric = s.solid_rubric or [] %}
+  {% set n_answered = item_score.levels_answered if item_score else 0 %}
+  {% set n_total = rubric|length %}
+  {% set card_answer = 'complete' if n_answered==n_total and n_total>0 else ('partial' if n_answered>0 else '') %}
+  <div class="card mb-2 shadow-sm filterable-row" data-solid-id="{{ s.id }}" data-answer="{{ card_answer }}"
        data-section="{{ section }}" data-solid-pillar="{{ s.solid_pillar }}" data-axis="{{ s.axis or '' }}" data-class="{{ s.class }}">
     <div class="card-body py-2">
       <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
         <div class="flex-grow-1">
           <span class="badge bg-light text-dark border me-1">{{ s.id }}</span>
-          {% if s.class == 'carryover' %}<span class="badge bg-warning text-dark" title="Answered in the SMA section">SMA-linked</span>
+          {% if s.class == 'carryover' %}<span class="badge bg-warning text-dark" title="This topic is also asked in the SMA section, for cross-reference">SMA-linked</span>
           {% elif s.class == 'new' %}<span class="badge bg-success-subtle text-success-emphasis border">New</span>
           {% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis border">BSAPIC</span>{% endif %}
           {% if s.axis %}<span class="badge bg-info-subtle text-info-emphasis border">{{ s.axis }}</span>
           {% else %}<span class="badge bg-light text-muted border" title="No GRC axis tag yet">GRC: untagged</span>{% endif %}
           <span class="fw-semibold ms-1">{{ s.topic }}</span>
         </div>
-        <div>
-          {% if linked %}
-            <span class="badge {% if ans=='yes' %}bg-success{% elif ans=='no' %}bg-danger{% elif ans=='na' %}bg-secondary{% else %}bg-light text-muted border{% endif %}" id="linkres-{{ s.id }}">
-              {% if ans=='yes' %}Yes{% elif ans=='no' %}No{% elif ans=='na' %}N/A{% else %}— from SMA{% endif %}</span>
-          {% else %}
-            <div class="btn-group btn-group-sm solid-yesno" role="group" data-qid="{{ s.id }}">
-              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_y" value="yes" autocomplete="off" {% if ans=='yes' %}checked{% endif %}>
-              <label class="btn btn-outline-success" for="{{ s.id }}_y">Yes</label>
-              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_n" value="no" autocomplete="off" {% if ans=='no' %}checked{% endif %}>
-              <label class="btn btn-outline-danger" for="{{ s.id }}_n">No</label>
-              <input type="radio" class="btn-check" name="s_{{ s.id }}" id="{{ s.id }}_na" value="na" autocomplete="off" {% if ans=='na' %}checked{% endif %}>
-              <label class="btn btn-outline-secondary" for="{{ s.id }}_na">N/A</label>
-            </div>
-          {% endif %}
+        <div class="d-flex align-items-center gap-2">
+          <span class="small text-muted levels-count">{{ n_answered }}/{{ n_total }} levels</span>
+          {{ solid_grade_badge(item_score) }}
         </div>
       </div>
       {% if linked %}
         <details class="mt-2 linked-ref rounded p-2">
-          <summary class="small text-primary">Answered once in the SMA section · {{ s.sma_group_qids|length }} question(s)</summary>
+          <summary class="small text-primary">Also asked in the SMA section · {{ s.sma_group_qids|length }} question(s) (reference only — this item is graded from its own rubric below)</summary>
           <div class="mt-1 ps-2 border-start small text-muted">
             {% for qid in s.sma_group_qids %}
               <div>{{ qid }} — <a href="#qrow-{{ qid }}" onclick="jump('{{ qid }}')">go to SMA question</a></div>
@@ -133,6 +134,34 @@
           </div>
         </details>
       {% endif %}
+      <div class="mt-2 solid-ladder" data-item="{{ s.id }}">
+        {% for lv in rubric %}
+          {% set level_qid = s.id ~ '__L' ~ lv.level %}
+          {% set lvl_ans = resp.get(level_qid, {}).get('answer', '') %}
+          {% set role = solid_level_role.get(s.id, {}).get(lv.level) %}
+          {% set ref_qids = solid_level_ref.get(s.id, {}).get(lv.level, []) %}
+          <div class="ladder-row d-flex align-items-start gap-2 py-2 {% if not loop.first %}border-top{% endif %} {% if lvl_ans %}q-{{ lvl_ans }}{% endif %}">
+            <span class="badge bg-light text-dark border mt-1" style="min-width:2.6rem">L{{ lv.level }}·{{ lv.grade }}</span>
+            <div class="flex-grow-1 small">
+              <div style="white-space:pre-line">{{ lv.criteria }}</div>
+              <div class="mt-1 d-flex flex-wrap gap-1">
+                {% if role %}<span class="badge bg-info-subtle text-info-emphasis border">👤 {{ role }}</span>{% endif %}
+                {% for qid in ref_qids %}
+                  <a href="#qrow-{{ qid }}" onclick="jump('{{ qid }}')" class="badge bg-light text-primary border text-decoration-none">🔗 {{ qid }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="btn-group btn-group-sm solid-level-yesno" role="group" data-qid="{{ level_qid }}">
+              <input type="radio" class="btn-check" name="{{ level_qid }}" id="{{ level_qid }}_y" value="yes" autocomplete="off" {% if lvl_ans=='yes' %}checked{% endif %}>
+              <label class="btn btn-outline-success" for="{{ level_qid }}_y">Yes</label>
+              <input type="radio" class="btn-check" name="{{ level_qid }}" id="{{ level_qid }}_n" value="no" autocomplete="off" {% if lvl_ans=='no' %}checked{% endif %}>
+              <label class="btn btn-outline-danger" for="{{ level_qid }}_n">No</label>
+              <input type="radio" class="btn-check" name="{{ level_qid }}" id="{{ level_qid }}_na" value="na" autocomplete="off" {% if lvl_ans=='na' %}checked{% endif %}>
+              <label class="btn btn-outline-secondary" for="{{ level_qid }}_na">N/A</label>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 {% endmacro %}
@@ -191,9 +220,11 @@
           </button>
           <div class="ms-menu shadow">
             <label class="ms-item"><input type="checkbox" value="unanswered" onchange="applyFilters()"> Unanswered</label>
-            <label class="ms-item"><input type="checkbox" value="yes" onchange="applyFilters()"> Answered Yes</label>
-            <label class="ms-item"><input type="checkbox" value="no" onchange="applyFilters()"> Answered No</label>
-            <label class="ms-item"><input type="checkbox" value="na" onchange="applyFilters()"> N/A</label>
+            <label class="ms-item"><input type="checkbox" value="yes" onchange="applyFilters()"> Answered Yes (SMA)</label>
+            <label class="ms-item"><input type="checkbox" value="no" onchange="applyFilters()"> Answered No (SMA)</label>
+            <label class="ms-item"><input type="checkbox" value="na" onchange="applyFilters()"> N/A (SMA)</label>
+            <label class="ms-item"><input type="checkbox" value="partial" onchange="applyFilters()"> Partially Judged (Solid)</label>
+            <label class="ms-item"><input type="checkbox" value="complete" onchange="applyFilters()"> Fully Judged (Solid)</label>
           </div>
         </div>
       </div>
@@ -534,6 +565,7 @@ function renderSMA(t){
   const pil=document.getElementById('sma_pillars'); pil.innerHTML='';
   Object.keys(SMASLAB).forEach(k=>{ let v=(t.pillars||{})[k]; if(v&&typeof v==='object') v=v.score; pil.appendChild(smaChip(SMASLAB[k], v)); });
 }
+const SOLID_GRADE_BG = {1:'bg-danger',2:'bg-warning text-dark',3:'bg-info',4:'bg-primary',5:'bg-success'};
 function renderSolid(key,t){
   if(!t) return;
   document.getElementById(key+'_overall').textContent = (t.overall==null?'—':(t.overall+' '+t.overall_grade));
@@ -544,27 +576,38 @@ function renderSolid(key,t){
   const gap=document.getElementById(key+'_gap');
   if(t.axis_untagged>0){ gap.style.display=''; gap.textContent='⚠ '+t.axis_untagged+' answered item(s) have no GRC tag'; }
   else { gap.style.display='none'; }
-  // reflect linked (carryover) results back onto the solid reference badges
-  (t.items||[]).forEach(it=>{ if(it.linked){ const el=document.getElementById('linkres-'+it.id); if(el){
-    const M={yes:['Yes','bg-success'],no:['No','bg-danger'],na:['N/A','bg-secondary']}; const m=M[it.answer]||['— from SMA','bg-light text-muted border'];
-    el.textContent=m[0]; el.className='badge '+m[1]; } } });
+  // reflect each item's derived grade + level-progress + card status back onto its own card
+  (t.items||[]).forEach(it=>{
+    const badge=document.getElementById('itemgrade-'+it.id);
+    if(badge){
+      if(it.score!=null){ badge.textContent=it.grade+' · '+it.score; badge.className='badge '+SOLID_GRADE_BG[it.score]; }
+      else { badge.textContent='—'; badge.className='badge bg-light text-muted border'; }
+    }
+    const card=document.querySelector(`.card[data-solid-id="${it.id}"]`);
+    if(card){
+      const cnt=card.querySelector('.levels-count');
+      if(cnt) cnt.textContent = it.levels_answered+'/'+it.levels_total+' levels';
+      card.setAttribute('data-answer', it.levels_answered===0 ? '' : (it.levels_answered===it.levels_total ? 'complete' : 'partial'));
+    }
+  });
 }
 function updatePanels(s){ if(!s) return; renderSMA(s.sma); renderSolid('safety_solid', s.safety_solid); renderSolid('dp_solid', s.dp_solid); }
 function setProgress(a){ document.getElementById('answered').textContent=a; document.getElementById('progbar').style.width=Math.round(a/TOTAL*100)+'%'; }
 
-// ── plain save (SMA no-responder + solid yes/no) ──
+// ── plain save (SMA no-responder + solid per-level yes/no) ──
 function save(qid, answer, comment){
   clearTimeout(saveTimers[qid]);
   saveTimers[qid]=setTimeout(()=>{
     fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer||'', comment:comment||''})})
     .then(r=>r.json()).then(data=>{ if(data.ssdpma) updatePanels(data.ssdpma); if(typeof data.answered==='number') setProgress(data.answered);
-      const row=document.getElementById('qrow-'+qid); if(row){ row.className=row.className.replace(/q-\w+/g,''); if(answer) row.classList.add('q-'+answer); } });
+      const row=document.getElementById('qrow-'+qid) || document.querySelector(`.solid-level-yesno[data-qid="${qid}"]`)?.closest('.ladder-row');
+      if(row){ row.className=row.className.replace(/q-\w+/g,''); if(answer) row.classList.add('q-'+answer); } });
   },200);
 }
 document.addEventListener('change', ev=>{
   const inp=ev.target;
-  if(inp.matches('.solid-yesno input') || inp.matches('.sma-plain input')){
+  if(inp.matches('.solid-level-yesno input') || inp.matches('.sma-plain input')){
     const wrap=inp.closest('[data-qid]'); save(wrap.dataset.qid, inp.value);
   }
 });
@@ -575,8 +618,7 @@ document.querySelectorAll('.comment-field').forEach(ta=>{
     const qid=this.getAttribute('data-qid');
     const panel=document.querySelector(`.responder-panel[data-qid="${qid}"]`);
     if(panel){ saveResponder(panel); return; }
-    const answer=document.querySelector(`.sma-plain[data-qid="${qid}"] input:checked`)?.value
-              || document.querySelector(`.solid-yesno[data-qid="${qid}"] input:checked`)?.value || '';
+    const answer=document.querySelector(`.sma-plain[data-qid="${qid}"] input:checked`)?.value || '';
     save(qid, answer, this.value);
   });
 });
