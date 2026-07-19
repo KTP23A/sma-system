@@ -232,6 +232,10 @@ def init_db():
     cols = [r[1] for r in db.execute("PRAGMA table_info(responses)")]
     if "detail" not in cols:
         db.execute("ALTER TABLE responses ADD COLUMN detail TEXT")
+    # Migration: add responses.assessor — who recorded the answer (audit traceability when a
+    # multi-assessor team splits one assessment). Nullable; only the SSDPMA UI sends it.
+    if "assessor" not in cols:
+        db.execute("ALTER TABLE responses ADD COLUMN assessor TEXT")
     # Migration: add assessments.kind ('self' | 'validation'). Existing rows → 'self'.
     acols = [r[1] for r in db.execute("PRAGMA table_info(assessments)")]
     if "kind" not in acols:
@@ -883,12 +887,14 @@ def api_answer():
         if derived is not None:
             answer = derived
             detail_json = json.dumps(detail)
+    assessor = (data.get("assessor") or "").strip()[:60] or None
     db.execute(
-        """INSERT INTO responses (assessment_id,question_id,answer,comment,detail,updated_at)
-           VALUES (?,?,?,?,?,datetime('now'))
+        """INSERT INTO responses (assessment_id,question_id,answer,comment,detail,assessor,updated_at)
+           VALUES (?,?,?,?,?,?,datetime('now'))
            ON CONFLICT(assessment_id,question_id)
-           DO UPDATE SET answer=excluded.answer,comment=excluded.comment,detail=excluded.detail,updated_at=excluded.updated_at""",
-        (assessment_id,qid,answer,data.get("comment",""),detail_json)
+           DO UPDATE SET answer=excluded.answer,comment=excluded.comment,detail=excluded.detail,
+                         assessor=COALESCE(excluded.assessor, responses.assessor),updated_at=excluded.updated_at""",
+        (assessment_id,qid,answer,data.get("comment",""),detail_json,assessor)
     )
     db.commit()
     resp     = get_responses_dict(db, assessment_id)
@@ -983,11 +989,41 @@ def _result_ssdpma(db, assessment, user):
         for it in scores[code]["items"]:
             by[it["pillar"]]["rows"].append(it)
         return [v for v in by.values() if v["rows"]]
+    # Topic matrix: for every solid item with SMA links, put the two INDEPENDENT measurements
+    # side by side — SMA structural score (ladder over the linked SMA questions, same rule as
+    # SMA elements) vs the item's own Solidification PDCA maturity grade. Neither feeds the
+    # other; the gap between them is the report's insight ("on paper" vs "solidified").
+    qmap = {q["id"]: q for q in all_questions_flat(bank["sma"]["pillars"])}
+    pillar_no_index = _build_pillar_no_index(bank)
+    topic_matrix = {"safety_solid": [], "dp_solid": []}
+    for code in ("safety_solid", "dp_solid"):
+        item_score = {it["id"]: it for it in scores[code]["items"]}
+        for s in bank["sections"][code]:
+            qids = set(s.get("sma_group_qids") or [])
+            for lv in s.get("solid_rubric") or []:
+                _, refq = _solid_rubric_ref(lv["criteria"], pillar_no_index)
+                qids.update(refq)
+            linked_qs = [qmap[q] for q in sorted(qids) if q in qmap]
+            sma_score = _element_score(linked_qs, ans) if linked_qs else None
+            it = item_score[s["id"]]
+            gap = None
+            if sma_score is not None and it["score"] is not None:
+                gap = ("aligned" if sma_score == it["score"]
+                       else "structure_ahead" if sma_score > it["score"] else "practice_ahead")
+            n_ans = sum(1 for q in linked_qs if ans.get(q["id"]) not in (None, ""))
+            topic_matrix[code].append({
+                "id": s["id"], "topic": s["topic"], "class": s["class"],
+                "sma_score": sma_score, "sma_n": len(linked_qs), "sma_answered": n_ans,
+                "solid": it, "gap": gap})
+    assessors = [r[0] for r in db.execute(
+        "SELECT DISTINCT assessor FROM responses WHERE assessment_id=? AND assessor IS NOT NULL ORDER BY assessor",
+        (assessment["id"],)).fetchall()]
     gc = db.execute("SELECT * FROM gcs WHERE id=?",(assessment["gc_id"],)).fetchone() if assessment["gc_id"] else None
     return render_template("result_ssdpma.html",
         assessment=assessment, scores=scores, total_q=total, answered_q=answered,
         safety_detail=track_detail("safety_solid"), dp_detail=track_detail("dp_solid"),
         solid_pillars=bank["solid_pillars"], grc_axes=GRC_AXES,
+        topic_matrix=topic_matrix, assessors=assessors,
         level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
         gc=dict(gc) if gc else None, user=user, unread=0)
 

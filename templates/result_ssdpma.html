@@ -19,6 +19,7 @@
       <div class="text-muted small">
         {% if gc %}{{ gc.name }} · {% endif %}{{ assessment.assessment_date or 'no date' }}
         · {{ answered_q }}/{{ total_q }} answered
+        {% if assessors %} · 👥 {{ assessors | join(', ') }}{% endif %}
       </div>
     </div>
     <div class="btn-group">
@@ -85,6 +86,51 @@
       <td class="fw-bold">{{ scores.sma.overall if scores.sma.overall is not none else '—' }}</td>
     </tr></tbody>
   </table>
+
+  <!-- Topic matrix: SMA structure × Solidification maturity, scored independently -->
+  <h6 class="mt-2">Topic matrix — structure vs maturity
+    <span class="text-muted small fw-normal">(two independent scores per topic; neither feeds the other)</span></h6>
+  <div class="small text-muted mb-2">
+    <span class="badge bg-primary-subtle text-primary-emphasis border">SMA structure</span> = ladder score of the linked SMA questions (does it exist &amp; is it practiced) ·
+    <span class="badge bg-success-subtle text-success-emphasis border">PDCA maturity</span> = the item's own Solidification rubric grade ·
+    gap: <span class="badge bg-warning text-dark">📋 structure ahead</span> = on paper but not solidified,
+    <span class="badge bg-info text-dark">🔧 practice ahead</span> = solidified beyond documented structure,
+    <span class="badge bg-secondary">= aligned</span>
+  </div>
+  <div class="row g-3 mb-4">
+    {% for code,label,color in [('safety_solid','Safety','success'),('dp_solid','DP','danger')] %}
+    <div class="col-lg-6">
+      <div class="card h-100"><div class="card-body py-2">
+        <div class="fw-semibold text-{{ color }} border-bottom pb-1 mb-1">{{ label }} Solidification topics</div>
+        <table class="table table-sm mb-0 align-middle" style="font-size:.85rem">
+          <thead><tr class="text-muted">
+            <th>Topic</th><th class="text-center" title="Ladder score over the SMA questions linked to this topic">SMA structure</th>
+            <th class="text-center" title="This item's own 5-level rubric grade">PDCA maturity</th><th class="text-center">Gap</th>
+          </tr></thead>
+          <tbody>
+          {% for row in topic_matrix[code] %}
+            <tr>
+              <td><span class="text-muted small">{{ row.id }}</span> {{ row.topic }}</td>
+              <td class="text-center">
+                {% if row.sma_n == 0 %}<span class="badge bg-light text-muted border" title="No SMA questions linked to this topic">no link</span>
+                {% elif row.sma_score is none %}<span class="badge bg-light text-muted border" title="{{ row.sma_answered }}/{{ row.sma_n }} linked SMA questions answered">—</span>
+                {% else %}<span class="badge bg-primary-subtle text-primary-emphasis border" title="{{ row.sma_answered }}/{{ row.sma_n }} linked SMA questions answered">{{ row.sma_score }} / 5</span>{% endif %}
+              </td>
+              <td class="text-center">{{ itembadge(row.solid) }}</td>
+              <td class="text-center">
+                {% if row.gap == 'structure_ahead' %}<span class="badge bg-warning text-dark">📋 structure</span>
+                {% elif row.gap == 'practice_ahead' %}<span class="badge bg-info text-dark">🔧 practice</span>
+                {% elif row.gap == 'aligned' %}<span class="badge bg-secondary">=</span>
+                {% else %}<span class="text-muted">·</span>{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+    {% endfor %}
+  </div>
 
   <!-- Solid track detail -->
   {% for label,color,detail in [('Safety Solidification','success',safety_detail),('DP Solidification','danger',dp_detail)] %}
