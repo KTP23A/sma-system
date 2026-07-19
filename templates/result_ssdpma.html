@@ -5,8 +5,9 @@
   {% if o and o.score is not none %}<span class="badge {% if o.score<2 %}bg-danger{% elif o.score<3 %}bg-warning text-dark{% elif o.score<4 %}bg-info{% elif o.score<5 %}bg-primary{% else %}bg-success{% endif %}" title="{{ o.n }} item(s){% if o.thin %} · thin, low confidence{% endif %}">{{ o.grade }}{% if o.thin %}*{% endif %}</span>{% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
 {% endmacro %}
 
-{% macro ansbadge(a) %}
-  {% if a=='yes' %}<span class="badge bg-success">Yes</span>{% elif a=='no' %}<span class="badge bg-danger">No</span>{% elif a=='na' %}<span class="badge bg-secondary">N/A</span>{% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
+{% macro itembadge(it) %}
+  {% if it.score is not none %}<span class="badge {% if it.score<2 %}bg-danger{% elif it.score<3 %}bg-warning text-dark{% elif it.score<4 %}bg-info{% elif it.score<5 %}bg-primary{% else %}bg-success{% endif %}" title="{{ it.levels_answered }}/{{ it.levels_total }} levels judged">{{ it.grade }} · {{ it.score }}</span>
+  {% else %}<span class="badge bg-light text-muted border">—</span>{% endif %}
 {% endmacro %}
 
 {% block content %}
@@ -68,7 +69,7 @@
     {% endfor %}
   </div>
 
-  <div class="small text-muted mb-3">* thin axis (&lt;3 items) — grade shown but low confidence. Solidification grade derived from Yes/No by proportion.</div>
+  <div class="small text-muted mb-3">* thin axis (&lt;3 items) — grade shown but low confidence. Each item's grade is derived from its own 5-level rubric (first level judged "No" caps the score); pillar/axis/overall grade is the weakest (MIN) item in the group.</div>
 
   <!-- SMA pillar table -->
   <h6 class="text-primary">SMA — pillar scores</h6>
@@ -100,7 +101,7 @@
             {% elif it.class=='bsapic' %}<span class="badge bg-secondary" style="font-size:.6rem">BSAPIC</span>{% endif %}
             {% if it.axis %}<span class="badge bg-info-subtle text-info-emphasis border" style="font-size:.6rem">{{ it.axis[:3] }}</span>{% endif %}
             {{ it.topic }}</span>
-          {{ ansbadge(it.answer) }}
+          {{ itembadge(it) }}
         </div>
         {% endfor %}
       </div></div>

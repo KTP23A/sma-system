@@ -363,58 +363,123 @@ SOLID_GRADE = {1:"C",2:"B-",3:"B",4:"B+",5:"A"}
 GRC_AXES = ["Governance", "Risk", "Compliance"]   # the 3-axis view
 MIN_ITEMS_FOR_RANK = 3   # axes/pillars thinner than this are shown but flagged low-confidence
 
-def _solid_item_answer(section, responses):
-    """Resolve one solidification item to 'yes'/'no'/'na'/None.
-    Carryover items are asked ONCE in the SMA section and fed here: strict roll-up —
-    any linked SMA 'no' => no; all real answers 'yes' => yes; only NA => na."""
-    if section.get("class") == "carryover" and section.get("sma_group_qids"):
-        vals = [responses.get(q) for q in section["sma_group_qids"]]
-        vals = [v for v in vals if v not in (None, "")]
-        if not vals:
-            return None
-        if any(v == "no" for v in vals):
-            return "no"
-        real = [v for v in vals if v not in ("na", "not_rolled_out")]
-        if not real:
-            return "na"
-        return "yes" if all(v == "yes" for v in real) else "no"
-    a = responses.get(section["id"])
-    return a if a in ("yes", "no", "na") else None
+# Each solid_rubric criteria string ends with a free-text "(who)" annotation pasted from the
+# source workbook (e.g. "(Safety Manager)", "(System: Operator: No.75)", but also plenty of
+# non-role footnotes like "(not safety)", "(CFT)"). Match only clear role keywords anywhere in
+# the text; leave untagged rather than guess — verified 81% coverage (289/357 levels) against
+# the real ssdpma.json data, raw criteria text is always shown regardless of a tag.
+SOLID_ROLE_RULES = [
+    ("Safety Manager", r"safety\s*manager|safety\s*mgr"),
+    ("DP Manager",      r"d\.?\s*p\.?\s*manager|d\.?\s*p\.?\s*mgr"),
+    ("Plant Manager",   r"plant\s*manager"),
+    ("Manager",         r"\bmgr\b|\bmanager\b"),
+    ("Supervisor",      r"\bsv\b|\bsvs\b|supervisor"),
+    ("Operator",        r"operators?\b"),
+    ("Teammate",        r"teammate"),
+]
+def _solid_rubric_role(criteria):
+    text = criteria or ""
+    for label, pat in SOLID_ROLE_RULES:
+        if re.search(pat, text, re.I):
+            return label
+    return None
 
-def _grade_group(answers):
-    """answers: list of 'yes'/'no' (NA already excluded). Derive a C..A rank by proportion:
-    number = 1 + round(4 * yes_fraction), 1..5. Returns {score,grade,n,yes,thin}."""
-    n = len(answers)
-    if n == 0:
-        return {"score": None, "grade": None, "n": 0, "yes": 0, "thin": True}
-    yes = sum(1 for a in answers if a == "yes")
-    num = int(1 + round(4 * yes / n))
-    return {"score": num, "grade": SOLID_GRADE[num], "n": n, "yes": yes,
-            "thin": n < MIN_ITEMS_FOR_RANK}
+# A subset of criteria (mostly carryover items) end with a precise, literal cross-reference back
+# to the SMA-MFG bank, e.g. "(System: Operator: No.75)" or "(System: Safety Manager: No.44+45)"
+# — "System"/"Leadership"/"Teammate Engagement"/"Organization" are exactly the 4 SMA pillar
+# names, and "No.N" is that pillar's question number (unique within the pillar, verified 0
+# collisions). Parsed this resolves 67/357 levels to an exact SMA question id (or several, for
+# "No.44+45"), letting the assessor jump straight to the backing SMA question for that level.
+_SMA_PILLAR_LABELS = {"leadership": "leadership", "teammate engagement": "tm_engagement",
+                       "organization": "organization", "system": "system"}
+_SOLID_REF_RE = re.compile(
+    r"\((Leadership|Teammate Engagement|Organization|System)\s*:\s*([^:()]+?)\s*:\s*No\.?\s*"
+    r"([0-9]+(?:\s*\+\s*[0-9]+)*|xx)\)", re.I)
+_SOLID_REF_ROLE_NORMALIZE = {"svs": "Supervisor", "sv": "Supervisor", "plant manager": "Plant Manager"}
+
+def _build_pillar_no_index(bank):
+    idx = {}
+    for p in bank["sma"]["pillars"]:
+        for e in p["elements"]:
+            for q in e["questions"]:
+                idx[(p["id"], q["no"])] = q["id"]
+    return idx
+
+def _solid_rubric_ref(criteria, pillar_no_index):
+    """Extract (role, [sma_qids]) from a criteria string's literal '(Pillar: Role: No.N)' cross-
+    reference, if present. Returns (None, []) when the pattern isn't there or resolves to nothing
+    (e.g. the one 'No.xx' placeholder in the data)."""
+    m = _SOLID_REF_RE.search(criteria or "")
+    if not m:
+        return None, []
+    pillar_label, role, nums = m.groups()
+    pillar_id = _SMA_PILLAR_LABELS.get(pillar_label.strip().lower())
+    role = _SOLID_REF_ROLE_NORMALIZE.get(role.strip().lower(), role.strip())
+    if nums.lower() == "xx":
+        return role, []
+    qids = []
+    for n in nums.split("+"):
+        qid = pillar_no_index.get((pillar_id, int(n.strip())))
+        if qid:
+            qids.append(qid)
+    return role, qids
+
+def _ladder_score(level_answers):
+    """level_answers: {level(int): 'yes'/'no'}, NA/blank already excluded. Same ladder rule as
+    SMA elements (_element_score): the first level judged 'no' caps the score at level-1;
+    if every judged level is 'yes', score is 5. Returns None if nothing judged yet."""
+    if not level_answers:
+        return None
+    for lv in sorted(level_answers):
+        if level_answers[lv] == "no":
+            return max(1, lv - 1)
+    return 5
+
+def _solid_item_score(section, responses):
+    """One solidification item's score (1-5), derived from ITS OWN 5-level rubric — every item
+    (new, BSAPIC, and carryover alike) is judged level-by-level against the 'Safety/DP Overall
+    Result' rubric text stored in solid_rubric, not from a single combined Yes/No."""
+    level_answers = {}
+    for lv in section.get("solid_rubric") or []:
+        v = responses.get(f"{section['id']}__L{lv['level']}")
+        if v in ("yes", "no"):
+            level_answers[lv["level"]] = v
+    return _ladder_score(level_answers), level_answers
+
+def _solid_group(scores):
+    """Aggregate a set of item scores (1-5) into one group score: MIN across items — the
+    weakest item caps the group, mirroring calculate_scores' pillar=min(elements) rule."""
+    if not scores:
+        return {"score": None, "grade": None, "n": 0, "thin": True}
+    sc = min(scores)
+    return {"score": sc, "grade": SOLID_GRADE[sc], "n": len(scores), "thin": len(scores) < MIN_ITEMS_FOR_RANK}
 
 def _solid_track(sections, responses, solid_pillars):
-    """Solidification score for one track. Every item is Yes/No (carryover items pull their
-    answer from the SMA section). Grade is DERIVED by proportion and reported three ways:
-    5-axis maturity pillars, 3-axis GRC, and one partition-independent overall."""
+    """Solidification score for one track. Every item's grade is derived from its own 5-level
+    ladder (_solid_item_score); pillar/axis/overall are the MIN across items in the group,
+    reported three ways: 5-axis maturity pillars, 3-axis GRC, and one partition-independent overall."""
     items = []
-    pillar_ans, axis_ans, all_ans = {}, {}, []
+    pillar_sc, axis_sc, all_sc = {}, {}, []
     for s in sections:
-        a = _solid_item_answer(s, responses)
+        score, level_answers = _solid_item_score(s, responses)
         linked = bool(s.get("class") == "carryover" and s.get("sma_group_qids"))
+        rubric_n = len(s.get("solid_rubric") or [])
         items.append({"id": s["id"], "topic": s["topic"], "pillar": s["solid_pillar"],
-                      "axis": s.get("axis"), "class": s["class"], "answer": a,
-                      "linked": linked, "sma_qids": s.get("sma_group_qids") or []})
-        if a in ("yes", "no"):
-            pillar_ans.setdefault(s["solid_pillar"], []).append(a)
+                      "axis": s.get("axis"), "class": s["class"], "score": score,
+                      "grade": SOLID_GRADE.get(score), "levels_answered": len(level_answers),
+                      "levels_total": rubric_n, "linked": linked,
+                      "sma_qids": s.get("sma_group_qids") or []})
+        if score is not None:
+            pillar_sc.setdefault(s["solid_pillar"], []).append(score)
             if s.get("axis"):
-                axis_ans.setdefault(s["axis"], []).append(a)
-            all_ans.append(a)
-    pillars = {p["id"]: _grade_group(pillar_ans.get(p["id"], [])) for p in solid_pillars}
-    axes    = {ax: _grade_group(axis_ans.get(ax, [])) for ax in GRC_AXES}
-    overall = _grade_group(all_ans)
-    untagged = sum(1 for it in items if it["answer"] in ("yes", "no") and not it["axis"])
+                axis_sc.setdefault(s["axis"], []).append(score)
+            all_sc.append(score)
+    pillars = {p["id"]: _solid_group(pillar_sc.get(p["id"], [])) for p in solid_pillars}
+    axes    = {ax: _solid_group(axis_sc.get(ax, [])) for ax in GRC_AXES}
+    overall = _solid_group(all_sc)
+    untagged = sum(1 for it in items if it["score"] is not None and not it["axis"])
     return {"overall": overall["score"], "overall_grade": overall["grade"],
-            "answered": len(all_ans),
+            "answered": len(all_sc),
             "pillars": pillars,        # 5-axis maturity view
             "axes": axes,              # 3-axis GRC view
             "axis_untagged": untagged, # answered items with no GRC tag (data-gap flag)
@@ -558,13 +623,12 @@ def _sma_qmap(bank):
     return qmap, loc
 
 def _ssdpma_progress(bank, ans):
-    """Total answerable = 233 SMA Qs + the solidification items that have their OWN input
-    (new + BSAPIC). Carryover solid items are answered once in the SMA section, so they are
-    already counted in the 233 and must not be double-counted here."""
+    """Total answerable = 233 SMA Qs + every solid item's OWN rubric levels (each level is its
+    own Judge input now, so it's the atomic answerable unit — same convention as SMA questions)."""
     ids = [q["id"] for p in bank["sma"]["pillars"] for e in p["elements"] for q in e["questions"]]
     for s in bank["sections"]["safety_solid"] + bank["sections"]["dp_solid"]:
-        if not (s.get("class") == "carryover" and s.get("sma_group_qids")):
-            ids.append(s["id"])
+        for lv in s.get("solid_rubric") or []:
+            ids.append(f"{s['id']}__L{lv['level']}")
     total = len(ids)
     answered = sum(1 for i in ids if ans.get(i) not in (None, ""))
     return total, answered
@@ -574,8 +638,8 @@ def _assess_ssdpma(db, assessment, user):
     resp   = get_responses_dict(db, assessment["id"])
     ans    = answers_only(resp)
     scores = calculate_ssdpma_scores(bank, ans)
-    # Map each SMA question -> the solidification item(s) it feeds (carryover links),
-    # so the SMA question row can show a "also feeds Solid" badge (asked once).
+    # Map each SMA question -> the solidification item(s) it also relates to (carryover cross-
+    # reference only — scoring for these items now comes from their own rubric, not the SMA answer).
     solid_link = {}
     for code, label in (("safety_solid", "Safety"), ("dp_solid", "DP")):
         for s in bank["sections"][code]:
@@ -586,6 +650,25 @@ def _assess_ssdpma(db, assessment, user):
     all_sma_qs = all_questions_flat(bank["sma"]["pillars"])
     q_method_tag = {q["id"]: _ssdpma_method_tag(q) for q in all_sma_qs}
     q_respondent_tags = {q["id"]: _ssdpma_respondent_tags(q) for q in all_sma_qs}
+    # Per-level "who to ask" + "which SMA question backs this" — the specific '(Pillar: Role:
+    # No.N)' cross-reference wins when present (precise, literal); otherwise fall back to the
+    # general keyword scan over the criteria text (still just "who", no SMA link).
+    pillar_no_index = _build_pillar_no_index(bank)
+    solid_level_role = {}
+    solid_level_ref = {}
+    solid_item_scores = {}
+    for code in ("safety_solid", "dp_solid"):
+        for s in bank["sections"][code]:
+            roles, refs = {}, {}
+            for lv in s.get("solid_rubric") or []:
+                ref_role, ref_qids = _solid_rubric_ref(lv["criteria"], pillar_no_index)
+                roles[lv["level"]] = ref_role or _solid_rubric_role(lv["criteria"])
+                if ref_qids:
+                    refs[lv["level"]] = ref_qids
+            solid_level_role[s["id"]] = roles
+            solid_level_ref[s["id"]] = refs
+        for it in scores[code]["items"]:
+            solid_item_scores[it["id"]] = it
     return render_template("assess_ssdpma.html",
         assessment=assessment, bank=bank, resp=resp, scores=scores,
         sma_pillars=bank["sma"]["pillars"], solid_link=solid_link,
@@ -595,6 +678,7 @@ def _assess_ssdpma(db, assessment, user):
         grade_scale=bank["grade_scale"], level_names=LEVEL_NAMES, level_colors=LEVEL_COLORS,
         q_method_tag=q_method_tag, q_respondent_tags=q_respondent_tags,
         ssdpma_method_labels=SSDPMA_METHOD_LABELS,
+        solid_level_role=solid_level_role, solid_level_ref=solid_level_ref, solid_item_scores=solid_item_scores,
         all_levels=sorted({q["level"] for q in all_sma_qs}),
         all_methods=[m for m in ("interview", "document", "genba") if m in set(q_method_tag.values())],
         all_answered_by=sorted({t for tags in q_respondent_tags.values() for t in tags}),
