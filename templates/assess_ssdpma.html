@@ -60,7 +60,8 @@
   {% set respondent_tags = q_respondent_tags.get(q.id, []) %}
   <div class="sma-q filterable-row px-2 py-2 {% if ans %}q-{{ ans }}{% endif %}" id="qrow-{{ q.id }}" data-qid="{{ q.id }}" data-answer="{{ ans }}"
        data-section="sma" data-pillar="{{ pillar_id }}" data-level="{{ q.level }}"
-       data-methods="{{ method_tag }}" data-answered-by="{{ respondent_tags | join(',') }}">
+       data-methods="{{ method_tag }}" data-answered-by="{{ respondent_tags | join(',') }}"
+       data-iroles="{{ q_canon_roles.get(q.id, []) | join(',') }}">
     <div class="d-flex align-items-start gap-2">
       <span class="text-muted small mt-1" style="min-width:2.4rem">{{ q.no }}.</span>
       <div class="flex-grow-1">
@@ -140,7 +141,8 @@
           {% set lvl_ans = resp.get(level_qid, {}).get('answer', '') %}
           {% set role = solid_level_role.get(s.id, {}).get(lv.level) %}
           {% set ref_qids = solid_level_ref.get(s.id, {}).get(lv.level, []) %}
-          <div class="ladder-row d-flex align-items-start gap-2 py-2 {% if not loop.first %}border-top{% endif %} {% if lvl_ans %}q-{{ lvl_ans }}{% endif %}">
+          <div class="ladder-row d-flex align-items-start gap-2 py-2 {% if not loop.first %}border-top{% endif %} {% if lvl_ans %}q-{{ lvl_ans }}{% endif %}"
+               data-irole="{{ solid_level_canon.get(s.id, {}).get(lv.level, []) | join(',') }}">
             <span class="badge bg-light text-dark border mt-1" style="min-width:2.6rem">L{{ lv.level }}·{{ lv.grade }}</span>
             <div class="flex-grow-1 small">
               <div style="white-space:pre-line">{{ lv.criteria }}</div>
@@ -195,6 +197,17 @@
                oninput="applyFilters()">
       </span>
       <button class="btn btn-sm btn-outline-secondary" onclick="clearFilters()">✕ Clear all</button>
+    </div>
+    <div class="d-flex align-items-center gap-1 mb-2 flex-wrap" id="interview-bar">
+      <span class="small text-muted me-1" title="Show only the SMA questions and Solidification rubric levels this person answers — one interview covers both tracks">🎙 Interview:</span>
+      <button type="button" class="btn btn-sm btn-dark role-chip active" data-role="" onclick="setRole(this)">All</button>
+      {% for slug, label in role_canon %}
+        {% if role_counts.get(slug, 0) > 0 %}
+        <button type="button" class="btn btn-sm btn-outline-secondary role-chip" data-role="{{ slug }}" onclick="setRole(this)">
+          {{ label }} <span class="badge bg-light text-dark border ms-1">{{ role_counts[slug] }}</span>
+        </button>
+        {% endif %}
+      {% endfor %}
     </div>
     <div class="row g-2">
 
@@ -497,6 +510,7 @@ function applyFilters() {
       (row.textContent || '').toLowerCase().includes(query);
 
     let matchTypeSpecific = true;
+    let matchRole = true;
     if (section === 'sma') {
       const pillar = row.dataset.pillar, level = row.dataset.level;
       const methods = (row.dataset.methods || '').split(',');
@@ -506,15 +520,23 @@ function applyFilters() {
         (fLevels.length === 0 || fLevels.includes(level)) &&
         (fMethods.length === 0 || fMethods.some(m => methods.includes(m))) &&
         (fAnsweredBys.length === 0 || fAnsweredBys.some(t => answeredByTags.includes(t)));
+      if (activeRole) matchRole = (row.dataset.iroles || '').split(',').includes(activeRole);
     } else {
       const solidPillar = row.dataset.solidPillar, axis = row.dataset.axis || '', cls = row.dataset.class || '';
       matchTypeSpecific =
         (fSolidPillars.length === 0 || fSolidPillars.includes(solidPillar)) &&
         (fAxes.length === 0 || fAxes.includes(axis)) &&
         (fClasses.length === 0 || fClasses.includes(cls));
+      let anyLevelVisible = false;
+      row.querySelectorAll('.ladder-row').forEach(lr => {
+        const lrShow = !activeRole || (lr.dataset.irole || '').split(',').includes(activeRole);
+        lr.classList.toggle('hidden-by-filter', !lrShow);
+        if (lrShow) anyLevelVisible = true;
+      });
+      if (activeRole) matchRole = anyLevelVisible;
     }
 
-    const show = matchSection && matchStatus && matchSearch && matchTypeSpecific;
+    const show = matchSection && matchStatus && matchSearch && matchTypeSpecific && matchRole;
     row.classList.toggle('hidden-by-filter', !show);
     if (show) visible++;
   });
@@ -538,6 +560,20 @@ function clearFilters() {
     document.querySelectorAll(`#${id} input[type=checkbox]`).forEach(cb => cb.checked = false);
   });
   const sb = document.getElementById('q-search'); if (sb) sb.value = '';
+  const allChip = document.querySelector('#interview-bar .role-chip[data-role=""]');
+  if (allChip) setRole(allChip); else applyFilters();
+}
+
+// ── Interview mode: one queue per person, both tracks ──
+let activeRole = '';
+function setRole(btn) {
+  activeRole = btn.dataset.role || '';
+  document.querySelectorAll('#interview-bar .role-chip').forEach(c => {
+    const on = c === btn;
+    c.classList.toggle('active', on);
+    c.classList.toggle('btn-dark', on);
+    c.classList.toggle('btn-outline-secondary', !on);
+  });
   applyFilters();
 }
 

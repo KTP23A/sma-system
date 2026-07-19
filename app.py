@@ -424,6 +424,79 @@ def _solid_rubric_ref(criteria, pillar_no_index):
             qids.append(qid)
     return role, qids
 
+# ── SSDPMA interview-mode role canon ───────────────────────────────────────
+# One canonical 8-role list covering BOTH tracks (user-confirmed 2026-07-19), so an assessor
+# can interview each person once and see their SMA questions AND Solid rubric levels in one
+# queue. Merges confirmed: Foreperson→Supervisor, Production GM→Production Manager,
+# Maintenance Foreman→Maintenance Staff, Operator≡Teammate. SMA's finer 11-role capture
+# widget (role_config) is untouched — the canon only drives interview grouping/filtering.
+# "genba" is a pseudo-queue for Tour/observation questions that have no interviewee.
+SSDPMA_ROLE_CANON = [
+    ("safety_manager",     "Safety Manager"),
+    ("dp_manager",         "DP Manager"),
+    ("plant_manager",      "Plant Manager"),
+    ("production_manager", "Production Manager"),
+    ("supervisor",         "Supervisor"),
+    ("teammate",           "Teammate / Operator"),
+    ("maintenance_manager","Maintenance Manager"),
+    ("maintenance_staff",  "Maintenance Staff"),
+    ("genba",              "Genba tour"),
+]
+# SMA role_config keys → canon slug
+_SMA_RESP2CANON = {
+    "plant_manager": "plant_manager", "production_gm": "production_manager",
+    "production_manager": "production_manager", "foreperson": "supervisor",
+    "supervisor": "supervisor", "teammate": "teammate",
+    "maintenance_manager": "maintenance_manager", "maintenance_foreman": "maintenance_staff",
+    "maintenance_staff": "maintenance_staff", "safety_manager": "safety_manager",
+    "dp_manager": "dp_manager",
+}
+# Solid rubric role strings (from _solid_rubric_role / _solid_rubric_ref) → canon slug
+_SOLID_ROLE2CANON = {
+    "safety manager": "safety_manager", "dp manager": "dp_manager",
+    "plant manager": "plant_manager", "manager": "production_manager",
+    "supervisor": "supervisor", "operator": "teammate", "teammate": "teammate",
+}
+# Solid ITEM-level roles field (source workbook vocab) → canon slug, used as fallback when a
+# rubric level's criteria text names nobody.
+_SOLID_ITEMROLE2CANON = {
+    "safety mgr": "safety_manager", "dp mgr": "dp_manager", "line mgr": "production_manager",
+    "supervisor": "supervisor", "operator": "teammate",
+}
+
+def _sma_q_canon_roles(q):
+    """Canonical interview roles for one SMA question. Tour/observation questions go to the
+    'genba' pseudo-queue; a question with no responders and no tour signal returns []."""
+    roles = sorted({_SMA_RESP2CANON[r] for r in (q.get("responders") or []) if r in _SMA_RESP2CANON})
+    if roles:
+        return roles
+    if re.search(r"tour|observ", q.get("answered_by") or "", re.I):
+        return ["genba"]
+    return []
+
+def _solid_level_canon_roles(item, criteria, pillar_no_index):
+    """Canonical roles for one solid rubric level, with provenance. Chain (most→least precise):
+    literal '(Pillar: Role: No.N)' ref → role keyword in criteria text → item-level roles field
+    → track default (Safety/DP Manager) for BSAPIC items that name nobody anywhere. The last
+    two are PROPOSED tags pending user confirmation (see role-tag review export)."""
+    ref_role, _ = _solid_rubric_ref(criteria, pillar_no_index)
+    if ref_role:
+        c = _SOLID_ROLE2CANON.get(ref_role.lower())
+        if c:
+            return [c], "ref"
+    kw = _solid_rubric_role(criteria)
+    if kw:
+        c = _SOLID_ROLE2CANON.get(kw.lower())
+        if c:
+            return [c], "keyword"
+    item_roles = sorted({_SOLID_ITEMROLE2CANON[r.lower()] for r in (item.get("roles") or [])
+                         if r.lower() in _SOLID_ITEMROLE2CANON})
+    if item_roles:
+        return item_roles, "item-roles"
+    default = "dp_manager" if (item.get("feeds") or ["safety_solid"])[0].startswith("dp") else "safety_manager"
+    return [default], "track-default"
+
+
 def _ladder_score(level_answers):
     """level_answers: {level(int): 'yes'/'no'}, NA/blank already excluded. Same ladder rule as
     SMA elements (_element_score): the first level judged 'no' caps the score at level-1;
@@ -657,16 +730,29 @@ def _assess_ssdpma(db, assessment, user):
     solid_level_role = {}
     solid_level_ref = {}
     solid_item_scores = {}
+    # Interview-mode crosswalk: canonical role(s) per SMA question and per solid rubric level,
+    # plus total ask counts per canon role for the role-chip UI.
+    q_canon_roles = {q["id"]: _sma_q_canon_roles(q) for q in all_sma_qs}
+    solid_level_canon = {}
+    role_counts = {slug: 0 for slug, _ in SSDPMA_ROLE_CANON}
+    for roles in q_canon_roles.values():
+        for r in roles:
+            role_counts[r] += 1
     for code in ("safety_solid", "dp_solid"):
         for s in bank["sections"][code]:
-            roles, refs = {}, {}
+            roles, refs, canon = {}, {}, {}
             for lv in s.get("solid_rubric") or []:
                 ref_role, ref_qids = _solid_rubric_ref(lv["criteria"], pillar_no_index)
                 roles[lv["level"]] = ref_role or _solid_rubric_role(lv["criteria"])
                 if ref_qids:
                     refs[lv["level"]] = ref_qids
+                lv_canon, _prov = _solid_level_canon_roles(s, lv["criteria"], pillar_no_index)
+                canon[lv["level"]] = lv_canon
+                for r in lv_canon:
+                    role_counts[r] += 1
             solid_level_role[s["id"]] = roles
             solid_level_ref[s["id"]] = refs
+            solid_level_canon[s["id"]] = canon
         for it in scores[code]["items"]:
             solid_item_scores[it["id"]] = it
     return render_template("assess_ssdpma.html",
@@ -679,6 +765,8 @@ def _assess_ssdpma(db, assessment, user):
         q_method_tag=q_method_tag, q_respondent_tags=q_respondent_tags,
         ssdpma_method_labels=SSDPMA_METHOD_LABELS,
         solid_level_role=solid_level_role, solid_level_ref=solid_level_ref, solid_item_scores=solid_item_scores,
+        q_canon_roles=q_canon_roles, solid_level_canon=solid_level_canon,
+        role_canon=SSDPMA_ROLE_CANON, role_counts=role_counts,
         all_levels=sorted({q["level"] for q in all_sma_qs}),
         all_methods=[m for m in ("interview", "document", "genba") if m in set(q_method_tag.values())],
         all_answered_by=sorted({t for tags in q_respondent_tags.values() for t in tags}),
