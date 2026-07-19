@@ -208,6 +208,25 @@
         </button>
         {% endif %}
       {% endfor %}
+      <span class="ms-auto d-flex align-items-center gap-1">
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="toggleTeamPlan()">👥 Team plan</button>
+        <span class="input-group input-group-sm" style="width:auto" title="Your name — saved with every answer you record (audit traceability)">
+          <span class="input-group-text">✍</span>
+          <input type="text" id="assessor-name" class="form-control form-control-sm" placeholder="Recording as…"
+                 style="width:130px" oninput="setAssessor(this.value)">
+        </span>
+      </span>
+    </div>
+    <div id="team-plan" class="border rounded p-2 mb-2 small" style="display:none;background:#f8fafc">
+      <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+        <b>Suggested interview split</b>
+        <span class="text-muted">— queues balanced by workload across</span>
+        <select id="team-size" class="form-select form-select-sm" style="width:auto" onchange="renderTeamPlan()">
+          <option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option>
+        </select>
+        <span class="text-muted">assessors. Each assessor picks their queue chips above; answers are tagged with the name in ✍.</span>
+      </div>
+      <div id="team-plan-body" class="d-flex gap-2 flex-wrap"></div>
     </div>
     <div class="row g-2">
 
@@ -577,6 +596,33 @@ function setRole(btn) {
   applyFilters();
 }
 
+// ── Multi-assessor support: workload split + per-answer attribution ──
+let assessorName = localStorage.getItem('ssdpma_assessor') || '';
+function setAssessor(v) { assessorName = v.trim(); localStorage.setItem('ssdpma_assessor', assessorName); }
+function toggleTeamPlan() {
+  const p = document.getElementById('team-plan');
+  const show = p.style.display === 'none';
+  p.style.display = show ? '' : 'none';
+  if (show) renderTeamPlan();
+}
+function renderTeamPlan() {
+  const n = parseInt(document.getElementById('team-size').value) || 4;
+  const queues = Array.from(document.querySelectorAll('#interview-bar .role-chip'))
+    .filter(c => c.dataset.role)
+    .map(c => ({ label: c.textContent.trim().replace(/\s+\d+$/, ''), count: parseInt(c.querySelector('.badge')?.textContent) || 0 }))
+    .sort((a, b) => b.count - a.count);
+  const team = Array.from({ length: n }, (_, i) => ({ name: 'Assessor ' + (i + 1), total: 0, queues: [] }));
+  queues.forEach(q => {
+    const t = team.reduce((min, a) => a.total < min.total ? a : min, team[0]);
+    t.queues.push(q); t.total += q.count;
+  });
+  document.getElementById('team-plan-body').innerHTML = team.map(t =>
+    `<div class="border rounded bg-white p-2" style="min-width:150px"><b>${t.name}</b> <span class="badge bg-secondary">${t.total} asks</span><br>` +
+    (t.queues.map(q => `${q.label} <span class="text-muted">(${q.count})</span>`).join('<br>') || '<span class="text-muted">—</span>') + '</div>'
+  ).join('');
+}
+document.getElementById('assessor-name').value = assessorName;
+
 function num(v){ return (v==null)?'—':(Math.round(v*100)/100); }
 function smaChip(lbl,v){
   const d=document.createElement('span'); d.className='badge grade-chip '+(v==null?'bg-light text-muted border':(v<2?'bg-danger':v<3?'bg-warning text-dark':v<4?'bg-info':v<5?'bg-primary':'bg-success'));
@@ -635,7 +681,7 @@ function save(qid, answer, comment){
   clearTimeout(saveTimers[qid]);
   saveTimers[qid]=setTimeout(()=>{
     fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer||'', comment:comment||''})})
+      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, answer:answer||'', comment:comment||'', assessor:assessorName})})
     .then(r=>r.json()).then(data=>{ if(data.ssdpma) updatePanels(data.ssdpma); if(typeof data.answered==='number') setProgress(data.answered);
       const row=document.getElementById('qrow-'+qid) || document.querySelector(`.solid-level-yesno[data-qid="${qid}"]`)?.closest('.ladder-row');
       if(row){ row.className=row.className.replace(/q-\w+/g,''); if(answer) row.classList.add('q-'+answer); } });
@@ -678,7 +724,7 @@ function saveResponder(panel){
   clearTimeout(saveTimers[qid]);
   saveTimers[qid]=setTimeout(()=>{
     fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, detail, comment})})
+      body:JSON.stringify({assessment_id:ASSESSMENT_ID, question_id:qid, detail, comment, assessor:assessorName})})
     .then(r=>r.json()).then(data=>{
       if(data.ssdpma) updatePanels(data.ssdpma); if(typeof data.answered==='number') setProgress(data.answered);
       const d=data.derived||''; const badge=panel.querySelector('.rsp-result');
