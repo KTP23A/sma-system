@@ -514,12 +514,20 @@ function applyFilters() {
   const fClasses = getChecked('dd-class');
   const query = (document.getElementById('q-search')?.value || '').trim().toLowerCase();
 
+  // Type-specific filters SCOPE the view: filtering on a solid-only property (pillar/axis/class)
+  // means the user is looking at solid items, so SMA rows hide entirely — and vice versa. A row
+  // type only survives cross-hiding if it has its own active filters (then each side shows its matches).
+  const smaFiltersActive = fPillars.length || fLevels.length || fMethods.length || fAnsweredBys.length;
+  const solidFiltersActive = fSolidPillars.length || fAxes.length || fClasses.length;
+
   let visible = 0;
   document.querySelectorAll('.filterable-row').forEach(row => {
     const section = row.dataset.section;
     const answer = row.dataset.answer || '';
 
-    const matchSection = fSections.length === 0 || fSections.includes(section);
+    let matchSection = fSections.length === 0 || fSections.includes(section);
+    if (section === 'sma' && solidFiltersActive && !smaFiltersActive) matchSection = false;
+    if (section !== 'sma' && smaFiltersActive && !solidFiltersActive) matchSection = false;
     const matchStatus = fStatuses.length === 0 || fStatuses.some(s => s === 'unanswered' ? answer === '' : answer === s);
     const matchSearch = query === '' ||
       (row.getAttribute('data-qid') || row.getAttribute('data-solid-id') || '').toLowerCase().includes(query) ||
