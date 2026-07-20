@@ -463,7 +463,12 @@ const SMASLAB = {leadership:'LD', tm_engagement:'TM', organization:'Org', system
 const SOLSLAB = {issue_solving:'Iss', risk_management:'Risk', business_strategy:'Biz', independency:'Ind', integration:'Intg'};
 const saveTimers = {};
 function toggleCrit(btn){ const b=btn.nextElementSibling; b.style.display = b.style.display==='none'?'block':'none'; }
-function jump(qid){ const el=document.getElementById('qrow-'+qid); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.transition='background .3s'; el.style.background='#fff3cd'; setTimeout(()=>el.style.background='',1200);} }
+function jump(qid){ const el=document.getElementById('qrow-'+qid); if(!el) return;
+  if(el.offsetParent===null) clearFilters();   // target hidden by an active filter/role queue — reset so it can scroll into view
+  // 'instant', not 'smooth': Bootstrap's :root{scroll-behavior:smooth} smooth-scroll never
+  // actually runs on this very tall page (Chrome), so a smooth request silently goes nowhere.
+  el.scrollIntoView({behavior:'instant',block:'center'});
+  el.style.transition='background .3s'; el.style.background='#fff3cd'; setTimeout(()=>el.style.background='',1200); }
 
 // ── Multi-select dropdown helpers (shared pattern with assess.html) ─────────
 function toggleDd(id) {
