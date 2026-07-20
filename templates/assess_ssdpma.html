@@ -5,7 +5,11 @@
 {% macro responder_panel(q, ans, det) %}
   {% set rdet = det.get('roles', {}) %}
   <div class="responder-panel border rounded p-2 mb-1" data-qid="{{ q.id }}" style="background:#f8fafc">
-    <div class="small text-muted mb-2">Interview result is <b>Yes</b> only if <u>every</u> respondent answers Yes; any No ⇒ No.</div>
+    {% if q.decision_rule %}
+      <div class="small text-muted mb-2">Interview result is <b>Yes</b> when at least <b>{{ q.decision_rule.min_yes }}</b> respondent(s) answer Yes <span class="text-muted">({{ q.decision_rule.source }})</span>; No only when interviewing is complete with fewer Yes.</div>
+    {% else %}
+      <div class="small text-muted mb-2">Interview result is <b>Yes</b> only if <u>every</u> respondent answers Yes; any No ⇒ No.</div>
+    {% endif %}
     {% for role in q.responders %}
       {% set cfg = role_config.get(role, {}) %}
       {% set rd = rdet.get(role, {}) %}
@@ -74,10 +78,17 @@
             {% endfor %}
           </div>
         {% endif %}
-        {% if q.judgement_criteria %}
+        {% if q.judgement_criteria or q.level_criteria or q.interview_content or q.onsite_observation or q.document_check %}
           <div class="mb-1">
-            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none" onclick="toggleCrit(this)" style="font-size:.78rem">ⓘ criteria ▾</button>
-            <div class="small text-muted mt-1 px-2 py-1 rounded" style="display:none;background:#f3f4ff;border-left:3px solid #5458e8">{{ q.judgement_criteria }}</div>
+            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none" onclick="toggleCrit(this)" style="font-size:.78rem">ⓘ criteria &amp; guidance ▾</button>
+            <div class="small mt-1 px-2 py-1 rounded" style="display:none;background:#f3f4ff;border-left:3px solid #5458e8">
+              {% if q.judgement_criteria %}<div class="mb-1"><b>⚖ Judgement criteria</b><div class="text-muted" style="white-space:pre-line">{{ q.judgement_criteria }}</div></div>{% endif %}
+              {% if q.decision_rule %}<div class="mb-1"><span class="badge bg-primary">Rule: Yes when ≥ {{ q.decision_rule.min_yes }} respondent(s) answer Yes</span></div>{% endif %}
+              {% if q.level_criteria %}<div class="mb-1"><b>📋 Level criteria</b><div class="text-muted" style="white-space:pre-line">{{ q.level_criteria }}</div></div>{% endif %}
+              {% if q.interview_content %}<div class="mb-1"><b>🎙 Interview</b><div class="text-muted" style="white-space:pre-line">{{ q.interview_content }}</div></div>{% endif %}
+              {% if q.onsite_observation %}<div class="mb-1"><b>👁 On-site observation</b><div class="text-muted" style="white-space:pre-line">{{ q.onsite_observation }}</div></div>{% endif %}
+              {% if q.document_check %}<div class="mb-1"><b>📄 Documents</b><div class="text-muted" style="white-space:pre-line">{{ q.document_check }}</div></div>{% endif %}
+            </div>
           </div>
         {% endif %}
         <div class="d-flex flex-wrap gap-1 mb-1">

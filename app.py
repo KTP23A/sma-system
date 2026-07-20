@@ -119,9 +119,13 @@ def find_question(pillars, qid):
     return None
 
 def derive_answer(question, detail, role_config):
-    """Strict 100%-Yes roll-up from per-role responder counts.
-    Returns 'yes' (all required responders answered, zero No), 'no' (any No),
-    'na'/'not_rolled_out' (manual toggles), or '' (incomplete → unanswered)."""
+    """Roll-up from per-role responder counts.
+    Default rule: strict 100%-Yes — 'yes' (all required responders answered, zero No),
+    'no' (any No), 'na'/'not_rolled_out' (manual toggles), '' (incomplete → unanswered).
+    Questions with a decision_rule {min_yes: M} (parsed from the source sheet's Judgement
+    Criteria, e.g. "In a sample of 3 managers, >1 stated…") use a minimum-Yes-count rule
+    instead: 'yes' as soon as total Yes ≥ M (extra No answers do NOT block — user-confirmed
+    reading), 'no' only when interviewing is complete and Yes still < M."""
     responders = question.get("responders") or []
     if not responders:
         return None  # not a responder question; caller keeps the plain answer
@@ -129,28 +133,49 @@ def derive_answer(question, detail, role_config):
     if detail.get("na"): return "na"
     if detail.get("not_rolled_out"): return "not_rolled_out"
     roles = detail.get("roles", {}) or {}
-    any_no = False; complete = True
+    any_no = False; complete = True; yes_count = 0
     for rk in responders:
         cfg = role_config.get(rk, {})
         rd  = roles.get(rk, {}) or {}
         if cfg.get("mode") == "departments":
             used = [d for d in rd.get("departments", []) if (d.get("name") or d.get("answer"))]
             answered = [d for d in used if d.get("answer") in ("yes","no")]
+            yes_count += sum(1 for d in answered if d.get("answer") == "yes")
             if any(d.get("answer") == "no" for d in answered): any_no = True
             if not used or len(answered) < len(used): complete = False
         elif cfg.get("mode") == "sections":
             people = [p for sec in rd.get("sections", []) for p in sec.get("people", [])]
             answered = [p for p in people if p.get("answer") in ("yes","no")]
             started = [p for p in people if (p.get("name") or "").strip() and p.get("answer") not in ("yes","no")]
+            yes_count += sum(1 for p in answered if p.get("answer") == "yes")
             if any(p.get("answer") == "no" for p in answered): any_no = True
             if not answered or started: complete = False
         else:
             yes = int(rd.get("yes") or 0); no = int(rd.get("no") or 0)
             expected = int(rd.get("expected") or cfg.get("default_expected", 1) or 1)
+            yes_count += yes
             if no > 0: any_no = True
             if (yes + no) < max(expected, 1): complete = False
+    rule = question.get("decision_rule") or {}
+    if rule.get("min_yes"):
+        if yes_count >= rule["min_yes"]: return "yes"
+        # 'No' only once the required sample size has actually been interviewed —
+        # prevents a premature No while the assessor is still adding respondents.
+        answered_total = yes_count + _no_count(detail)
+        if complete and answered_total >= rule.get("sample_n", rule["min_yes"]):
+            return "no"
+        return ""
     if any_no: return "no"
     return "yes" if complete else ""
+
+def _no_count(detail):
+    n = 0
+    for rd in (detail.get("roles", {}) or {}).values():
+        rd = rd or {}
+        n += sum(1 for d in rd.get("departments", []) if d.get("answer") == "no")
+        n += sum(1 for sec in rd.get("sections", []) for p in sec.get("people", []) if p.get("answer") == "no")
+        n += int(rd.get("no") or 0)
+    return n
 
 
 # ─── Database ─────────────────────────────────────────────────────────────────
