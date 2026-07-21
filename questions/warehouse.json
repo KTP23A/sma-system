@@ -336,7 +336,7 @@
                 "document"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents"
+              "judgement_criteria": "All respondents can explain how to report when incident happen. A review of the incident records from the last month show that teammates have been reporting incidents and near misses."
             },
             {
               "id": "WH-TM-008",
@@ -1195,7 +1195,7 @@
                 "interview"
               ],
               "standard": "Safety Rules",
-              "judgement_criteria": "The respondent can show an example that thier feedback was used to revise the Safety Rules."
+              "judgement_criteria": "The respondent can show an example that thier feedback was used to revise the Safety Rules. (Examples of FB: Teammates require to change safety rule due to difficulties of the compliance with the required safety rules during tasks/services, etc.)"
             },
             {
               "id": "WH-SY-091",
@@ -1225,7 +1225,7 @@
                 "document"
               ],
               "standard": "Work at Height",
-              "judgement_criteria": "There is the training"
+              "judgement_criteria": "There is the training and/or communication record for teammates performing Work at height."
             },
             {
               "id": "WH-SY-028",
@@ -1291,7 +1291,7 @@
                 "document"
               ],
               "standard": "Mobile Equipment",
-              "judgement_criteria": "There is the training"
+              "judgement_criteria": "There is the training and/or communication record for mobile equipment drivers."
             },
             {
               "id": "WH-SY-029",
@@ -1339,7 +1339,7 @@
                 "interview"
               ],
               "standard": "Mobile Equipment",
-              "judgement_criteria": "The respondent can show an example that thier feedback is used to revise the rule or procedure for mobile equipment."
+              "judgement_criteria": "The respondent can show an example that thier feedback is used to revise the rule or procedure for mobile equipment. (Examples of FB: Teammates require changes due to difficulties of the compliance with the safety standards for mobile equipment, etc.)"
             },
             {
               "id": "WH-SY-093",
