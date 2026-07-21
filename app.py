@@ -2,7 +2,7 @@
 SMA Check Item System — Simplified single-user edition
 Run: python3 app.py  →  open http://localhost:5001
 """
-import json, os, re, sqlite3, io
+import json, os, re, sqlite3, io, math
 from datetime import date
 from functools import wraps
 from pathlib import Path
@@ -261,6 +261,10 @@ def init_db():
     acols = [r[1] for r in db.execute("PRAGMA table_info(assessments)")]
     if "kind" not in acols:
         db.execute("ALTER TABLE assessments ADD COLUMN kind TEXT DEFAULT 'self'")
+    # Migration: add assessments.tm_count (total teammates on site) — used to derive
+    # the required interview sample size for teammate-answered judgement criteria.
+    if "tm_count" not in acols:
+        db.execute("ALTER TABLE assessments ADD COLUMN tm_count INTEGER")
     if db.execute("SELECT COUNT(*) FROM users").fetchone()[0] == 0:
         db.execute("INSERT INTO users (username, full_name, password_hash) VALUES (?,?,?)",
             ("admin","Administrator",generate_password_hash("admin123",method="pbkdf2:sha256")))
@@ -886,6 +890,39 @@ def assess(assessment_id):
 
 
 # ─── AJAX: auto-save ──────────────────────────────────────────────────────────
+
+def tm_sample_size(n):
+    """Required teammate interview sample per the SMA sampling rule:
+    global target is 10% of all teammates on site, with a floor of 3
+    (when 10% works out to fewer than 3). Returns None if n is unknown/<=0."""
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return None
+    if n <= 0:
+        return None
+    return max(3, math.ceil(n * 0.10))
+
+
+@app.route("/api/assessment/<int:assessment_id>/tmcount", methods=["POST"])
+@login_required
+def api_tmcount(assessment_id):
+    db = get_db()
+    assessment = db.execute("SELECT id FROM assessments WHERE id=?", (assessment_id,)).fetchone()
+    if not assessment:
+        return jsonify({"error": "not found"}), 404
+    raw = (request.get_json() or {}).get("tm_count")
+    if raw in (None, ""):
+        tm_count = None
+    else:
+        try:
+            tm_count = max(0, int(raw))
+        except (TypeError, ValueError):
+            return jsonify({"error": "tm_count must be a whole number"}), 400
+    db.execute("UPDATE assessments SET tm_count=? WHERE id=?", (tm_count, assessment_id))
+    db.commit()
+    return jsonify({"ok": True, "tm_count": tm_count, "required": tm_sample_size(tm_count)})
+
 
 @app.route("/api/answer", methods=["POST"])
 @login_required

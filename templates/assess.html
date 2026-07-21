@@ -45,6 +45,28 @@
         <span id="answered-count">{{ answered_q }}</span> / {{ total_q }} questions answered
       </div>
 
+      <!-- ── Teammate interview sample calculator (10% rule, min 3) ── -->
+      <div class="mt-2 pt-2 border-top" id="tm-sample-box"
+           data-assessment="{{ assessment.id }}" data-readonly="{{ '1' if read_only else '' }}">
+        <div class="small fw-semibold mb-1">👥 Teammate interview sample
+          <span class="text-muted fw-normal">— guideline: 10% of teammates on site, minimum 3</span>
+        </div>
+        <div class="d-flex align-items-center flex-wrap gap-2">
+          <label class="small text-muted mb-0">Total teammates on site</label>
+          {% if read_only %}
+            <span class="badge bg-light text-dark border">{{ assessment.tm_count if assessment.tm_count is not none else '—' }}</span>
+          {% else %}
+            <input type="number" min="0" step="1" id="tm-count-input"
+                   class="form-control form-control-sm" style="width:110px"
+                   value="{{ assessment.tm_count if assessment.tm_count is not none else '' }}"
+                   placeholder="e.g. 45">
+          {% endif %}
+          <span class="small">→ interview at least
+            <span class="badge bg-primary fs-6" id="tm-required">—</span> teammate(s)</span>
+          <span class="small text-muted" id="tm-saved-note"></span>
+        </div>
+      </div>
+
       <!-- ── Compare against past assessments (same type — tick any number) ── -->
       <form method="get" class="mt-2 pt-2 border-top">
         <div class="small fw-semibold mb-1">⚖️ Compare with <span class="text-muted fw-normal">(tick one or more)</span>:</div>
@@ -697,6 +719,51 @@ function updateRowColor(row, answer) {
   row.classList.remove('q-yes','q-no','q-na','q-not_rolled_out');
   if (answer) row.classList.add('q-' + answer);
 }
+
+// ── Teammate interview sample calculator (10% of TMs on site, min 3) ──────────
+(function () {
+  const box = document.getElementById('tm-sample-box');
+  if (!box) return;
+  const reqEl = document.getElementById('tm-required');
+  const input = document.getElementById('tm-count-input');
+  const note  = document.getElementById('tm-saved-note');
+
+  function required(n) {
+    n = parseInt(n, 10);
+    if (!Number.isFinite(n) || n <= 0) return null;
+    return Math.max(3, Math.ceil(n * 0.10));
+  }
+  function render(n) {
+    const r = required(n);
+    reqEl.textContent = (r === null) ? '—' : r;
+  }
+  // Initial paint (works in read-only mode too, using the stored value).
+  const initial = input ? input.value
+                        : (box.querySelector('.badge')?.textContent || '').trim();
+  render(initial);
+
+  if (!input) return;  // read-only: no saving
+  let timer;
+  input.addEventListener('input', function () {
+    render(input.value);
+    note.textContent = '';
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fetch('/api/assessment/' + box.dataset.assessment + '/tmcount', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ tm_count: input.value === '' ? null : input.value })
+      })
+      .then(r => r.json())
+      .then(d => {
+        if (d && d.ok) { reqEl.textContent = (d.required === null || d.required === undefined) ? '—' : d.required;
+                         note.textContent = '✓ saved'; }
+        else { note.textContent = (d && d.error) ? ('⚠ ' + d.error) : '⚠ not saved'; }
+      })
+      .catch(() => { note.textContent = '⚠ not saved'; });
+    }, 400);
+  });
+})();
 
 // ── Responder panels (MFG count-based judgement) ──────────────────────────────
 function collectDetail(panel) {
