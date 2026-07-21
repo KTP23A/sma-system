@@ -203,7 +203,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can show examples that the site manager addresses at the morning assembly, roll call, etc."
+              "judgement_criteria": "All respondents can show examples that the site manager addresses at the morning assembly, roll call, etc.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-LD-004",
@@ -215,7 +218,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents stated that site leadership (e.g. site manager and supervisor) was involved in the root cause analysis process when a serious incident (lost-time-injury, fire accident, etc.) occurred"
+              "judgement_criteria": "All respondents stated that site leadership (e.g. site manager and supervisor) was involved in the root cause analysis process when a serious incident (lost-time-injury, fire accident, etc.) occurred",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-LD-008",
@@ -239,7 +245,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can explain their own responsibilities for safety. (e.g. participation of safety activity, etc.)"
+              "judgement_criteria": "All respondents can explain their own responsibilities for safety. (e.g. participation of safety activity, etc.)",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-LD-016",
@@ -287,7 +296,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents confirm that they feel safety is essential. They are comfortable stopping work when they feel their safety is compromised."
+              "judgement_criteria": "All respondents confirm that they feel safety is essential. They are comfortable stopping work when they feel their safety is compromised.",
+              "responders": [
+                "teammate"
+              ]
             }
           ]
         }
@@ -311,7 +323,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents are trained to recognize the H&S risks applicable in the site."
+              "judgement_criteria": "All respondents are trained to recognize the H&S risks applicable in the site.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-003",
@@ -336,7 +351,10 @@
                 "document"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can explain how to report when incident happen. A review of the incident records from the last month show that teammates have been reporting incidents and near misses."
+              "judgement_criteria": "All respondents can explain how to report when incident happen. A review of the incident records from the last month show that teammates have been reporting incidents and near misses.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-008",
@@ -348,7 +366,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can explain their site/job safety rules and why they are important."
+              "judgement_criteria": "All respondents can explain their site/job safety rules and why they are important.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-011",
@@ -360,7 +381,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can explain the greatest potential risks in their work and controls to mitigate these risks."
+              "judgement_criteria": "All respondents can explain the greatest potential risks in their work and controls to mitigate these risks.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-015",
@@ -390,7 +414,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents know that safety is considered more important than operation."
+              "judgement_criteria": "All respondents know that safety is considered more important than operation.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-006",
@@ -402,7 +429,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents can explain the actions required to prevent the reoccurrence of incident that occurred in their site. They stated that they are involved in the required actions."
+              "judgement_criteria": "All respondents can explain the actions required to prevent the reoccurrence of incident that occurred in their site. They stated that they are involved in the required actions.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-010",
@@ -438,7 +468,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents stated that unsafe behavior is unacceptable and anyone acting unsafe will be corrected by their peers."
+              "judgement_criteria": "All respondents stated that unsafe behavior is unacceptable and anyone acting unsafe will be corrected by their peers.",
+              "responders": [
+                "teammate"
+              ]
             }
           ]
         },
@@ -469,7 +502,10 @@
                 "document"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents are informed of recent safety incidents in their site and countermeasures. Their statements match incident records."
+              "judgement_criteria": "All respondents are informed of recent safety incidents in their site and countermeasures. Their statements match incident records.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-009",
@@ -481,7 +517,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents agreed that they are regularly reminded and trained of their site/job safety rules."
+              "judgement_criteria": "All respondents agreed that they are regularly reminded and trained of their site/job safety rules.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-012",
@@ -493,7 +532,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents stated that they took the training on residual risks based on the work standard."
+              "judgement_criteria": "All respondents stated that they took the training on residual risks based on the work standard.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-TM-014",
@@ -632,7 +674,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents stated that they would report specific safety issues to their site leadership (e.g. site manager and supervisor) ."
+              "judgement_criteria": "All respondents stated that they would report specific safety issues to their site leadership (e.g. site manager and supervisor) .",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-OR-011",
@@ -668,7 +713,10 @@
                 "interview"
               ],
               "standard": null,
-              "judgement_criteria": "All respondents stated that management had taken specific actions to address hazards they reported, and these actions have been communicated to them."
+              "judgement_criteria": "All respondents stated that management had taken specific actions to address hazards they reported, and these actions have been communicated to them.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-OR-020",
@@ -759,7 +807,10 @@
                 "onsite"
               ],
               "standard": null,
-              "judgement_criteria": "Observation in genba showed that teammates are actively conscious of their safety and the safety of others. Activities for improvement were conducted in CFT being conscious of safety for not only their selves, but also teammates."
+              "judgement_criteria": "Observation in genba showed that teammates are actively conscious of their safety and the safety of others. Activities for improvement were conducted in CFT being conscious of safety for not only their selves, but also teammates.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-OR-018",
@@ -989,7 +1040,10 @@
                 "interview"
               ],
               "standard": "Communication",
-              "judgement_criteria": "The respondent indicates that the causes of incidents are communicated to him/her and how these information are communicated."
+              "judgement_criteria": "The respondent indicates that the causes of incidents are communicated to him/her and how these information are communicated.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-044",
@@ -1001,7 +1055,10 @@
                 "interview"
               ],
               "standard": "Communication",
-              "judgement_criteria": "The sampled teammates all say that they are well informed and can explain how the information communicated contributes to their safety."
+              "judgement_criteria": "The sampled teammates all say that they are well informed and can explain how the information communicated contributes to their safety.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-066",
@@ -1025,7 +1082,10 @@
                 "interview"
               ],
               "standard": "Communication",
-              "judgement_criteria": "The respondent is able to provide at least one recent example of bottom-up communication on hazards and risks."
+              "judgement_criteria": "The respondent is able to provide at least one recent example of bottom-up communication on hazards and risks.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-089",
@@ -1135,7 +1195,10 @@
                 "interview"
               ],
               "standard": "Safety Rules",
-              "judgement_criteria": "All respondents know the applicable All Bridgestone Safety Rules in their job positions."
+              "judgement_criteria": "All respondents know the applicable All Bridgestone Safety Rules in their job positions.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-027",
@@ -1159,7 +1222,10 @@
                 "interview"
               ],
               "standard": "Safety Rules",
-              "judgement_criteria": "All respondents can demonstrate knowledge of the Safety Rules and explain key points on safety in the work standard."
+              "judgement_criteria": "All respondents can demonstrate knowledge of the Safety Rules and explain key points on safety in the work standard.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-069",
@@ -1171,7 +1237,10 @@
                 "interview"
               ],
               "standard": "Safety Rules",
-              "judgement_criteria": "Therespondent can show an example that they collaboratd with management to evaluate risks in the work area."
+              "judgement_criteria": "Therespondent can show an example that they collaboratd with management to evaluate risks in the work area.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-070",
@@ -1237,7 +1306,10 @@
                 "interview"
               ],
               "standard": "Work at Height",
-              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving work at height which occurred in the site."
+              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving work at height which occurred in the site.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-048",
@@ -1303,7 +1375,10 @@
                 "interview"
               ],
               "standard": "Mobile Equipment",
-              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving mobile equipment which occurred in the site."
+              "judgement_criteria": "All respondents can explain sampled countermeasures against the incident involving mobile equipment which occurred in the site.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-049",
@@ -1496,7 +1571,10 @@
                 "interview"
               ],
               "standard": "Crane and Hoist",
-              "judgement_criteria": "All respondents can explain sampled countermeasures against hoist & crane incident which occurred in the site."
+              "judgement_criteria": "All respondents can explain sampled countermeasures against hoist & crane incident which occurred in the site.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-052",
@@ -1520,7 +1598,10 @@
                 "interview"
               ],
               "standard": "Crane and Hoist",
-              "judgement_criteria": "Crane operators observe each other and provide feedback. Or Information on how to operate crane safely has been shared."
+              "judgement_criteria": "Crane operators observe each other and provide feedback. Or Information on how to operate crane safely has been shared.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-095",
@@ -1640,7 +1721,10 @@
                 "interview"
               ],
               "standard": "Tire Inflation Operation",
-              "judgement_criteria": "The respondent can explain the key points which need to pay attention to in the tire inflation process."
+              "judgement_criteria": "The respondent can explain the key points which need to pay attention to in the tire inflation process.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-034",
@@ -1977,7 +2061,10 @@
                 "interview"
               ],
               "standard": "Integrated incidents management",
-              "judgement_criteria": "The respondents can explain the person to whom they have to report."
+              "judgement_criteria": "The respondents can explain the person to whom they have to report.",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-020",
@@ -1989,7 +2076,10 @@
                 "interview"
               ],
               "standard": "Integrated incidents management",
-              "judgement_criteria": "The respondents can show an example of incident that occurred at other site"
+              "judgement_criteria": "The respondents can show an example of incident that occurred at other site",
+              "responders": [
+                "teammate"
+              ]
             },
             {
               "id": "WH-SY-040",
@@ -2094,5 +2184,13 @@
         }
       ]
     }
-  ]
+  ],
+  "role_config": {
+    "teammate": {
+      "label": "Teammate",
+      "mode": "sections",
+      "max_sections": 6
+    }
+  },
+  "department_options": []
 }
