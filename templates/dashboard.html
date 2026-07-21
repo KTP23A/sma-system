@@ -179,19 +179,6 @@
 </style>
 {% endif %}
 
-<!-- Radar chart (SBU/Admin only, completed validations) -->
-{% if user.role != 'gc_assessor' %}
-{% set completed_validations = assessments | rejectattr('a.type', 'eq', 'ssdpma') | selectattr('a.kind', 'eq', 'validation') | selectattr('scores') | list %}
-{% if completed_validations %}
-<div class="card mb-4 p-3">
-  <h6 class="fw-bold mb-3">Pillar Comparison — Validation Results</h6>
-  <div style="max-height:350px">
-    <canvas id="radarChart"></canvas>
-  </div>
-</div>
-{% endif %}
-{% endif %}
-
 <!-- Assessments table -->
 {% set dash_groups = [
      {'type':'warehouse','label':'🚛 Warehouse','color':'primary'},
@@ -315,35 +302,6 @@
 
 {% block scripts %}
 <script>
-{% if user.role != 'gc_assessor' %}
-{% set completed_validations = assessments | rejectattr('a.type', 'eq', 'ssdpma') | selectattr('a.kind', 'eq', 'validation') | selectattr('scores') | list %}
-{% if completed_validations %}
-const radarData = {{ completed_validations | tojson }};
-const colors = ['#0d6efd','#6f42c1','#fd7e14','#198754','#dc3545','#0dcaf0','#ffc107','#20c997'];
-const datasets = radarData.map((item, i) => ({
-  label: item.gc ? item.gc.name : item.a.site_name,
-  data: [
-    item.scores.pillars.leadership?.score ?? 0,
-    item.scores.pillars.tm_engagement?.score ?? 0,
-    item.scores.pillars.organization?.score ?? 0,
-    item.scores.pillars.system?.score ?? 0,
-  ],
-  borderColor: colors[i % colors.length],
-  backgroundColor: colors[i % colors.length] + '33',
-  pointBackgroundColor: colors[i % colors.length],
-}));
-new Chart(document.getElementById('radarChart'), {
-  type: 'radar',
-  data: { labels: ['Leadership','TM Engagement','Organization','System'], datasets },
-  options: {
-    responsive: true, maintainAspectRatio: true,
-    scales: { r: { min: 0, max: 5, ticks: { stepSize: 1 } } },
-    plugins: { legend: { position: 'bottom' } }
-  }
-});
-{% endif %}
-{% endif %}
-
 // Sortable tables (click th.sortable to sort; click again to reverse)
 document.querySelectorAll('.sortable-table').forEach(table => {
   const tbody = table.querySelector('tbody');
